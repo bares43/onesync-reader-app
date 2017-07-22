@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Xam.Plugin.Abstractions;
 using Xamarin.Forms;
 
 namespace EbookReader {
     public class App : Application {
+
         public App() {
-            // The root page of your application
+       
+            var webView = new FormsWebView() {
+                ContentType = Xam.Plugin.Abstractions.Enumerations.WebViewContentType.Internet,
+                Source = "https://www.google.cz/",
+                WidthRequest = 500,
+                HeightRequest = 500
+            };
+
+
             var content = new ContentPage {
                 Title = "EbookReader",
                 Content = new StackLayout {
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
-                        new Label {
-                            HorizontalTextAlignment = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
+                        webView
                     }
                 }
             };

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Xam.Plugin.Shared;
 
 namespace EbookReader.UWP
 {
@@ -28,6 +29,7 @@ namespace EbookReader.UWP
         /// </summary>
         public App()
         {
+            FormsWebViewRenderer.Init();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
