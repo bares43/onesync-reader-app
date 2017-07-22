@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xam.Plugin.iOS;
 
 namespace EbookReader.iOS {
     public class Application {
@@ -11,6 +12,7 @@ namespace EbookReader.iOS {
         static void Main(string[] args) {
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
+            FormsWebViewRenderer.Init();
             UIApplication.Main(args, null, "AppDelegate");
         }
     }
