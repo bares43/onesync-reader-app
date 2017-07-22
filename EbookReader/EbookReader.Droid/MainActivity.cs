@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xam.Plugin.Droid;
 
 namespace EbookReader.Droid {
     [Activity(Label = "EbookReader", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -16,6 +17,7 @@ namespace EbookReader.Droid {
 
             base.OnCreate(bundle);
 
+            FormsWebViewRenderer.Init();
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
