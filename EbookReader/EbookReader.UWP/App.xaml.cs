@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using EbookReader.UWP.DependencyService;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -29,6 +30,7 @@ namespace EbookReader.UWP
         /// </summary>
         public App()
         {
+            Xamarin.Forms.DependencyService.Register<UWPAssetsManager>();
             FormsWebViewRenderer.Init();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
