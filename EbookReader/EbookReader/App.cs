@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EbookReader.DependencyService;
+using EbookReader.Service;
 using Newtonsoft.Json;
+using Plugin.FilePicker;
 using Xam.Plugin.Abstractions;
 using Xamarin.Forms;
 
@@ -11,6 +13,7 @@ namespace EbookReader {
     public class App : Application {
 
         FormsWebView webView;
+        Label info;
 
         public App() {
 
@@ -20,6 +23,19 @@ namespace EbookReader {
                 HeightRequest = 500
             };
 
+            info = new Label {
+                WidthRequest = 500,
+                HeightRequest = 50
+            };
+
+            var loadButton = new Button {
+                WidthRequest = 500,
+                HeightRequest = 50,
+                Text = "Načíst knihu"
+            };
+
+            loadButton.Clicked += LoadButton_Clicked;
+
             this.LoadWebViewLayout();
 
             webView.OnContentLoaded += WebView_OnContentLoaded;
@@ -27,12 +43,14 @@ namespace EbookReader {
             webView.RegisterGlobalCallback("csDebug", (str) => {
                 webView.InjectJavascript(string.Format("scroll({0})", str));
             });
-            
+
             var content = new ContentPage {
                 Title = "EbookReader",
                 Content = new StackLayout {
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
+                        loadButton,
+                        info,
                         webView
                     }
                 }
@@ -41,6 +59,19 @@ namespace EbookReader {
             MainPage = new NavigationPage(content);
         }
 
+        private void LoadButton_Clicked(object sender, EventArgs e) {
+            this.LoadBook();
+        }
+
+        public async void LoadBook() {
+            var pickedFile = await CrossFilePicker.Current.PickFile();
+
+            var loader = new EpubLoader();
+            var epub = await loader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
+
+            info.Text = string.Format("Název: {0}, Autor: {1}\n Popis: {2}", epub.Title, epub.Author, epub.Description);
+        }
+                
         private string CreateData() {
             return @"
 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Integer lacinia. Aenean vel massa quis mauris vehicula lacinia. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Nulla est. Pellentesque arcu. Praesent in mauris eu tortor porttitor accumsan. Donec quis nibh at felis congue commodo. Mauris dolor felis, sagittis at, luctus sed, aliquam non, tellus. Duis viverra diam non justo. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Nullam rhoncus aliquam metus. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Proin in tellus sit amet nibh dignissim sagittis. Duis viverra diam non justo. Curabitur bibendum justo non orci. Suspendisse nisl.</p>

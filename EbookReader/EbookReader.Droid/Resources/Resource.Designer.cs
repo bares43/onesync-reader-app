@@ -26,6 +26,8 @@ namespace EbookReader.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLStorage.Resource.String.ApplicationName = global::EbookReader.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::EbookReader.Droid.Resource.String.Hello;
 			global::WebView.Plugin.Droid.Resource.Animation.abc_fade_in = global::EbookReader.Droid.Resource.Animation.abc_fade_in;
 			global::WebView.Plugin.Droid.Resource.Animation.abc_fade_out = global::EbookReader.Droid.Resource.Animation.abc_fade_out;
 			global::WebView.Plugin.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::EbookReader.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
