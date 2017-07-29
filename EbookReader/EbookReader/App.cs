@@ -62,7 +62,9 @@ namespace EbookReader {
             var loader = new EpubLoader();
             var epub = await loader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
 
-            var html = string.Format("<h1>{0}</h1><i>{1}</i><p>{2}</p>", epub.Title, epub.Author, epub.Description);
+            var chapter = await loader.GetChapter(epub, epub.Spines.Skip(7).First());
+
+            var html = loader.PrepareHTML(chapter);
             this.SendHtml(html);
         }
 
