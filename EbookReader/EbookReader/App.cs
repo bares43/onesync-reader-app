@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EbookReader.DependencyService;
+using EbookReader.Helpers;
 using EbookReader.Service;
 using Newtonsoft.Json;
 using Plugin.FilePicker;
@@ -13,6 +14,7 @@ namespace EbookReader {
     public class App : Application {
 
         FormsWebView webView;
+        WebViewMessages _messages;
 
         public App() {
 
@@ -21,6 +23,10 @@ namespace EbookReader {
                 WidthRequest = 500,
                 HeightRequest = 500
             };
+
+            _messages = new WebViewMessages(webView);
+
+            _messages.OnMyMessage += _messages_OnMyMessage;
 
             var loadButton = new Button {
                 WidthRequest = 500,
@@ -33,11 +39,7 @@ namespace EbookReader {
             this.LoadWebViewLayout();
 
             webView.OnContentLoaded += WebView_OnContentLoaded;
-
-            webView.RegisterGlobalCallback("csDebug", (str) => {
-                webView.InjectJavascript(string.Format("scroll({0})", str));
-            });
-
+            
             var content = new ContentPage {
                 Title = "EbookReader",
                 Content = new StackLayout {
@@ -50,6 +52,9 @@ namespace EbookReader {
             };
 
             MainPage = new NavigationPage(content);
+        }
+
+        private void _messages_OnMyMessage(object sender, Model.WebViewMessages.MyMessage param) {
         }
 
         private void LoadButton_Clicked(object sender, EventArgs e) {
@@ -69,20 +74,13 @@ namespace EbookReader {
         }
 
         private void SendHtml(string html) {
-            var json = JsonConvert.SerializeObject(new {
+            var json = new {
                 Html = html
-            });
+            };
 
-            var js = string.Format("loadHtml('{0}')", Base64Encode(json));
-
-            webView.InjectJavascript(js);
+            _messages.Send("loadHtml", json);
         }
-
-        public static string Base64Encode(string plainText) {
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
-            return System.Convert.ToBase64String(plainTextBytes);
-        }
-
+        
         private async void LoadWebViewLayout() {
             var fileContent = Xamarin.Forms.DependencyService.Get<IAssetsManager>();
             webView.Source = await fileContent.GetFileContentAsync("layout.html");

@@ -38,10 +38,12 @@
     <Compile Include="App.cs" />
     <Compile Include="DependencyService\IAssetsManager.cs" />
     <Compile Include="Exceptions\Epub\UnknownEpubVersionException.cs" />
+    <Compile Include="Helpers\Base64Helper.cs" />
     <Compile Include="Helpers\EpubVersionHelper.cs" />
     <Compile Include="Model\Epub.cs" />
     <Compile Include="Model\EpubFile.cs" />
     <Compile Include="Model\EpubSpine.cs" />
+    <Compile Include="Model\WebViewMessages\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\EpubLoader.cs" />
     <Compile Include="Service\Epub\Epub200Parser.cs" />
@@ -49,6 +51,7 @@
     <Compile Include="Service\Epub\Epub301Parser.cs" />
     <Compile Include="Service\Epub\EpubParser.cs" />
     <Compile Include="Service\FileService.cs" />
+    <Compile Include="Service\WebViewMessages.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />

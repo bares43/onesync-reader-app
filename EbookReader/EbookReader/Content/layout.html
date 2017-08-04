@@ -182,7 +182,34 @@
             }
         };
 
+
+        window.Messages = {
+            send: function (action, data) {
+                var json = JSON.stringify({
+                    action: action,
+                    data: data
+                });
+
+                csCallback(Base64.encode(json));
+            },
+            parse: function (data) {
+                var json = JSON.parse(Base64.decode(data));
+                $("#content").text(json.Action);
+                this.actions[json.Action](json.Data);
+            },
+            actions: {
+                loadHtml(data) {
+                    $("#content").html(data.Html);
+
+                    Ebook.init();
+                }
+            }
+        }
+
         function init() {
+
+            Messages.send("MyMessage", {P1: "value", P2: 3, P3: true, P4: 5.6});
+
             $(document).on('click', function (e) {
                 if(e.pageX > Math.round(Ebook.pageWidth / 2)) {
                     Ebook.goToNextPage();
@@ -192,16 +219,6 @@
             });
         }
         
-        function loadHtml(html) {
-             var data = parseResponse(html);
-             $("#content").html(data.Html);
-
-             Ebook.init();
-             Ebook.goToPage(2);
-        }
-        function parseResponse(response) {
-            return JSON.parse(Base64.decode(response));
-        }
     </script>
     <style>
         body {
