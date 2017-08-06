@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <script type='text/javascript' src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
@@ -35,7 +36,8 @@
                         enc4 = 64;
                     }
 
-                    output = output + this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) + this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+                    output = output + this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) + this._keyStr.charAt(
+                        enc3) + this._keyStr.charAt(enc4);
 
                 }
 
@@ -89,12 +91,10 @@
 
                     if (c < 128) {
                         utftext += String.fromCharCode(c);
-                    }
-                    else if ((c > 127) && (c < 2048)) {
+                    } else if ((c > 127) && (c < 2048)) {
                         utftext += String.fromCharCode((c >> 6) | 192);
                         utftext += String.fromCharCode((c & 63) | 128);
-                    }
-                    else {
+                    } else {
                         utftext += String.fromCharCode((c >> 12) | 224);
                         utftext += String.fromCharCode(((c >> 6) & 63) | 128);
                         utftext += String.fromCharCode((c & 63) | 128);
@@ -117,13 +117,11 @@
                     if (c < 128) {
                         string += String.fromCharCode(c);
                         i++;
-                    }
-                    else if ((c > 191) && (c < 224)) {
+                    } else if ((c > 191) && (c < 224)) {
                         c2 = utftext.charCodeAt(i + 1);
                         string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
                         i += 2;
-                    }
-                    else {
+                    } else {
                         c2 = utftext.charCodeAt(i + 1);
                         c3 = utftext.charCodeAt(i + 2);
                         string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
@@ -138,38 +136,40 @@
         }
     </script>
     <script type='text/javascript'>
-
         window.Ebook = {
             pageWidth: 0,
             scrollStep: 0,
             totalPages: 0,
             currentPage: 1,
-            goToNextPage: function(){
+            goToNextPage: function () {
                 var page = this.currentPage + 1;
-                if(page > this.totalPages){
+                if (page > this.totalPages) {
                     page = this.totalPages;
                 }
 
                 this.goToPage(page);
             },
-            goToPreviousPage: function(){
+            goToPreviousPage: function () {
                 var page = this.currentPage - 1;
-                if(page < 1) {
+                if (page < 1) {
                     page = 1;
                 }
 
                 this.goToPage(page);
             },
-            goToPage: function(page) {
+            goToPage: function (page) {
                 this.currentPage = page;
+
+                var self = this;
+
                 $('#columns-outer').animate({
-                    scrollLeft: (page-1) * this.scrollStep
+                    scrollLeft: (page - 1) * this.scrollStep
                 }, 500);
+
+
             },
-            requestNextChapter: function() {
-            },
-            requestPreviousChapter: function() {
-            },
+            requestNextChapter: function () {},
+            requestPreviousChapter: function () {},
             init: function () {
                 this.pageWidth = $("#columns-inner").width();
 
@@ -179,6 +179,77 @@
                 this.totalPages = Math.ceil(endOfChapterLeft / this.pageWidth);
 
                 this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
+            },
+            pageOfElement: function (el) {
+                var left = $(el).position().left;
+                return Math.ceil(left / this.pageWidth);
+            },
+            goToPosition: function (position) {
+                this.markHelper.reset();
+                $("#js-ebook-marker").remove();
+                var node = this.markHelper.findNodeAtPosition(position, $("#content").get(0));
+                if (node != null) {
+                    this.markHelper.createMark(node, position - this.markHelper.positionCounter);
+                    var page = this.pageOfElement($("#js-ebook-marker"));
+
+                    this.goToPage(page);
+                }
+
+
+            },
+            markHelper: {
+                positionCounter: 0,
+                reset: function () {
+                    this.positionCounter = 0;
+                },
+                findNodeAtPosition: function (position, currentNode) {
+
+                    var desiredNode = null;
+
+                    var nodeLength = this.getNodeLength(currentNode);
+                    var nodeLengthPlusCounter = nodeLength + this.positionCounter;
+
+                    if (nodeLengthPlusCounter >= position) {
+                        if (currentNode.nodeType == Node.ELEMENT_NODE) {
+                            desiredNode = this.findNodeAtPosition(position, currentNode.firstChild /*, positionCounter*/ );
+                        } else if (currentNode.nodeType == Node.TEXT_NODE) {
+                            this.positionInNode = position - this.positionCounter;
+                            desiredNode = currentNode;
+                        }
+                    } else if (currentNode.nextSibling != null) {
+                        this.positionCounter = nodeLengthPlusCounter;
+
+                        desiredNode = this.findNodeAtPosition(position, currentNode.nextSibling /*, nodeLengthPlusCounter*/ );
+                    }
+
+                    return desiredNode;
+                },
+                createMark: function (node, position) {
+
+                    var wrapper = document.createElement("span");
+                    var text = node.nodeValue;
+                    var textBefore = text.substring(0, position);
+                    var textAfter = text.substring(position);
+                    var marker = document.createElement("span");
+                    marker.setAttribute("id", "js-ebook-marker");
+
+                    wrapper.appendChild(document.createTextNode(textBefore));
+                    wrapper.appendChild(marker);
+                    wrapper.appendChild(document.createTextNode(textAfter));
+
+                    node.parentNode.replaceChild(wrapper, node);
+                },
+                getNodeLength: function (node) {
+                    var length = 0;
+
+                    if (node.nodeType == Node.ELEMENT_NODE) {
+                        length = node.innerText.length;
+                    } else if (node.nodeType == Node.TEXT_NODE) {
+                        length = node.length;
+                    }
+
+                    return length;
+                }
             }
         };
 
@@ -208,17 +279,38 @@
 
         function init() {
 
-            Messages.send("MyMessage", {P1: "value", P2: 3, P3: true, P4: 5.6});
-
             $(document).on('click', function (e) {
-                if(e.pageX > Math.round(Ebook.pageWidth / 2)) {
+                if (e.pageX > Math.round(Ebook.pageWidth / 2)) {
                     Ebook.goToNextPage();
-                } else{
+                } else {
                     Ebook.goToPreviousPage();
                 }
             });
         }
-        
+
+        var getAllTextInColumn = function (rect) {
+            /*
+                rect should be the size and x,y of the column
+                { top, left, width, height }
+            */
+
+            if (document.caretRangeFromPoint) {
+                var caretRangeStart = document.caretRangeFromPoint(rect.left, rect.top);
+                var caretRangeEnd = document.caretRangeFromPoint(rect.left + rect.width - 1, rect.top + rect.height -
+                    1);
+            } else {
+                return null;
+            }
+
+            if (caretRangeStart == null || caretRangeEnd == null) return null;
+
+            var range = document.createRange();
+            range.setStart(caretRangeStart.startContainer, caretRangeStart.startOffset);
+            range.setEnd(caretRangeEnd.endContainer, caretRangeEnd.endOffset);
+
+            return range.toString();
+
+        };
     </script>
     <style>
         body {
@@ -227,26 +319,38 @@
             width: 100%;
             height: 100%;
         }
+
         #columns-outer {
             margin: 15px;
-            width: 500px; 
+            width: 500px;
             height: 400px;
-            overflow: hidden; 
+            overflow: hidden;
         }
+
         #columns-inner {
             height: 100%;
             column-gap: 0px;
         }
+
+        #js-ebook-marker {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: red;
+        }
     </style>
 </head>
+
 <body>
 
     <div id="columns-outer">
         <div id="columns-inner">
-            <div id="content"></div>
+            <div id="content">
+            </div>
             <span id="js-ebook-end-of-chapter"></span>
         </div>
     </div>
-    
+
 </body>
+
 </html>
