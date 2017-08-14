@@ -157,16 +157,23 @@
 
                 this.goToPage(page);
             },
-            goToPage: function (page) {
+            goToPage: function (page, duration) {
+
+                if (duration == undefined) {
+                    duration = 500;
+                }
+
                 this.currentPage = page;
 
                 var self = this;
 
                 $('#columns-outer').animate({
                     scrollLeft: (page - 1) * this.scrollStep
-                }, 500);
+                }, duration);
 
-
+            },
+            goToPageFast: function (page) {
+                this.goToPage(page, 0);
             },
             requestNextChapter: function () {},
             requestPreviousChapter: function () {},
@@ -179,80 +186,247 @@
                 this.totalPages = Math.ceil(endOfChapterLeft / this.pageWidth);
 
                 this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
+
             },
             pageOfElement: function (el) {
-                var left = $(el).position().left;
+                var left = $(el).position().left + 1;
                 return Math.ceil(left / this.pageWidth);
             },
             goToPosition: function (position) {
-                this.markHelper.reset();
-                $("#js-ebook-marker").remove();
-                var node = this.markHelper.findNodeAtPosition(position, $("#content").get(0));
-                if (node != null) {
-                    this.markHelper.createMark(node, position - this.markHelper.positionCounter);
-                    var page = this.pageOfElement($("#js-ebook-marker"));
+                var currentPage = Ebook.currentPage;
+                this.goToPageFast(1);
 
+                var result = this.pagerHelper.findNodeAtPosition(position, $("#content").get(0));
+                if (result.node != null) {
+
+                    this.pagerHelper.createMark(result.node, position - result.positionCounter);
+                    var page = this.pageOfElement($("#js-ebook-mark"));
+
+                    this.goToPageFast(currentPage);
                     this.goToPage(page);
                 }
 
-
+                this.pagerHelper.removeMark();
             },
-            markHelper: {
-                positionCounter: 0,
-                reset: function () {
-                    this.positionCounter = 0;
-                },
-                findNodeAtPosition: function (position, currentNode) {
+            pagerHelper: {
+                cache: [],
+                startOfPage: function (page) {
 
-                    var desiredNode = null;
+                    page = Math.min(Math.max(page, 1), Ebook.totalPages);
+
+                    if (this.cache.length == 0) {
+                        Ebook.pagerHelper.getLengthOfAllPages();
+                    }
+
+                    var start = 0;
+
+                    for (var i = 1; i < page; i++) {
+                        var cache = this.cache.filter(function (item) {
+                            return item.page == i;
+                        })[0];
+
+                        start += cache.length;
+                    }
+
+                    if (page > 1) {
+                        ++start;
+                    }
+
+                    return start;
+                },
+                markStartOfPage: function () {
+
+                    var rect = {
+                        top: 15,
+                        left: 15,
+                        width: 470,
+                        height: 370
+                    };
+
+                    if (document.caretRangeFromPoint) {
+                        var range = document.caretRangeFromPoint(rect.left, rect.top);
+                       
+                        if (range !== null) {
+                            var mark = document.createElement("span");
+                            mark.setAttribute("class", "js-ebook-page-begin");
+
+                            range.insertNode(mark);
+                        }
+                    }
+                },
+
+                markAllPages: function () {
+                    var currentPage = Ebook.currentPage;
+
+                    for (var i = 1; i <= Ebook.totalPages; i++) {
+                        Ebook.goToPageFast(i);
+                        this.markStartOfPage();
+                    }
+
+                    Ebook.goToPageFast(currentPage);
+                },
+
+                getLengthOfAllPages: function () {
+                    this.markAllPages();
+
+                    var html = $("#content").html();
+                    var pages = html.split('<span class="js-ebook-page-begin"></span>');
+
+                    var result = [];
+
+                    for (var i = 1; i <= Ebook.totalPages; i++) {
+                        var partOfHtml = pages[i];
+                        var text = this.clearText($("<p>" + partOfHtml + "</p>").text());
+                        var length = text.length;
+                        result.push({
+                            page: i,
+                            length: length
+                        });
+                    }
+
+                    var mark = document.getElementsByClassName("js-ebook-page-begin")[0];
+
+                    while (mark != null) {
+
+                        var previousNode = mark.previousSibling;
+                        var nextNode = mark.nextSibling;
+
+                        if (previousNode !== null &&
+                            nextNode !== null &&
+                            previousNode.nodeType === Node.TEXT_NODE &&
+                            nextNode.nodeType === Node.TEXT_NODE) {
+                            var text = previousNode.nodeValue + nextNode.nodeValue;
+                            var textNode = document.createTextNode(text);
+
+                            var parent = mark.parentNode;
+                            parent.replaceChild(textNode, mark);
+
+                            previousNode.remove();
+                            nextNode.remove();
+                        } else {
+                            mark.remove();
+                        }
+
+                        mark = document.getElementsByClassName("js-ebook-page-begin")[0];
+                    }
+
+                    Ebook.pagerHelper.cache = result;
+
+                },
+
+                findNodeAtPosition: function (position, currentNode, positionCounter) {
+
+                    if (positionCounter === undefined) {
+                        positionCounter = 0;
+                    }
+
+                    var result = {
+                        node: null,
+                        positionCounter: 0
+                    };
+
+                    var node = null;
 
                     var nodeLength = this.getNodeLength(currentNode);
-                    var nodeLengthPlusCounter = nodeLength + this.positionCounter;
+                    var nodeLengthPlusCounter = nodeLength + positionCounter;
 
                     if (nodeLengthPlusCounter >= position) {
                         if (currentNode.nodeType == Node.ELEMENT_NODE) {
-                            desiredNode = this.findNodeAtPosition(position, currentNode.firstChild /*, positionCounter*/ );
+                            result = this.findNodeAtPosition(position, currentNode.firstChild, positionCounter);
                         } else if (currentNode.nodeType == Node.TEXT_NODE) {
-                            this.positionInNode = position - this.positionCounter;
-                            desiredNode = currentNode;
+                            result.node = currentNode;
+                            result.positionCounter = positionCounter;
                         }
                     } else if (currentNode.nextSibling != null) {
-                        this.positionCounter = nodeLengthPlusCounter;
-
-                        desiredNode = this.findNodeAtPosition(position, currentNode.nextSibling /*, nodeLengthPlusCounter*/ );
+                        result = this.findNodeAtPosition(position, currentNode.nextSibling,
+                            nodeLengthPlusCounter);
                     }
 
-                    return desiredNode;
+                    return result;
+                },
+                removeMark: function () {
+                    var mark = document.getElementById("js-ebook-mark");
+
+                    if (mark !== null) {
+                        var textNode = mark.firstChild;
+                        if (textNode != null) {
+                            var previousNode = mark.previousSibling;
+                            var text = textNode.nodeValue;
+
+                            if (previousNode != null && previousNode.nodeType === Node.TEXT_NODE) {
+                                text = previousNode.nodeValue + text;
+                                previousNode.remove();
+                            }
+
+                            mark.parentNode.replaceChild(document.createTextNode(text), mark);
+                        } else {
+                            mark.remove();
+                        }
+                    }
+
                 },
                 createMark: function (node, position) {
+                    var regex = /(\s*\S+)(\s+)?([\S\s]*)?/;
+                    var counter = 0;
+                    var found = false;
 
-                    var wrapper = document.createElement("span");
                     var text = node.nodeValue;
-                    var textBefore = text.substring(0, position);
-                    var textAfter = text.substring(position);
-                    var marker = document.createElement("span");
-                    marker.setAttribute("id", "js-ebook-marker");
 
-                    wrapper.appendChild(document.createTextNode(textBefore));
-                    wrapper.appendChild(marker);
-                    wrapper.appendChild(document.createTextNode(textAfter));
+                    var textBefore = "";
 
-                    node.parentNode.replaceChild(wrapper, node);
-                },
-                getNodeLength: function (node) {
-                    var length = 0;
+                    var mark = document.createElement("span");
+                    mark.setAttribute("id", "js-ebook-mark");
 
-                    if (node.nodeType == Node.ELEMENT_NODE) {
-                        length = node.innerText.length;
-                    } else if (node.nodeType == Node.TEXT_NODE) {
-                        length = node.length;
+                    while (regex.test(text) && !found) {
+                        var match = regex.exec(text);
+
+                        var currentText = match[1];
+                        var whiteCharacters = match[2];
+
+                        text = match[3];
+
+                        if (text == undefined) {
+                            text = "";
+                        }
+
+                        var length = this.clearText(currentText).length;
+
+                        counter += length;
+
+                        if (counter >= position) {
+                            found = true;
+                            textAfter = text;
+                            mark.appendChild(document.createTextNode(currentText + whiteCharacters + text));
+                        } else {
+                            textBefore += currentText + whiteCharacters;
+                        }
+
                     }
 
-                    return length;
+                    var textBeforeNode = document.createTextNode(textBefore);
+
+                    var parent = node.parentNode;
+
+                    parent.replaceChild(mark, node);
+                    parent.insertBefore(textBeforeNode, mark);
+
+                },
+                getNodeLength: function (node) {
+                    var rawText = "";
+
+                    if (node.nodeType == Node.ELEMENT_NODE) {
+                        rawText = node.innerText;
+                    } else if (node.nodeType == Node.TEXT_NODE) {
+                        rawText = node.nodeValue;
+                    }
+
+                    return this.clearText(rawText).length;
+                },
+                clearText: function (text) {
+                    return text.replace(/\s/g, '');
                 }
             }
         };
-
 
         window.Messages = {
             send: function (action, data) {
@@ -265,7 +439,6 @@
             },
             parse: function (data) {
                 var json = JSON.parse(Base64.decode(data));
-                $("#content").text(json.Action);
                 this.actions[json.Action](json.Data);
             },
             actions: {
@@ -273,9 +446,13 @@
                     $("#content").html(data.Html);
 
                     Ebook.init();
+                },
+                goToStartOfPage(data) {
+                    Ebook.goToPosition(Ebook.pagerHelper.startOfPage(data.Page));
                 }
             }
         }
+
 
         function init() {
 
@@ -288,29 +465,6 @@
             });
         }
 
-        var getAllTextInColumn = function (rect) {
-            /*
-                rect should be the size and x,y of the column
-                { top, left, width, height }
-            */
-
-            if (document.caretRangeFromPoint) {
-                var caretRangeStart = document.caretRangeFromPoint(rect.left, rect.top);
-                var caretRangeEnd = document.caretRangeFromPoint(rect.left + rect.width - 1, rect.top + rect.height -
-                    1);
-            } else {
-                return null;
-            }
-
-            if (caretRangeStart == null || caretRangeEnd == null) return null;
-
-            var range = document.createRange();
-            range.setStart(caretRangeStart.startContainer, caretRangeStart.startOffset);
-            range.setEnd(caretRangeEnd.endContainer, caretRangeEnd.endOffset);
-
-            return range.toString();
-
-        };
     </script>
     <style>
         body {
@@ -332,11 +486,12 @@
             column-gap: 0px;
         }
 
-        #js-ebook-marker {
+        .js-ebook-page-begin {
             display: inline-block;
-            width: 5px;
-            height: 5px;
-            background-color: red;
+        }
+
+        #content {
+            position: relative;
         }
     </style>
 </head>

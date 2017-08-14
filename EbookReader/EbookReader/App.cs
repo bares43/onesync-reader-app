@@ -29,12 +29,19 @@ namespace EbookReader {
             _messages.OnMyMessage += _messages_OnMyMessage;
 
             var loadButton = new Button {
-                WidthRequest = 500,
+                WidthRequest = 150,
                 HeightRequest = 50,
                 Text = "Načíst knihu"
             };
 
             loadButton.Clicked += LoadButton_Clicked;
+
+            var goToStartOfPageInput = new Entry {
+                WidthRequest = 150,
+                HeightRequest = 50
+            };
+
+            goToStartOfPageInput.TextChanged += GoToStartOfPageInput_TextChanged;
 
             this.LoadWebViewLayout();
 
@@ -46,12 +53,25 @@ namespace EbookReader {
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
                         loadButton,
+                        goToStartOfPageInput,
                         webView
                     }
                 }
             };
 
             MainPage = new NavigationPage(content);
+        }
+
+        private void GoToStartOfPageInput_TextChanged(object sender, TextChangedEventArgs e) {
+            var value = e.NewTextValue;
+            int page;
+            if(int.TryParse(value, out page)) {
+                var json = new {
+                    Page = page
+                };
+
+                _messages.Send("goToStartOfPage", json);
+            }
         }
 
         private void _messages_OnMyMessage(object sender, Model.WebViewMessages.MyMessage param) {
