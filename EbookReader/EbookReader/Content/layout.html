@@ -178,6 +178,8 @@
             requestNextChapter: function () {},
             requestPreviousChapter: function () {},
             init: function () {
+                this.pagerHelper.invalideCache();
+
                 this.pageWidth = $("#columns-inner").width();
 
                 $("#columns-inner").css("column-width", this.pageWidth + "px");
@@ -210,6 +212,9 @@
             },
             pagerHelper: {
                 cache: [],
+                invalideCache: function () {
+                    this.cache = [];
+                },
                 startOfPage: function (page) {
 
                     page = Math.min(Math.max(page, 1), Ebook.totalPages);
