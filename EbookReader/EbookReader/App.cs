@@ -15,6 +15,28 @@ namespace EbookReader {
 
         FormsWebView webView;
         WebViewMessages _messages;
+        Picker fontSizePicker;
+
+        List<string> FontSizes { get {
+                return new List<string> {
+                    "12",
+                    "14",
+                    "16",
+                    "18",
+                    "20",
+                    "22",
+                    "24",
+                    "26",
+                    "28",
+                    "30",
+                    "32",
+                    "34",
+                    "36",
+                    "38",
+                    "40"
+                };
+            }
+        }
 
         public App() {
 
@@ -25,9 +47,7 @@ namespace EbookReader {
             };
 
             _messages = new WebViewMessages(webView);
-
-            _messages.OnMyMessage += _messages_OnMyMessage;
-
+            
             var loadButton = new Button {
                 WidthRequest = 150,
                 HeightRequest = 50,
@@ -42,11 +62,19 @@ namespace EbookReader {
             };
 
             goToStartOfPageInput.TextChanged += GoToStartOfPageInput_TextChanged;
+            
+            fontSizePicker = new Picker {
+                Title = "Velikost písma",
+                HeightRequest = 75,
+                ItemsSource = this.FontSizes
+            };
+
+            fontSizePicker.SelectedIndexChanged += FontSizePicker_SelectedIndexChanged;
 
             this.LoadWebViewLayout();
 
             webView.OnContentLoaded += WebView_OnContentLoaded;
-            
+
             var content = new ContentPage {
                 Title = "EbookReader",
                 Content = new StackLayout {
@@ -54,6 +82,7 @@ namespace EbookReader {
                     Children = {
                         loadButton,
                         goToStartOfPageInput,
+                        fontSizePicker,
                         webView
                     }
                 }
@@ -62,10 +91,18 @@ namespace EbookReader {
             MainPage = new NavigationPage(content);
         }
 
+        private void FontSizePicker_SelectedIndexChanged(object sender, EventArgs e) {
+            if (this.fontSizePicker.SelectedIndex != -1) {
+                var fontSize = int.Parse(this.FontSizes[this.fontSizePicker.SelectedIndex]);
+                this.SetFontSize(fontSize);
+            }
+        }
+        
+        
         private void GoToStartOfPageInput_TextChanged(object sender, TextChangedEventArgs e) {
             var value = e.NewTextValue;
             int page;
-            if(int.TryParse(value, out page)) {
+            if (int.TryParse(value, out page)) {
                 var json = new {
                     Page = page
                 };
@@ -73,10 +110,7 @@ namespace EbookReader {
                 _messages.Send("goToStartOfPage", json);
             }
         }
-
-        private void _messages_OnMyMessage(object sender, Model.WebViewMessages.MyMessage param) {
-        }
-
+        
         private void LoadButton_Clicked(object sender, EventArgs e) {
             this.LoadBook();
         }
@@ -92,6 +126,14 @@ namespace EbookReader {
             var html = loader.PrepareHTML(chapter);
             this.SendHtml(html);
         }
+        
+        private void SetFontSize(int fontSize) {
+            var json = new {
+                FontSize = fontSize
+            };
+
+            _messages.Send("changeFontSize", json);
+        }
 
         private void SendHtml(string html) {
             var json = new {
@@ -100,7 +142,7 @@ namespace EbookReader {
 
             _messages.Send("loadHtml", json);
         }
-        
+
         private async void LoadWebViewLayout() {
             var fileContent = Xamarin.Forms.DependencyService.Get<IAssetsManager>();
             webView.Source = await fileContent.GetFileContentAsync("layout.html");

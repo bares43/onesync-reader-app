@@ -136,11 +136,27 @@
         }
     </script>
     <script type='text/javascript'>
+        $.fn.removeClassRegex = function (regex) {
+            return $(this).removeClass(function (index, classes) {
+                return classes.split(/\s+/).filter(function (c) {
+                    return regex.test(c);
+                }).join(' ');
+            });
+        };
+
         window.Ebook = {
             pageWidth: 0,
             scrollStep: 0,
             totalPages: 0,
             currentPage: 1,
+            fontSize: 16,
+            changeFontSize: function (fontSize) {
+                var position = this.getCurrentPosition();
+                this.fontSize = fontSize;
+
+                this.init();
+                this.goToPositionFast(position);
+            },
             goToNextPage: function () {
                 var page = this.currentPage + 1;
                 if (page > this.totalPages) {
@@ -180,6 +196,8 @@
             init: function () {
                 this.pagerHelper.invalideCache();
 
+                this.htmlHelper.setFontSize();
+
                 this.pageWidth = $("#columns-inner").width();
 
                 $("#columns-inner").css("column-width", this.pageWidth + "px");
@@ -189,12 +207,14 @@
 
                 this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
 
+                this.pagerHelper.getLengthOfAllPages();
+
             },
             pageOfElement: function (el) {
                 var left = $(el).position().left + 1;
                 return Math.ceil(left / this.pageWidth);
             },
-            goToPosition: function (position) {
+            goToPosition: function (position, duration) {
                 var currentPage = Ebook.currentPage;
                 this.goToPageFast(1);
 
@@ -205,10 +225,17 @@
                     var page = this.pageOfElement($("#js-ebook-mark"));
 
                     this.goToPageFast(currentPage);
-                    this.goToPage(page);
+                    this.goToPage(page, duration);
                 }
 
                 this.pagerHelper.removeMark();
+
+            },
+            goToPositionFast: function (position) {
+                this.goToPosition(position, 0);
+            },
+            getCurrentPosition: function () {
+                return this.pagerHelper.startOfPage(this.currentPage);
             },
             pagerHelper: {
                 cache: [],
@@ -250,7 +277,7 @@
 
                     if (document.caretRangeFromPoint) {
                         var range = document.caretRangeFromPoint(rect.left, rect.top);
-                       
+
                         if (range !== null) {
                             var mark = document.createElement("span");
                             mark.setAttribute("class", "js-ebook-page-begin");
@@ -259,7 +286,6 @@
                         }
                     }
                 },
-
                 markAllPages: function () {
                     var currentPage = Ebook.currentPage;
 
@@ -270,7 +296,6 @@
 
                     Ebook.goToPageFast(currentPage);
                 },
-
                 getLengthOfAllPages: function () {
                     this.markAllPages();
 
@@ -318,7 +343,6 @@
                     Ebook.pagerHelper.cache = result;
 
                 },
-
                 findNodeAtPosition: function (position, currentNode, positionCounter) {
 
                     if (positionCounter === undefined) {
@@ -430,6 +454,12 @@
                 clearText: function (text) {
                     return text.replace(/\s/g, '');
                 }
+            },
+            htmlHelper: {
+                setFontSize: function () {
+                    $("body").removeClassRegex(/^reader-font-size-/);
+                    $("body").addClass("reader-font-size-" + Ebook.fontSize);
+                }
             }
         };
 
@@ -454,6 +484,9 @@
                 },
                 goToStartOfPage(data) {
                     Ebook.goToPosition(Ebook.pagerHelper.startOfPage(data.Page));
+                },
+                changeFontSize(data) {
+                    Ebook.changeFontSize(data.FontSize);
                 }
             }
         }
@@ -469,7 +502,7 @@
                 }
             });
         }
-
+        
     </script>
     <style>
         body {
@@ -477,6 +510,66 @@
             margin: 0;
             width: 100%;
             height: 100%;
+        }
+
+        body.reader-font-size-12 {
+            font-size: 12px;
+        }
+
+        body.reader-font-size-14 {
+            font-size: 14px;
+        }
+
+        body.reader-font-size-16 {
+            font-size: 16px;
+        }
+
+        body.reader-font-size-18 {
+            font-size: 18px;
+        }
+
+        body.reader-font-size-20 {
+            font-size: 20px;
+        }
+
+        body.reader-font-size-22 {
+            font-size: 22px;
+        }
+
+        body.reader-font-size-24 {
+            font-size: 24px;
+        }
+
+        body.reader-font-size-26 {
+            font-size: 26px;
+        }
+
+        body.reader-font-size-28 {
+            font-size: 28px;
+        }
+
+        body.reader-font-size-30 {
+            font-size: 30px;
+        }
+
+        body.reader-font-size-32 {
+            font-size: 32px;
+        }
+
+        body.reader-font-size-34 {
+            font-size: 34px;
+        }
+
+        body.reader-font-size-36 {
+            font-size: 36px;
+        }
+
+        body.reader-font-size-38 {
+            font-size: 38px;
+        }
+
+        body.reader-font-size-40 {
+            font-size: 40px;
         }
 
         #columns-outer {
