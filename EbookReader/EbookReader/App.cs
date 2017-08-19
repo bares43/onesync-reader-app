@@ -35,35 +35,29 @@ namespace EbookReader {
                 };
             }
         }
-
+        
         public App() {
 
             webView = new FormsWebView() {
                 ContentType = Xam.Plugin.Abstractions.Enumerations.WebViewContentType.StringData,
-                WidthRequest = 500,
-                HeightRequest = 500
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
             };
 
             _messages = new WebViewMessages(webView);
             
             var loadButton = new Button {
-                WidthRequest = 150,
-                HeightRequest = 50,
                 Text = "Načíst knihu"
             };
 
             loadButton.Clicked += LoadButton_Clicked;
 
-            var goToStartOfPageInput = new Entry {
-                WidthRequest = 150,
-                HeightRequest = 50
-            };
+            var goToStartOfPageInput = new Entry();
 
             goToStartOfPageInput.TextChanged += GoToStartOfPageInput_TextChanged;
             
             fontSizePicker = new Picker {
                 Title = "Velikost písma",
-                HeightRequest = 75,
                 ItemsSource = this.FontSizes
             };
 
@@ -72,21 +66,36 @@ namespace EbookReader {
             this.LoadWebViewLayout();
 
             webView.OnContentLoaded += WebView_OnContentLoaded;
+            webView.SizeChanged += WebView_SizeChanged;
+
+            var controls = new StackLayout {
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Orientation = StackOrientation.Horizontal,
+                Children = {
+                    loadButton,
+                    goToStartOfPageInput,
+                    fontSizePicker,
+                }
+            };
 
             var content = new ContentPage {
                 Title = "EbookReader",
                 Content = new StackLayout {
-                    VerticalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
                     Children = {
-                        loadButton,
-                        goToStartOfPageInput,
-                        fontSizePicker,
-                        webView
+                        controls,
+                        webView,
                     }
                 }
             };
 
             MainPage = new NavigationPage(content);
+        }
+
+        private void WebView_SizeChanged(object sender, EventArgs e) {
+            this.ResizeWebView((int)this.webView.Width, (int)this.webView.Height);
         }
 
         private void FontSizePicker_SelectedIndexChanged(object sender, EventArgs e) {
@@ -142,6 +151,15 @@ namespace EbookReader {
             _messages.Send("init", json);
         }
 
+        private void ResizeWebView(int width, int height) {
+            var json = new {
+                Width = width,
+                Height = height
+            };
+
+            _messages.Send("resize", json);
+        }
+
         private void SendHtml(string html) {
             var json = new {
                 Html = html
@@ -156,7 +174,7 @@ namespace EbookReader {
         }
 
         private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
-            this.InitWebView(500, 400);
+            this.InitWebView((int)this.webView.Width, (int)this.webView.Height);
         }
 
         protected override void OnStart() {

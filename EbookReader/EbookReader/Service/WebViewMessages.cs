@@ -12,6 +12,7 @@ namespace EbookReader.Service {
     public class WebViewMessages {
 
         FormsWebView _webView;
+        bool webViewLoaded = false;
 
         public event EventHandler<Model.WebViewMessages.MyMessage> OnMyMessage;
 
@@ -21,16 +22,26 @@ namespace EbookReader.Service {
             webView.RegisterGlobalCallback("csCallback", (data) => {
                 this.Parse(data);
             });
+
+            webView.OnContentLoaded += WebView_OnContentLoaded; ;
+        }
+
+        private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
+            this.webViewLoaded = true;
         }
 
         public void Send(string action, object data) {
-            var json = JsonConvert.SerializeObject(new {
-                Action = action,
-                Data = data,
-            });
 
-            var toSend = Base64Helper.Encode(json);
-            _webView.InjectJavascript(string.Format("Messages.parse('{0}')", toSend));
+            if (this.webViewLoaded) {
+                var json = JsonConvert.SerializeObject(new {
+                    Action = action,
+                    Data = data,
+                });
+
+                var toSend = Base64Helper.Encode(json);
+                _webView.InjectJavascript(string.Format("Messages.parse('{0}')", toSend));
+            }
+
         }
 
         public void Parse(string data) {

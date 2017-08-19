@@ -155,20 +155,16 @@
             webViewMarginVertical: 15,
             webViewMarginHorizontal: 15,
             init: function (width, height) {
-                this.webViewWidth = width;
-                this.webViewHeight = height;
+                this.webViewWidth = width - 2 * Ebook.webViewMarginHorizontal;
+                this.webViewHeight = height - 2 * Ebook.webViewMarginVertical;
 
                 this.htmlHelper.setFontSize();
                 this.htmlHelper.setWidth();
                 this.htmlHelper.setHeight();
                 this.htmlHelper.setMargin();
 
-                this.pageWidth = $("#columns-inner").width();
-                $("#columns-inner").css("column-width", this.pageWidth + "px");
-                this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
-
+                this.setUpColumns();
                 this.setUpEvents();
-
                 this.setUpEbook();
             },
             setUpEvents: function () {
@@ -185,6 +181,24 @@
 
                 var endOfChapterLeft = $("#js-ebook-end-of-chapter").position().left;
                 this.totalPages = Math.ceil(endOfChapterLeft / this.pageWidth);
+            },
+            setUpColumns: function () {
+                this.pageWidth = $("#columns-inner").width();
+                $("#columns-inner").css("column-width", this.pageWidth + "px");
+                this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
+            },
+            resize: function (width, height) {
+                var position = this.getCurrentPosition();
+
+                this.webViewWidth = width - 2 * Ebook.webViewMarginHorizontal;
+                this.webViewHeight = height - 2 * Ebook.webViewMarginVertical;
+                this.htmlHelper.setWidth();
+                this.htmlHelper.setHeight();
+
+                this.setUpColumns();
+                this.setUpEbook();
+
+                this.goToPositionFast(position);
             },
             changeFontSize: function (fontSize) {
                 var position = this.getCurrentPosition();
@@ -504,23 +518,26 @@
                 this.actions[json.Action](json.Data);
             },
             actions: {
-                init(data) {
+                init: function (data) {
                     Ebook.init(data.Width, data.Height);
                 },
-                loadHtml(data) {
+                loadHtml: function (data) {
                     $("#content").html(data.Html);
 
                     Ebook.setUpEbook();
                 },
-                goToStartOfPage(data) {
+                goToStartOfPage: function (data) {
                     Ebook.goToPosition(Ebook.pagerHelper.startOfPage(data.Page));
                 },
-                changeFontSize(data) {
+                changeFontSize: function (data) {
                     Ebook.changeFontSize(data.FontSize);
+                },
+                resize: function (data) {
+                    Ebook.resize(data.Width, data.Height);
                 }
             }
         }
-        
+
     </script>
     <style>
         body {
@@ -530,65 +547,65 @@
             height: 100%;
         }
 
-        body.reader-font-size-12 {
-            font-size: 12px;
-        }
+            body.reader-font-size-12 {
+                font-size: 12px;
+            }
 
-        body.reader-font-size-14 {
-            font-size: 14px;
-        }
+            body.reader-font-size-14 {
+                font-size: 14px;
+            }
 
-        body.reader-font-size-16 {
-            font-size: 16px;
-        }
+            body.reader-font-size-16 {
+                font-size: 16px;
+            }
 
-        body.reader-font-size-18 {
-            font-size: 18px;
-        }
+            body.reader-font-size-18 {
+                font-size: 18px;
+            }
 
-        body.reader-font-size-20 {
-            font-size: 20px;
-        }
+            body.reader-font-size-20 {
+                font-size: 20px;
+            }
 
-        body.reader-font-size-22 {
-            font-size: 22px;
-        }
+            body.reader-font-size-22 {
+                font-size: 22px;
+            }
 
-        body.reader-font-size-24 {
-            font-size: 24px;
-        }
+            body.reader-font-size-24 {
+                font-size: 24px;
+            }
 
-        body.reader-font-size-26 {
-            font-size: 26px;
-        }
+            body.reader-font-size-26 {
+                font-size: 26px;
+            }
 
-        body.reader-font-size-28 {
-            font-size: 28px;
-        }
+            body.reader-font-size-28 {
+                font-size: 28px;
+            }
 
-        body.reader-font-size-30 {
-            font-size: 30px;
-        }
+            body.reader-font-size-30 {
+                font-size: 30px;
+            }
 
-        body.reader-font-size-32 {
-            font-size: 32px;
-        }
+            body.reader-font-size-32 {
+                font-size: 32px;
+            }
 
-        body.reader-font-size-34 {
-            font-size: 34px;
-        }
+            body.reader-font-size-34 {
+                font-size: 34px;
+            }
 
-        body.reader-font-size-36 {
-            font-size: 36px;
-        }
+            body.reader-font-size-36 {
+                font-size: 36px;
+            }
 
-        body.reader-font-size-38 {
-            font-size: 38px;
-        }
+            body.reader-font-size-38 {
+                font-size: 38px;
+            }
 
-        body.reader-font-size-40 {
-            font-size: 40px;
-        }
+            body.reader-font-size-40 {
+                font-size: 40px;
+            }
 
         #columns-outer {
             overflow: hidden;
