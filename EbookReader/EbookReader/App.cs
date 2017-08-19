@@ -15,8 +15,10 @@ namespace EbookReader {
         WebViewMessages _messages;
         Picker fontSizePicker;
         Picker marginPicker;
+        Label pages;
 
-        List<string> FontSizes { get {
+        List<string> FontSizes {
+            get {
                 return new List<string> {
                     "12",
                     "14",
@@ -37,7 +39,8 @@ namespace EbookReader {
             }
         }
 
-        List<string> Margins { get {
+        List<string> Margins {
+            get {
                 return new List<string> {
                     "15",
                     "30",
@@ -45,8 +48,10 @@ namespace EbookReader {
                 };
             }
         }
-        
+
         public App() {
+
+            this.pages = new Label();
 
             webView = new FormsWebView() {
                 ContentType = Xam.Plugin.Abstractions.Enumerations.WebViewContentType.StringData,
@@ -55,7 +60,8 @@ namespace EbookReader {
             };
 
             _messages = new WebViewMessages(webView);
-            
+            _messages.OnPageChange += _messages_OnPageChange;
+
             var loadButton = new Button {
                 Text = "Načíst knihu"
             };
@@ -65,7 +71,7 @@ namespace EbookReader {
             var goToStartOfPageInput = new Entry();
 
             goToStartOfPageInput.TextChanged += GoToStartOfPageInput_TextChanged;
-            
+
             fontSizePicker = new Picker {
                 Title = "Velikost písma",
                 ItemsSource = this.FontSizes
@@ -91,9 +97,14 @@ namespace EbookReader {
                 Orientation = StackOrientation.Horizontal,
                 Children = {
                     loadButton,
-                    goToStartOfPageInput,
+                    new StackLayout {
+                        Children = {
+                            pages,
+                            goToStartOfPageInput,
+                        }
+                    },
                     fontSizePicker,
-                    marginPicker
+                    marginPicker,
                 }
             };
 
@@ -110,6 +121,10 @@ namespace EbookReader {
             };
 
             MainPage = new NavigationPage(content);
+        }
+
+        private void _messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
+            this.pages.Text = string.Format("Stránka {0} z {1}", e.CurrentPage, e.TotalPages);
         }
 
         private void MarginPicker_SelectedIndexChanged(object sender, EventArgs e) {
@@ -129,8 +144,8 @@ namespace EbookReader {
                 this.SetFontSize(fontSize);
             }
         }
-        
-        
+
+
         private void GoToStartOfPageInput_TextChanged(object sender, TextChangedEventArgs e) {
             var value = e.NewTextValue;
             int page;
@@ -142,7 +157,7 @@ namespace EbookReader {
                 _messages.Send("goToStartOfPage", json);
             }
         }
-        
+
         private void LoadButton_Clicked(object sender, EventArgs e) {
             this.LoadBook();
         }
@@ -158,7 +173,7 @@ namespace EbookReader {
             var html = loader.PrepareHTML(chapter);
             this.SendHtml(html);
         }
-        
+
         private void SetFontSize(int fontSize) {
             var json = new {
                 FontSize = fontSize

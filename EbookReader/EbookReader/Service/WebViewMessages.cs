@@ -14,7 +14,7 @@ namespace EbookReader.Service {
         FormsWebView _webView;
         bool webViewLoaded = false;
 
-        public event EventHandler<Model.WebViewMessages.MyMessage> OnMyMessage;
+        public event EventHandler<Model.WebViewMessages.PageChange> OnPageChange;
 
         public WebViewMessages(FormsWebView webView) {
             _webView = webView;
@@ -51,8 +51,8 @@ namespace EbookReader.Service {
             var msg = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(json.Data), messageType);
 
             switch (json.Action) {
-                case Model.WebViewMessages.MyMessage.Name:
-                    this.OnMyMessage?.Invoke(this, msg as Model.WebViewMessages.MyMessage);
+                case Model.WebViewMessages.PageChange.Name:
+                    this.OnPageChange?.Invoke(this, msg as Model.WebViewMessages.PageChange);
                     break;
             }
 

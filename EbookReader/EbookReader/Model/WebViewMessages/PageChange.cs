@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.WebViewMessages {
-    public class Message {
-        public string Action { get; set; }
-        public object Data { get; set; }
+    public class PageChange {
+        public const string Name = "PageChange";
+
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
     }
 }
