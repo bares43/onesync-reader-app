@@ -14,6 +14,7 @@ namespace EbookReader {
         FormsWebView webView;
         WebViewMessages _messages;
         Picker fontSizePicker;
+        Picker marginPicker;
 
         List<string> FontSizes { get {
                 return new List<string> {
@@ -32,6 +33,15 @@ namespace EbookReader {
                     "36",
                     "38",
                     "40"
+                };
+            }
+        }
+
+        List<string> Margins { get {
+                return new List<string> {
+                    "15",
+                    "30",
+                    "45",
                 };
             }
         }
@@ -63,6 +73,13 @@ namespace EbookReader {
 
             fontSizePicker.SelectedIndexChanged += FontSizePicker_SelectedIndexChanged;
 
+            marginPicker = new Picker {
+                Title = "Velikost odsazení",
+                ItemsSource = this.Margins
+            };
+
+            marginPicker.SelectedIndexChanged += MarginPicker_SelectedIndexChanged;
+
             this.LoadWebViewLayout();
 
             webView.OnContentLoaded += WebView_OnContentLoaded;
@@ -76,6 +93,7 @@ namespace EbookReader {
                     loadButton,
                     goToStartOfPageInput,
                     fontSizePicker,
+                    marginPicker
                 }
             };
 
@@ -92,6 +110,13 @@ namespace EbookReader {
             };
 
             MainPage = new NavigationPage(content);
+        }
+
+        private void MarginPicker_SelectedIndexChanged(object sender, EventArgs e) {
+            if (this.marginPicker.SelectedIndex != -1) {
+                var margin = int.Parse(this.Margins[this.marginPicker.SelectedIndex]);
+                this.SetMargin(margin);
+            }
         }
 
         private void WebView_SizeChanged(object sender, EventArgs e) {
@@ -140,6 +165,14 @@ namespace EbookReader {
             };
 
             _messages.Send("changeFontSize", json);
+        }
+
+        private void SetMargin(int margin) {
+            var json = new {
+                Margin = margin
+            };
+
+            _messages.Send("changeMargin", json);
         }
 
         private void InitWebView(int width, int height) {

@@ -152,11 +152,10 @@
             fontSize: 16,
             webViewWidth: 0,
             webViewHeight: 0,
-            webViewMarginVertical: 15,
-            webViewMarginHorizontal: 15,
+            webViewMargin: 15,
             init: function (width, height) {
-                this.webViewWidth = width - 2 * Ebook.webViewMarginHorizontal;
-                this.webViewHeight = height - 2 * Ebook.webViewMarginVertical;
+                this.webViewWidth = width;
+                this.webViewHeight = height;
 
                 this.htmlHelper.setFontSize();
                 this.htmlHelper.setWidth();
@@ -190,8 +189,8 @@
             resize: function (width, height) {
                 var position = this.getCurrentPosition();
 
-                this.webViewWidth = width - 2 * Ebook.webViewMarginHorizontal;
-                this.webViewHeight = height - 2 * Ebook.webViewMarginVertical;
+                this.webViewWidth = width;
+                this.webViewHeight = height;
                 this.htmlHelper.setWidth();
                 this.htmlHelper.setHeight();
 
@@ -205,6 +204,17 @@
                 this.fontSize = fontSize;
                 this.htmlHelper.setFontSize();
 
+                this.setUpEbook();
+                this.goToPositionFast(position);
+            },
+            changeMargin: function (margin) {
+                var position = this.getCurrentPosition();
+                this.webViewMargin = margin;
+                this.htmlHelper.setWidth();
+                this.htmlHelper.setHeight();
+                this.htmlHelper.setMargin();
+
+                this.setUpColumns();
                 this.setUpEbook();
                 this.goToPositionFast(position);
             },
@@ -301,10 +311,10 @@
                 markStartOfPage: function () {
 
                     var rect = {
-                        top: Ebook.webViewMarginVertical,
-                        left: Ebook.webViewMarginHorizontal,
-                        width: Ebook.webViewWidth - 2 * Ebook.webViewMarginHorizontal,
-                        height: Ebook.webViewHeight - 2 * Ebook.webViewMarginVertical
+                        top: Ebook.webViewMargin,
+                        left: Ebook.webViewMargin,
+                        width: Ebook.webViewWidth - 2 * Ebook.webViewMargin,
+                        height: Ebook.webViewHeight - 2 * Ebook.webViewMargin
                     };
 
                     if (document.caretRangeFromPoint) {
@@ -493,13 +503,14 @@
                     $("body").addClass("reader-font-size-" + Ebook.fontSize);
                 },
                 setWidth: function () {
-                    $("#columns-outer").css("width", Ebook.webViewWidth + "px");
+                    $("#columns-outer").css("width", (Ebook.webViewWidth - 2 * Ebook.webViewMargin) + "px");
                 },
                 setHeight: function (height) {
-                    $("#columns-outer").css("height", Ebook.webViewHeight + "px");
+                    $("#columns-outer").css("height", (Ebook.webViewHeight - 2 * Ebook.webViewMargin) + "px");
                 },
                 setMargin: function () {
-                    $("#columns-outer").css("margin", Ebook.webViewMarginVertical + "px " + Ebook.webViewMarginHorizontal + "px");
+                    $("body").removeClassRegex(/^reader-margin-/);
+                    $("body").addClass("reader-margin-" + Ebook.webViewMargin);
                 }
             }
         };
@@ -534,6 +545,9 @@
                 },
                 resize: function (data) {
                     Ebook.resize(data.Width, data.Height);
+                },
+                changeMargin: function (data) {
+                    Ebook.changeMargin(data.Margin);
                 }
             }
         }
@@ -605,6 +619,15 @@
 
             body.reader-font-size-40 {
                 font-size: 40px;
+            }
+            body.reader-margin-15 #columns-outer {
+                margin: 15px;
+            }
+            body.reader-margin-30 #columns-outer {
+                margin: 30px;
+            }
+            body.reader-margin-45 #columns-outer {
+                margin: 45px;
             }
 
         #columns-outer {
