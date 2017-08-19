@@ -191,6 +191,7 @@
             resize: function (width, height) {
                 var position = this.getCurrentPosition();
 
+                this.goToPageFast(1);
                 this.webViewWidth = width;
                 this.webViewHeight = height;
                 this.htmlHelper.setWidth();
@@ -203,6 +204,7 @@
             },
             changeFontSize: function (fontSize) {
                 var position = this.getCurrentPosition();
+                this.goToPageFast(1);
                 this.fontSize = fontSize;
                 this.htmlHelper.setFontSize();
 
@@ -211,6 +213,7 @@
             },
             changeMargin: function (margin) {
                 var position = this.getCurrentPosition();
+                this.goToPageFast(1);
                 this.webViewMargin = margin;
                 this.htmlHelper.setWidth();
                 this.htmlHelper.setHeight();
@@ -628,12 +631,15 @@
             body.reader-font-size-40 {
                 font-size: 40px;
             }
+
             body.reader-margin-15 #columns-outer {
                 margin: 15px;
             }
+
             body.reader-margin-30 #columns-outer {
                 margin: 30px;
             }
+
             body.reader-margin-45 #columns-outer {
                 margin: 45px;
             }
@@ -661,8 +667,7 @@
 
     <div id="columns-outer">
         <div id="columns-inner">
-            <div id="content">
-            </div>
+            <div id="content"></div>
             <span id="js-ebook-end-of-chapter"></span>
         </div>
     </div>
