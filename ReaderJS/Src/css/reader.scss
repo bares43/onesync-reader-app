@@ -1,0 +1,40 @@
+﻿$font-sizes: 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40;
+$margins: 15, 30, 45;
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    @each $size in $font-sizes {
+        &.reader-font-size-#{$size} {
+            font-size: #{$size}px;
+        }
+    }
+
+    @each $margin in $margins {
+        &.reader-margin-#{$margin} {
+            #columns-outer {
+                margin: #{$margin}px;
+            }
+        }
+    }
+}
+
+#columns-outer {
+    overflow: hidden;
+}
+
+#columns-inner {
+    height: 100%;
+    column-gap: 0px;
+}
+
+.js-ebook-page-begin {
+    display: inline-block;
+}
+
+#content {
+    position: relative;
+}

@@ -109,6 +109,12 @@
     <None Include="EbookReader.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\ReaderJS\Build\reader.css">
+      <Link>Assets\reader.css</Link>
+    </Content>
+    <Content Include="..\..\ReaderJS\Build\reader.js">
+      <Link>Assets\reader.js</Link>
+    </Content>
     <Content Include="..\EbookReader\Content\layout.html">
       <Link>Assets\layout.html</Link>
     </Content>

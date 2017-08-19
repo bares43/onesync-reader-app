@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Src\js\Base64.js" />
+    <Content Include="Src\js\jquery-3.2.1.min.js" />
+    <Content Include="Src\js\reader.js" />
+  </ItemGroup>
+
+</Project>

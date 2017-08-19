@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using EbookReader.DependencyService;
 using EbookReader.Service;
+using HtmlAgilityPack;
 using Plugin.FilePicker;
 using Xam.Plugin.Abstractions;
 using Xamarin.Forms;
@@ -218,7 +219,17 @@ namespace EbookReader {
 
         private async void LoadWebViewLayout() {
             var fileContent = Xamarin.Forms.DependencyService.Get<IAssetsManager>();
-            webView.Source = await fileContent.GetFileContentAsync("layout.html");
+
+            var layout = await fileContent.GetFileContentAsync("layout.html");
+            var js = await fileContent.GetFileContentAsync("reader.js");
+            var css = await fileContent.GetFileContentAsync("reader.css");
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml(layout);
+            doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode(string.Format("<script>{0}</script>", js)));
+            doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode(string.Format("<style>{0}</style>", css)));
+
+            webView.Source = doc.DocumentNode.OuterHtml;
         }
 
         private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
