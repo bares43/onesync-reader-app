@@ -150,11 +150,48 @@
             totalPages: 0,
             currentPage: 1,
             fontSize: 16,
+            webViewWidth: 0,
+            webViewHeight: 0,
+            webViewMarginVertical: 15,
+            webViewMarginHorizontal: 15,
+            init: function (width, height) {
+                this.webViewWidth = width;
+                this.webViewHeight = height;
+
+                this.htmlHelper.setFontSize();
+                this.htmlHelper.setWidth();
+                this.htmlHelper.setHeight();
+                this.htmlHelper.setMargin();
+
+                this.pageWidth = $("#columns-inner").width();
+                $("#columns-inner").css("column-width", this.pageWidth + "px");
+                this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
+
+                this.setUpEvents();
+
+                this.setUpEbook();
+            },
+            setUpEvents: function () {
+                $(document).on('click', function (e) {
+                    if (e.pageX > Math.round(Ebook.pageWidth / 2)) {
+                        Ebook.goToNextPage();
+                    } else {
+                        Ebook.goToPreviousPage();
+                    }
+                });
+            },
+            setUpEbook: function () {
+                this.pagerHelper.invalideCache();
+
+                var endOfChapterLeft = $("#js-ebook-end-of-chapter").position().left;
+                this.totalPages = Math.ceil(endOfChapterLeft / this.pageWidth);
+            },
             changeFontSize: function (fontSize) {
                 var position = this.getCurrentPosition();
                 this.fontSize = fontSize;
+                this.htmlHelper.setFontSize();
 
-                this.init();
+                this.setUpEbook();
                 this.goToPositionFast(position);
             },
             goToNextPage: function () {
@@ -190,25 +227,6 @@
             },
             goToPageFast: function (page) {
                 this.goToPage(page, 0);
-            },
-            requestNextChapter: function () {},
-            requestPreviousChapter: function () {},
-            init: function () {
-                this.pagerHelper.invalideCache();
-
-                this.htmlHelper.setFontSize();
-
-                this.pageWidth = $("#columns-inner").width();
-
-                $("#columns-inner").css("column-width", this.pageWidth + "px");
-
-                var endOfChapterLeft = $("#js-ebook-end-of-chapter").position().left;
-                this.totalPages = Math.ceil(endOfChapterLeft / this.pageWidth);
-
-                this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
-
-                this.pagerHelper.getLengthOfAllPages();
-
             },
             pageOfElement: function (el) {
                 var left = $(el).position().left + 1;
@@ -269,10 +287,10 @@
                 markStartOfPage: function () {
 
                     var rect = {
-                        top: 15,
-                        left: 15,
-                        width: 470,
-                        height: 370
+                        top: Ebook.webViewMarginVertical,
+                        left: Ebook.webViewMarginHorizontal,
+                        width: Ebook.webViewWidth - 2 * Ebook.webViewMarginHorizontal,
+                        height: Ebook.webViewHeight - 2 * Ebook.webViewMarginVertical
                     };
 
                     if (document.caretRangeFromPoint) {
@@ -459,6 +477,15 @@
                 setFontSize: function () {
                     $("body").removeClassRegex(/^reader-font-size-/);
                     $("body").addClass("reader-font-size-" + Ebook.fontSize);
+                },
+                setWidth: function () {
+                    $("#columns-outer").css("width", Ebook.webViewWidth + "px");
+                },
+                setHeight: function (height) {
+                    $("#columns-outer").css("height", Ebook.webViewHeight + "px");
+                },
+                setMargin: function () {
+                    $("#columns-outer").css("margin", Ebook.webViewMarginVertical + "px " + Ebook.webViewMarginHorizontal + "px");
                 }
             }
         };
@@ -477,10 +504,13 @@
                 this.actions[json.Action](json.Data);
             },
             actions: {
+                init(data) {
+                    Ebook.init(data.Width, data.Height);
+                },
                 loadHtml(data) {
                     $("#content").html(data.Html);
 
-                    Ebook.init();
+                    Ebook.setUpEbook();
                 },
                 goToStartOfPage(data) {
                     Ebook.goToPosition(Ebook.pagerHelper.startOfPage(data.Page));
@@ -489,18 +519,6 @@
                     Ebook.changeFontSize(data.FontSize);
                 }
             }
-        }
-
-
-        function init() {
-
-            $(document).on('click', function (e) {
-                if (e.pageX > Math.round(Ebook.pageWidth / 2)) {
-                    Ebook.goToNextPage();
-                } else {
-                    Ebook.goToPreviousPage();
-                }
-            });
         }
         
     </script>
@@ -573,9 +591,6 @@
         }
 
         #columns-outer {
-            margin: 15px;
-            width: 500px;
-            height: 400px;
             overflow: hidden;
         }
 

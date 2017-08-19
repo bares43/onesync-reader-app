@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EbookReader.DependencyService;
-using EbookReader.Helpers;
 using EbookReader.Service;
-using Newtonsoft.Json;
 using Plugin.FilePicker;
 using Xam.Plugin.Abstractions;
 using Xamarin.Forms;
@@ -135,6 +133,15 @@ namespace EbookReader {
             _messages.Send("changeFontSize", json);
         }
 
+        private void InitWebView(int width, int height) {
+            var json = new {
+                Width = width,
+                Height = height
+            };
+
+            _messages.Send("init", json);
+        }
+
         private void SendHtml(string html) {
             var json = new {
                 Html = html
@@ -149,7 +156,7 @@ namespace EbookReader {
         }
 
         private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
-            eventObj.Sender.InjectJavascript("init()");
+            this.InitWebView(500, 400);
         }
 
         protected override void OnStart() {
