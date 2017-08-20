@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="node_modules\**" />
+    <EmbeddedResource Remove="node_modules\**" />
+    <None Remove="node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Src\js\Base64.js" />
     <Content Include="Src\js\jquery-3.2.1.min.js" />
     <Content Include="Src\js\reader.js" />
