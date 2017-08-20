@@ -29,7 +29,7 @@ window.Ebook = {
         this.setUpEbook();
     },
     setUpEvents: function () {
-        $(document).on('click', function (e) {
+        $("#columns-outer").on('click', function (e) {
             if (e.pageX > Math.round(Ebook.pageWidth / 2)) {
                 Ebook.goToNextPage();
             } else {
@@ -51,39 +51,59 @@ window.Ebook = {
         this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
     },
     resize: function (width, height) {
-        var position = this.getCurrentPosition();
+        this.doWithSpinner(function () {
 
-        this.goToPageFast(1);
-        this.webViewWidth = width;
-        this.webViewHeight = height;
-        this.htmlHelper.setWidth();
-        this.htmlHelper.setHeight();
+            var position = Ebook.getCurrentPosition();
 
-        this.setUpColumns();
-        this.setUpEbook();
+            Ebook.goToPageFast(1);
+            Ebook.webViewWidth = width;
+            Ebook.webViewHeight = height;
+            Ebook.htmlHelper.setWidth();
+            Ebook.htmlHelper.setHeight();
 
-        this.goToPositionFast(position);
+            Ebook.setUpColumns();
+            Ebook.setUpEbook();
+
+            Ebook.goToPositionFast(position);
+        });
+
     },
     changeFontSize: function (fontSize) {
-        var position = this.getCurrentPosition();
-        this.goToPageFast(1);
-        this.fontSize = fontSize;
-        this.htmlHelper.setFontSize();
+        this.doWithSpinner(function () {
 
-        this.setUpEbook();
-        this.goToPositionFast(position);
+            var position = Ebook.getCurrentPosition();
+
+            Ebook.goToPageFast(1);
+            Ebook.fontSize = fontSize;
+            Ebook.htmlHelper.setFontSize();
+
+            Ebook.setUpEbook();
+            Ebook.goToPositionFast(position);
+        });
+
     },
     changeMargin: function (margin) {
-        var position = this.getCurrentPosition();
-        this.goToPageFast(1);
-        this.webViewMargin = margin;
-        this.htmlHelper.setWidth();
-        this.htmlHelper.setHeight();
-        this.htmlHelper.setMargin();
+        this.doWithSpinner(function () {
 
-        this.setUpColumns();
-        this.setUpEbook();
-        this.goToPositionFast(position);
+            var position = Ebook.getCurrentPosition();
+
+            Ebook.goToPageFast(1);
+            Ebook.webViewMargin = margin;
+            Ebook.htmlHelper.setWidth();
+            Ebook.htmlHelper.setHeight();
+            Ebook.htmlHelper.setMargin();
+
+            Ebook.setUpColumns();
+            Ebook.setUpEbook();
+            Ebook.goToPositionFast(position);
+        });
+    },
+    doWithSpinner: function (callback) {
+        this.htmlHelper.showSpinner();
+        setTimeout(function () {
+            callback();
+            Ebook.htmlHelper.hideSpinner();
+        }, 1);
     },
     goToNextPage: function () {
         var page = this.currentPage + 1;
@@ -379,6 +399,12 @@ window.Ebook = {
         setMargin: function () {
             $("body").removeClassRegex(/^reader-margin-/);
             $("body").addClass("reader-margin-" + Ebook.webViewMargin);
+        },
+        showSpinner: function () {
+            $(".js-ebook-overlay").addClass("show");
+        },
+        hideSpinner: function () {
+            $(".js-ebook-overlay").removeClass("show");
         }
     },
     messagesHelper: {
