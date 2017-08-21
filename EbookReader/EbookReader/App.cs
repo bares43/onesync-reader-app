@@ -17,6 +17,11 @@ namespace EbookReader {
         Picker fontSizePicker;
         Picker marginPicker;
         Label pages;
+        Picker chaptersPicker;
+
+        EpubLoader epubLoader;
+        Model.Epub epub;
+        string currentChapter;
 
         List<string> FontSizes {
             get {
@@ -52,6 +57,8 @@ namespace EbookReader {
 
         public App() {
 
+            epubLoader = new EpubLoader();
+
             this.pages = new Label();
 
             webView = new FormsWebView() {
@@ -62,6 +69,8 @@ namespace EbookReader {
 
             _messages = new WebViewMessages(webView);
             _messages.OnPageChange += _messages_OnPageChange;
+            _messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
+            _messages.OnPrevChapterRequest += _messages_OnPrevChapterRequest;
 
             var loadButton = new Button {
                 Text = "Načíst knihu"
@@ -87,6 +96,12 @@ namespace EbookReader {
 
             marginPicker.SelectedIndexChanged += MarginPicker_SelectedIndexChanged;
 
+            chaptersPicker = new Picker {
+                Title = "Kapitola",
+            };
+
+            chaptersPicker.SelectedIndexChanged += ChaptersPicker_SelectedIndexChanged;
+
             this.LoadWebViewLayout();
 
             webView.OnContentLoaded += WebView_OnContentLoaded;
@@ -106,6 +121,7 @@ namespace EbookReader {
                     },
                     fontSizePicker,
                     marginPicker,
+                    chaptersPicker,
                 }
             };
 
@@ -122,6 +138,35 @@ namespace EbookReader {
             };
 
             MainPage = new NavigationPage(content);
+        }
+
+        private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
+            var currentIndex = this.epub.Spines.ToList().IndexOf(this.epub.Spines.First(o => o.Idref == this.currentChapter));
+            if(currentIndex > 1) {
+                this.currentChapter = this.epub.Spines.ToList().ElementAt(currentIndex - 1).Idref;
+                this.SendCurrentChapterHtml();
+            }
+        }
+
+        private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
+            var currentIndex = this.epub.Spines.ToList().IndexOf(this.epub.Spines.First(o => o.Idref == this.currentChapter));
+            if (currentIndex < this.epub.Spines.Count()) {
+                this.currentChapter = this.epub.Spines.ToList().ElementAt(currentIndex + 1).Idref;
+                this.SendCurrentChapterHtml();
+            }
+        }
+
+        private async void SendCurrentChapterHtml() {
+            var html = await epubLoader.GetChapter(epub, epub.Spines.First(o => o.Idref == this.currentChapter));
+            html = epubLoader.PrepareHTML(html);
+            this.SendHtml(html);
+        }
+
+        private void ChaptersPicker_SelectedIndexChanged(object sender, EventArgs e) {
+            if (this.epub != null && this.chaptersPicker.SelectedIndex != -1) {
+                this.currentChapter = (string)this.chaptersPicker.SelectedItem;
+                this.SendCurrentChapterHtml();
+            }
         }
 
         private void _messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
@@ -166,13 +211,13 @@ namespace EbookReader {
         public async void LoadBook() {
             var pickedFile = await CrossFilePicker.Current.PickFile();
 
-            var loader = new EpubLoader();
-            var epub = await loader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
+            epub = await epubLoader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
 
-            var chapter = await loader.GetChapter(epub, epub.Spines.Skip(7).First());
+            this.chaptersPicker.ItemsSource = epub.Spines.Select(o => o.Idref).ToList();
 
-            var html = loader.PrepareHTML(chapter);
-            this.SendHtml(html);
+            this.currentChapter = epub.Spines.First().Idref;
+
+            this.SendCurrentChapterHtml();
         }
 
         private void SetFontSize(int fontSize) {
