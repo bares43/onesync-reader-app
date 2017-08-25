@@ -38,6 +38,8 @@ window.Ebook = {
         });
     },
     setUpEbook: function () {
+        this.resizeImages();
+
         this.pagerHelper.invalideCache();
 
         var endOfChapterLeft = $("#js-ebook-end-of-chapter").position().left;
@@ -166,6 +168,15 @@ window.Ebook = {
     },
     getCurrentPosition: function () {
         return this.pagerHelper.startOfPage(this.currentPage);
+    },
+    loadImages: function (images) {
+        images.forEach(function (item) {
+            $("[data-js-ebook-image-id=" + item.ID + "]").attr("src", item.Data);
+        });
+    },
+    resizeImages: function () {
+        $("img").css("max-width", (Ebook.webViewWidth - 2 * Ebook.webViewMargin) + "px");
+        $("img").css("max-height", (Ebook.webViewHeight - 2 * Ebook.webViewMargin) + "px");
     },
     pagerHelper: {
         cache: [],
@@ -434,6 +445,7 @@ window.Messages = {
         loadHtml: function (data) {
             $("#content").html(data.Html);
 
+            Ebook.loadImages(data.Images);
             Ebook.setUpEbook();
         },
         goToStartOfPage: function (data) {
