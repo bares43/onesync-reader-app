@@ -67,6 +67,8 @@ namespace EbookReader.Service {
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
+            this.StripHtmlTags(doc);
+
             var images = await this.PrepareHtmlImages(doc, epubFolderName);
 
             var result = new Model.EpubLoader.HtmlResult {
@@ -75,6 +77,18 @@ namespace EbookReader.Service {
             };
 
             return result;
+        }
+
+        private void StripHtmlTags(HtmlDocument doc) {
+            var tagsToRemove = new string[] { "script", "style", "iframe" };
+            var nodesToRemove = doc.DocumentNode
+                .Descendants()
+                .Where(o => tagsToRemove.Contains(o.Name))
+                .ToList();
+
+            foreach(var node in nodesToRemove) {
+                node.Remove();
+            }
         }
 
         private async Task<List<Model.EpubLoader.Image>> PrepareHtmlImages(HtmlDocument doc, string epubFolderName) {
