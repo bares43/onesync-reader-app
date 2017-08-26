@@ -63,10 +63,77 @@ namespace EbookReader.Service {
             return epub.Spines.Count() > indexOf;
         }
 
-        public string PrepareHTML(string html) {
+        public async Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, string epubFolderName) {
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
-            return doc.DocumentNode.Descendants("body").First().InnerHtml;
+
+            var images = await this.PrepareHtmlImages(doc, epubFolderName);
+
+            var result = new Model.EpubLoader.HtmlResult {
+                Html = doc.DocumentNode.Descendants("body").First().InnerHtml,
+                Images = images,
+            };
+
+            return result;
+        }
+
+        private async Task<List<Model.EpubLoader.Image>> PrepareHtmlImages(HtmlDocument doc, string epubFolderName) {
+            var imagesModel = this.GetImages(doc);
+
+            return await this.ReplaceImagesWithBase64(imagesModel, epubFolderName);
+        }
+
+        private async Task<List<Model.EpubLoader.Image>> ReplaceImagesWithBase64(List<Model.EpubLoader.Image> imagesModel, string epubFolderName) {
+            var epubFolder = await FileSystem.Current.LocalStorage.GetFolderAsync(epubFolderName);
+
+            foreach (var imageModel in imagesModel) {
+                var extension = imageModel.FileName.Split('.').Last();
+
+                var fileName = string.Format("OEBPS/{0}", imageModel.FileName.Replace("../", "")).Replace("//", "/");
+
+                var file = await _fileService.OpenFile(fileName, epubFolder);
+
+                using (var stream = await file.OpenAsync(FileAccess.Read)) {
+                    var base64 = Base64Helper.GetFileBase64(stream);
+
+                    imageModel.Data = string.Format("data:image/{0};base64,{1}", extension, base64);
+                }
+
+            }
+
+            return imagesModel;
+        }
+
+        private List<Model.EpubLoader.Image> GetImages(HtmlDocument doc) {
+            var images = doc.DocumentNode.Descendants("img").ToList();
+            var imagesModel = new List<Model.EpubLoader.Image>();
+
+            var cnt = 1;
+            foreach (var image in images) {
+                var srcAttribute = image.Attributes.FirstOrDefault(o => o.Name == "src");
+
+                if (srcAttribute != null) {
+                    int id;
+
+                    var existingImageModel = imagesModel.FirstOrDefault(o => o.FileName == srcAttribute.Value);
+
+                    if (existingImageModel != null) {
+                        id = existingImageModel.ID;
+                    } else {
+                        id = cnt;
+                        imagesModel.Add(new Model.EpubLoader.Image {
+                            ID = id,
+                            FileName = srcAttribute.Value,
+                        });
+
+                        cnt++;
+                    }
+
+                    image.Attributes.Add(doc.CreateAttribute("data-js-ebook-image-id", id.ToString()));
+                }
+            }
+
+            return imagesModel;
         }
 
         private Epub.EpubParser GetParserInstance(EpubVersion version, XElement package) {

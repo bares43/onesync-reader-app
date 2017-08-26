@@ -171,8 +171,8 @@ namespace EbookReader {
 
             var chapter = await loader.GetChapter(epub, epub.Spines.Skip(7).First());
 
-            var html = loader.PrepareHTML(chapter);
-            this.SendHtml(html);
+            var htmlResult = await loader.PrepareHTML(chapter, epub.Folder);
+            this.SendHtml(htmlResult);
         }
 
         private void SetFontSize(int fontSize) {
@@ -209,9 +209,10 @@ namespace EbookReader {
             _messages.Send("resize", json);
         }
 
-        private void SendHtml(string html) {
+        private void SendHtml(Model.EpubLoader.HtmlResult htmlResult) {
             var json = new {
-                Html = html
+                Html = htmlResult.Html,
+                Images = htmlResult.Images,
             };
 
             _messages.Send("loadHtml", json);
