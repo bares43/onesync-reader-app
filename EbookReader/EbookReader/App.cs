@@ -18,10 +18,10 @@ namespace EbookReader {
         Picker marginPicker;
         Label pages;
         Picker chaptersPicker;
+        int chapterPickerLastIndex = -1;
 
         EpubLoader epubLoader;
         Model.Epub epub;
-        string currentChapter;
 
         List<string> FontSizes {
             get {
@@ -141,31 +141,30 @@ namespace EbookReader {
         }
 
         private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
-            var currentIndex = this.epub.Spines.ToList().IndexOf(this.epub.Spines.First(o => o.Idref == this.currentChapter));
-            if(currentIndex > 1) {
-                this.currentChapter = this.epub.Spines.ToList().ElementAt(currentIndex - 1).Idref;
-                this.SendCurrentChapterHtml();
+            var index = this.chaptersPicker.SelectedIndex - 1;
+            if (index > 0) {
+                this.chaptersPicker.SelectedIndex = index;
             }
         }
 
         private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
-            var currentIndex = this.epub.Spines.ToList().IndexOf(this.epub.Spines.First(o => o.Idref == this.currentChapter));
-            if (currentIndex < this.epub.Spines.Count()) {
-                this.currentChapter = this.epub.Spines.ToList().ElementAt(currentIndex + 1).Idref;
-                this.SendCurrentChapterHtml();
+            var index = this.chaptersPicker.SelectedIndex + 1;
+            if (index < this.chaptersPicker.ItemsSource.Count) {
+                this.chaptersPicker.SelectedIndex = index;
             }
         }
 
-        private async void SendCurrentChapterHtml() {
-            var html = await epubLoader.GetChapter(epub, epub.Spines.First(o => o.Idref == this.currentChapter));
+        private async void SendChapter(int chapter, string page = "") {
+            var html = await epubLoader.GetChapter(epub, epub.Spines.Skip(chapter).First());
             html = epubLoader.PrepareHTML(html);
-            this.SendHtml(html);
+            this.SendHtml(html, page);
         }
 
         private void ChaptersPicker_SelectedIndexChanged(object sender, EventArgs e) {
-            if (this.epub != null && this.chaptersPicker.SelectedIndex != -1) {
-                this.currentChapter = (string)this.chaptersPicker.SelectedItem;
-                this.SendCurrentChapterHtml();
+            var index = this.chaptersPicker.SelectedIndex;
+            if (this.epub != null && index != -1 && index != this.chapterPickerLastIndex) {
+                this.SendChapter(index, index < this.chapterPickerLastIndex ? "last" : "");
+                this.chapterPickerLastIndex = index;
             }
         }
 
@@ -214,10 +213,11 @@ namespace EbookReader {
             epub = await epubLoader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
 
             this.chaptersPicker.ItemsSource = epub.Spines.Select(o => o.Idref).ToList();
+            if (this.chaptersPicker.ItemsSource.Count > 0) {
+                this.chaptersPicker.SelectedIndex = 0;
+            }
 
-            this.currentChapter = epub.Spines.First().Idref;
-
-            this.SendCurrentChapterHtml();
+            this.SendChapter(0);
         }
 
         private void SetFontSize(int fontSize) {
@@ -254,9 +254,10 @@ namespace EbookReader {
             _messages.Send("resize", json);
         }
 
-        private void SendHtml(string html) {
+        private void SendHtml(string html, string page = "") {
             var json = new {
-                Html = html
+                Html = html,
+                Page = page,
             };
 
             _messages.Send("loadHtml", json);

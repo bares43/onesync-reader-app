@@ -116,7 +116,7 @@ window.Ebook = {
     },
     goToPreviousPage: function () {
         var page = this.currentPage - 1;
-        if (page > 1) {
+        if (page >= 1) {
             this.goToPage(page);
         } else {
             this.messagesHelper.prevChapterRequest();
@@ -443,7 +443,13 @@ window.Messages = {
             $("#content").html(data.Html);
 
             Ebook.setUpEbook();
-            Ebook.goToPageFast(1);
+
+            if (data.Page == 'last') {
+                Ebook.goToPageFast(Ebook.totalPages);
+            } else {
+                Ebook.goToPageFast(1);
+            }
+
             Ebook.messagesHelper.sendPageChange();
         },
         goToStartOfPage: function (data) {
