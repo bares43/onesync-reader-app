@@ -46,7 +46,9 @@
     <Compile Include="Model\EpubLoader\Image.cs" />
     <Compile Include="Model\EpubSpine.cs" />
     <Compile Include="Model\WebViewMessages\Message.cs" />
+    <Compile Include="Model\WebViewMessages\NextChapterRequest.cs" />
     <Compile Include="Model\WebViewMessages\PageChange.cs" />
+    <Compile Include="Model\WebViewMessages\PrevChapterRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\EpubLoader.cs" />
     <Compile Include="Service\Epub\Epub200Parser.cs" />

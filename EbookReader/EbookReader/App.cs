@@ -17,6 +17,11 @@ namespace EbookReader {
         Picker fontSizePicker;
         Picker marginPicker;
         Label pages;
+        Picker chaptersPicker;
+        int chapterPickerLastIndex = -1;
+
+        EpubLoader epubLoader;
+        Model.Epub epub;
 
         List<string> FontSizes {
             get {
@@ -52,6 +57,8 @@ namespace EbookReader {
 
         public App() {
 
+            epubLoader = new EpubLoader();
+
             this.pages = new Label();
 
             webView = new FormsWebView() {
@@ -62,6 +69,8 @@ namespace EbookReader {
 
             _messages = new WebViewMessages(webView);
             _messages.OnPageChange += _messages_OnPageChange;
+            _messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
+            _messages.OnPrevChapterRequest += _messages_OnPrevChapterRequest;
 
             var loadButton = new Button {
                 Text = "Načíst knihu"
@@ -87,6 +96,12 @@ namespace EbookReader {
 
             marginPicker.SelectedIndexChanged += MarginPicker_SelectedIndexChanged;
 
+            chaptersPicker = new Picker {
+                Title = "Kapitola",
+            };
+
+            chaptersPicker.SelectedIndexChanged += ChaptersPicker_SelectedIndexChanged;
+
             this.LoadWebViewLayout();
 
             webView.OnContentLoaded += WebView_OnContentLoaded;
@@ -106,6 +121,7 @@ namespace EbookReader {
                     },
                     fontSizePicker,
                     marginPicker,
+                    chaptersPicker,
                 }
             };
 
@@ -122,6 +138,34 @@ namespace EbookReader {
             };
 
             MainPage = new NavigationPage(content);
+        }
+
+        private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
+            var index = this.chaptersPicker.SelectedIndex - 1;
+            if (index > 0) {
+                this.chaptersPicker.SelectedIndex = index;
+            }
+        }
+
+        private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
+            var index = this.chaptersPicker.SelectedIndex + 1;
+            if (index < this.chaptersPicker.ItemsSource.Count) {
+                this.chaptersPicker.SelectedIndex = index;
+            }
+        }
+
+        private async void SendChapter(int chapter, string page = "") {
+            var html = await epubLoader.GetChapter(epub, epub.Spines.Skip(chapter).First());
+            var htmlResult = await epubLoader.PrepareHTML(html, epub.Folder);
+            this.SendHtml(htmlResult, page);
+        }
+
+        private void ChaptersPicker_SelectedIndexChanged(object sender, EventArgs e) {
+            var index = this.chaptersPicker.SelectedIndex;
+            if (this.epub != null && index != -1 && index != this.chapterPickerLastIndex) {
+                this.SendChapter(index, index < this.chapterPickerLastIndex ? "last" : "");
+                this.chapterPickerLastIndex = index;
+            }
         }
 
         private void _messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
@@ -166,13 +210,14 @@ namespace EbookReader {
         public async void LoadBook() {
             var pickedFile = await CrossFilePicker.Current.PickFile();
 
-            var loader = new EpubLoader();
-            var epub = await loader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
+            epub = await epubLoader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
 
-            var chapter = await loader.GetChapter(epub, epub.Spines.Skip(7).First());
+            this.chaptersPicker.ItemsSource = epub.Spines.Select(o => o.Idref).ToList();
+            if (this.chaptersPicker.ItemsSource.Count > 0) {
+                this.chaptersPicker.SelectedIndex = 0;
+            }
 
-            var htmlResult = await loader.PrepareHTML(chapter, epub.Folder);
-            this.SendHtml(htmlResult);
+            this.SendChapter(0);
         }
 
         private void SetFontSize(int fontSize) {
@@ -209,10 +254,11 @@ namespace EbookReader {
             _messages.Send("resize", json);
         }
 
-        private void SendHtml(Model.EpubLoader.HtmlResult htmlResult) {
+        private void SendHtml(Model.EpubLoader.HtmlResult htmlResult, string page) {
             var json = new {
                 Html = htmlResult.Html,
                 Images = htmlResult.Images,
+                Page = page,
             };
 
             _messages.Send("loadHtml", json);

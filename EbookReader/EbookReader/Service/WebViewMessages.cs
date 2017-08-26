@@ -15,6 +15,8 @@ namespace EbookReader.Service {
         bool webViewLoaded = false;
 
         public event EventHandler<Model.WebViewMessages.PageChange> OnPageChange;
+        public event EventHandler<Model.WebViewMessages.NextChapterRequest> OnNextChapterRequest;
+        public event EventHandler<Model.WebViewMessages.PrevChapterRequest> OnPrevChapterRequest;
 
         public WebViewMessages(FormsWebView webView) {
             _webView = webView;
@@ -53,6 +55,12 @@ namespace EbookReader.Service {
             switch (json.Action) {
                 case Model.WebViewMessages.PageChange.Name:
                     this.OnPageChange?.Invoke(this, msg as Model.WebViewMessages.PageChange);
+                    break;
+                case Model.WebViewMessages.NextChapterRequest.Name:
+                    this.OnNextChapterRequest?.Invoke(this, msg as Model.WebViewMessages.NextChapterRequest);
+                    break;
+                case Model.WebViewMessages.PrevChapterRequest.Name:
+                    this.OnPrevChapterRequest?.Invoke(this, msg as Model.WebViewMessages.PrevChapterRequest);
                     break;
             }
 

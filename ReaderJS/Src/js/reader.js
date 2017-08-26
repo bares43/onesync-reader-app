@@ -109,19 +109,21 @@ window.Ebook = {
     },
     goToNextPage: function () {
         var page = this.currentPage + 1;
-        if (page > this.totalPages) {
-            page = this.totalPages;
+        if (page <= this.totalPages) {
+            this.goToPage(page);
+        } else {
+            this.messagesHelper.nextChapterRequest();
         }
 
-        this.goToPage(page);
     },
     goToPreviousPage: function () {
         var page = this.currentPage - 1;
-        if (page < 1) {
-            page = 1;
+        if (page >= 1) {
+            this.goToPage(page);
+        } else {
+            this.messagesHelper.prevChapterRequest();
         }
 
-        this.goToPage(page);
     },
     goToPage: function (page, duration) {
 
@@ -421,6 +423,12 @@ window.Ebook = {
     messagesHelper: {
         sendPageChange: function () {
             Messages.send("PageChange", { CurrentPage: Ebook.currentPage, TotalPages: Ebook.totalPages });
+        },
+        nextChapterRequest: function () {
+            Messages.send("NextChapterRequest", {});
+        },
+        prevChapterRequest: function () {
+            Messages.send("PrevChapterRequest", {});
         }
     }
 };
@@ -447,6 +455,14 @@ window.Messages = {
 
             Ebook.loadImages(data.Images);
             Ebook.setUpEbook();
+
+            if (data.Page == 'last') {
+                Ebook.goToPageFast(Ebook.totalPages);
+            } else {
+                Ebook.goToPageFast(1);
+            }
+
+            Ebook.messagesHelper.sendPageChange();
         },
         goToStartOfPage: function (data) {
             Ebook.goToPosition(Ebook.pagerHelper.startOfPage(data.Page));
