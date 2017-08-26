@@ -171,7 +171,7 @@ namespace EbookReader {
 
             var chapter = await loader.GetChapter(epub, epub.Spines.Skip(7).First());
 
-            var htmlResult = await loader.PrepareHTML(chapter, epub);
+            var htmlResult = await loader.PrepareHTML(chapter, epub.Folder);
             this.SendHtml(htmlResult);
         }
 
