@@ -157,7 +157,7 @@ namespace EbookReader {
 
         private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
             var index = this.chaptersPicker.SelectedIndex + 1;
-            if (index < this.chaptersPicker.ItemsSource.Count) {
+            if (this.chaptersPicker.ItemsSource != null && index < this.chaptersPicker.ItemsSource.Count) {
                 this.chaptersPicker.SelectedIndex = index;
             }
         }
