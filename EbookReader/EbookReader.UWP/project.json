@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "Autofac": "3.5.2",
     "Microsoft.Bcl.Compression": "3.9.85",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.3",
     "PCLStorage": "1.0.2",
@@ -8,7 +9,7 @@
     "Xamarin.Forms": "2.3.4.247"
   },
   "frameworks": {
-    "uap10.0": {}
+    "uap10.0.10240": {}
   },
   "runtimes": {
     "win10-arm": {},

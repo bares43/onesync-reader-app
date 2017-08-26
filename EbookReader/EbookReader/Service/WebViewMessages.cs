@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using Xam.Plugin.Abstractions;
 
 namespace EbookReader.Service {
-    public class WebViewMessages {
+    public class WebViewMessages : IWebViewMessages {
 
         FormsWebView _webView;
         bool webViewLoaded = false;
@@ -25,11 +25,7 @@ namespace EbookReader.Service {
                 this.Parse(data);
             });
 
-            webView.OnContentLoaded += WebView_OnContentLoaded; ;
-        }
-
-        private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
-            this.webViewLoaded = true;
+            webView.OnContentLoaded += WebView_OnContentLoaded;
         }
 
         public void Send(string action, object data) {
@@ -64,6 +60,10 @@ namespace EbookReader.Service {
                     break;
             }
 
+        }
+
+        private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
+            this.webViewLoaded = true;
         }
     }
 }

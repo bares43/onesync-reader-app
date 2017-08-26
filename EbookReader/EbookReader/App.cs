@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Autofac;
 using EbookReader.DependencyService;
 using EbookReader.Service;
 using HtmlAgilityPack;
@@ -12,15 +13,17 @@ using Xamarin.Forms;
 namespace EbookReader {
     public class App : Application {
 
-        FormsWebView webView;
-        WebViewMessages _messages;
+        IWebViewMessages _messages;
+        IEpubLoader _epubLoader;
+        FormsWebView _webView;
+        IAssetsManager _assetsManager;
+
         Picker fontSizePicker;
         Picker marginPicker;
         Label pages;
         Picker chaptersPicker;
         int chapterPickerLastIndex = -1;
 
-        EpubLoader epubLoader;
         Model.Epub epub;
 
         List<string> FontSizes {
@@ -56,21 +59,24 @@ namespace EbookReader {
         }
 
         public App() {
+            
+            // ioc
+            _epubLoader = IocManager.Container.Resolve<IEpubLoader>();
+            _messages = IocManager.Container.Resolve<IWebViewMessages>();
+            _webView = IocManager.Container.Resolve<FormsWebView>();
+            _assetsManager = IocManager.Container.Resolve<IAssetsManager>();
 
-            epubLoader = new EpubLoader();
+            // setup webview
+            _webView.ContentType = Xam.Plugin.Abstractions.Enumerations.WebViewContentType.StringData;
+            _webView.VerticalOptions = LayoutOptions.FillAndExpand;
+            _webView.HorizontalOptions = LayoutOptions.FillAndExpand;
 
-            this.pages = new Label();
-
-            webView = new FormsWebView() {
-                ContentType = Xam.Plugin.Abstractions.Enumerations.WebViewContentType.StringData,
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-            };
-
-            _messages = new WebViewMessages(webView);
+            // webview events
             _messages.OnPageChange += _messages_OnPageChange;
             _messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
             _messages.OnPrevChapterRequest += _messages_OnPrevChapterRequest;
+
+            this.pages = new Label();
 
             var loadButton = new Button {
                 Text = "Načíst knihu"
@@ -106,8 +112,8 @@ namespace EbookReader {
 
             this.LoadWebViewLayout();
 
-            webView.OnContentLoaded += WebView_OnContentLoaded;
-            webView.SizeChanged += WebView_SizeChanged;
+            _webView.OnContentLoaded += WebView_OnContentLoaded;
+            _webView.SizeChanged += WebView_SizeChanged;
 
             var controls = new StackLayout {
                 VerticalOptions = LayoutOptions.Start,
@@ -134,7 +140,7 @@ namespace EbookReader {
                     HorizontalOptions = LayoutOptions.FillAndExpand,
                     Children = {
                         controls,
-                        webView,
+                        _webView,
                     }
                 }
             };
@@ -157,8 +163,8 @@ namespace EbookReader {
         }
 
         private async void SendChapter(int chapter, string page = "") {
-            var html = await epubLoader.GetChapter(epub, epub.Spines.Skip(chapter).First());
-            var htmlResult = await epubLoader.PrepareHTML(html, epub.Folder);
+            var html = await _epubLoader.GetChapter(epub, epub.Spines.Skip(chapter).First());
+            var htmlResult = await _epubLoader.PrepareHTML(html, epub.Folder);
             this.SendHtml(htmlResult, page);
         }
 
@@ -182,7 +188,7 @@ namespace EbookReader {
         }
 
         private void WebView_SizeChanged(object sender, EventArgs e) {
-            this.ResizeWebView((int)this.webView.Width, (int)this.webView.Height);
+            this.ResizeWebView((int)this._webView.Width, (int)this._webView.Height);
         }
 
         private void FontSizePicker_SelectedIndexChanged(object sender, EventArgs e) {
@@ -212,7 +218,7 @@ namespace EbookReader {
         public async void LoadBook() {
             var pickedFile = await CrossFilePicker.Current.PickFile();
 
-            epub = await epubLoader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
+            epub = await _epubLoader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
 
             this.chaptersPicker.ItemsSource = epub.Spines.Select(o => o.Idref).ToList();
             if (this.chaptersPicker.ItemsSource.Count > 0) {
@@ -269,29 +275,27 @@ namespace EbookReader {
         }
 
         private async void LoadWebViewLayout() {
-            var fileContent = Xamarin.Forms.DependencyService.Get<IAssetsManager>();
-
-            var layout = await fileContent.GetFileContentAsync("layout.html");
-            var js = await fileContent.GetFileContentAsync("reader.js");
-            var css = await fileContent.GetFileContentAsync("reader.css");
+            var layout = await _assetsManager.GetFileContentAsync("layout.html");
+            var js = await _assetsManager.GetFileContentAsync("reader.js");
+            var css = await _assetsManager.GetFileContentAsync("reader.css");
 
             var doc = new HtmlDocument();
             doc.LoadHtml(layout);
             doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode(string.Format("<script>{0}</script>", js)));
             doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode(string.Format("<style>{0}</style>", css)));
 
-            webView.Source = doc.DocumentNode.OuterHtml;
+            _webView.Source = doc.DocumentNode.OuterHtml;
         }
 
         private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
             this.InitWebView(
-                (int)this.webView.Width,
-                (int)this.webView.Height,
+                (int)this._webView.Width,
+                (int)this._webView.Height,
                 int.Parse((string)this.marginPicker.SelectedItem),
                 int.Parse((string)this.fontSizePicker.SelectedItem)
             );
         }
-
+        
         protected override void OnStart() {
             // Handle when your app starts
         }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Autofac;
+using EbookReader.DependencyService;
 using EbookReader.UWP.DependencyService;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -30,7 +32,10 @@ namespace EbookReader.UWP
         /// </summary>
         public App()
         {
-            Xamarin.Forms.DependencyService.Register<UWPAssetsManager>();
+            IocManager.SetUpIoc();
+            IocManager.ContainerBuilder.RegisterType<UWPAssetsManager>().As<IAssetsManager>();
+            IocManager.Build();
+            
             FormsWebViewRenderer.Init();
             this.InitializeComponent();
             this.Suspending += OnSuspending;

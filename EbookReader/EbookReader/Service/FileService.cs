@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using PCLStorage;
 
 namespace EbookReader.Service {
-    public class FileService {
+    public class FileService : IFileService {
         public async Task<IFile> OpenFile(string name, IFolder folder) {
             folder = await this.GetFileFolder(name, folder);
             return await folder.GetFileAsync(this.GetLocalFileName(name));

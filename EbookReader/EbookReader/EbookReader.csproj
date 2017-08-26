@@ -40,6 +40,7 @@
     <Compile Include="Exceptions\Epub\UnknownEpubVersionException.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
     <Compile Include="Helpers\EpubVersionHelper.cs" />
+    <Compile Include="IocManager.cs" />
     <Compile Include="Model\Epub.cs" />
     <Compile Include="Model\EpubFile.cs" />
     <Compile Include="Model\EpubLoader\HtmlResult.cs" />
@@ -56,6 +57,9 @@
     <Compile Include="Service\Epub\Epub301Parser.cs" />
     <Compile Include="Service\Epub\EpubParser.cs" />
     <Compile Include="Service\FileService.cs" />
+    <Compile Include="Service\IEpubLoader.cs" />
+    <Compile Include="Service\IFileService.cs" />
+    <Compile Include="Service\IWebViewMessages.cs" />
     <Compile Include="Service\WebViewMessages.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +67,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HtmlAgilityPack.1.5.1\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch\HtmlAgilityPack.dll</HintPath>
     </Reference>

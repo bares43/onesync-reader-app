@@ -5,20 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using EbookReader.Exceptions.Epub;
+using Autofac;
 using EbookReader.Helpers;
 using EbookReader.Model;
+using EbookReader.Service.Epub;
 using HtmlAgilityPack;
 using ICSharpCode.SharpZipLib.Zip;
 using PCLStorage;
 
 namespace EbookReader.Service {
-    public class EpubLoader {
+    public class EpubLoader : IEpubLoader {
 
-        private FileService _fileService;
+        private IFileService _fileService;
 
-        public EpubLoader() {
-            _fileService = new FileService();
+        public EpubLoader(IFileService fileService) {
+            _fileService = fileService;
         }
 
         public async Task<Model.Epub> GetEpub(string filename, byte[] filedata) {
@@ -36,7 +37,7 @@ namespace EbookReader.Service {
 
             var epubVersion = this.GetEpubVersion(package);
 
-            var epubParser = this.GetParserInstance(epubVersion, package);
+            var epubParser = IocManager.Container.ResolveKeyed<EpubParser>(epubVersion, new NamedParameter("package", package));
 
             var epub = new Model.Epub() {
                 Version = epubVersion,
@@ -56,11 +57,6 @@ namespace EbookReader.Service {
             var filename = epub.Files.Where(o => o.Id == chapter.Idref).First();
             var folder = await FileSystem.Current.LocalStorage.GetFolderAsync(epub.Folder);
             return await _fileService.ReadFileData(string.Format("OEBPS/{0}", filename.Href), folder);
-        }
-
-        public bool HasNextChapter(Model.Epub epub, EpubSpine currentChapter) {
-            var indexOf = epub.Spines.ToList().IndexOf(currentChapter);
-            return epub.Spines.Count() > indexOf;
         }
 
         public async Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, string epubFolderName) {
@@ -86,7 +82,7 @@ namespace EbookReader.Service {
                 .Where(o => tagsToRemove.Contains(o.Name))
                 .ToList();
 
-            foreach(var node in nodesToRemove) {
+            foreach (var node in nodesToRemove) {
                 node.Remove();
             }
         }
@@ -149,20 +145,7 @@ namespace EbookReader.Service {
 
             return imagesModel;
         }
-
-        private Epub.EpubParser GetParserInstance(EpubVersion version, XElement package) {
-            switch (version) {
-                case EpubVersion.V200:
-                    return new Epub.Epub200Parser(package);
-                case EpubVersion.V300:
-                    return new Epub.Epub300Parser(package);
-                case EpubVersion.V301:
-                    return new Epub.Epub301Parser(package);
-            }
-
-            throw new UnknownEpubVersionException();
-        }
-
+        
         private EpubVersion GetEpubVersion(XElement package) {
             var version = package.Attributes().First(o => o.Name.LocalName == "version").Value;
             return EpubVersionHelper.ParseVersion(version);
