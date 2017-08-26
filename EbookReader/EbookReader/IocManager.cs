@@ -17,6 +17,8 @@ namespace EbookReader {
             get {
                 if (_containerBuilder == null) {
                     _containerBuilder = new ContainerBuilder();
+
+                    SetUpIoc();
                 }
 
                 return _containerBuilder;
@@ -30,7 +32,11 @@ namespace EbookReader {
             }
         }
 
-        public static void SetUpIoc() {
+        public static void Build() {
+            _container = ContainerBuilder.Build();
+        }
+
+        private static void SetUpIoc() {
             ContainerBuilder.RegisterType<EpubLoader>().As<IEpubLoader>();
             ContainerBuilder.RegisterType<FileService>().As<IFileService>();
             ContainerBuilder.RegisterType<FormsWebView>().As<FormsWebView>().SingleInstance();
@@ -38,10 +44,6 @@ namespace EbookReader {
             ContainerBuilder.RegisterType<Epub200Parser>().Keyed<EpubParser>(EpubVersion.V200);
             ContainerBuilder.RegisterType<Epub300Parser>().Keyed<EpubParser>(EpubVersion.V300);
             ContainerBuilder.RegisterType<Epub301Parser>().Keyed<EpubParser>(EpubVersion.V301);
-        }
-
-        public static void Build() {
-            _container = ContainerBuilder.Build();
         }
 
     }
