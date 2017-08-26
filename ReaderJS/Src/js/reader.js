@@ -11,13 +11,15 @@ window.Ebook = {
     scrollStep: 0,
     totalPages: 0,
     currentPage: 1,
-    fontSize: 16,
+    fontSize: 0,
     webViewWidth: 0,
     webViewHeight: 0,
-    webViewMargin: 15,
-    init: function (width, height) {
+    webViewMargin: 0,
+    init: function (width, height, margin, fontSize) {
         this.webViewWidth = width;
         this.webViewHeight = height;
+        this.webViewMargin = margin;
+        this.fontSize = fontSize;
 
         this.htmlHelper.setFontSize();
         this.htmlHelper.setWidth();
@@ -448,7 +450,7 @@ window.Messages = {
     },
     actions: {
         init: function (data) {
-            Ebook.init(data.Width, data.Height);
+            Ebook.init(data.Width, data.Height, data.Margin, data.FontSize);
         },
         loadHtml: function (data) {
             $("#content").html(data.Html);

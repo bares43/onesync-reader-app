@@ -84,14 +84,16 @@ namespace EbookReader {
 
             fontSizePicker = new Picker {
                 Title = "Velikost písma",
-                ItemsSource = this.FontSizes
+                ItemsSource = this.FontSizes,
+                SelectedItem = "20",
             };
 
             fontSizePicker.SelectedIndexChanged += FontSizePicker_SelectedIndexChanged;
 
             marginPicker = new Picker {
                 Title = "Velikost odsazení",
-                ItemsSource = this.Margins
+                ItemsSource = this.Margins,
+                SelectedItem = "30",
             };
 
             marginPicker.SelectedIndexChanged += MarginPicker_SelectedIndexChanged;
@@ -236,10 +238,12 @@ namespace EbookReader {
             _messages.Send("changeMargin", json);
         }
 
-        private void InitWebView(int width, int height) {
+        private void InitWebView(int width, int height, int margin, int fontSize) {
             var json = new {
                 Width = width,
-                Height = height
+                Height = height,
+                Margin = margin,
+                FontSize = fontSize,
             };
 
             _messages.Send("init", json);
@@ -280,7 +284,12 @@ namespace EbookReader {
         }
 
         private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
-            this.InitWebView((int)this.webView.Width, (int)this.webView.Height);
+            this.InitWebView(
+                (int)this.webView.Width,
+                (int)this.webView.Height,
+                int.Parse((string)this.marginPicker.SelectedItem),
+                int.Parse((string)this.fontSizePicker.SelectedItem)
+            );
         }
 
         protected override void OnStart() {
