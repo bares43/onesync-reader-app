@@ -89,7 +89,7 @@ namespace EbookReader.Service {
             foreach (var imageModel in imagesModel) {
                 var extension = imageModel.FileName.Split('.').Last();
 
-                var fileName = string.Format("OEBPS/{0}", imageModel.FileName.Replace("../", "")).Replace("//", "/");
+                var fileName = string.Format("OEBPS/{0}", imageModel.FileName.Replace("../", "")).Replace("//", "/").Replace("%20", " ");
 
                 var file = await _fileService.OpenFile(fileName, epubFolder);
 
