@@ -14,7 +14,6 @@ using Android.Widget;
 using EbookReader.DependencyService;
 using EbookReader.Droid.DependencyService;
 
-[assembly: Xamarin.Forms.Dependency(typeof(AndroidAssetsManager))]
 namespace EbookReader.Droid.DependencyService {
     public class AndroidAssetsManager : IAssetsManager {
 
