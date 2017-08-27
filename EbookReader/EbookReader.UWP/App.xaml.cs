@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Autofac;
 using EbookReader.DependencyService;
@@ -30,8 +31,7 @@ namespace EbookReader.UWP {
         /// </summary>
         public App() {
             this.SetUpIoc();
-
-            FormsWebViewRenderer.Init();
+            
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -51,7 +51,15 @@ namespace EbookReader.UWP {
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
-                Xamarin.Forms.Forms.Init(e);
+
+                var assemblies = new List<Assembly> {
+                    typeof(FormsWebViewRenderer).GetTypeInfo().Assembly
+                };
+
+                FormsWebViewRenderer.Init();
+
+                Xamarin.Forms.Forms.Init(e, assemblies);
+
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated) {
                     //TODO: Load state from previously suspended application
                 }
