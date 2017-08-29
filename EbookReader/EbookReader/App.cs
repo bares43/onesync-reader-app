@@ -76,10 +76,12 @@ namespace EbookReader {
             _messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
             _messages.OnPrevChapterRequest += _messages_OnPrevChapterRequest;
 
-            this.pages = new Label();
+            this.pages = new Label() {
+                WidthRequest = 75,
+            };
 
             var loadButton = new Button {
-                Text = "Načíst knihu"
+                Text = "Otevřít",
             };
 
             loadButton.Clicked += LoadButton_Clicked;
@@ -89,7 +91,7 @@ namespace EbookReader {
             goToStartOfPageInput.TextChanged += GoToStartOfPageInput_TextChanged;
 
             fontSizePicker = new Picker {
-                Title = "Velikost písma",
+                Title = "Písmo",
                 ItemsSource = this.FontSizes,
                 SelectedItem = "20",
             };
@@ -97,7 +99,7 @@ namespace EbookReader {
             fontSizePicker.SelectedIndexChanged += FontSizePicker_SelectedIndexChanged;
 
             marginPicker = new Picker {
-                Title = "Velikost odsazení",
+                Title = "Odsazení",
                 ItemsSource = this.Margins,
                 SelectedItem = "30",
             };
@@ -106,6 +108,7 @@ namespace EbookReader {
 
             chaptersPicker = new Picker {
                 Title = "Kapitola",
+                IsVisible = false,
             };
 
             chaptersPicker.SelectedIndexChanged += ChaptersPicker_SelectedIndexChanged;
@@ -182,7 +185,7 @@ namespace EbookReader {
 
         private void _messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
             Device.BeginInvokeOnMainThread(() => {
-                this.pages.Text = string.Format("Stránka {0} z {1}", e.CurrentPage, e.TotalPages);
+                this.pages.Text = string.Format("{0} / {1}", e.CurrentPage, e.TotalPages);
             });
         }
 
@@ -230,6 +233,7 @@ namespace EbookReader {
             if (this.chaptersPicker.ItemsSource.Count > 0) {
                 this.chaptersPicker.SelectedIndex = 0;
             }
+            this.chaptersPicker.IsVisible = true;
 
             this.SendChapter(0);
         }
