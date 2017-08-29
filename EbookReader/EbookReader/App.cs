@@ -149,17 +149,21 @@ namespace EbookReader {
         }
 
         private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
-            var index = this.chaptersPicker.SelectedIndex - 1;
-            if (index > 0) {
-                this.chaptersPicker.SelectedIndex = index;
-            }
+            Device.BeginInvokeOnMainThread(() => {
+                var index = this.chaptersPicker.SelectedIndex - 1;
+                if (index > 0) {
+                    this.chaptersPicker.SelectedIndex = index;
+                }
+            });
         }
 
         private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
-            var index = this.chaptersPicker.SelectedIndex + 1;
-            if (this.chaptersPicker.ItemsSource != null && index < this.chaptersPicker.ItemsSource.Count) {
-                this.chaptersPicker.SelectedIndex = index;
-            }
+            Device.BeginInvokeOnMainThread(() => {
+                var index = this.chaptersPicker.SelectedIndex + 1;
+                if (this.chaptersPicker.ItemsSource != null && index < this.chaptersPicker.ItemsSource.Count) {
+                    this.chaptersPicker.SelectedIndex = index;
+                }
+            });
         }
 
         private async void SendChapter(int chapter, string page = "") {
@@ -177,7 +181,9 @@ namespace EbookReader {
         }
 
         private void _messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
-            this.pages.Text = string.Format("Stránka {0} z {1}", e.CurrentPage, e.TotalPages);
+            Device.BeginInvokeOnMainThread(() => {
+                this.pages.Text = string.Format("Stránka {0} z {1}", e.CurrentPage, e.TotalPages);
+            });
         }
 
         private void MarginPicker_SelectedIndexChanged(object sender, EventArgs e) {

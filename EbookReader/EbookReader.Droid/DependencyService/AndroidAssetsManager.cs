@@ -18,7 +18,7 @@ namespace EbookReader.Droid.DependencyService {
     public class AndroidAssetsManager : IAssetsManager {
 
         public async Task<string> GetFileContentAsync(string filename) {
-            var assetsPath = string.Format(@"Assets\{0}", filename);
+            var assetsPath = string.Format(@"{0}", filename);
 
             var content = string.Empty;
 

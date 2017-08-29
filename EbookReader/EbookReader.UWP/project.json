@@ -4,8 +4,8 @@
     "Microsoft.Bcl.Compression": "3.9.85",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.3",
     "PCLStorage": "1.0.2",
-    "Xam.Plugin.FilePicker": "1.1.0",
     "Xam.Plugin.WebView": "1.6.0",
+    "Xamarin.Dialog.Plugin.FilePicker": "1.0.3",
     "Xamarin.Forms": "2.3.4.247"
   },
   "frameworks": {
