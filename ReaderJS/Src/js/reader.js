@@ -133,18 +133,19 @@ window.Ebook = {
             duration = 500;
         }
 
-        this.currentPage = page;
-
-        var self = this;
-
-        $('#columns-outer').animate({
-            scrollLeft: (page - 1) * this.scrollStep
-        }, duration);
+        this.goToPageInternal(page, duration);
 
         this.messagesHelper.sendPageChange();
     },
     goToPageFast: function (page) {
-        this.goToPage(page, 0);
+        this.goToPageInternal(page, 0);
+    },
+    goToPageInternal: function (page, duration) {
+        this.currentPage = page;
+
+        $('#columns-outer').animate({
+            scrollLeft: (page - 1) * this.scrollStep
+        }, duration);
     },
     pageOfElement: function (el) {
         var left = $(el).position().left + 1;
