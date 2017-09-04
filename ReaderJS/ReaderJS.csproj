@@ -11,6 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Build\layout.html" />
+    <Content Include="DevTools\Base64.js" />
     <Content Include="Src\js\Base64.js" />
     <Content Include="Src\js\jquery-3.2.1.min.js" />
     <Content Include="Src\js\reader.js" />

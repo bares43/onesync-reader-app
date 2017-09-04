@@ -154,11 +154,6 @@
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="..\EbookReader\Content\layout.html">
-      <Link>Assets\layout.html</Link>
-    </AndroidAsset>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="..\..\ReaderJS\Build\reader.css">
       <Link>Assets\reader.css</Link>
     </AndroidAsset>
@@ -173,6 +168,11 @@
       <Project>{76BE50C7-110F-45F2-A3D7-D3A283B67F07}</Project>
       <Name>EbookReader</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="..\..\ReaderJS\Build\layout.html">
+      <Link>Assets\layout.html</Link>
+    </AndroidAsset>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

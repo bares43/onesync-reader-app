@@ -1,5 +1,6 @@
 ReaderJS/Build/*
 !ReaderJS/Build/empty
+!ReaderJS/Build/layout.html
 
 # Created by https://www.gitignore.io/api/visualstudio,csharp
 

@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <style>
+        header {
+            margin-top: 30px;
+        }
+
+        #reader {
+            margin-top: 50px;
+            border: none;
+            box-shadow: 0px 0px 40px 5px #a3a3a3;
+        }
+
+        #ebookjs {
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>ReaderJS</h1>
+            <p class="lead">DevTools</p>
+        </header>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <iframe src="../Build/layout.html" id="reader" style="display: none;"></iframe>
+            </div>
+            <div class="col-lg-4">
+
+
+                <div>
+                    <h2 data-toggle="collapse" href="#collapse-ebookjs">Ebook.js</h2>
+                    <div class="collapse show" id="collapse-ebookjs">
+                        <div id="ebookjs"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 data-toggle="collapse" href="#collapse-messages">Zasílání zpráv</h2>
+
+                    <div class="collapse show" id="collapse-messages">
+                        <form class="form-inline message-form">
+                            <fieldset>
+                                <legend data-toggle="collapse" href="#collapse-message-init">
+                                    Inicializace
+                                </legend>
+
+                                <div class="collapse show" id="collapse-message-init">
+                                    <div class="row">
+                                        <div class="input-group col-lg-6">
+                                            <input class="form-control" placeholder="Šířka" data-name="Width" data-type="int" />
+                                        </div>
+                                        <div class="input-group col-lg-6">
+                                            <input class="form-control" placeholder="Výška" data-name="Height" data-type="int" />
+                                        </div>
+                                        <div class="input-group col-lg-6">
+                                            <input class="form-control" placeholder="Font" data-name="FontSize" data-type="int" />
+                                        </div>
+                                        <div class="input-group col-lg-6">
+                                            <input class="form-control" placeholder="Margin" data-name="Margin" data-type="int" />
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" data-action="init">Poslat</button>
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+                        <form class="message-form">
+                            <fieldset>
+                                <legend data-toggle="collapse" href="#collapse-message-load-html">
+                                    Načíst HTML
+                                </legend>
+
+                                <div class="collapse show" id="collapse-message-load-html">
+                                    <div class="row">
+                                        <textarea class="form-control" placeholder="HTML" data-name="Html"></textarea>
+                                    </div>
+
+                                    <button class="btn btn-primary" data-action="loadHtml">Poslat</button>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                        <form class="form-inline message-form">
+                            <fieldset>
+                                <legend data-toggle="collapse" href="#collapse-message-resize">
+                                    Resize
+                                </legend>
+
+                                <div class="collapse" id="collapse-message-resize">
+                                    <div class="row">
+                                        <div class="input-group col-lg-6">
+                                            <input class="form-control" placeholder="Šířka" data-name="Width" data-type="int" />
+                                        </div>
+                                        <div class="input-group col-lg-6">
+                                            <input class="form-control" placeholder="Výška" data-name="Height" data-type="int" />
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-primary" data-action="resize">Poslat</button>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                        <form class="message-form">
+                            <fieldset>
+                                <legend data-toggle="collapse" href="#collapse-message-change-margin">
+                                    Změna odsazení
+                                </legend>
+
+                                <div class="collapse" id="collapse-message-change-margin">
+                                    <div class="row">
+                                        <input class="form-control" placeholder="Odsazení" data-name="Margin" data-type="int" />
+                                    </div>
+
+                                    <button class="btn btn-primary" data-action="changeMargin">Poslat</button>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                        <form class="message-form">
+                            <fieldset>
+                                <legend data-toggle="collapse" href="#collapse-message-change-font">
+                                    Změna fontu
+                                </legend>
+
+                                <div class="collapse" id="collapse-message-change-font">
+                                    <div class="row">
+                                        <input class="form-control" placeholder="Font" data-name="FontSize" data-type="int" />
+                                    </div>
+
+                                    <button class="btn btn-primary" data-action="changeFontSize">Poslat</button>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                        <form class="message-form">
+                            <fieldset>
+                                <legend data-toggle="collapse" href="#collapse-message-go-to-start-of-page">
+                                    Přejít na začátek stránky
+                                </legend>
+
+                                <div class="collapse" id="collapse-message-go-to-start-of-page">
+                                    <div class="row">
+                                        <input class="form-control" placeholder="Stránka" data-name="Page" data-type="int" />
+                                    </div>
+
+                                    <button class="btn btn-primary" data-action="goToStartOfPage">Poslat</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div>
+                    <h2 data-toggle="collapse" href="#collapse-logs">Log zpráv</h2>
+                    <div class="collapse show" id="collapse-logs">
+                        <span id="clear-logs" class="btn btn-outline-danger btn-sm">Vyčistit</span>
+                        <div id="logs"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script src="Base64.js" type="text/javascript"></script>
+    <script src="devtools.js" type="text/javascript"></script>
+
+</body>
+</html>
