@@ -7,7 +7,19 @@
 }
 
 window.addEventListener('message', function (e) {
-    Messages.parse(e.data);
+
+    switch (e.data.type) {
+        case "message":
+            Messages.parse(e.data.data);
+            break;
+        case "clickToLeft":
+            clickToLeft();
+            break;
+        case "clickToRight":
+            clickToRight();
+            break;
+    }
+
 });
 
 window.onerror = function (msg, url, line, col, error) {
@@ -23,3 +35,15 @@ window.onerror = function (msg, url, line, col, error) {
         message: logMessage
     }, "*");
 };
+
+function clickToLeft(){
+    var event = $.Event('click');
+    event.pageX = 1;
+    $('#columns-outer').trigger(event);
+}
+
+function clickToRight(){
+    var event = $.Event('click');
+    event.pageX = $("#columns-outer").width() - 1;
+    $('#columns-outer').trigger(event);
+}

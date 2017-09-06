@@ -2,12 +2,16 @@
 var logCnt = 0;
 
 function sendMessage(action, data) {
-    var json = JSON.stringify({
+    var msg = {
         Action: action,
         Data: data
-    });
+    };
 
-    iframe.contentWindow.postMessage(Base64.encode(json), "*");
+    window.Api.sentMessages.push(msg);
+
+    var json = JSON.stringify(msg);
+
+    iframe.contentWindow.postMessage({type: "message", data: Base64.encode(json)}, "*");
 
 }
 
@@ -54,8 +58,10 @@ window.addEventListener('message', function (e) {
             break;
         case "message":
             var msg = JSON.parse(Base64.decode(e.data.data));
+            window.Api.receivedMessages.push(msg);
             addReceiveLog(msg.action, JSON.stringify(msg.data));
-            $("#ebookjs").html(e.data.reader)
+            $("#ebookjs").html(e.data.reader);
+            window.Api.readerJS = JSON.parse(e.data.reader);
             break;
     }
 });
@@ -108,3 +114,9 @@ $(".message-form").on("submit", function (e) {
 $("#clear-logs").on("click", function () {
     clearLogs();
 })
+
+window.Api = {
+    receivedMessages : [],
+    sentMessages : [],
+    readerJS : null,
+}

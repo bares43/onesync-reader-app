@@ -1,6 +1,7 @@
 ReaderJS/Build/*
 !ReaderJS/Build/empty
 !ReaderJS/Build/layout.html
+ReaderJS/package-lock.json
 
 # Created by https://www.gitignore.io/api/visualstudio,csharp
 
@@ -413,3 +414,14 @@ __pycache__/
 # !tools/packages.config
 
 # End of https://www.gitignore.io/api/visualstudio,csharp
+# Created by https://www.gitignore.io/api/visualstudiocode
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+# End of https://www.gitignore.io/api/visualstudiocode
