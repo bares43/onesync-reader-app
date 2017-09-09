@@ -2,6 +2,8 @@
 var logCnt = 0;
 
 function sendMessage(action, data) {
+    addSendLog(action, JSON.stringify(data));
+
     var msg = {
         Action: action,
         Data: data
@@ -11,8 +13,10 @@ function sendMessage(action, data) {
 
     var json = JSON.stringify(msg);
 
-    iframe.contentWindow.postMessage({type: "message", data: Base64.encode(json)}, "*");
-
+    iframe.contentWindow.postMessage({
+        type: "message",
+        data: Base64.encode(json)
+    }, "*");
 }
 
 function clearLogs() {
@@ -63,6 +67,9 @@ window.addEventListener('message', function (e) {
             $("#ebookjs").html(e.data.reader);
             window.Api.readerJS = JSON.parse(e.data.reader);
             break;
+        case "currentContent":
+            window.Api.currentContent = e.data.content;
+            break;
     }
 });
 
@@ -72,7 +79,7 @@ function beforeMessageSend(action, data) {
         $iframe.show();
         $iframe.width(data.Width);
         $iframe.height(data.Height);
-    }else if (action == "loadHtml") {
+    } else if (action == "loadHtml") {
         data["Images"] = [];
     }
 
@@ -102,8 +109,7 @@ $(".message-form").on("submit", function (e) {
 
     data = beforeMessageSend(action, data);
 
-    addSendLog(action, JSON.stringify(data));
-    sendMessage(action, data)
+    sendMessage(action, data);
 
     form.find("input, textarea").val("");
     form.find(".collapse").collapse("hide");
@@ -116,7 +122,19 @@ $("#clear-logs").on("click", function () {
 })
 
 window.Api = {
-    receivedMessages : [],
-    sentMessages : [],
-    readerJS : null,
+    receivedMessages: [],
+    sentMessages: [],
+    readerJS: null,
+    currentContent: "",
+    currentContentRequest: function () {
+        iframe.contentWindow.postMessage({
+            type: "currentContentRequest",
+        }, "*");
+    },
+    sendGoToPageFastMessage: function (page) {
+        iframe.contentWindow.postMessage({
+            type: "goToPageFast",
+            page: page,
+        }, "*");
+    },
 }

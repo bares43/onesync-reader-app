@@ -1,18 +1,17 @@
 const {
     Chromeless
-} = require("chromeless")
+} = require('chromeless')
 const {
     expect
-} = require("chai")
+} = require('chai')
 
-const DevToolsLibrary = require("./devtoolslibrary")
+const DevToolsLibrary = require('./devtoolslibrary')
 
 
-describe("When click to reader", function () {
+describe('When click on reader', () => {
 
-    describe("click left", function () {
-        it("should send PrevChapterRequest message", async function () {
-            this.timeout(5000);
+    describe('to left', () => {
+        it('should receive PrevChapterRequest message', async() => {
             const chromeless = new Chromeless();
 
             await chromeless
@@ -21,15 +20,14 @@ describe("When click to reader", function () {
 
             const lastMessage = await chromeless.getLastReceivedMessage();
 
-            expect(lastMessage.action).to.equal("PrevChapterRequest")
+            expect(lastMessage.action).to.equal('PrevChapterRequest')
 
             await chromeless.end()
         })
     })
 
-    describe("click right", function () {
-        it("should send NextChapterRequest message", async function () {
-            this.timeout(5000);
+    describe('to right', () => {
+        it('should receive NextChapterRequest message', async() => {
             const chromeless = new Chromeless();
 
             await chromeless
@@ -38,13 +36,13 @@ describe("When click to reader", function () {
 
             const lastMessage = await chromeless.getLastReceivedMessage();
 
-            expect(lastMessage.action).to.equal("NextChapterRequest")
+            expect(lastMessage.action).to.equal('NextChapterRequest')
 
             await chromeless.end()
         })
     })
 
-    before(function () {
+    before(() => {
         DevToolsLibrary.init()
     })
 

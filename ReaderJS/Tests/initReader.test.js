@@ -7,10 +7,9 @@ const {
 
 const DevToolsLibrary = require("./devtoolslibrary")
 
-describe("When init reader", function () {
+describe('When init reader', () => {
 
-  it("should receive page change message", async function () {
-    this.timeout(5000)
+  it('should receive PageChange message', async() => {
     const chromeless = new Chromeless()
 
     await chromeless
@@ -20,14 +19,14 @@ describe("When init reader", function () {
 
     const lastMessage = await chromeless.getLastReceivedMessage()
 
-    expect(lastMessage.action).to.equal("PageChange")
+    expect(lastMessage.action).to.equal('PageChange')
 
     const readrJS = await chromeless.getReaderJS()
 
     await chromeless.end()
   })
 
-  before(function () {
+  before(() => {
     DevToolsLibrary.init()
   })
 
