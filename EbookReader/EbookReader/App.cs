@@ -227,15 +227,21 @@ namespace EbookReader {
         public async void LoadBook() {
             var pickedFile = await CrossFilePicker.Current.PickFile();
 
-            epub = await _epubLoader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
+            if(pickedFile != null) {
 
-            this.chaptersPicker.ItemsSource = epub.Spines.Select(o => o.Idref).ToList();
-            if (this.chaptersPicker.ItemsSource.Count > 0) {
-                this.chaptersPicker.SelectedIndex = 0;
+                try {
+                    epub = await _epubLoader.GetEpub(pickedFile.FileName, pickedFile.DataArray);
+
+                    this.chaptersPicker.ItemsSource = epub.Spines.Select(o => o.Idref).ToList();
+                    if (this.chaptersPicker.ItemsSource.Count > 0) {
+                        this.chaptersPicker.SelectedIndex = 0;
+                    }
+                    this.chaptersPicker.IsVisible = true;
+
+                    this.SendChapter(0);
+                } catch (Exception) { }
+                
             }
-            this.chaptersPicker.IsVisible = true;
-
-            this.SendChapter(0);
         }
 
         private void SetFontSize(int fontSize) {
