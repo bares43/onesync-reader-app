@@ -10,7 +10,7 @@ const DevToolsLibrary = require("./devtoolslibrary")
 describe('When loadHtml', () => {
 
     it('should be shown correct content at first page', async() => {
-        const chromeless = new Chromeless()
+        const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
             .initDevTools(400, 800, 30, 45)
@@ -24,7 +24,7 @@ describe('When loadHtml', () => {
     })
 
     it('should be shown correct content at second page', async() => {
-        const chromeless = new Chromeless()
+        const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
             .initDevTools(400, 800, 30, 45)
@@ -39,7 +39,7 @@ describe('When loadHtml', () => {
     })
 
     it('should be totalPages set to correct value', async() => {
-        const chromeless = new Chromeless()
+        const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
             .initDevTools(400, 800, 30, 45)

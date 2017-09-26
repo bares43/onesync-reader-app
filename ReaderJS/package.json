@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "mocha ./Tests/**/*.test.js --timeout 20000"
+    "chrome-start": "\"\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"\" --remote-debugging-port=9222 --disable-gpu --headless",
+    "mocha-tests": "\"\"./node_modules/.bin/_mocha\"\" ./Tests/**/*.test.js --timeout 25000",
+    "test": "npm-run-all -r -p chrome-start mocha-tests"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^3.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "mocha": "^3.5.0"
+    "mocha": "^3.5.0",
+    "npm-run-all": "^4.1.1"
   }
 }

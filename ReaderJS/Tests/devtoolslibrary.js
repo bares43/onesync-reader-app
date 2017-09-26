@@ -7,7 +7,13 @@ const {
 module.exports = class DevToolsLibrary {
 
     static get defaultWait() {
-        return 200
+        return 300
+    }
+
+    static getChromeless() {
+        return new Chromeless({
+            launchChrome: false
+        })
     }
 
     static init() {

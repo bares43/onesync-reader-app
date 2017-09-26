@@ -9,7 +9,7 @@ const DevToolsLibrary = require("./devtoolslibrary")
 
 describe('When go to start of page', () => {
     it('should be currentPage set to correct value', async() => {
-        const chromeless = new Chromeless()
+        const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
             .initDevTools(400, 800, 30, 45)
@@ -24,7 +24,7 @@ describe('When go to start of page', () => {
     })
 
     it('should be PageChange message received with correct value', async() => {
-        const chromeless = new Chromeless()
+        const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
             .initDevTools(400, 800, 30, 45)
@@ -39,7 +39,7 @@ describe('When go to start of page', () => {
     })
 
     it('should be shown correct content at second page', async() => {
-        const chromeless = new Chromeless()
+        const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
             .initDevTools(400, 800, 30, 45)

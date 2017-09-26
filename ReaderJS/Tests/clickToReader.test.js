@@ -12,13 +12,13 @@ describe('When click on reader', () => {
 
     describe('to left', () => {
         it('should receive PrevChapterRequest message', async() => {
-            const chromeless = new Chromeless();
+            const chromeless = DevToolsLibrary.getChromeless()
 
             await chromeless
                 .initDevTools(400, 800, 30, 45)
                 .clickLeft()
 
-            const lastMessage = await chromeless.getLastReceivedMessage();
+            const lastMessage = await chromeless.getLastReceivedMessage()
 
             expect(lastMessage.action).to.equal('PrevChapterRequest')
 
@@ -28,13 +28,13 @@ describe('When click on reader', () => {
 
     describe('to right', () => {
         it('should receive NextChapterRequest message', async() => {
-            const chromeless = new Chromeless();
+            const chromeless = DevToolsLibrary.getChromeless()
 
             await chromeless
                 .initDevTools(400, 800, 30, 45)
                 .clickRight()
 
-            const lastMessage = await chromeless.getLastReceivedMessage();
+            const lastMessage = await chromeless.getLastReceivedMessage()
 
             expect(lastMessage.action).to.equal('NextChapterRequest')
 

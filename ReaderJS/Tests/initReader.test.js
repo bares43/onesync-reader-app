@@ -10,7 +10,7 @@ const DevToolsLibrary = require("./devtoolslibrary")
 describe('When init reader', () => {
 
   it('should receive PageChange message', async() => {
-    const chromeless = new Chromeless()
+    const chromeless = DevToolsLibrary.getChromeless()
 
     await chromeless
       .initDevTools(400, 800, 30, 45)

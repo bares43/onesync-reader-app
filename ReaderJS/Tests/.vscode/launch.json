@@ -13,7 +13,7 @@
                 "-u",
                 "tdd",
                 "--timeout",
-                "20000",
+                "25000",
                 "--colors",
                 "${workspaceRoot}/"
             ],

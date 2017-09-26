@@ -10,7 +10,7 @@ const DevToolsLibrary = require("./devtoolslibrary")
 describe('When resize', () => {
 
     it('should be totalPages set to correct value', async() => {
-        const chromeless = new Chromeless()
+        const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
             .initDevTools(400, 800, 30, 45)
@@ -25,7 +25,7 @@ describe('When resize', () => {
     })
 
     it('should be PageChange message received with correct value', async() => {
-        const chromeless = new Chromeless()
+        const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
             .initDevTools(400, 800, 30, 45)
@@ -41,7 +41,7 @@ describe('When resize', () => {
 
     describe('when page is 2', () => {
         it('should scroll to the same position', async() => {
-            const chromeless = new Chromeless()
+            const chromeless = DevToolsLibrary.getChromeless()
 
             await chromeless
                 .initDevTools(400, 800, 30, 45)
