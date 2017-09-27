@@ -106,8 +106,10 @@ window.Ebook = {
         this.htmlHelper.showSpinner();
         setTimeout(function () {
             callback();
+        }, 10);
+        setTimeout(function () {
             Ebook.htmlHelper.hideSpinner();
-        }, 1);
+        }, 100);
     },
     goToNextPage: function () {
         var page = this.currentPage + 1;
