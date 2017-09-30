@@ -1,15 +1,12 @@
 const {
     Chromeless
 } = require("chromeless")
-const {
-    expect
-} = require("chai")
 
 const DevToolsLibrary = require("./devtoolslibrary")
 
 describe('When resize', () => {
 
-    it('should be totalPages set to correct value', async() => {
+    test('should be totalPages set to correct value', async() => {
         const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
@@ -19,12 +16,12 @@ describe('When resize', () => {
 
         const readerJS = await chromeless.getReaderJS()
 
-        expect(readerJS.totalPages).to.be.equal(25)
+        expect(readerJS.totalPages).toBe(13)
 
         await chromeless.end()
     })
 
-    it('should be PageChange message received with correct value', async() => {
+    test('should be PageChange message received with correct value', async() => {
         const chromeless = DevToolsLibrary.getChromeless()
 
         await chromeless
@@ -34,13 +31,13 @@ describe('When resize', () => {
 
         const lastReceivedMessage = await chromeless.getLastReceivedMessage()
 
-        expect(lastReceivedMessage.data.TotalPages).to.be.equal(25)
+        expect(lastReceivedMessage.data.TotalPages).toBe(13)
 
         await chromeless.end()
     })
 
     describe('when page is 2', () => {
-        it('should scroll to the same position', async() => {
+        test('should scroll to the same position', async() => {
             const chromeless = DevToolsLibrary.getChromeless()
 
             await chromeless
@@ -51,13 +48,15 @@ describe('When resize', () => {
 
             const currentContent = await chromeless.getReaderContent()
 
-            expect(currentContent).to.be.equal('in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum')
+            expect(currentContent).toBe(
+                'in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum'
+            )
 
             await chromeless.end()
         });
     });
 
-    before(() => {
+    beforeAll(() => {
         DevToolsLibrary.init()
     })
 

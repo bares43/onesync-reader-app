@@ -1,15 +1,12 @@
 const {
   Chromeless
 } = require("chromeless")
-const {
-  expect
-} = require("chai")
 
 const DevToolsLibrary = require("./devtoolslibrary")
 
 describe('When init reader', () => {
 
-  it('should receive PageChange message', async() => {
+  test('should receive PageChange message', async() => {
     const chromeless = DevToolsLibrary.getChromeless()
 
     await chromeless
@@ -19,14 +16,14 @@ describe('When init reader', () => {
 
     const lastMessage = await chromeless.getLastReceivedMessage()
 
-    expect(lastMessage.action).to.equal('PageChange')
+    expect(lastMessage.action).toBe('PageChange')
 
     const readrJS = await chromeless.getReaderJS()
 
     await chromeless.end()
   })
 
-  before(() => {
+  beforeAll(() => {
     DevToolsLibrary.init()
   })
 
