@@ -1,12 +1,8 @@
-const {
-	expect,
-} = require('chai');
-
 const DevToolsLibrary = require('./devtoolslibrary');
 
 describe('When click on reader', () => {
 	describe('to left', () => {
-		it('should receive PrevChapterRequest message', async() => {
+		test('should receive PrevChapterRequest message', async() => {
 			const chromeless = DevToolsLibrary.getChromeless();
 
 			await chromeless
@@ -15,14 +11,14 @@ describe('When click on reader', () => {
 
 			const lastMessage = await chromeless.getLastReceivedMessage();
 
-			expect(lastMessage.action).to.equal('PrevChapterRequest');
+			expect(lastMessage.action).toBe('PrevChapterRequest');
 
 			await chromeless.end();
 		});
 	});
 
 	describe('to right', () => {
-		it('should receive NextChapterRequest message', async() => {
+		test('should receive NextChapterRequest message', async() => {
 			const chromeless = DevToolsLibrary.getChromeless();
 
 			await chromeless
@@ -31,13 +27,13 @@ describe('When click on reader', () => {
 
 			const lastMessage = await chromeless.getLastReceivedMessage();
 
-			expect(lastMessage.action).to.equal('NextChapterRequest');
+			expect(lastMessage.action).toBe('NextChapterRequest');
 
 			await chromeless.end();
 		});
 	});
 
-	before(() => {
+	beforeAll(() => {
 		DevToolsLibrary.init();
 	});
 });

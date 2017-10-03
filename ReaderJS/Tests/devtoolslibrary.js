@@ -14,6 +14,8 @@ module.exports = class DevToolsLibrary {
 	}
 
 	static init() {
+		jest.setTimeout(25000);
+
 		Chromeless.prototype.getReceivedMessages = async function() {
 			return this.evaluate(() => {
 				return window.Api.receivedMessages;
@@ -171,6 +173,6 @@ module.exports = class DevToolsLibrary {
 	}
 
 	static generateLoremIpsum() {
-		return '<p>Lorem ipsum dolor <strong>sit amet</strong>, consectetuer adipiscing elit.</p><p>Vivamus porttitor turpis ac leo. Fusce<br />tellus.</p><h1>LOREM IPSUM</h1><p>Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis.</p><p>Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Nullam rhoncus aliquam metus.</p><p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem.</p><p>Cras elementum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Integer tempor. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Vestibulum erat nulla, ullamcorper nec, rutrum non, nonummy ac, erat. Nam quis nulla. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit.</p><p><p>Duis bibendum, lectus ut viverra rhoncus, dolor nunc faucibus libero, eget facilisis enim ipsum id lacus. Aliquam erat volutpat. Mauris tincidunt sem sed arcu. Integer vulputate sem a nibh rutrum consequat. Nunc auctor. Cras elementum. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Praesent id justo in neque elementum ultrices. Nullam faucibus mi quis velit. Nulla quis diam. Curabitur bibendum justo non orci. In enim a arcu imperdiet malesuada. Duis viverra diam non justo. Duis pulvinar. Duis bibendum, lectus ut viverra rhoncus, dolor nunc faucibus libero, eget facilisis enim ipsum id lacus. Praesent in mauris eu tortor porttitor accumsan. Suspendisse sagittis ultrices augue. Pellentesque ipsum. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Ut tempus purus at lorem.</p>';
+		return '<p>Lorem ipsum dolor <strong>sit amet</strong>, consectetuer adipiscing elit.</p><p>Vivamus porttitor turpis ac leo. Fusce<br />tellus.</p><h1>LOREM IPSUM</h1><p>Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis.</p><p>Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Nullam rhoncus aliquam metus.</p><p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem.</p><p>Cras elementum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Integer tempor. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Vestibulum erat nulla, ullamcorper nec, rutrum non, nonummy ac, erat. Nam quis nulla. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit.</p>';
 	}
 };
