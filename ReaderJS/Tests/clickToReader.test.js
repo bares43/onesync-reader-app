@@ -1,39 +1,39 @@
 const DevToolsLibrary = require('./devtoolslibrary');
 
 describe('When click on reader', () => {
-	describe('to left', () => {
-		test('should receive PrevChapterRequest message', async() => {
-			const chromeless = DevToolsLibrary.getChromeless();
+  describe('to left', () => {
+    test('should receive PrevChapterRequest message', async() => {
+      const chromeless = DevToolsLibrary.getChromeless();
 
-			await chromeless
-				.initDevTools(400, 800, 30, 45)
-				.clickLeft();
+      await chromeless
+        .initDevTools(400, 800, 30, 45)
+        .clickLeft();
 
-			const lastMessage = await chromeless.getLastReceivedMessage();
+      const lastMessage = await chromeless.getLastReceivedMessage();
 
-			expect(lastMessage.action).toBe('PrevChapterRequest');
+      expect(lastMessage.action).toBe('PrevChapterRequest');
 
-			await chromeless.end();
-		});
-	});
+      await chromeless.end();
+    });
+  });
 
-	describe('to right', () => {
-		test('should receive NextChapterRequest message', async() => {
-			const chromeless = DevToolsLibrary.getChromeless();
+  describe('to right', () => {
+    test('should receive NextChapterRequest message', async() => {
+      const chromeless = DevToolsLibrary.getChromeless();
 
-			await chromeless
-				.initDevTools(400, 800, 30, 45)
-				.clickRight();
+      await chromeless
+        .initDevTools(400, 800, 30, 45)
+        .clickRight();
 
-			const lastMessage = await chromeless.getLastReceivedMessage();
+      const lastMessage = await chromeless.getLastReceivedMessage();
 
-			expect(lastMessage.action).toBe('NextChapterRequest');
+      expect(lastMessage.action).toBe('NextChapterRequest');
 
-			await chromeless.end();
-		});
-	});
+      await chromeless.end();
+    });
+  });
 
-	beforeAll(() => {
-		DevToolsLibrary.init();
-	});
+  beforeAll(() => {
+    DevToolsLibrary.init();
+  });
 });

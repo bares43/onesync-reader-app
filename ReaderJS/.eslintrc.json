@@ -58,7 +58,7 @@
         "comma-style": ["error"],
         "computed-property-spacing": ["error"],
         "func-call-spacing": ["error"],
-        "indent": ["error", "tab"],
+        "indent": ["error", 2],
         "key-spacing": ["error"],
         "keyword-spacing": ["error"],
         "linebreak-style": ["error", "windows"],
