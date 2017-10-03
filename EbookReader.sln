@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EbookReader", "EbookReader\EbookReader\EbookReader.csproj", "{76BE50C7-110F-45F2-A3D7-D3A283B67F07}"
 EndProject
@@ -230,6 +230,8 @@ Global
 		{A9599E94-F257-4F2D-ACC7-141FC3756291}.AppStore|x86.Build.0 = Release|x86
 		{A9599E94-F257-4F2D-ACC7-141FC3756291}.AppStore|x86.Deploy.0 = Release|x86
 		{A9599E94-F257-4F2D-ACC7-141FC3756291}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A9599E94-F257-4F2D-ACC7-141FC3756291}.Debug|Any CPU.Build.0 = Debug|x86
+		{A9599E94-F257-4F2D-ACC7-141FC3756291}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{A9599E94-F257-4F2D-ACC7-141FC3756291}.Debug|ARM.ActiveCfg = Debug|ARM
 		{A9599E94-F257-4F2D-ACC7-141FC3756291}.Debug|ARM.Build.0 = Debug|ARM
 		{A9599E94-F257-4F2D-ACC7-141FC3756291}.Debug|ARM.Deploy.0 = Debug|ARM

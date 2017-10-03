@@ -17,6 +17,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^3.0.1",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^20.1.0",
     "mocha": "^3.5.0",
     "npm-run-all": "^4.1.1"
   }

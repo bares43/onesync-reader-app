@@ -1,49 +1,43 @@
 const {
-    Chromeless
-} = require('chromeless')
-const {
-    expect
-} = require('chai')
+	expect,
+} = require('chai');
 
-const DevToolsLibrary = require('./devtoolslibrary')
-
+const DevToolsLibrary = require('./devtoolslibrary');
 
 describe('When click on reader', () => {
+	describe('to left', () => {
+		it('should receive PrevChapterRequest message', async() => {
+			const chromeless = DevToolsLibrary.getChromeless();
 
-    describe('to left', () => {
-        it('should receive PrevChapterRequest message', async() => {
-            const chromeless = DevToolsLibrary.getChromeless()
+			await chromeless
+				.initDevTools(400, 800, 30, 45)
+				.clickLeft();
 
-            await chromeless
-                .initDevTools(400, 800, 30, 45)
-                .clickLeft()
+			const lastMessage = await chromeless.getLastReceivedMessage();
 
-            const lastMessage = await chromeless.getLastReceivedMessage()
+			expect(lastMessage.action).to.equal('PrevChapterRequest');
 
-            expect(lastMessage.action).to.equal('PrevChapterRequest')
+			await chromeless.end();
+		});
+	});
 
-            await chromeless.end()
-        })
-    })
+	describe('to right', () => {
+		it('should receive NextChapterRequest message', async() => {
+			const chromeless = DevToolsLibrary.getChromeless();
 
-    describe('to right', () => {
-        it('should receive NextChapterRequest message', async() => {
-            const chromeless = DevToolsLibrary.getChromeless()
+			await chromeless
+				.initDevTools(400, 800, 30, 45)
+				.clickRight();
 
-            await chromeless
-                .initDevTools(400, 800, 30, 45)
-                .clickRight()
+			const lastMessage = await chromeless.getLastReceivedMessage();
 
-            const lastMessage = await chromeless.getLastReceivedMessage()
+			expect(lastMessage.action).to.equal('NextChapterRequest');
 
-            expect(lastMessage.action).to.equal('NextChapterRequest')
+			await chromeless.end();
+		});
+	});
 
-            await chromeless.end()
-        })
-    })
-
-    before(() => {
-        DevToolsLibrary.init()
-    })
-
-})
+	before(() => {
+		DevToolsLibrary.init();
+	});
+});
