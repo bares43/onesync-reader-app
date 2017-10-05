@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "chrome-start": "\"\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"\" --remote-debugging-port=9222 --disable-gpu --headless",
-    "jest-tests": "\"\"./node_modules/.bin/jest\"\"",
+    "chrome-start": "\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\" --remote-debugging-port=9222 --disable-gpu --headless",
+    "jest-tests": "\"./node_modules/.bin/jest\"",
     "test": "npm-run-all -r -p chrome-start jest-tests"
   },
   "author": "",
