@@ -1,4 +1,5 @@
-﻿module.exports = function (grunt) {
+﻿/// <binding ProjectOpened='default' />
+module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         sass: {
@@ -15,7 +16,7 @@
         uglify: {
             my_target: {
                 files: {
-                    'Build/reader.js': ['Src/js/jquery-3.2.1.min.js', 'Src/js/Base64.js', 'Src/js/reader.js']
+                    'Build/reader.js': ['Src/js/jquery-3.2.1.min.js', 'Src/js/hammer.min.js', 'Src/js/Base64.js', 'Src/js/reader.js']
                 }
             }
         },
@@ -37,6 +38,6 @@
 
     grunt.registerTask('build_css', ['sass']);
     grunt.registerTask('build_js', ['uglify']);
-    grunt.registerTask('build', ['build_css','build_js']);
+    grunt.registerTask('build', ['build_css', 'build_js']);
     grunt.registerTask('default', ['watch']);
 };

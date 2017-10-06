@@ -31,12 +31,34 @@ window.Ebook = {
         this.setUpEbook();
     },
     setUpEvents: function () {
-        $("#columns-outer").on('click', function (e) {
-            if (e.pageX > Math.round(Ebook.pageWidth / 2)) {
+        var wrapper = document.getElementById("columns-outer");
+
+        var swipeManager = new Hammer(wrapper);
+        swipeManager.on("swipeleft", function () {
+            Ebook.goToPreviousPage();
+        });
+        swipeManager.on("swiperight", function () {
+            Ebook.goToNextPage();
+        });
+
+        var tapManager = new Hammer(wrapper);
+        tapManager.on("tap", function (e) {
+            if (e.center.x > Math.round(Ebook.pageWidth / 2)) {
                 Ebook.goToNextPage();
             } else {
                 Ebook.goToPreviousPage();
             }
+        });
+
+        var pressManager = new Hammer(wrapper);
+        pressManager.get("tap").set({ taps: 2 });
+        pressManager.on("tap", function () {
+            console.log("dva kliky");
+        });
+        pressManager.on("press", function () {
+            // TODO: show menu
+            console.log("press");
+            //Ebook.goToPageFast(1);
         });
     },
     setUpEbook: function () {
