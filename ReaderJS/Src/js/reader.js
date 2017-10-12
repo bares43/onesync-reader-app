@@ -31,35 +31,9 @@ window.Ebook = {
         this.setUpEbook();
     },
     setUpEvents: function () {
-        var wrapper = document.getElementById("columns-outer");
+      var wrapper = document.getElementById("columns-outer");
 
-        var swipeManager = new Hammer(wrapper);
-        swipeManager.on("swipeleft", function () {
-            Ebook.goToPreviousPage();
-        });
-        swipeManager.on("swiperight", function () {
-            Ebook.goToNextPage();
-        });
-
-        var tapManager = new Hammer(wrapper);
-        tapManager.on("tap", function (e) {
-            if (e.center.x > Math.round(Ebook.pageWidth / 2)) {
-                Ebook.goToNextPage();
-            } else {
-                Ebook.goToPreviousPage();
-            }
-        });
-
-        var pressManager = new Hammer(wrapper);
-        pressManager.get("tap").set({ taps: 2 });
-        pressManager.on("tap", function () {
-            console.log("dva kliky");
-        });
-        pressManager.on("press", function () {
-            // TODO: show menu
-            console.log("press");
-            //Ebook.goToPageFast(1);
-        });
+      Gestures.init(wrapper);
     },
     setUpEbook: function () {
         this.resizeImages();
@@ -502,6 +476,64 @@ window.Messages = {
         },
         changeMargin: function (data) {
             Ebook.changeMargin(data.Margin);
+        }
+    }
+}
+
+window.Gestures = {
+    init: function (element) {
+        var hammer = new Hammer.Manager(element);
+
+        var tap = new Hammer.Tap({ event: "singletap" });
+        var doubleTap = new Hammer.Tap({ event: "doubletap", taps: 2 });
+        var press = new Hammer.Press({ event: "press" });
+        var swipeleft = new Hammer.Swipe({event: "swipeleft", direction: Hammer.DIRECTION_LEFT });
+        var swiperight = new Hammer.Swipe({event: "swiperight", direction: Hammer.DIRECTION_RIGHT });
+
+        hammer.add([doubleTap, tap, press, swipeleft, swiperight]);
+
+        doubleTap.recognizeWith(tap);
+        tap.requireFailure([doubleTap]);
+
+        hammer.on("singletap", function (e) {
+            Gestures.actions.tap(e.center.x, e.center.y);
+        });
+
+        hammer.on("doubletap", function () {
+            Gestures.actions.doubleTap();
+        });
+
+        hammer.on("press", function () {
+            Gestures.actions.press();
+        });
+
+        hammer.on("swipeleft", function () {
+            Gestures.actions.swipeLeft();
+        });
+
+        hammer.on("swiperight", function () {
+            Gestures.actions.swipeRight();
+        });
+    },
+    actions: {
+        tap: function (x, y) {
+            if (x > Math.round(Ebook.pageWidth / 2)) {
+                Ebook.goToNextPage();
+            } else {
+                Ebook.goToPreviousPage();
+            }
+        },
+        doubleTap: function () {
+            Ebook.goToPage(1);
+        },
+        press: function () {
+            Ebook.goToPage(1);
+        },
+        swipeLeft: function () {
+            Ebook.goToNextPage();
+        },
+        swipeRight: function () {
+            Ebook.goToPreviousPage();
         }
     }
 }
