@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using EbookReader.Helpers;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Xam.Plugin.Abstractions;
 
 namespace EbookReader.Service {
@@ -13,6 +12,8 @@ namespace EbookReader.Service {
 
         FormsWebView _webView;
         bool webViewLoaded = false;
+        bool webViewReaderInit = false;
+        List<Model.WebViewMessages.Message> _queue;
 
         public event EventHandler<Model.WebViewMessages.PageChange> OnPageChange;
         public event EventHandler<Model.WebViewMessages.NextChapterRequest> OnNextChapterRequest;
@@ -21,6 +22,7 @@ namespace EbookReader.Service {
 
         public WebViewMessages(FormsWebView webView) {
             _webView = webView;
+            _queue = new List<Model.WebViewMessages.Message>();
 
             webView.RegisterGlobalCallback("csCallback", (data) => {
                 this.Parse(data);
@@ -31,19 +33,35 @@ namespace EbookReader.Service {
 
         public void Send(string action, object data) {
 
-            if (this.webViewLoaded) {
+            var message = new Model.WebViewMessages.Message {
+                Action = action,
+                Data = data,
+            };
+
+            _queue.Add(message);
+            this.ProcessQueue();
+        }
+
+        private void DoSendMessage(Model.WebViewMessages.Message message) {
+            if (this.webViewLoaded && (message.Action == "init" || this.webViewReaderInit)) {
+                message.IsSent = true;
+
                 var json = JsonConvert.SerializeObject(new {
-                    Action = action,
-                    Data = data,
+                    Action = message.Action,
+                    Data = message.Data,
                 });
 
                 var toSend = Base64Helper.Encode(json);
-                _webView.InjectJavascript(string.Format("Messages.parse('{0}')", toSend));
-            }
 
+                _webView.InjectJavascript(string.Format("Messages.parse('{0}')", toSend));
+
+                if (message.Action == "init") {
+                    this.webViewReaderInit = true;
+                }
+            }
         }
 
-        public void Parse(string data) {
+        private void Parse(string data) {
             var json = JsonConvert.DeserializeObject<Model.WebViewMessages.Message>(Base64Helper.Decode(data));
 
             var messageType = Type.GetType(string.Format("EbookReader.Model.WebViewMessages.{0}", json.Action));
@@ -66,8 +84,21 @@ namespace EbookReader.Service {
 
         }
 
+        private void ProcessQueue() {
+
+            var messages = _queue.Where(o => !o.IsSent).OrderBy(o => o.Action == "init" ? 0 : 1).ToList();
+
+            foreach (var msg in messages) {
+                this.DoSendMessage(msg);
+                if (msg.IsSent) {
+                    _queue.Remove(msg);
+                }
+            }
+        }
+
         private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
             this.webViewLoaded = true;
+            this.ProcessQueue();
         }
     }
 }

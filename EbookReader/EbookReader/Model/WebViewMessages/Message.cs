@@ -8,5 +8,6 @@ namespace EbookReader.Model.WebViewMessages {
     public class Message {
         public string Action { get; set; }
         public object Data { get; set; }
+        public bool IsSent { get; set; }
     }
 }

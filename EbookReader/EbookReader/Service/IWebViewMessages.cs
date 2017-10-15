@@ -13,6 +13,5 @@ namespace EbookReader.Service {
         event EventHandler<Model.WebViewMessages.OpenQuickPanelRequest> OnOpenQuickPanelRequest;
 
         void Send(string action, object data);
-        void Parse(string data);
     }
 }
