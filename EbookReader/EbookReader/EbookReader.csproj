@@ -48,6 +48,7 @@
     <Compile Include="Model\EpubSpine.cs" />
     <Compile Include="Model\WebViewMessages\Message.cs" />
     <Compile Include="Model\WebViewMessages\NextChapterRequest.cs" />
+    <Compile Include="Model\WebViewMessages\OpenQuickPanelRequest.cs" />
     <Compile Include="Model\WebViewMessages\PageChange.cs" />
     <Compile Include="Model\WebViewMessages\PrevChapterRequest.cs" />
     <Compile Include="Page\HomePage.xaml.cs">
@@ -56,6 +57,7 @@
     <Compile Include="Page\ReaderPage.xaml.cs">
       <DependentUpon>ReaderPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\Reader\QuickPanel.cs" />
     <Compile Include="Page\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>

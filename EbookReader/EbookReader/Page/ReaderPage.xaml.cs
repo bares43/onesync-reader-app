@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using EbookReader.DependencyService;
+using EbookReader.Page.Reader;
 using EbookReader.Service;
 using HtmlAgilityPack;
 using Plugin.FilePicker.Abstractions;
@@ -21,6 +22,7 @@ namespace EbookReader.Page {
         IEpubLoader _epubLoader;
         IAssetsManager _assetsManager;
 
+        QuickPanel quickPanel;
         Picker fontSizePicker;
         Picker marginPicker;
         Label pages;
@@ -83,6 +85,7 @@ namespace EbookReader.Page {
             _messages.OnPageChange += _messages_OnPageChange;
             _messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
             _messages.OnPrevChapterRequest += _messages_OnPrevChapterRequest;
+            _messages.OnOpenQuickPanelRequest += _messages_OnOpenQuickPanelRequest;
 
             _webView.OnContentLoaded += WebView_OnContentLoaded;
             _webView.SizeChanged += WebView_SizeChanged;
@@ -131,36 +134,55 @@ namespace EbookReader.Page {
             };
             settingsButton.Clicked += SettingsButton_Clicked;
 
-            var controls = new StackLayout {
-                VerticalOptions = LayoutOptions.Start,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Orientation = StackOrientation.Horizontal,
-                Children = {
-                    homeButton,
-                    settingsButton,
-                    new StackLayout {
-                        Children = {
-                            pages,
-                            goToStartOfPageInput,
-                        }
-                    },
-                    fontSizePicker,
-                    marginPicker,
-                    chaptersPicker,
-                }
-            };
+            //var controls = new StackLayout {
+            //    VerticalOptions = LayoutOptions.Start,
+            //    HorizontalOptions = LayoutOptions.FillAndExpand,
+            //    Orientation = StackOrientation.Horizontal,
+            //    Children = {
+            //        homeButton,
+            //        settingsButton,
+            //        new StackLayout {
+            //            Children = {
+            //                pages,
+            //                goToStartOfPageInput,
+            //            }
+            //        },
+            //        fontSizePicker,
+            //        marginPicker,
+            //        chaptersPicker,
+            //    }
+            //};
 
-            Content = new StackLayout {
+            quickPanel = new QuickPanel();
+
+            var quickPanelPosition = new Rectangle(0, 0, 1, 0.75);
+
+            if (Device.RuntimePlatform == Device.Windows) {
+                quickPanelPosition = new Rectangle(0, 0, 0.33, 1);
+            }
+
+            AbsoluteLayout.SetLayoutBounds(quickPanel, quickPanelPosition);
+            AbsoluteLayout.SetLayoutFlags(quickPanel, AbsoluteLayoutFlags.SizeProportional);
+
+            AbsoluteLayout.SetLayoutBounds(_webView, new Rectangle(0, 0, 1, 1));
+            AbsoluteLayout.SetLayoutFlags(_webView, AbsoluteLayoutFlags.SizeProportional);
+
+            Content = new AbsoluteLayout {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Children = {
-                    controls,
+                    //controls,
                     _webView,
+                    quickPanel,
                 }
             };
 
             NavigationPage.SetHasNavigationBar(this, false);
 
+        }
+
+        private void _messages_OnOpenQuickPanelRequest(object sender, Model.WebViewMessages.OpenQuickPanelRequest e) {
+            quickPanel.Show();
         }
 
         private async void SettingsButton_Clicked(object sender, EventArgs e) {

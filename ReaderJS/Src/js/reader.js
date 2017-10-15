@@ -430,6 +430,9 @@ window.Ebook = {
         },
         prevChapterRequest: function () {
             Messages.send("PrevChapterRequest", {});
+        },
+        sendOpenQuickPanelRequest: function () {
+            Messages.send("OpenQuickPanelRequest", {});
         }
     }
 };
@@ -524,10 +527,10 @@ window.Gestures = {
             }
         },
         doubleTap: function () {
-            Ebook.goToPage(1);
+            Ebook.messagesHelper.sendOpenQuickPanelRequest();
         },
         press: function () {
-            Ebook.goToPage(1);
+            Ebook.messagesHelper.sendOpenQuickPanelRequest();
         },
         swipeLeft: function () {
             Ebook.goToNextPage();
