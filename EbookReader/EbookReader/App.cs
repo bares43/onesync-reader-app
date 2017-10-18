@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Autofac;
-using EbookReader.DependencyService;
 using EbookReader.Page;
-using EbookReader.Service;
-using HtmlAgilityPack;
-using Plugin.FilePicker;
-using Xam.Plugin.Abstractions;
 using Xamarin.Forms;
 
 namespace EbookReader {

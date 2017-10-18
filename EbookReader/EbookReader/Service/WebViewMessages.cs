@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using EbookReader.Helpers;
 using Newtonsoft.Json;
-using Xam.Plugin.Abstractions;
+using Xam.Plugin.WebView.Abstractions;
+using Xamarin.Forms;
 
 namespace EbookReader.Service {
     public class WebViewMessages : IWebViewMessages {
@@ -24,7 +25,7 @@ namespace EbookReader.Service {
             _webView = webView;
             _queue = new List<Model.WebViewMessages.Message>();
 
-            webView.RegisterGlobalCallback("csCallback", (data) => {
+            webView.AddLocalCallback("csCallback", (data) => {
                 this.Parse(data);
             });
 
@@ -53,7 +54,11 @@ namespace EbookReader.Service {
 
                 var toSend = Base64Helper.Encode(json);
 
-                _webView.InjectJavascript(string.Format("Messages.parse('{0}')", toSend));
+                Device.BeginInvokeOnMainThread(async () => {
+                    await _webView.InjectJavascriptAsync(string.Format("Messages.parse('{0}')", toSend));
+                });
+
+
 
                 if (message.Action == "init") {
                     this.webViewReaderInit = true;
@@ -96,9 +101,10 @@ namespace EbookReader.Service {
             }
         }
 
-        private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
+        private void WebView_OnContentLoaded(object sender, EventArgs e) {
             this.webViewLoaded = true;
             this.ProcessQueue();
         }
+
     }
 }

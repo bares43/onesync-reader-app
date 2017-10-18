@@ -7,7 +7,7 @@ using Autofac;
 using EbookReader.Model;
 using EbookReader.Service;
 using EbookReader.Service.Epub;
-using Xam.Plugin.Abstractions;
+using Xam.Plugin.WebView.Abstractions;
 
 namespace EbookReader {
     public static class IocManager {

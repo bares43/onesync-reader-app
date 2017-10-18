@@ -1,12 +1,12 @@
 ﻿{
   "dependencies": {
-    "Autofac": "3.5.2",
+    "Autofac": "4.6.2",
     "Microsoft.Bcl.Compression": "3.9.85",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.3",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
     "PCLStorage": "1.0.2",
-    "Xam.Plugin.WebView": "1.6.0",
+    "Xam.Plugin.WebView": "2.0.10",
     "Xamarin.Dialog.Plugin.FilePicker": "1.0.3",
-    "Xamarin.Forms": "2.3.4.247"
+    "Xamarin.Forms": "2.4.0.282"
   },
   "frameworks": {
     "uap10.0.10240": {}

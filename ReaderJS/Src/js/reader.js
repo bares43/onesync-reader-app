@@ -6,12 +6,6 @@
     });
 };
 
-var bridge = {
-    invokeAction: function (data) {
-        console.error("ahoooj", data);
-    }
-}
-
 window.Ebook = {
     pageWidth: 0,
     scrollStep: 0,

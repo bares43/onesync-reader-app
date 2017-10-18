@@ -9,7 +9,7 @@ using EbookReader.Page.Reader;
 using EbookReader.Service;
 using HtmlAgilityPack;
 using Plugin.FilePicker.Abstractions;
-using Xam.Plugin.Abstractions;
+using Xam.Plugin.WebView.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -47,7 +47,7 @@ namespace EbookReader.Page {
             _assetsManager = IocManager.Container.Resolve<IAssetsManager>();
 
             // setup webview
-            _webView.ContentType = Xam.Plugin.Abstractions.Enumerations.WebViewContentType.StringData;
+            _webView.ContentType = Xam.Plugin.WebView.Abstractions.Enumerations.WebViewContentType.StringData;
             _webView.VerticalOptions = LayoutOptions.FillAndExpand;
             _webView.HorizontalOptions = LayoutOptions.FillAndExpand;
 
@@ -127,7 +127,7 @@ namespace EbookReader.Page {
 
             var quickPanelPosition = new Rectangle(0, 0, 1, 0.75);
 
-            if (Device.RuntimePlatform == Device.Windows) {
+            if (Device.RuntimePlatform == Device.UWP) {
                 quickPanelPosition = new Rectangle(0, 0, 0.33, 1);
             }
 
@@ -212,12 +212,12 @@ namespace EbookReader.Page {
             });
         }
 
-        private void WebView_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj) {
+        private void WebView_OnContentLoaded(object sender, EventArgs e) {
             this.InitWebView(
                 (int)this._webView.Width,
                 (int)this._webView.Height,
-                20,
-                30
+                30,
+                20
             );
         }
 
