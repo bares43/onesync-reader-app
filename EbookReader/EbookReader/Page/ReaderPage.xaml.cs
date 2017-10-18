@@ -23,45 +23,15 @@ namespace EbookReader.Page {
         IAssetsManager _assetsManager;
 
         QuickPanel quickPanel;
-        Picker fontSizePicker;
-        Picker marginPicker;
+        //Picker fontSizePicker;
+        //Picker marginPicker;
         Label pages;
         Picker chaptersPicker;
         int chapterPickerLastIndex = -1;
 
         Model.Epub epub;
 
-        List<string> FontSizes {
-            get {
-                return new List<string> {
-                    "12",
-                    "14",
-                    "16",
-                    "18",
-                    "20",
-                    "22",
-                    "24",
-                    "26",
-                    "28",
-                    "30",
-                    "32",
-                    "34",
-                    "36",
-                    "38",
-                    "40"
-                };
-            }
-        }
-
-        List<string> Margins {
-            get {
-                return new List<string> {
-                    "15",
-                    "30",
-                    "45",
-                };
-            }
-        }
+        
 
         public ReaderPage() {
             InitializeComponent();
@@ -99,21 +69,21 @@ namespace EbookReader.Page {
 
             goToStartOfPageInput.TextChanged += GoToStartOfPageInput_TextChanged;
 
-            fontSizePicker = new Picker {
-                Title = "Písmo",
-                ItemsSource = this.FontSizes,
-                SelectedItem = "20",
-            };
+            //fontSizePicker = new Picker {
+            //    Title = "Písmo",
+            //    ItemsSource = this.FontSizes,
+            //    SelectedItem = "20",
+            //};
 
-            fontSizePicker.SelectedIndexChanged += FontSizePicker_SelectedIndexChanged;
+            //fontSizePicker.SelectedIndexChanged += FontSizePicker_SelectedIndexChanged;
 
-            marginPicker = new Picker {
-                Title = "Odsazení",
-                ItemsSource = this.Margins,
-                SelectedItem = "30",
-            };
+            //marginPicker = new Picker {
+            //    Title = "Odsazení",
+            //    ItemsSource = this.Margins,
+            //    SelectedItem = "30",
+            //};
 
-            marginPicker.SelectedIndexChanged += MarginPicker_SelectedIndexChanged;
+            //marginPicker.SelectedIndexChanged += MarginPicker_SelectedIndexChanged;
 
             chaptersPicker = new Picker {
                 Title = "Kapitola",
@@ -246,8 +216,8 @@ namespace EbookReader.Page {
             this.InitWebView(
                 (int)this._webView.Width,
                 (int)this._webView.Height,
-                int.Parse((string)this.marginPicker.SelectedItem),
-                int.Parse((string)this.fontSizePicker.SelectedItem)
+                20,
+                30
             );
         }
 
@@ -267,10 +237,10 @@ namespace EbookReader.Page {
         }
 
         private void MarginPicker_SelectedIndexChanged(object sender, EventArgs e) {
-            if (this.marginPicker.SelectedIndex != -1) {
-                var margin = int.Parse(this.Margins[this.marginPicker.SelectedIndex]);
-                this.SetMargin(margin);
-            }
+            //if (this.marginPicker.SelectedIndex != -1) {
+            //    var margin = int.Parse(this.Margins[this.marginPicker.SelectedIndex]);
+            //    this.SetMargin(margin);
+            //}
         }
 
         private void WebView_SizeChanged(object sender, EventArgs e) {
@@ -278,10 +248,10 @@ namespace EbookReader.Page {
         }
 
         private void FontSizePicker_SelectedIndexChanged(object sender, EventArgs e) {
-            if (this.fontSizePicker.SelectedIndex != -1) {
-                var fontSize = int.Parse(this.FontSizes[this.fontSizePicker.SelectedIndex]);
-                this.SetFontSize(fontSize);
-            }
+            //if (this.fontSizePicker.SelectedIndex != -1) {
+            //    var fontSize = int.Parse(this.FontSizes[this.fontSizePicker.SelectedIndex]);
+            //    this.SetFontSize(fontSize);
+            //}
         }
 
         private void GoToStartOfPageInput_TextChanged(object sender, TextChangedEventArgs e) {

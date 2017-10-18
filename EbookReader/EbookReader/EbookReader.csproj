@@ -58,6 +58,7 @@
       <DependentUpon>ReaderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page\Reader\QuickPanel.cs" />
+    <Compile Include="Page\Reader\QuickPanelTab\Settings.cs" />
     <Compile Include="Page\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>

@@ -110,9 +110,7 @@ namespace EbookReader.Page.Reader {
         private StackLayout CreateSettingsTab() {
             var tab = new StackLayout {
                 Children = {
-                    new Label {
-                        Text = "rychlé nastavení"
-                    }
+                    new QuickPanelTab.Settings()
                 }
             };
 

@@ -40,7 +40,7 @@ namespace EbookReader {
             ContainerBuilder.RegisterType<EpubLoader>().As<IEpubLoader>();
             ContainerBuilder.RegisterType<FileService>().As<IFileService>();
             ContainerBuilder.RegisterType<FormsWebView>().As<FormsWebView>().SingleInstance();
-            ContainerBuilder.RegisterType<WebViewMessages>().As<IWebViewMessages>();
+            ContainerBuilder.RegisterType<WebViewMessages>().As<IWebViewMessages>().SingleInstance();
             ContainerBuilder.RegisterType<Epub200Parser>().Keyed<EpubParser>(EpubVersion.V200);
             ContainerBuilder.RegisterType<Epub300Parser>().Keyed<EpubParser>(EpubVersion.V300);
             ContainerBuilder.RegisterType<Epub301Parser>().Keyed<EpubParser>(EpubVersion.V301);
