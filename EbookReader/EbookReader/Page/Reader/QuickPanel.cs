@@ -120,9 +120,7 @@ namespace EbookReader.Page.Reader {
         private StackLayout CreateContentsTab() {
             var tab = new StackLayout {
                 Children = {
-                    new Label {
-                        Text = "obsah knihy"
-                    }
+                    new QuickPanelTab.Content()
                 }
             };
 
