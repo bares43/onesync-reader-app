@@ -23,15 +23,11 @@ namespace EbookReader.Page {
         IAssetsManager _assetsManager;
 
         QuickPanel quickPanel;
-        //Picker fontSizePicker;
-        //Picker marginPicker;
         Label pages;
         Picker chaptersPicker;
         int chapterPickerLastIndex = -1;
 
         Model.Epub epub;
-
-        
 
         public ReaderPage() {
             InitializeComponent();
@@ -68,23 +64,7 @@ namespace EbookReader.Page {
             var goToStartOfPageInput = new Entry();
 
             goToStartOfPageInput.TextChanged += GoToStartOfPageInput_TextChanged;
-
-            //fontSizePicker = new Picker {
-            //    Title = "Písmo",
-            //    ItemsSource = this.FontSizes,
-            //    SelectedItem = "20",
-            //};
-
-            //fontSizePicker.SelectedIndexChanged += FontSizePicker_SelectedIndexChanged;
-
-            //marginPicker = new Picker {
-            //    Title = "Odsazení",
-            //    ItemsSource = this.Margins,
-            //    SelectedItem = "30",
-            //};
-
-            //marginPicker.SelectedIndexChanged += MarginPicker_SelectedIndexChanged;
-
+            
             chaptersPicker = new Picker {
                 Title = "Kapitola",
                 IsVisible = false,
@@ -103,26 +83,7 @@ namespace EbookReader.Page {
                 Text = "Nastavení"
             };
             settingsButton.Clicked += SettingsButton_Clicked;
-
-            //var controls = new StackLayout {
-            //    VerticalOptions = LayoutOptions.Start,
-            //    HorizontalOptions = LayoutOptions.FillAndExpand,
-            //    Orientation = StackOrientation.Horizontal,
-            //    Children = {
-            //        homeButton,
-            //        settingsButton,
-            //        new StackLayout {
-            //            Children = {
-            //                pages,
-            //                goToStartOfPageInput,
-            //            }
-            //        },
-            //        fontSizePicker,
-            //        marginPicker,
-            //        chaptersPicker,
-            //    }
-            //};
-
+            
             quickPanel = new QuickPanel();
 
             var quickPanelPosition = new Rectangle(0, 0, 1, 0.75);
@@ -141,7 +102,6 @@ namespace EbookReader.Page {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Children = {
-                    //controls,
                     _webView,
                     quickPanel,
                 }
@@ -235,25 +195,11 @@ namespace EbookReader.Page {
                 this.chapterPickerLastIndex = index;
             }
         }
-
-        private void MarginPicker_SelectedIndexChanged(object sender, EventArgs e) {
-            //if (this.marginPicker.SelectedIndex != -1) {
-            //    var margin = int.Parse(this.Margins[this.marginPicker.SelectedIndex]);
-            //    this.SetMargin(margin);
-            //}
-        }
-
+        
         private void WebView_SizeChanged(object sender, EventArgs e) {
             this.ResizeWebView((int)this._webView.Width, (int)this._webView.Height);
         }
-
-        private void FontSizePicker_SelectedIndexChanged(object sender, EventArgs e) {
-            //if (this.fontSizePicker.SelectedIndex != -1) {
-            //    var fontSize = int.Parse(this.FontSizes[this.fontSizePicker.SelectedIndex]);
-            //    this.SetFontSize(fontSize);
-            //}
-        }
-
+        
         private void GoToStartOfPageInput_TextChanged(object sender, TextChangedEventArgs e) {
             var value = e.NewTextValue;
             int page;
@@ -265,23 +211,7 @@ namespace EbookReader.Page {
                 _messages.Send("goToStartOfPage", json);
             }
         }
-
-        private void SetFontSize(int fontSize) {
-            var json = new {
-                FontSize = fontSize
-            };
-
-            _messages.Send("changeFontSize", json);
-        }
-
-        private void SetMargin(int margin) {
-            var json = new {
-                Margin = margin
-            };
-
-            _messages.Send("changeMargin", json);
-        }
-
+        
         private void InitWebView(int width, int height, int margin, int fontSize) {
             var json = new {
                 Width = width,

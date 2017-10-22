@@ -42,8 +42,8 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
             }
         }
 
-        public event EventHandler<int> OnFontChange;
-        public event EventHandler<int> OnMarginChange;
+        public string DefaultFont = "20";
+        public string DefaultMargin = "30";
 
         private Picker fontPicker;
         private Picker marginPicker;
@@ -59,19 +59,27 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
 
             fontPicker = new Picker {
                 ItemsSource = this.FontSizes,
-                SelectedItem = "20",
+                SelectedItem = this.DefaultFont,
                 HorizontalOptions = LayoutOptions.EndAndExpand,
+                VerticalOptions = LayoutOptions.Center,
+                Title = Device.RuntimePlatform == Device.Android ? "Písmo" : "",
             };
 
             fontPicker.SelectedIndexChanged += FontPicker_SelectedIndexChanged;
 
             marginPicker = new Picker {
                 ItemsSource = this.Margins,
-                SelectedItem = "30",
+                SelectedItem = this.DefaultMargin,
                 HorizontalOptions = LayoutOptions.EndAndExpand,
+                VerticalOptions = LayoutOptions.Center,
+                Title = Device.RuntimePlatform == Device.Android ? "Odsazení" : "",
             };
-
             marginPicker.SelectedIndexChanged += MarginPicker_SelectedIndexChanged;
+
+            if (Device.RuntimePlatform == Device.Android) {
+                fontPicker.WidthRequest = 75;
+                marginPicker.WidthRequest = 75;
+            }
 
             var tableView = new TableView {
                 Root = new TableRoot {
@@ -79,10 +87,12 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
                         new ViewCell {
                             View = new StackLayout {
                                 Orientation = StackOrientation.Horizontal,
-                                Padding = new Thickness(10),
+                                VerticalOptions = LayoutOptions.Center,
+                                Padding = new Thickness(10, 0),
                                 Children = {
                                     new Label {
-                                        Text = "Písmo"
+                                        Text = "Písmo",
+                                        VerticalOptions = LayoutOptions.Center,
                                     },
                                     fontPicker
                                 }
@@ -91,10 +101,12 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
                         new ViewCell {
                             View = new StackLayout {
                                 Orientation = StackOrientation.Horizontal,
-                                Padding = new Thickness(10),
+                                VerticalOptions = LayoutOptions.Center,
+                                Padding = new Thickness(10, 0),
                                 Children = {
                                     new Label {
-                                        Text = "Odsazení"
+                                        Text = "Odsazení",
+                                        VerticalOptions = LayoutOptions.Center,
                                     },
                                     marginPicker
                                 }
@@ -113,7 +125,6 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         private void MarginPicker_SelectedIndexChanged(object sender, EventArgs e) {
             if (this.marginPicker.SelectedIndex != -1) {
                 var margin = int.Parse(this.Margins[this.marginPicker.SelectedIndex]);
-                //this.OnMarginChange?.Invoke(this, margin);
                 this.SetMargin(margin);
             }
         }
@@ -121,7 +132,6 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         private void FontPicker_SelectedIndexChanged(object sender, EventArgs e) {
             if (this.fontPicker.SelectedIndex != -1) {
                 var fontSize = int.Parse(this.FontSizes[this.fontPicker.SelectedIndex]);
-                //this.OnFontChange?.Invoke(this, fontSize);
                 this.SetFontSize(fontSize);
             }
         }
@@ -140,7 +150,6 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
             };
 
             _messages.Send("changeMargin", json);
-
         }
     }
 }
