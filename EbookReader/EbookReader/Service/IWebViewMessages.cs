@@ -10,8 +10,8 @@ namespace EbookReader.Service {
         event EventHandler<Model.WebViewMessages.PageChange> OnPageChange;
         event EventHandler<Model.WebViewMessages.NextChapterRequest> OnNextChapterRequest;
         event EventHandler<Model.WebViewMessages.PrevChapterRequest> OnPrevChapterRequest;
+        event EventHandler<Model.WebViewMessages.OpenQuickPanelRequest> OnOpenQuickPanelRequest;
 
         void Send(string action, object data);
-        void Parse(string data);
     }
 }

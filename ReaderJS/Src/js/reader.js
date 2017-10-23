@@ -2,6 +2,8 @@
 /*global Messages*/
 /*global Base64*/
 /*global csCallback*/
+/*global Hammer*/
+/*global Gestures*/
 
 $.fn.removeClassRegex = function(regex) {
   return $(this).removeClass(function(index, classes) {
@@ -39,13 +41,9 @@ window.Ebook = {
     this.setUpEbook();
   },
   setUpEvents: function() {
-    $("#columns-outer").on('click', function(e) {
-      if (e.pageX > Math.round(Ebook.pageWidth / 2)) {
-        Ebook.goToNextPage();
-      } else {
-        Ebook.goToPreviousPage();
-      }
-    });
+    var wrapper = document.getElementById("columns-outer");
+
+    Gestures.init(wrapper);
   },
   setUpEbook: function() {
     this.resizeImages();
@@ -411,8 +409,10 @@ window.Ebook = {
   },
   messagesHelper: {
     sendPageChange: function() {
-      Messages.send("PageChange", { CurrentPage: Ebook.currentPage,
-        TotalPages: Ebook.totalPages });
+      Messages.send("PageChange", {
+        CurrentPage: Ebook.currentPage,
+        TotalPages: Ebook.totalPages,
+      });
     },
     nextChapterRequest: function() {
       Messages.send("NextChapterRequest", {});
@@ -420,9 +420,11 @@ window.Ebook = {
     prevChapterRequest: function() {
       Messages.send("PrevChapterRequest", {});
     },
+    sendOpenQuickPanelRequest: function() {
+      Messages.send("OpenQuickPanelRequest", {});
+    },
   },
 };
-
 window.Messages = {
   send: function(action, data) {
     var json = JSON.stringify({
@@ -465,6 +467,77 @@ window.Messages = {
     },
     changeMargin: function(data) {
       Ebook.changeMargin(data.Margin);
+    },
+  },
+};
+
+window.Gestures = {
+  init: function(element) {
+    var hammer = new Hammer.Manager(element);
+
+    var tap = new Hammer.Tap({
+      event: "singletap",
+    });
+    var doubleTap = new Hammer.Tap({
+      event: "doubletap",
+      taps: 2,
+    });
+    var press = new Hammer.Press({
+      event: "press",
+    });
+    var swipeleft = new Hammer.Swipe({
+      event: "swipeleft",
+      direction: Hammer.DIRECTION_LEFT,
+    });
+    var swiperight = new Hammer.Swipe({
+      event: "swiperight",
+      direction: Hammer.DIRECTION_RIGHT,
+    });
+
+    hammer.add([doubleTap, tap, press, swipeleft, swiperight]);
+
+    doubleTap.recognizeWith(tap);
+    tap.requireFailure([doubleTap]);
+
+    hammer.on("singletap", function(e) {
+      Gestures.actions.tap(e.center.x, e.center.y);
+    });
+
+    hammer.on("doubletap", function() {
+      Gestures.actions.doubleTap();
+    });
+
+    hammer.on("press", function() {
+      Gestures.actions.press();
+    });
+
+    hammer.on("swipeleft", function() {
+      Gestures.actions.swipeLeft();
+    });
+
+    hammer.on("swiperight", function() {
+      Gestures.actions.swipeRight();
+    });
+  },
+  actions: {
+    tap: function(x, y) {
+      if (x > Math.round(Ebook.pageWidth / 2)) {
+        Ebook.goToNextPage();
+      } else {
+        Ebook.goToPreviousPage();
+      }
+    },
+    doubleTap: function() {
+      Ebook.messagesHelper.sendOpenQuickPanelRequest();
+    },
+    press: function() {
+      Ebook.messagesHelper.sendOpenQuickPanelRequest();
+    },
+    swipeLeft: function() {
+      Ebook.goToNextPage();
+    },
+    swipeRight: function() {
+      Ebook.goToPreviousPage();
     },
   },
 };

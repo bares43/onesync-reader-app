@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Xam.Plugin.Shared;
+using Xam.Plugin.WebView.UWP;
 
 namespace EbookReader.UWP {
     /// <summary>
@@ -56,7 +56,7 @@ namespace EbookReader.UWP {
                     typeof(FormsWebViewRenderer).GetTypeInfo().Assembly
                 };
 
-                FormsWebViewRenderer.Init();
+                FormsWebViewRenderer.Initialize();
 
                 Xamarin.Forms.Forms.Init(e, assemblies);
 
