@@ -41,7 +41,7 @@ window.Ebook = {
     this.setUpEbook();
   },
   setUpEvents: function() {
-    var wrapper = document.getElementById("columns-outer");
+    var wrapper = document.getElementsByTagName("body")[0];
 
     Gestures.init(wrapper);
   },
@@ -520,7 +520,7 @@ window.Gestures = {
     });
   },
   actions: {
-    tap: function(x, y) {
+    tap: function(x) {
       if (x > Math.round(Ebook.pageWidth / 2)) {
         Ebook.goToNextPage();
       } else {

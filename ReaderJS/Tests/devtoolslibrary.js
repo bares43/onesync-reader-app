@@ -119,7 +119,7 @@ module.exports = class DevToolsLibrary {
         .wait(wait);
     };
 
-    Chromeless.prototype.clickLeft = function(wait = DevToolsLibrary.defaultWait) {
+    Chromeless.prototype.clickLeft = function(wait = DevToolsLibrary.defaultWait + 400) {
       return this
         .evaluate(() => {
           const iframe = document.getElementById('reader');
@@ -130,7 +130,7 @@ module.exports = class DevToolsLibrary {
         .wait(wait);
     };
 
-    Chromeless.prototype.clickRight = async function(wait = DevToolsLibrary.defaultWait) {
+    Chromeless.prototype.clickRight = async function(wait = DevToolsLibrary.defaultWait + 400) {
       return this
         .evaluate(() => {
           const iframe = document.getElementById('reader');

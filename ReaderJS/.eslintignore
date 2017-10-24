@@ -1,4 +1,6 @@
 Src/js/Base64.js
 Src/js/jquery-3.2.1.min.js
+Src/js/hammer.min.js
 DevTools/Base64.js
+DevTools/hammer.simulator.js
 Build/*

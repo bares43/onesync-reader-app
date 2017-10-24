@@ -1,17 +1,19 @@
 ﻿/*global module*/
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     sass: {
       dist: {
-        files: [{
-          expand: true,
-          cwd: 'Src/css/',
-          src: ['*.scss'],
-          dest: 'Build/',
-          ext: '.css',
-        }, ],
+        files: [
+          {
+            expand: true,
+            cwd: 'Src/css/',
+            src: ['*.scss'],
+            dest: 'Build/',
+            ext: '.css',
+          },
+        ],
       },
     },
     uglify: {
@@ -32,7 +34,7 @@ module.exports = function (grunt) {
       },
     },
     eslint: {
-      target: ['Src/js/*', '!Src/js/Base64.js', '!Src/js/jquery-3.2.1.min.js'],
+      target: ['Src/js/*', '!Src/js/Base64.js', '!Src/js/jquery-3.2.1.min.js', '!Src/js/hammer.min.js'],
     },
   });
 
