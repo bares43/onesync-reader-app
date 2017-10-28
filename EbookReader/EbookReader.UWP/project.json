@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Autofac": "4.6.2",
+    "Autofac": "3.5.2",
     "Microsoft.Bcl.Compression": "3.9.85",
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
     "PCLStorage": "1.0.2",

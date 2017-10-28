@@ -16,6 +16,7 @@ namespace EbookReader.Model {
         public IEnumerable<EpubSpine> Spines { get; set; }
         public IEnumerable<EpubFile> Files { get; set; }
         public string Folder { get; set; }
+        public List<Navigation.Item> Navigation { get; set; }
     }
 
     public enum EpubVersion {

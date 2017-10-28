@@ -20,7 +20,9 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
             _messages = IocManager.Container.Resolve<IWebViewMessages>();
 
             var items = this.GenerateItems();
-            this.stackLayout = this.GetStackLayout(items);
+            this.stackLayout = new StackLayout {
+                Orientation = StackOrientation.Vertical
+            };
 
             this.scrollView = new ScrollView {
                 Content = stackLayout,
@@ -34,16 +36,18 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
 
         }
         
-        private StackLayout GetStackLayout(List<Model.Navigation.Item> items) {
-            var stackLayout = new StackLayout() {
-                Orientation = StackOrientation.Vertical
-            };
+        public void SetNavigation(List<Model.Navigation.Item> items) {
+            Device.BeginInvokeOnMainThread(() => {
+                this.SetItems(items);
+            });
+        }
+
+        private void SetItems(List<Model.Navigation.Item> items) {
+            stackLayout.Children.Clear();
 
             foreach (var item in this.GetItems(items)) {
                 stackLayout.Children.Add(item);
             }
-
-            return stackLayout;
         }
 
         private List<Label> GetItems(List<Model.Navigation.Item> items, int depth = 0) {

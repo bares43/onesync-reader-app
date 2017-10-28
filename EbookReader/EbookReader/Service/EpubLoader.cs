@@ -37,7 +37,7 @@ namespace EbookReader.Service {
 
             var epubVersion = this.GetEpubVersion(package);
 
-            var epubParser = IocManager.Container.ResolveKeyed<EpubParser>(epubVersion, new NamedParameter("package", package));
+            var epubParser = IocManager.Container.ResolveKeyed<EpubParser>(epubVersion, new NamedParameter("package", package), new NamedParameter("folder", epubFolder));
 
             var epub = new Model.Epub() {
                 Version = epubVersion,
@@ -48,6 +48,7 @@ namespace EbookReader.Service {
                 Spines = epubParser.GetSpines(),
                 Files = epubParser.GetFiles(),
                 Folder = folder,
+                Navigation = await epubParser.GetNavigation(),
             };
 
             return epub;

@@ -4,10 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using EbookReader.Model.Navigation;
+using PCLStorage;
 
 namespace EbookReader.Service.Epub {
     public class Epub300Parser : EpubParser {
-        public Epub300Parser(XElement package) : base(package) {
+        public Epub300Parser(XElement package, IFolder folder) : base(package, folder) {
+        }
+
+        public override async Task<List<Item>> GetNavigation() {
+            throw new NotImplementedException();
         }
     }
 }

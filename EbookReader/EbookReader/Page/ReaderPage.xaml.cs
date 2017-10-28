@@ -125,6 +125,7 @@ namespace EbookReader.Page {
 
         public async Task LoadBook(FileData file) {
             epub = await _epubLoader.GetEpub(file.FileName, file.DataArray);
+            this.quickPanel.PanelContent.SetNavigation(epub.Navigation);
 
             this.chaptersPicker.ItemsSource = epub.Spines.Select(o => o.Idref).ToList();
             if (this.chaptersPicker.ItemsSource.Count > 0) {

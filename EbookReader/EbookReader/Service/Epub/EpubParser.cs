@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using PCLStorage;
 
 namespace EbookReader.Service.Epub {
     public abstract class EpubParser {
 
         protected XElement Package { get; set; }
+        protected IFolder Folder { get; set; }
 
-        public EpubParser(XElement package) {
+        public EpubParser(XElement package, IFolder folder) {
             this.Package = package;
+            this.Folder = folder;
         }
 
         public virtual string GetTitle() {
@@ -51,6 +54,8 @@ namespace EbookReader.Service.Epub {
                 })
                 .ToList();
         }
+
+        public abstract Task<List<Model.Navigation.Item>> GetNavigation();
 
         private XElement GetMetadata() {
             return Package.Descendants().Where(o => o.Name.LocalName == "metadata").First();

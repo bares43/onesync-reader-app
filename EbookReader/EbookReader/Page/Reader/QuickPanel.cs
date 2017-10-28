@@ -17,7 +17,11 @@ namespace EbookReader.Page.Reader {
         Button buttonContents;
         Button buttonClose;
 
+        public QuickPanelTab.Content PanelContent;
+
         public QuickPanel() : base() {
+
+            PanelContent = new QuickPanelTab.Content(); 
 
             Orientation = StackOrientation.Vertical;
             IsVisible = false;
@@ -120,7 +124,7 @@ namespace EbookReader.Page.Reader {
         private StackLayout CreateContentsTab() {
             var tab = new StackLayout {
                 Children = {
-                    new QuickPanelTab.Content()
+                    PanelContent
                 }
             };
 
