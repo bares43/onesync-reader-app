@@ -50,6 +50,8 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
 
         private IWebViewMessages _messages;
 
+        public event EventHandler OnSet;
+
         public Settings() {
 
             // IOC
@@ -126,6 +128,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
             if (this.marginPicker.SelectedIndex != -1) {
                 var margin = int.Parse(this.Margins[this.marginPicker.SelectedIndex]);
                 this.SetMargin(margin);
+                this.OnSet?.Invoke(this, e);
             }
         }
 
@@ -133,6 +136,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
             if (this.fontPicker.SelectedIndex != -1) {
                 var fontSize = int.Parse(this.FontSizes[this.fontPicker.SelectedIndex]);
                 this.SetFontSize(fontSize);
+                this.OnSet?.Invoke(this, e);
             }
         }
 

@@ -18,11 +18,15 @@ namespace EbookReader.Page.Reader {
         Button buttonClose;
 
         public QuickPanelTab.Content PanelContent;
+        private QuickPanelTab.Settings PanelSettings;
 
         public QuickPanel() : base() {
 
             PanelContent = new QuickPanelTab.Content();
             PanelContent.OnChapterChange += PanelContent_OnChapterChange;
+
+            PanelSettings = new QuickPanelTab.Settings();
+            PanelSettings.OnSet += PanelSettings_OnSet;
 
             Orientation = StackOrientation.Vertical;
             IsVisible = false;
@@ -63,6 +67,10 @@ namespace EbookReader.Page.Reader {
 
             Children.Add(buttonsLayout);
             Children.Add(contentLayout);
+        }
+
+        private void PanelSettings_OnSet(object sender, EventArgs e) {
+            this.Hide();
         }
 
         private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
@@ -119,7 +127,7 @@ namespace EbookReader.Page.Reader {
         private StackLayout CreateSettingsTab() {
             var tab = new StackLayout {
                 Children = {
-                    new QuickPanelTab.Settings()
+                    PanelSettings
                 }
             };
 
