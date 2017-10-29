@@ -14,12 +14,13 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         private ScrollView scrollView;
         private StackLayout stackLayout;
 
+        public event EventHandler<Model.Navigation.Item> OnChapterChange;
+
         public Content() {
 
             // IOC
             _messages = IocManager.Container.Resolve<IWebViewMessages>();
 
-            var items = this.GenerateItems();
             this.stackLayout = new StackLayout {
                 Orientation = StackOrientation.Vertical
             };
@@ -50,7 +51,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
             }
         }
 
-        private List<Label> GetItems(List<Model.Navigation.Item> items, int depth = 0) {
+        private List<Label> GetItems(List<Model.Navigation.Item> items, string id = "", int depth = 0) {
 
             var labels = new List<Label>();
 
@@ -63,66 +64,24 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
                 };
 
                 var tgr = new TapGestureRecognizer();
-                tgr.Tapped += (s, e) => this.ClickToItem(item.Id);
+                tgr.Tapped += (s, e) => this.ClickToItem(item);
                 label.GestureRecognizers.Add(tgr);
 
                 labels.Add(label);
 
-                if (item.Children != null && item.Children.Any()) {
-                    labels.AddRange(this.GetItems(item.Children, depth + 1));
+                var children = items.Where(o => o.ParentID == item.Id).ToList();
+
+                if (children.Any(o => o.ParentID == item.Id)) {
+                    labels.AddRange(this.GetItems(items, item.Id, depth + 1));
                 }
             }
 
             return labels;
         }
 
-        private void ClickToItem(string id) {
+        private void ClickToItem(Model.Navigation.Item item) {
+            this.OnChapterChange?.Invoke(this, item);
         }
-
-        private List<Model.Navigation.Item> GenerateItems() {
-            return new List<Model.Navigation.Item> {
-                new Model.Navigation.Item {
-                    Title = "Jedna"
-                },
-                new Model.Navigation.Item {
-                    Title = "Dva",
-                    Children = new List<Model.Navigation.Item> {
-                        new Model.Navigation.Item {
-                            Title = "Tři",
-                            Children = new List<Model.Navigation.Item> {
-                                new Model.Navigation.Item {
-                                    Title = "Čtyři",
-                                }
-                            }
-                        },
-                        new Model.Navigation.Item {
-                            Title = "Pět",
-                        }
-                    }
-                },
-                new Model.Navigation.Item {
-                    Title = "Šest",
-                },
-                new Model.Navigation.Item {
-                    Title = "Sedm",
-                },
-                new Model.Navigation.Item {
-                    Title = "Osm",
-                },
-                new Model.Navigation.Item {
-                    Title = "Devět",
-                    Id = "scroll",
-                },
-                new Model.Navigation.Item {
-                    Title = "Deset",
-                },
-                new Model.Navigation.Item {
-                    Title = "Jedenact",
-                },
-                new Model.Navigation.Item {
-                    Title = "Dvanact",
-                },
-            };
-        }
+        
     }
 }

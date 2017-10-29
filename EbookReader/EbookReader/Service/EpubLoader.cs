@@ -54,8 +54,8 @@ namespace EbookReader.Service {
             return epub;
         }
 
-        public async Task<string> GetChapter(Model.Epub epub, EpubSpine chapter) {
-            var filename = epub.Files.Where(o => o.Id == chapter.Idref).First();
+        public async Task<string> GetChapter(Model.Epub epub, Model.Navigation.Item chapter) {
+            var filename = epub.Files.Where(o => o.Href == chapter.Id).First();
             var folder = await FileSystem.Current.LocalStorage.GetFolderAsync(epub.Folder);
             return await _fileService.ReadFileData(string.Format("OEBPS/{0}", filename.Href), folder);
         }

@@ -24,8 +24,8 @@ namespace EbookReader.Page {
 
         QuickPanel quickPanel;
         Label pages;
-        Picker chaptersPicker;
-        int chapterPickerLastIndex = -1;
+
+        Model.Navigation.Item currentChapter;
 
         Model.Epub epub;
 
@@ -64,13 +64,6 @@ namespace EbookReader.Page {
             var goToStartOfPageInput = new Entry();
 
             goToStartOfPageInput.TextChanged += GoToStartOfPageInput_TextChanged;
-            
-            chaptersPicker = new Picker {
-                Title = "Kapitola",
-                IsVisible = false,
-            };
-
-            chaptersPicker.SelectedIndexChanged += ChaptersPicker_SelectedIndexChanged;
 
             this.LoadWebViewLayout();
 
@@ -83,8 +76,10 @@ namespace EbookReader.Page {
                 Text = "Nastavení"
             };
             settingsButton.Clicked += SettingsButton_Clicked;
-            
+
             quickPanel = new QuickPanel();
+
+            quickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
             var quickPanelPosition = new Rectangle(0, 0, 1, 0.75);
 
@@ -111,6 +106,10 @@ namespace EbookReader.Page {
 
         }
 
+        private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
+            this.SendChapter(e);
+        }
+
         private void _messages_OnOpenQuickPanelRequest(object sender, Model.WebViewMessages.OpenQuickPanelRequest e) {
             quickPanel.Show();
         }
@@ -127,13 +126,7 @@ namespace EbookReader.Page {
             epub = await _epubLoader.GetEpub(file.FileName, file.DataArray);
             this.quickPanel.PanelContent.SetNavigation(epub.Navigation);
 
-            this.chaptersPicker.ItemsSource = epub.Spines.Select(o => o.Idref).ToList();
-            if (this.chaptersPicker.ItemsSource.Count > 0) {
-                this.chaptersPicker.SelectedIndex = 0;
-            }
-            this.chaptersPicker.IsVisible = true;
-
-            this.SendChapter(0);
+            this.SendChapter(epub.Navigation.First());
         }
 
         private async void LoadWebViewLayout() {
@@ -156,21 +149,17 @@ namespace EbookReader.Page {
         }
 
         private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
-            Device.BeginInvokeOnMainThread(() => {
-                var index = this.chaptersPicker.SelectedIndex - 1;
-                if (index > 0) {
-                    this.chaptersPicker.SelectedIndex = index;
-                }
-            });
+            var i = epub.Navigation.IndexOf(currentChapter);
+            if (i > 0) {
+                this.SendChapter(epub.Navigation[i - 1], "last");
+            }
         }
 
         private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
-            Device.BeginInvokeOnMainThread(() => {
-                var index = this.chaptersPicker.SelectedIndex + 1;
-                if (this.chaptersPicker.ItemsSource != null && index < this.chaptersPicker.ItemsSource.Count) {
-                    this.chaptersPicker.SelectedIndex = index;
-                }
-            });
+            var i = epub.Navigation.IndexOf(currentChapter);
+            if (i < epub.Navigation.Count - 1) {
+                this.SendChapter(epub.Navigation[i + 1]);
+            }
         }
 
         private void WebView_OnContentLoaded(object sender, EventArgs e) {
@@ -182,25 +171,22 @@ namespace EbookReader.Page {
             );
         }
 
+        private async void SendChapter(Model.Navigation.Item chapter, string page = "") {
+            currentChapter = chapter;
 
-        private async void SendChapter(int chapter, string page = "") {
-            var html = await _epubLoader.GetChapter(epub, epub.Spines.Skip(chapter).First());
+            var html = await _epubLoader.GetChapter(epub, chapter);
             var htmlResult = await _epubLoader.PrepareHTML(html, epub.Folder);
-            this.SendHtml(htmlResult, page);
+
+            Device.BeginInvokeOnMainThread(() => {
+                this.SendHtml(htmlResult, page);
+            });
+
         }
 
-        private void ChaptersPicker_SelectedIndexChanged(object sender, EventArgs e) {
-            var index = this.chaptersPicker.SelectedIndex;
-            if (this.epub != null && index != -1 && index != this.chapterPickerLastIndex) {
-                this.SendChapter(index, index < this.chapterPickerLastIndex ? "last" : "");
-                this.chapterPickerLastIndex = index;
-            }
-        }
-        
         private void WebView_SizeChanged(object sender, EventArgs e) {
             this.ResizeWebView((int)this._webView.Width, (int)this._webView.Height);
         }
-        
+
         private void GoToStartOfPageInput_TextChanged(object sender, TextChangedEventArgs e) {
             var value = e.NewTextValue;
             int page;
@@ -212,7 +198,7 @@ namespace EbookReader.Page {
                 _messages.Send("goToStartOfPage", json);
             }
         }
-        
+
         private void InitWebView(int width, int height, int margin, int fontSize) {
             var json = new {
                 Width = width,

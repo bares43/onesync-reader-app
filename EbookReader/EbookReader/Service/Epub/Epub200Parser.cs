@@ -63,10 +63,11 @@ namespace EbookReader.Service.Epub {
                 var item = new Item {
                     Id = id,
                     Title = label,
-                    Children = this.LoadItems(element.Elements())
                 };
 
                 items.Add(item);
+
+                items.AddRange(this.LoadItems(element.Elements()));
             }
 
             return items;

@@ -8,6 +8,6 @@ namespace EbookReader.Model.Navigation {
     public class Item {
         public string Id { get; set; }
         public string Title { get; set; }
-        public List<Item> Children { get; set; }
+        public string ParentID { get; set; }
     }
 }

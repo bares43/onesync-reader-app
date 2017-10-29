@@ -21,7 +21,8 @@ namespace EbookReader.Page.Reader {
 
         public QuickPanel() : base() {
 
-            PanelContent = new QuickPanelTab.Content(); 
+            PanelContent = new QuickPanelTab.Content();
+            PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
             Orientation = StackOrientation.Vertical;
             IsVisible = false;
@@ -62,6 +63,10 @@ namespace EbookReader.Page.Reader {
 
             Children.Add(buttonsLayout);
             Children.Add(contentLayout);
+        }
+
+        private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
+            this.Hide();
         }
 
         public void Show() {
