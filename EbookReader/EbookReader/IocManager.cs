@@ -44,6 +44,7 @@ namespace EbookReader {
             ContainerBuilder.RegisterType<Epub200Parser>().Keyed<EpubParser>(EpubVersion.V200);
             ContainerBuilder.RegisterType<Epub300Parser>().Keyed<EpubParser>(EpubVersion.V300);
             ContainerBuilder.RegisterType<Epub301Parser>().Keyed<EpubParser>(EpubVersion.V301);
+            ContainerBuilder.RegisterType<MessageBus>().As<IMessageBus>().SingleInstance();
         }
 
     }

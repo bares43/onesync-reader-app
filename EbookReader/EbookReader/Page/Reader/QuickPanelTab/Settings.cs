@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using EbookReader.DependencyService;
 using EbookReader.Service;
 using Xamarin.Forms;
 
@@ -49,6 +50,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         private Picker marginPicker;
 
         private IWebViewMessages _messages;
+        private IMessageBus _messageBus;
 
         public event EventHandler OnSet;
 
@@ -56,6 +58,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
 
             // IOC
             _messages = IocManager.Container.Resolve<IWebViewMessages>();
+            _messageBus = IocManager.Container.Resolve<IMessageBus>();
 
             Padding = new Thickness(10, 0);
 
@@ -83,45 +86,90 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
                 marginPicker.WidthRequest = 75;
             }
 
-            var tableView = new TableView {
-                Root = new TableRoot {
-                    new TableSection("Vzhled") {
-                        new ViewCell {
-                            View = new StackLayout {
-                                Orientation = StackOrientation.Horizontal,
-                                VerticalOptions = LayoutOptions.Center,
-                                Padding = new Thickness(10, 0),
-                                Children = {
-                                    new Label {
-                                        Text = "Písmo",
-                                        VerticalOptions = LayoutOptions.Center,
-                                    },
-                                    fontPicker
-                                }
-                            }
-                        },
-                        new ViewCell {
-                            View = new StackLayout {
-                                Orientation = StackOrientation.Horizontal,
-                                VerticalOptions = LayoutOptions.Center,
-                                Padding = new Thickness(10, 0),
-                                Children = {
-                                    new Label {
-                                        Text = "Odsazení",
-                                        VerticalOptions = LayoutOptions.Center,
-                                    },
-                                    marginPicker
-                                }
+            var brightness = new Slider {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Maximum = 100,
+                Minimum = 1,
+            };
+
+            brightness.ValueChanged += Brightness_ValueChanged;
+
+            var tableSection = new TableSection("Vzhled");
+
+            var tableRoot = new TableRoot();
+            tableRoot.Add(tableSection);
+
+            if (Device.RuntimePlatform == Device.Android) {
+                var brightnessProvider = IocManager.Container.Resolve<IBrightnessProvider>();
+                brightness.Value = brightnessProvider.Brightness * 100;
+                
+                tableSection.Add(
+                    new ViewCell {
+                        View = new StackLayout {
+                            Orientation = StackOrientation.Horizontal,
+                            VerticalOptions = LayoutOptions.Center,
+                            Padding = new Thickness(10, 0),
+                            Children = {
+                                new Label {
+                                    Text = "Jas",
+                                    VerticalOptions = LayoutOptions.Center,
+                                    WidthRequest = 100
+                                },
+                                brightness
                             }
                         }
                     }
+                );
+            }
+
+            tableSection.Add(
+                new ViewCell {
+                    View = new StackLayout {
+                        Orientation = StackOrientation.Horizontal,
+                        VerticalOptions = LayoutOptions.Center,
+                        Padding = new Thickness(10, 0),
+                        Children = {
+                            new Label {
+                                Text = "Písmo",
+                                VerticalOptions = LayoutOptions.Center,
+                            },
+                            fontPicker
+                        }
+                    }
                 }
+            );
+
+            tableSection.Add(
+                new ViewCell {
+                    View = new StackLayout {
+                        Orientation = StackOrientation.Horizontal,
+                        VerticalOptions = LayoutOptions.Center,
+                        Padding = new Thickness(10, 0),
+                        Children = {
+                            new Label {
+                                Text = "Odsazení",
+                                VerticalOptions = LayoutOptions.Center,
+                            },
+                            marginPicker
+                        }
+                    }
+                }
+            );
+
+            var tableView = new TableView {
+                Root = tableRoot
             };
 
             Device.BeginInvokeOnMainThread(() => {
                 Children.Add(tableView);
             });
 
+        }
+
+        private void Brightness_ValueChanged(object sender, ValueChangedEventArgs e) {
+            _messageBus.Send(new Model.Messages.ChangesBrightness {
+                Brightness = (float)e.NewValue / 100
+            });
         }
 
         private void MarginPicker_SelectedIndexChanged(object sender, EventArgs e) {
