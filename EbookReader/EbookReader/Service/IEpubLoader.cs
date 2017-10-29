@@ -8,7 +8,7 @@ using EbookReader.Model;
 namespace EbookReader.Service {
     public interface IEpubLoader {
         Task<Model.Epub> GetEpub(string filename, byte[] filedata);
-        Task<string> GetChapter(Model.Epub epub, Model.Navigation.Item chapter);
+        Task<string> GetChapter(Model.Epub epub, EpubSpine chapter);
         Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, string epubFolderName);
     }
 }

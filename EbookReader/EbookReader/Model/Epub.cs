@@ -13,7 +13,7 @@ namespace EbookReader.Model {
         public string Author { get; set; }
         public string Description { get; set; }
         public string Language { get; set; }
-        public IEnumerable<EpubSpine> Spines { get; set; }
+        public List<EpubSpine> Spines { get; set; }
         public IEnumerable<EpubFile> Files { get; set; }
         public string Folder { get; set; }
         public List<Navigation.Item> Navigation { get; set; }

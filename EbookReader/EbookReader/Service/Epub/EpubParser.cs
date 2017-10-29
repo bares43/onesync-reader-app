@@ -33,7 +33,7 @@ namespace EbookReader.Service.Epub {
             return this.GetOptionalElementValue("description", this.GetMetadata().Descendants());
         }
 
-        public virtual IEnumerable<Model.EpubSpine> GetSpines() {
+        public virtual List<Model.EpubSpine> GetSpines() {
             return this.GetSpine()
                 .Descendants()
                 .Where(o => o.Name.LocalName == "itemref")

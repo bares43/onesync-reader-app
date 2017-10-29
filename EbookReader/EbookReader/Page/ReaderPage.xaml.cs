@@ -25,7 +25,7 @@ namespace EbookReader.Page {
         QuickPanel quickPanel;
         Label pages;
 
-        Model.Navigation.Item currentChapter;
+        Model.EpubSpine currentChapter;
 
         Model.Epub epub;
 
@@ -107,7 +107,13 @@ namespace EbookReader.Page {
         }
 
         private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
-            this.SendChapter(e);
+            var file = epub.Files.FirstOrDefault(o => o.Href == e.Id);
+            if (file != null) {
+                var spine = epub.Spines.FirstOrDefault(o => o.Idref == file.Id);
+                if (spine != null) {
+                    this.SendChapter(spine);
+                }
+            }
         }
 
         private void _messages_OnOpenQuickPanelRequest(object sender, Model.WebViewMessages.OpenQuickPanelRequest e) {
@@ -126,7 +132,7 @@ namespace EbookReader.Page {
             epub = await _epubLoader.GetEpub(file.FileName, file.DataArray);
             this.quickPanel.PanelContent.SetNavigation(epub.Navigation);
 
-            this.SendChapter(epub.Navigation.First());
+            this.SendChapter(epub.Spines.First());
         }
 
         private async void LoadWebViewLayout() {
@@ -149,16 +155,16 @@ namespace EbookReader.Page {
         }
 
         private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
-            var i = epub.Navigation.IndexOf(currentChapter);
+            var i = epub.Spines.IndexOf(currentChapter);
             if (i > 0) {
-                this.SendChapter(epub.Navigation[i - 1], "last");
+                this.SendChapter(epub.Spines[i - 1], "last");
             }
         }
 
         private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
-            var i = epub.Navigation.IndexOf(currentChapter);
-            if (i < epub.Navigation.Count - 1) {
-                this.SendChapter(epub.Navigation[i + 1]);
+            var i = epub.Spines.IndexOf(currentChapter);
+            if (i < epub.Spines.Count - 1) {
+                this.SendChapter(epub.Spines[i + 1]);
             }
         }
 
@@ -171,7 +177,7 @@ namespace EbookReader.Page {
             );
         }
 
-        private async void SendChapter(Model.Navigation.Item chapter, string page = "") {
+        private async void SendChapter(Model.EpubSpine chapter, string page = "") {
             currentChapter = chapter;
 
             var html = await _epubLoader.GetChapter(epub, chapter);
