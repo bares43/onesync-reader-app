@@ -50,6 +50,8 @@ window.Ebook = {
 
     this.pagerHelper.invalideCache();
 
+    this.goToPageFast(1);
+
     var endOfChapterLeft = $("#js-ebook-end-of-chapter").position().left;
     this.totalPages = Math.ceil(endOfChapterLeft / this.pageWidth);
 
