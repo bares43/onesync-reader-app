@@ -48,6 +48,7 @@
     <Compile Include="Model\EpubLoader\Image.cs" />
     <Compile Include="Model\EpubSpine.cs" />
     <Compile Include="Model\Messages\ChangesBrightness.cs" />
+    <Compile Include="Model\Messages\AddBookClicked.cs" />
     <Compile Include="Model\Navigation\Item.cs" />
     <Compile Include="Model\WebViewMessages\Message.cs" />
     <Compile Include="Model\WebViewMessages\NextChapterRequest.cs" />
@@ -57,6 +58,9 @@
     <Compile Include="Page\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\Home\AddBookCard.cs" />
+    <Compile Include="Page\Home\BookCard.cs" />
+    <Compile Include="Page\Home\Card.cs" />
     <Compile Include="Page\ReaderPage.xaml.cs">
       <DependentUpon>ReaderPage.xaml</DependentUpon>
     </Compile>
@@ -67,12 +71,16 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\BookshelfService.cs" />
+    <Compile Include="Model\Bookshelf\Book.cs" />
+    <Compile Include="Model\Bookshelf\Bookshelf.cs" />
     <Compile Include="Service\EpubLoader.cs" />
     <Compile Include="Service\Epub\Epub200Parser.cs" />
     <Compile Include="Service\Epub\Epub300Parser.cs" />
     <Compile Include="Service\Epub\Epub301Parser.cs" />
     <Compile Include="Service\Epub\EpubParser.cs" />
     <Compile Include="Service\FileService.cs" />
+    <Compile Include="Service\IBookshelfService.cs" />
     <Compile Include="Service\IEpubLoader.cs" />
     <Compile Include="Service\IFileService.cs" />
     <Compile Include="Service\IMessageBus.cs" />
@@ -138,6 +146,9 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.4.0.282\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.WrapLayout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.WrapLayout.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Xamarin.Forms.WrapLayout.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.4.0.282\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>

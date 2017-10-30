@@ -21,6 +21,7 @@ namespace EbookReader.Page {
         IWebViewMessages _messages;
         IEpubLoader _epubLoader;
         IAssetsManager _assetsManager;
+        IBookshelfService _bookshelfService;
 
         QuickPanel quickPanel;
         Label pages;
@@ -41,6 +42,7 @@ namespace EbookReader.Page {
             _messages = IocManager.Container.Resolve<IWebViewMessages>();
             _epubLoader = IocManager.Container.Resolve<IEpubLoader>();
             _assetsManager = IocManager.Container.Resolve<IAssetsManager>();
+            _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
 
             // setup webview
             _webView.ContentType = Xam.Plugin.WebView.Abstractions.Enumerations.WebViewContentType.StringData;
@@ -129,10 +131,13 @@ namespace EbookReader.Page {
         }
 
         public async Task LoadBook(FileData file) {
-            epub = await _epubLoader.GetEpub(file.FileName, file.DataArray);
-            this.quickPanel.PanelContent.SetNavigation(epub.Navigation);
 
-            this.SendChapter(epub.Spines.First());
+            _bookshelfService.AddBook(file);
+
+            //epub = await _epubLoader.GetEpub(file.FileName, file.DataArray);
+            //this.quickPanel.PanelContent.SetNavigation(epub.Navigation);
+
+            //this.SendChapter(epub.Spines.First());
         }
 
         private async void LoadWebViewLayout() {
