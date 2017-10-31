@@ -9,10 +9,13 @@
                 <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
                 <Setter Property="VerticalOptions" Value="Center"></Setter>
             </Style>
+
+            <OnPlatform x:TypeArguments="Thickness" Android="10,0" WinPhone="10" x:Key="settingsWrapperPadding" />
+
             <Style x:Key="settingsWrapper" TargetType="StackLayout">
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Padding" Value="10" />
+                <Setter Property="Padding" Value="{StaticResource settingsWrapperPadding}" />
             </Style>
             <Style TargetType="Label">
                 <Setter Property="VerticalOptions" Value="Center" />

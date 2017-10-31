@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EbookReader.Page.Reader.QuickPanelTab" 
+             x:Class="EbookReader.Page.Reader.QuickPanel"
+             Orientation="Vertical"
+             BackgroundColor="LightGray">
+
+    <StackLayout.Children>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Nastavení" HorizontalOptions="FillAndExpand" Clicked="ButtonSettings_Clicked"></Button>
+            <Button Text="Obsah" HorizontalOptions="FillAndExpand" Clicked="ButtonContents_Clicked"></Button>
+            <Button Text="Zavřít" Clicked="ButtonClose_Clicked"></Button>
+        </StackLayout>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <local:Settings x:Name="PanelSettings" x:FieldModifier="public" OnSet="PanelSettings_OnSet"></local:Settings>
+            <local:Content x:Name="PanelContent" x:FieldModifier="public" IsVisible="False" OnChapterChange="PanelContent_OnChapterChange"></local:Content>
+        </StackLayout>
+    </StackLayout.Children>
+</StackLayout>

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using EbookReader.DependencyService;
-using EbookReader.Page.Reader;
 using EbookReader.Service;
 using HtmlAgilityPack;
 using Plugin.FilePicker.Abstractions;
@@ -17,13 +16,9 @@ namespace EbookReader.Page {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReaderPage : ContentPage {
 
-        FormsWebView _webView;
         IWebViewMessages _messages;
         IEpubLoader _epubLoader;
         IAssetsManager _assetsManager;
-
-        QuickPanel quickPanel;
-        Label pages;
 
         Model.EpubSpine currentChapter;
 
@@ -36,74 +31,26 @@ namespace EbookReader.Page {
         }
 
         public void InitPage() {
+            
             // ioc
-            _webView = IocManager.Container.Resolve<FormsWebView>();
             _messages = IocManager.Container.Resolve<IWebViewMessages>();
             _epubLoader = IocManager.Container.Resolve<IEpubLoader>();
             _assetsManager = IocManager.Container.Resolve<IAssetsManager>();
-
-            // setup webview
-            _webView.ContentType = Xam.Plugin.WebView.Abstractions.Enumerations.WebViewContentType.StringData;
-            _webView.VerticalOptions = LayoutOptions.FillAndExpand;
-            _webView.HorizontalOptions = LayoutOptions.FillAndExpand;
-
+            
             // webview events
-            _messages.OnPageChange += _messages_OnPageChange;
             _messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
             _messages.OnPrevChapterRequest += _messages_OnPrevChapterRequest;
             _messages.OnOpenQuickPanelRequest += _messages_OnOpenQuickPanelRequest;
-
-            _webView.OnContentLoaded += WebView_OnContentLoaded;
-            _webView.SizeChanged += WebView_SizeChanged;
-
-
-            this.pages = new Label() {
-                WidthRequest = 75,
-            };
-
-            var goToStartOfPageInput = new Entry();
-
-            goToStartOfPageInput.TextChanged += GoToStartOfPageInput_TextChanged;
-
+            
             this.LoadWebViewLayout();
 
-            var homeButton = new Button {
-                Text = "Domů"
-            };
-            homeButton.Clicked += HomeButton_Clicked;
-
-            var settingsButton = new Button {
-                Text = "Nastavení"
-            };
-            settingsButton.Clicked += SettingsButton_Clicked;
-
-            quickPanel = new QuickPanel();
-
-            quickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
-
-            var quickPanelPosition = new Rectangle(0, 0, 1, 0.75);
-
-            if (Device.RuntimePlatform == Device.UWP) {
-                quickPanelPosition = new Rectangle(0, 0, 0.33, 1);
-            }
-
-            AbsoluteLayout.SetLayoutBounds(quickPanel, quickPanelPosition);
-            AbsoluteLayout.SetLayoutFlags(quickPanel, AbsoluteLayoutFlags.SizeProportional);
-
-            AbsoluteLayout.SetLayoutBounds(_webView, new Rectangle(0, 0, 1, 1));
-            AbsoluteLayout.SetLayoutFlags(_webView, AbsoluteLayoutFlags.SizeProportional);
-
-            Content = new AbsoluteLayout {
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Children = {
-                    _webView,
-                    quickPanel,
-                }
-            };
+            QuickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
             NavigationPage.SetHasNavigationBar(this, false);
+        }
 
+        public static FormsWebView Factory() {
+            return IocManager.Container.Resolve<FormsWebView>();
         }
 
         private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
@@ -117,7 +64,7 @@ namespace EbookReader.Page {
         }
 
         private void _messages_OnOpenQuickPanelRequest(object sender, Model.WebViewMessages.OpenQuickPanelRequest e) {
-            quickPanel.Show();
+            QuickPanel.Show();
         }
 
         private async void SettingsButton_Clicked(object sender, EventArgs e) {
@@ -130,7 +77,7 @@ namespace EbookReader.Page {
 
         public async Task LoadBook(FileData file) {
             epub = await _epubLoader.GetEpub(file.FileName, file.DataArray);
-            this.quickPanel.PanelContent.SetNavigation(epub.Navigation);
+            QuickPanel.PanelContent.SetNavigation(epub.Navigation);
 
             this.SendChapter(epub.Spines.First());
         }
@@ -145,15 +92,9 @@ namespace EbookReader.Page {
             doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode(string.Format("<script>{0}</script>", js)));
             doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode(string.Format("<style>{0}</style>", css)));
 
-            _webView.Source = doc.DocumentNode.OuterHtml;
+            WebView.Source = doc.DocumentNode.OuterHtml;
         }
-
-        private void _messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
-            Device.BeginInvokeOnMainThread(() => {
-                this.pages.Text = string.Format("{0} / {1}", e.CurrentPage, e.TotalPages);
-            });
-        }
-
+        
         private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
             var i = epub.Spines.IndexOf(currentChapter);
             if (i > 0) {
@@ -170,8 +111,8 @@ namespace EbookReader.Page {
 
         private void WebView_OnContentLoaded(object sender, EventArgs e) {
             this.InitWebView(
-                (int)this._webView.Width,
-                (int)this._webView.Height,
+                (int)WebView.Width,
+                (int)WebView.Height,
                 30,
                 20
             );
@@ -190,21 +131,9 @@ namespace EbookReader.Page {
         }
 
         private void WebView_SizeChanged(object sender, EventArgs e) {
-            this.ResizeWebView((int)this._webView.Width, (int)this._webView.Height);
+            this.ResizeWebView((int)WebView.Width, (int)WebView.Height);
         }
-
-        private void GoToStartOfPageInput_TextChanged(object sender, TextChangedEventArgs e) {
-            var value = e.NewTextValue;
-            int page;
-            if (int.TryParse(value, out page)) {
-                var json = new {
-                    Page = page
-                };
-
-                _messages.Send("goToStartOfPage", json);
-            }
-        }
-
+        
         private void InitWebView(int width, int height, int margin, int fontSize) {
             var json = new {
                 Width = width,

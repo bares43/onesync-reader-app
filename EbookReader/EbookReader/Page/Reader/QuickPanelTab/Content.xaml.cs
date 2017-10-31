@@ -1,42 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using EbookReader.Service;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace EbookReader.Page.Reader.QuickPanelTab {
-    public class Content : StackLayout {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Content : StackLayout {
 
         private IWebViewMessages _messages;
-        private ScrollView scrollView;
-        private StackLayout stackLayout;
 
         public event EventHandler<Model.Navigation.Item> OnChapterChange;
 
         public Content() {
-
-            // IOC
             _messages = IocManager.Container.Resolve<IWebViewMessages>();
 
-            this.stackLayout = new StackLayout {
-                Orientation = StackOrientation.Vertical
-            };
-
-            this.scrollView = new ScrollView {
-                Content = stackLayout,
-            };
-
-            Padding = new Thickness(25, 20);
-
-            Device.BeginInvokeOnMainThread(() => {
-                Children.Add(scrollView);
-            });
-
+            InitializeComponent();
         }
-        
+
         public void SetNavigation(List<Model.Navigation.Item> items) {
             Device.BeginInvokeOnMainThread(() => {
                 this.SetItems(items);
@@ -44,10 +30,11 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         }
 
         private void SetItems(List<Model.Navigation.Item> items) {
-            stackLayout.Children.Clear();
+
+            Items.Children.Clear();
 
             foreach (var item in this.GetItems(items)) {
-                stackLayout.Children.Add(item);
+                Items.Children.Add(item);
             }
         }
 
@@ -82,6 +69,6 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         private void ClickToItem(Model.Navigation.Item item) {
             this.OnChapterChange?.Invoke(this, item);
         }
-        
+
     }
 }

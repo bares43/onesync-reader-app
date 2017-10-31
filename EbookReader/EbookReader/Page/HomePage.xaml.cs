@@ -12,29 +12,8 @@ namespace EbookReader.Page {
     public partial class HomePage : ContentPage {
         public HomePage() {
             InitializeComponent();
-
-            Init();
         }
-
-        private void Init() {
-
-            Title = "E-book Reader";
-
-            var loadButton = new Button {
-                Text = "Otevřít epub",
-            };
-
-            loadButton.Clicked += LoadButton_Clicked;
-
-            Content = new StackLayout {
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Children = {
-                    loadButton
-                }
-            };
-        }
-
+        
         private void LoadButton_Clicked(object sender, EventArgs e) {
             this.LoadBook();
         }
@@ -44,16 +23,16 @@ namespace EbookReader.Page {
 
             if (pickedFile != null) {
 
-                //try {
+                try {
 
                     var page = App.ReaderPage();
                     await page.LoadBook(pickedFile);
 
                     await Navigation.PushAsync(page);
 
-                //} catch (Exception) {
-                //    await DisplayAlert("Chyba", "Soubor se nepodařilo otevřít", "OK");
-                //}
+                } catch (Exception) {
+                    await DisplayAlert("Chyba", "Soubor se nepodařilo otevřít", "OK");
+                }
 
             }
         }

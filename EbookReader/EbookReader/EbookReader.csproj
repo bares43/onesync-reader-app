@@ -60,10 +60,14 @@
     <Compile Include="Page\ReaderPage.xaml.cs">
       <DependentUpon>ReaderPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Reader\QuickPanel.cs" />
-    <Compile Include="Page\Reader\QuickPanelTab\Content.cs" />
+    <Compile Include="Page\Reader\QuickPanel.xaml.cs">
+      <DependentUpon>QuickPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\Reader\QuickPanelTab\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Reader\QuickPanelTab\Content.xaml.cs">
+      <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -81,6 +85,7 @@
     <Compile Include="Service\IWebViewMessages.cs" />
     <Compile Include="Service\MessageBus.cs" />
     <Compile Include="Service\WebViewMessages.cs" />
+    <Compile Include="View\ReaderWebView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -147,6 +152,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Page\Reader\QuickPanelTab\Settings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\Reader\QuickPanelTab\Content.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\Reader\QuickPanel.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using EbookReader.Helpers;
 using Newtonsoft.Json;
-using Xam.Plugin.WebView.Abstractions;
+using EbookReader.View;
 using Xamarin.Forms;
 
 namespace EbookReader.Service {
     public class WebViewMessages : IWebViewMessages {
 
-        FormsWebView _webView;
+        ReaderWebView _webView;
         bool webViewLoaded = false;
         bool webViewReaderInit = false;
         List<Model.WebViewMessages.Message> _queue;
@@ -21,7 +21,7 @@ namespace EbookReader.Service {
         public event EventHandler<Model.WebViewMessages.PrevChapterRequest> OnPrevChapterRequest;
         public event EventHandler<Model.WebViewMessages.OpenQuickPanelRequest> OnOpenQuickPanelRequest;
 
-        public WebViewMessages(FormsWebView webView) {
+        public WebViewMessages(ReaderWebView webView) {
             _webView = webView;
             _queue = new List<Model.WebViewMessages.Message>();
 
