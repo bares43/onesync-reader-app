@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns = "http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EbookReader.Page.Reader.QuickPanelTab.Settings">
+
+    <StackLayout.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Picker">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+            </Style>
+            <Style x:Key="settingsWrapper" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </StackLayout.Resources>
+
+    <StackLayout.Padding>
+        15,0
+    </StackLayout.Padding>
+
+    <StackLayout.Children>
+        <TableView>
+            <TableRoot>
+                <TableSection x:Name="SectionLook" Title="Vzhled">
+                    <ViewCell x:Name="BrightnessWrapper">
+                        <StackLayout Style="{StaticResource settingsWrapper}">
+                            <Label Text="Jas" WidthRequest="100" />
+                            <Slider x:Name="Brightness" HorizontalOptions="FillAndExpand" Maximum="100" Minimum="1" ValueChanged="Brightness_ValueChanged"></Slider>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Style="{StaticResource settingsWrapper}">
+                            <Label Text="Písmo" />
+                            <Picker x:Name="FontPicker" SelectedIndexChanged="FontPicker_SelectedIndexChanged">
+                            </Picker>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Style="{StaticResource settingsWrapper}">
+                            <Label Text="Odsazení" />
+                            <Picker x:Name="MarginPicker" SelectedIndexChanged="MarginPicker_SelectedIndexChanged">
+                            </Picker>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </StackLayout.Children>
+</StackLayout>

@@ -44,16 +44,16 @@ namespace EbookReader.Page {
 
             if (pickedFile != null) {
 
-                try {
+                //try {
 
                     var page = App.ReaderPage();
                     await page.LoadBook(pickedFile);
 
                     await Navigation.PushAsync(page);
 
-                } catch (Exception) {
-                    await DisplayAlert("Chyba", "Soubor se nepodařilo otevřít", "OK");
-                }
+                //} catch (Exception) {
+                //    await DisplayAlert("Chyba", "Soubor se nepodařilo otevřít", "OK");
+                //}
 
             }
         }
