@@ -38,7 +38,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
             }
         }
 
-        private List<Label> GetItems(List<Model.Navigation.Item> items, string id = "", int depth = 0) {
+        private List<Label> GetItems(List<Model.Navigation.Item> items) {
 
             var labels = new List<Label>();
 
@@ -46,7 +46,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
                 var label = new Label {
                     StyleId = item.Id,
                     Text = item.Title,
-                    Margin = new Thickness(depth * 20, 0),
+                    Margin = new Thickness(item.Depth * 20, 0),
                     FontSize = Device.GetNamedSize(Device.RuntimePlatform == Device.Android ? NamedSize.Large : NamedSize.Medium, typeof(Label))
                 };
 
@@ -55,12 +55,6 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
                 label.GestureRecognizers.Add(tgr);
 
                 labels.Add(label);
-
-                var children = items.Where(o => o.ParentID == item.Id).ToList();
-
-                if (children.Any(o => o.ParentID == item.Id)) {
-                    labels.AddRange(this.GetItems(items, item.Id, depth + 1));
-                }
             }
 
             return labels;

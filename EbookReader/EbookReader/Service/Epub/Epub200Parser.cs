@@ -32,7 +32,7 @@ namespace EbookReader.Service.Epub {
             return navigation;
         }
 
-        private List<Item> LoadItems(IEnumerable<XElement> elements) {
+        private List<Item> LoadItems(IEnumerable<XElement> elements, int depth = 0) {
             var items = new List<Item>();
 
             var orderedElements = elements.Where(o => o.Name.LocalName == "navPoint").OrderBy(o => {
@@ -63,11 +63,12 @@ namespace EbookReader.Service.Epub {
                 var item = new Item {
                     Id = id,
                     Title = label,
+                    Depth = depth,
                 };
 
                 items.Add(item);
 
-                items.AddRange(this.LoadItems(element.Elements()));
+                items.AddRange(this.LoadItems(element.Elements(), depth + 1));
             }
 
             return items;
