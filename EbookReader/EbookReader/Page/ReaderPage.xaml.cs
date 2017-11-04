@@ -130,7 +130,7 @@ namespace EbookReader.Page {
             await Navigation.PushAsync(App.HomePage());
         }
 
-        public async Task LoadBook(FileData file) {
+        public void LoadBook(FileData file) {
 
             _bookshelfService.AddBook(file);
 

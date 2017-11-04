@@ -53,7 +53,8 @@ namespace EbookReader.UWP {
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 var assemblies = new List<Assembly> {
-                    typeof(FormsWebViewRenderer).GetTypeInfo().Assembly
+                    typeof(FormsWebViewRenderer).GetTypeInfo().Assembly,
+                    typeof(Rg.Plugins.Popup.Windows.Popup).GetTypeInfo().Assembly,
                 };
 
                 FormsWebViewRenderer.Initialize();
@@ -104,6 +105,7 @@ namespace EbookReader.UWP {
 
         private void SetUpIoc() {
             IocManager.ContainerBuilder.RegisterType<UWPAssetsManager>().As<IAssetsManager>();
+            IocManager.ContainerBuilder.RegisterType<CryptoService>().As<ICryptoService>();
             IocManager.Build();
         }
     }

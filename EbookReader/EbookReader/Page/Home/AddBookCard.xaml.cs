@@ -7,11 +7,13 @@ using Autofac;
 using EbookReader.Model.Messages;
 using EbookReader.Service;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace EbookReader.Page.Home {
-    public class AddBookCard : Card {
-        public AddBookCard() : base() {
-            Children.Add(new Label { Text = "+" });
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AddBookCard : StackLayout {
+        public AddBookCard() {
+            InitializeComponent();
 
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
 
@@ -20,6 +22,7 @@ namespace EbookReader.Page.Home {
                     Command = new Command(() => { messageBus.Send(new AddBookClicked()); }),
                 }
             );
+
         }
     }
 }

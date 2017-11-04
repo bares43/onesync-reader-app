@@ -24,63 +24,21 @@ namespace EbookReader.Page {
             Init();
         }
 
-        private void Init() {
+        private async void Init() {
 
             // ioc
             _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
 
-            var books = new Model.Bookshelf.Bookshelf {
-                Books = new List<Model.Bookshelf.Book> {
-                    new Model.Bookshelf.Book {
-                        Title = "jedna"
-                    },
-                    new Model.Bookshelf.Book {
-                        Title = "dva"
-                    },
-                    new Model.Bookshelf.Book {
-                        Title = "tri"
-                    },
-                    new Model.Bookshelf.Book {
-                        Title = "ctyri"
-                    },
-                    new Model.Bookshelf.Book {
-                        Title = "pet"
-                    },
-                    new Model.Bookshelf.Book {
-                        Title = "sest"
-                    }
-                }
-            };
-            
-            var wrap = new WrapLayout {
-                Orientation = StackOrientation.Horizontal,
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.Center
-            };
+            var books = await _bookshelfService.LoadBooks();
 
-            wrap.Children.Add(new AddBookCard());
-
-            foreach(var book in books.Books) {
-                wrap.Children.Add(new BookCard(book));
+            foreach(var book in books) {
+                Bookshelf.Children.Add(new BookCard(book));
             }
             
             Title = "E-book Reader";
 
             _messageBus.Subscribe<AddBookClicked>(LoadButton_Clicked);
-
-            Content = new ScrollView {
-                Content = wrap
-            };
-
-            //Content = new StackLayout {
-            //    VerticalOptions = LayoutOptions.FillAndExpand,
-            //    HorizontalOptions = LayoutOptions.FillAndExpand,
-            //    Orientation = StackOrientation.Horizontal,
-            //    Children = {
-            //        wrap
-            //    }
-            //};
         }
 
         private void LoadButton_Clicked(AddBookClicked msg) {
@@ -95,7 +53,7 @@ namespace EbookReader.Page {
                 try {
 
                     var page = App.ReaderPage();
-                    await page.LoadBook(pickedFile);
+                    page.LoadBook(pickedFile);
 
                     await Navigation.PushAsync(page);
 

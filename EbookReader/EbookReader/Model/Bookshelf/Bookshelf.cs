@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EbookReader.Model.Bookshelf {
     public class Bookshelf {
-        public IList<Book> Books { get; set; }
+        public List<Book> Books { get; set; }
 
         public Bookshelf() {
             this.Books = new List<Book>();

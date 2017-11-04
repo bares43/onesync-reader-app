@@ -40,6 +40,7 @@ namespace EbookReader.Droid {
             IocManager.ContainerBuilder.RegisterType<AndroidAssetsManager>().As<IAssetsManager>();
             IocManager.ContainerBuilder.RegisterType<BrightnessProvider>().As<IBrightnessProvider>();
             IocManager.ContainerBuilder.RegisterInstance(new BrightnessProvider { Brightness = Android.Provider.Settings.System.GetFloat(ContentResolver, Android.Provider.Settings.System.ScreenBrightness) / 255 }).As<IBrightnessProvider>();
+            IocManager.ContainerBuilder.RegisterType<CryptoService>().As<ICryptoService>();
             IocManager.Build();
         }
 
