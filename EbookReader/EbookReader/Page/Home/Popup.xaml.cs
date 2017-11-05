@@ -7,6 +7,7 @@ using Autofac;
 using EbookReader.Model.Messages;
 using EbookReader.Service;
 using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -46,13 +47,15 @@ namespace EbookReader.Page.Home {
             return base.OnBackgroundClicked();
         }
 
-        private void Open_Clicked(object sender, EventArgs e) {
+        private async void Open_Clicked(object sender, EventArgs e) {
+            await PopupNavigation.RemovePageAsync(this);
             _messageBus.Send(new OpenBook { Book = _book });
         }
 
-        private async Task Delete_Clicked(object sender, EventArgs e) {
+        private async void Delete_Clicked(object sender, EventArgs e) {
             var confirm = await DisplayActionSheet("Opravdu smazat knížku?", "Smazat", "Ne");
             if(confirm == "Smazat") {
+                await PopupNavigation.RemovePageAsync(this);
                 _messageBus.Send(new DeleteBook { Book = _book });
             }
         }

@@ -48,6 +48,8 @@
     <Compile Include="Model\EpubLoader\HtmlResult.cs" />
     <Compile Include="Model\EpubLoader\Image.cs" />
     <Compile Include="Model\EpubSpine.cs" />
+    <Compile Include="Model\Messages\ChangeFontSize.cs" />
+    <Compile Include="Model\Messages\ChangeMargin.cs" />
     <Compile Include="Model\Messages\ChangesBrightness.cs" />
     <Compile Include="Model\Messages\AddBookClicked.cs" />
     <Compile Include="Model\Messages\DeleteBook.cs" />
@@ -93,9 +95,9 @@
     <Compile Include="Service\IEpubLoader.cs" />
     <Compile Include="Service\IFileService.cs" />
     <Compile Include="Service\IMessageBus.cs" />
-    <Compile Include="Service\IWebViewMessages.cs" />
     <Compile Include="Service\MessageBus.cs" />
     <Compile Include="Service\WebViewMessages.cs" />
+    <Compile Include="VIew\ReaderWebView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />

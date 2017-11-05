@@ -3,17 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EbookReader.Page.Home.BookCard"
              WidthRequest="300"
-             HeightRequest="500"
-             BackgroundColor="Azure">
+             HeightRequest="500">
     <StackLayout.Children>
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <AbsoluteLayout x:Name="ap" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+            <Image x:Name="Cover" WidthRequest="300" HeightRequest="500" VerticalOptions="Fill" HorizontalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,300,500" />
             <AbsoluteLayout x:Name="Panel" BackgroundColor="Cyan" AbsoluteLayout.LayoutBounds="0,0,300,30">
                 <Label Text="{Binding Percents, StringFormat='{0:N} %'}" />
             </AbsoluteLayout>
             <Label Text="{Binding Title}"
                    FontSize="Medium" 
-                   BackgroundColor="#CC00FF00" 
-                   TextColor="Wheat"
+                   BackgroundColor="#00000020" 
+                   TextColor="White"
                    HorizontalTextAlignment="Center"
                    AbsoluteLayout.LayoutBounds="0, 430, 300, 70" />
         </AbsoluteLayout>

@@ -22,30 +22,47 @@ namespace EbookReader.Service {
             _cryptoService = cryptoService;
         }
 
-        public async void AddBook(FileData file) {
+        public async Task<Model.Bookshelf.Book> AddBook(FileData file) {
 
             var epub = await _epubLoader.GetEpub(file.FileName, file.DataArray);
 
-            var b64 = Convert.ToBase64String(file.DataArray);
-
-            var book = new Model.Bookshelf.Book {
-                Id = _cryptoService.GetMd5(file.DataArray),
-                Title = epub.Title,
-                Created = DateTime.UtcNow,
-                Path = epub.Folder,
-            };
+            var id = _cryptoService.GetMd5(file.DataArray);
 
             var bookshelf = await this.LoadBookshelf();
 
-            if (!bookshelf.Books.Any(o => o.Id == book.Id)) {
+            var book = bookshelf.Books.FirstOrDefault(o => o.Id == id);
+            if (book == null) {
+                book = new Model.Bookshelf.Book {
+                    Id = _cryptoService.GetMd5(file.DataArray),
+                    Title = epub.Title,
+                    Created = DateTime.UtcNow,
+                    Path = epub.Folder,
+                };
                 bookshelf.Books.Add(book);
                 this.Save(bookshelf);
             }
+
+            return book;
         }
-        
+
         public async Task<List<Model.Bookshelf.Book>> LoadBooks() {
             var bookshelf = await this.LoadBookshelf();
             return bookshelf.Books;
+        }
+
+        public async Task<Model.Bookshelf.Book> LoadBookById(string id) {
+            var bookshelf = await this.LoadBookshelf();
+            return bookshelf.Books.FirstOrDefault(o => o.Id == id);
+        }
+
+        public async void RemoveById(string id) {
+            var bookshelf = await this.LoadBookshelf();
+            var book = bookshelf.Books.FirstOrDefault(o => o.Id == id);
+            if (book != null) {
+                bookshelf.Books.Remove(book);
+                this.Save(bookshelf);
+                _fileService.DeleteFolder(book.Path);
+            }
         }
 
         private async Task<Model.Bookshelf.Bookshelf> LoadBookshelf() {

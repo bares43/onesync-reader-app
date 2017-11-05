@@ -14,5 +14,6 @@ namespace EbookReader.Service {
         Task<string> ReadFileData(string filename, IFolder folder);
         void Save(string path, string content);
         Task<bool> Checkfile(string filename);
+        void DeleteFolder(string path);
     }
 }

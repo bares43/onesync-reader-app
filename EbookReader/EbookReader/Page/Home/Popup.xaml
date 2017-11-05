@@ -5,8 +5,8 @@
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              x:Class="EbookReader.Page.Home.Popup">
     <!--Animations use example-->
-    <pages:PopupPage.Animation>
-        <animations:ScaleAnimation 
+    <!--<pages:PopupPage.Animation>-->
+        <!--<animations:ScaleAnimation 
       PositionIn="Center"
       PositionOut="Center"
       ScaleIn="1.2"
@@ -16,7 +16,7 @@
       EasingIn="SinOut"
       EasingOut="SinIn"
       HasBackgroundAnimation="True"/>
-    </pages:PopupPage.Animation>
+    </pages:PopupPage.Animation>-->
     <pages:PopupPage.Content>
         <StackLayout BackgroundColor="White"
                      WidthRequest="350" 

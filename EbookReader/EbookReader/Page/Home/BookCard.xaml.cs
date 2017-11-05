@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Autofac;
 using EbookReader.Model.Messages;
 using EbookReader.Service;
+using PCLStorage;
 using Rg.Plugins.Popup.Extensions;
 using Xam.Plugin;
 using Xamarin.Forms;
@@ -21,12 +22,16 @@ namespace EbookReader.Page.Home {
 
             _book = book;
 
+            StyleId = book.Id;
+
             BindingContext = new {
                 Title = book.Title,
                 Percents = 58,
             };
 
             InitializeComponent();
+
+            this.LoadImage();
 
             Panel.GestureRecognizers.Add(
                 new TapGestureRecognizer {
@@ -40,6 +45,15 @@ namespace EbookReader.Page.Home {
                     NumberOfTapsRequired = 1,
                     Command = new Command(() => { this.Open(); }),
                 });
+        }
+
+        private async void LoadImage() {
+            var fileService = IocManager.Container.Resolve<IFileService>();
+            var file = await fileService.OpenFile("zaklinac-i-posledni-prani/OEBPS/Images/cover.jpg", FileSystem.Current.LocalStorage);
+            var stream = await file.OpenAsync(FileAccess.Read);
+            
+            Cover.Source = ImageSource.FromStream(() => stream);
+
         }
 
         private void Open() {

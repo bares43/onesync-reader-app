@@ -25,11 +25,21 @@ namespace EbookReader.Service {
         public async Task<Model.Epub> GetEpub(string filename, byte[] filedata) {
             var folder = await this.LoadEpub(filename, filedata);
 
-            var epubFolder = await FileSystem.Current.LocalStorage.GetFolderAsync(folder);
+            return await OpenEpub(folder);
+        }
+
+        public async Task<Model.Epub> OpenEpub(string path) {
+            var epubFolder = await FileSystem.Current.LocalStorage.GetFolderAsync(path);
 
             var contentFilePath = await this.GetContentFilePath(epubFolder);
 
             var contentFileData = await _fileService.ReadFileData(contentFilePath, epubFolder);
+
+            var x = contentFileData;
+
+            System.Diagnostics.Debug.WriteLine(epubFolder.Path);
+            System.Diagnostics.Debug.WriteLine(epubFolder.Name);
+            System.Diagnostics.Debug.WriteLine(x);
 
             var xml = XDocument.Parse(contentFileData);
 
@@ -47,7 +57,7 @@ namespace EbookReader.Service {
                 Language = epubParser.GetLanguage(),
                 Spines = epubParser.GetSpines(),
                 Files = epubParser.GetFiles(),
-                Folder = folder,
+                Folder = path,
                 Navigation = await epubParser.GetNavigation(),
             };
 
@@ -164,6 +174,7 @@ namespace EbookReader.Service {
                 .Attributes()
                 .First(o => o.Name.LocalName == "full-path")
                 .Value;
+            System.Diagnostics.Debug.WriteLine(contentFilePath);
             return contentFilePath;
         }
 

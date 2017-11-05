@@ -39,7 +39,7 @@ namespace EbookReader.Service {
 
         public async void Save(string path, string content) {
             var folder = FileSystem.Current.LocalStorage;
-            var file = await folder.CreateFileAsync(path, CreationCollisionOption.OpenIfExists);
+            var file = await folder.CreateFileAsync(path, CreationCollisionOption.ReplaceExisting);
             var bytes = Encoding.UTF8.GetBytes(content);
             using (Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite)) {
                 await stream.WriteAsync(bytes, 0, bytes.Length);
@@ -51,6 +51,11 @@ namespace EbookReader.Service {
             var fileFolder = await this.GetFileFolder(filename, folder);
             var exists = await fileFolder.CheckExistsAsync(this.GetLocalFileName(filename));
             return exists == ExistenceCheckResult.FileExists;
+        }
+
+        public async void DeleteFolder(string path) {
+            var folder = await FileSystem.Current.LocalStorage.GetFolderAsync(path);
+            await folder.DeleteAsync();
         }
 
     }

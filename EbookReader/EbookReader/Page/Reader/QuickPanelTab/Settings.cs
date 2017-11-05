@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using EbookReader.DependencyService;
+using EbookReader.Model.Messages;
 using EbookReader.Service;
 using Xamarin.Forms;
 
@@ -49,7 +50,6 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         private Picker fontPicker;
         private Picker marginPicker;
 
-        private IWebViewMessages _messages;
         private IMessageBus _messageBus;
 
         public event EventHandler OnSet;
@@ -57,7 +57,6 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         public Settings() {
 
             // IOC
-            _messages = IocManager.Container.Resolve<IWebViewMessages>();
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
 
             Padding = new Thickness(10, 0);
@@ -175,7 +174,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         private void MarginPicker_SelectedIndexChanged(object sender, EventArgs e) {
             if (this.marginPicker.SelectedIndex != -1) {
                 var margin = int.Parse(this.Margins[this.marginPicker.SelectedIndex]);
-                this.SetMargin(margin);
+                _messageBus.Send(new ChangeMargin { Margin = margin });
                 this.OnSet?.Invoke(this, e);
             }
         }
@@ -183,25 +182,11 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
         private void FontPicker_SelectedIndexChanged(object sender, EventArgs e) {
             if (this.fontPicker.SelectedIndex != -1) {
                 var fontSize = int.Parse(this.FontSizes[this.fontPicker.SelectedIndex]);
-                this.SetFontSize(fontSize);
+                _messageBus.Send(new ChangeFontSize { FontSize = fontSize });
                 this.OnSet?.Invoke(this, e);
             }
         }
 
-        private void SetFontSize(int fontSize) {
-            var json = new {
-                FontSize = fontSize
-            };
-
-            _messages.Send("changeFontSize", json);
-        }
-
-        private void SetMargin(int margin) {
-            var json = new {
-                Margin = margin
-            };
-
-            _messages.Send("changeMargin", json);
-        }
+        
     }
 }
