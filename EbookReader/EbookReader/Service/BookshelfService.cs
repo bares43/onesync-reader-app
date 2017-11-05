@@ -35,7 +35,6 @@ namespace EbookReader.Service {
                 book = new Model.Bookshelf.Book {
                     Id = _cryptoService.GetMd5(file.DataArray),
                     Title = epub.Title,
-                    Created = DateTime.UtcNow,
                     Path = epub.Folder,
                     Cover = epub.Cover
                 };

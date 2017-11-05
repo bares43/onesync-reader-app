@@ -35,12 +35,6 @@ namespace EbookReader.Service {
 
             var contentFileData = await _fileService.ReadFileData(contentFilePath, epubFolder);
 
-            var x = contentFileData;
-
-            System.Diagnostics.Debug.WriteLine(epubFolder.Path);
-            System.Diagnostics.Debug.WriteLine(epubFolder.Name);
-            System.Diagnostics.Debug.WriteLine(x);
-
             var xml = XDocument.Parse(contentFileData);
 
             var package = xml.Root;
@@ -175,7 +169,6 @@ namespace EbookReader.Service {
                 .Attributes()
                 .First(o => o.Name.LocalName == "full-path")
                 .Value;
-            System.Diagnostics.Debug.WriteLine(contentFilePath);
             return contentFilePath;
         }
 

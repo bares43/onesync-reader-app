@@ -10,16 +10,12 @@ using Xamarin.Forms;
 namespace EbookReader.Page.Reader.QuickPanelTab {
     public class Content : StackLayout {
 
-        //private IWebViewMessages _messages;
         private ScrollView scrollView;
         private StackLayout stackLayout;
 
         public event EventHandler<Model.Navigation.Item> OnChapterChange;
 
         public Content() {
-
-            // IOC
-            //_messages = IocManager.Container.Resolve<IWebViewMessages>();
 
             this.stackLayout = new StackLayout {
                 Orientation = StackOrientation.Vertical

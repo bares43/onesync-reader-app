@@ -10,7 +10,5 @@ namespace EbookReader.Model.Bookshelf {
         public string Title { get; set; }
         public string Path { get; set; }
         public string Cover { get; set; }
-        public DateTime? Created { get; set; }
-        public DateTime? LastOpen { get; set; }
     }
 }

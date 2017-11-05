@@ -95,7 +95,7 @@
     <Compile Include="Service\IMessageBus.cs" />
     <Compile Include="Service\MessageBus.cs" />
     <Compile Include="Service\WebViewMessages.cs" />
-    <Compile Include="VIew\ReaderWebView.cs" />
+    <Compile Include="View\ReaderWebView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />

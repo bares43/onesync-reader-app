@@ -18,13 +18,10 @@ namespace EbookReader.Page {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReaderPage : ContentPage {
 
-        //FormsWebView _webView;
         IEpubLoader _epubLoader;
         IAssetsManager _assetsManager;
         IBookshelfService _bookshelfService;
         IMessageBus _messageBus;
-
-        //QuickPanel quickPanel;
 
         Model.EpubSpine currentChapter;
 
@@ -56,6 +53,7 @@ namespace EbookReader.Page {
             _messageBus.Subscribe<ChangeFontSize>((msg) => this.SetFontSize(msg.FontSize));
 
             NavigationPage.SetHasNavigationBar(this, false);
+
         }
 
 

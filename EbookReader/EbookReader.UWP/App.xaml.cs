@@ -53,7 +53,7 @@ namespace EbookReader.UWP {
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 var assemblies = new List<Assembly> {
-                    typeof(FormsWebViewRenderer).GetTypeInfo().Assembly,
+                    typeof(FormsWebViewRenderer).GetTypeInfo().Assembly
                 };
 
                 FormsWebViewRenderer.Initialize();
