@@ -2,9 +2,9 @@
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EbookReader.Page.Home.AddBookCard"
-             WidthRequest="300"
-             HeightRequest="500">
+             WidthRequest="{Binding Width}"
+             HeightRequest="{Binding Height}">
     <StackLayout.Children>
-        <Label Text="Otevřít e-book" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        <Label Text="Otevřít e-book" LineBreakMode="WordWrap" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
     </StackLayout.Children>
 </StackLayout>

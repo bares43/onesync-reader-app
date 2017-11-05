@@ -54,7 +54,6 @@ namespace EbookReader.UWP {
 
                 var assemblies = new List<Assembly> {
                     typeof(FormsWebViewRenderer).GetTypeInfo().Assembly,
-                    typeof(Rg.Plugins.Popup.Windows.Popup).GetTypeInfo().Assembly,
                 };
 
                 FormsWebViewRenderer.Initialize();

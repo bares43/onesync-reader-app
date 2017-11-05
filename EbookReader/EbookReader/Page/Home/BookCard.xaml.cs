@@ -7,8 +7,6 @@ using Autofac;
 using EbookReader.Model.Messages;
 using EbookReader.Service;
 using PCLStorage;
-using Rg.Plugins.Popup.Extensions;
-using Xam.Plugin;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,34 +24,39 @@ namespace EbookReader.Page.Home {
 
             BindingContext = new {
                 Title = book.Title,
-                Percents = 58,
+                Width = Card.CardWidth,
+                Height = Card.CardHeight,
+                ImagePosition = new Rectangle(0, 0, Card.CardWidth, Card.CardHeight),
+                PanelPosition = new Rectangle(0, 0, Card.CardWidth, 30),
+                TextPosition = new Rectangle(0, Card.CardHeight - 70, Card.CardWidth, 70),
+                DeletePosition = new Rectangle(Card.CardWidth - 26 - 2, 2, 26, 26)
             };
 
             InitializeComponent();
 
             this.LoadImage();
 
-            Panel.GestureRecognizers.Add(
+            DeleteIcon.GestureRecognizers.Add(
                 new TapGestureRecognizer {
-                    NumberOfTapsRequired = 1,               
                     Command = new Command(() => { this.Delete(); })
                 }
             );
 
             GestureRecognizers.Add(
                 new TapGestureRecognizer {
-                    NumberOfTapsRequired = 1,
                     Command = new Command(() => { this.Open(); }),
                 });
         }
 
         private async void LoadImage() {
-            var fileService = IocManager.Container.Resolve<IFileService>();
-            var file = await fileService.OpenFile("zaklinac-i-posledni-prani/OEBPS/Images/cover.jpg", FileSystem.Current.LocalStorage);
-            var stream = await file.OpenAsync(FileAccess.Read);
-            
-            Cover.Source = ImageSource.FromStream(() => stream);
+            if (!string.IsNullOrEmpty(_book.Cover)) {
+                var fileService = IocManager.Container.Resolve<IFileService>();
+                var file = await fileService.OpenFile($"{_book.Path}/{_book.Cover}", FileSystem.Current.LocalStorage);
+                var stream = await file.OpenAsync(FileAccess.Read);
 
+                Cover.Source = ImageSource.FromStream(() => stream);
+                Cover.Aspect = Aspect.Fill;
+            }
         }
 
         private void Open() {
@@ -61,9 +64,9 @@ namespace EbookReader.Page.Home {
             messageBus.Send(new OpenBook { Book = _book });
         }
 
-        private async void Delete() {
-            var page = new Popup(_book);
-            await Navigation.PushPopupAsync(page);
+        private void Delete() {
+            var messageBus = IocManager.Container.Resolve<IMessageBus>();
+            messageBus.Send(new DeleteBook { Book = _book });
         }
 
     }

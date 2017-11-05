@@ -4,26 +4,14 @@
              xmlns:wl="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.WrapLayout"
              xmlns:local="clr-namespace:EbookReader.Page.Home"
              x:Class="EbookReader.Page.HomePage">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="borderBottom" TargetType="BoxView">
-                <Setter Property="HeightRequest" Value="1"></Setter>
-                <Setter Property="Color" Value="Black"></Setter>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
-                <Setter Property="Margin" Value="0,0,40,0"></Setter>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Margin="40,25">
+        <StackLayout Orientation="Vertical" Margin="30,5">
             <Label Text="Knihovna" FontSize="Large" HorizontalOptions="FillAndExpand"></Label>
-            <BoxView Style="{StaticResource borderBottom}"></BoxView>    
-            <ScrollView HorizontalOptions="StartAndExpand">
-                <wl:WrapLayout x:Name="Bookshelf" x:FieldModifier="public" Orientation="Horizontal">
+            <ScrollView HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="10">
+                <StackLayout x:Name="Bookshelf" x:FieldModifier="public" Orientation="Horizontal">
                     <local:AddBookCard />
-                </wl:WrapLayout>
+                </StackLayout>
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>

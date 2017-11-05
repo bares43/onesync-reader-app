@@ -8,7 +8,6 @@ using EbookReader.Model.Messages;
 using EbookReader.Page.Home;
 using EbookReader.Service;
 using Plugin.FilePicker;
-using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,6 +24,8 @@ namespace EbookReader.Page {
             InitializeComponent();
 
             Init();
+
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private async void Init() {
@@ -39,8 +40,6 @@ namespace EbookReader.Page {
             foreach (var book in books) {
                 Bookshelf.Children.Add(new BookCard(book));
             }
-
-            Title = "E-book Reader";
 
             _messageBus.Subscribe<AddBookClicked>(AddBook);
             _messageBus.Subscribe<OpenBook>(OpenBook);
@@ -67,12 +66,15 @@ namespace EbookReader.Page {
             this.SendBookToReader(msg.Book);
         }
 
-        private void DeleteBook(DeleteBook msg) {
-            var card = Bookshelf.Children.FirstOrDefault(o => o.StyleId == msg.Book.Id);
-            if (card != null) {
-                Bookshelf.Children.Remove(card);
+        private async void DeleteBook(DeleteBook msg) {
+            var confirm = await DisplayActionSheet("Smazat knihu?", "Smazat", "Ne");
+            if (confirm == "Smazat") {
+                var card = Bookshelf.Children.FirstOrDefault(o => o.StyleId == msg.Book.Id);
+                if (card != null) {
+                    Bookshelf.Children.Remove(card);
+                }
+                _bookshelfService.RemoveById(msg.Book.Id);
             }
-            _bookshelfService.RemoveById(msg.Book.Id);
         }
 
         private async void SendBookToReader(Model.Bookshelf.Book book) {
@@ -83,5 +85,8 @@ namespace EbookReader.Page {
             await Navigation.PushAsync(page);
         }
 
+        private void OpenButton_Clicked(object sender, EventArgs e) {
+            _messageBus.Send(new AddBookClicked());
+        }
     }
 }

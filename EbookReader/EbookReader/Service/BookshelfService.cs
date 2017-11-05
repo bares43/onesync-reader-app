@@ -37,6 +37,7 @@ namespace EbookReader.Service {
                     Title = epub.Title,
                     Created = DateTime.UtcNow,
                     Path = epub.Folder,
+                    Cover = epub.Cover
                 };
                 bookshelf.Books.Add(book);
                 this.Save(bookshelf);

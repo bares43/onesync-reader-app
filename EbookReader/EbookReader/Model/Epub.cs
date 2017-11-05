@@ -17,6 +17,7 @@ namespace EbookReader.Model {
         public IEnumerable<EpubFile> Files { get; set; }
         public string Folder { get; set; }
         public List<Navigation.Item> Navigation { get; set; }
+        public string Cover { get; set; }
     }
 
     public enum EpubVersion {

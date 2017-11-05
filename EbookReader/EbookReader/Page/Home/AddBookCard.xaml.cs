@@ -15,6 +15,11 @@ namespace EbookReader.Page.Home {
         public AddBookCard() {
             InitializeComponent();
 
+            BindingContext = new {
+                Width = Card.CardWidth,
+                Height = Card.CardHeight,
+            };
+
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
 
             GestureRecognizers.Add(

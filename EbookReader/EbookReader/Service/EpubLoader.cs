@@ -59,6 +59,7 @@ namespace EbookReader.Service {
                 Files = epubParser.GetFiles(),
                 Folder = path,
                 Navigation = await epubParser.GetNavigation(),
+                Cover = epubParser.GetCover()
             };
 
             return epub;
