@@ -25,14 +25,6 @@ namespace EbookReader {
             return homePage;
         }
         
-        public static ReaderPage ReaderPage() {
-            if(readerPage == null) {
-                readerPage = new ReaderPage();
-            }
-
-            return readerPage;
-        }
-
         public static SettingsPage SettingsPage() {
             if(settingsPage == null) {
                 settingsPage = new SettingsPage();

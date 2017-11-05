@@ -33,7 +33,7 @@ namespace EbookReader.Service {
             var book = bookshelf.Books.FirstOrDefault(o => o.Id == id);
             if (book == null) {
                 book = new Model.Bookshelf.Book {
-                    Id = _cryptoService.GetMd5(file.DataArray),
+                    Id = id,
                     Title = epub.Title,
                     Path = epub.Folder,
                     Cover = epub.Cover
