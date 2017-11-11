@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EbookReader.Page.Home.BookCard"
+             WidthRequest="{Binding Width}"
+             HeightRequest="{Binding Height}">
+    <StackLayout.Children>
+        <AbsoluteLayout x:Name="ap" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+            <Image x:Name="Cover" 
+                   WidthRequest="{Binding Width}" 
+                   HeightRequest="{Binding Height}"
+                   AbsoluteLayout.LayoutBounds="{Binding ImagePosition}" />
+            <AbsoluteLayout x:Name="Panel" BackgroundColor="#90000000" AbsoluteLayout.LayoutBounds="{Binding PanelPosition}">
+                <Image x:Name="DeleteIcon" Source="delete.png" WidthRequest="26" HeightRequest="26" AbsoluteLayout.LayoutBounds="{Binding DeletePosition}" />
+            </AbsoluteLayout>
+            <Frame AbsoluteLayout.LayoutBounds="{Binding TextPosition}" BackgroundColor="#95000000" Padding="3">
+                <Label Text="{Binding Title}" FontSize="Medium"  TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="End" />
+            </Frame>
+            <!--<Label Text="{Binding Title}"
+                   FontSize="Medium" 
+                   BackgroundColor="#90000000" 
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="End"
+                   AbsoluteLayout.LayoutBounds="{Binding TextPosition}" />-->
+        </AbsoluteLayout>
+    </StackLayout.Children>
+</StackLayout>

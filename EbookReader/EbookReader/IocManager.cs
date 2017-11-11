@@ -7,6 +7,7 @@ using Autofac;
 using EbookReader.Model;
 using EbookReader.Service;
 using EbookReader.Service.Epub;
+using EbookReader.View;
 using Xam.Plugin.WebView.Abstractions;
 using EbookReader.View;
 
@@ -40,12 +41,12 @@ namespace EbookReader {
         private static void SetUpIoc() {
             ContainerBuilder.RegisterType<EpubLoader>().As<IEpubLoader>();
             ContainerBuilder.RegisterType<FileService>().As<IFileService>();
-            ContainerBuilder.RegisterType<ReaderWebView>().As<ReaderWebView>().SingleInstance();
-            ContainerBuilder.RegisterType<WebViewMessages>().As<IWebViewMessages>().SingleInstance();
             ContainerBuilder.RegisterType<Epub200Parser>().Keyed<EpubParser>(EpubVersion.V200);
             ContainerBuilder.RegisterType<Epub300Parser>().Keyed<EpubParser>(EpubVersion.V300);
             ContainerBuilder.RegisterType<Epub301Parser>().Keyed<EpubParser>(EpubVersion.V301);
             ContainerBuilder.RegisterType<MessageBus>().As<IMessageBus>().SingleInstance();
+            ContainerBuilder.RegisterType<BookshelfService>().As<IBookshelfService>();
+            ContainerBuilder.RegisterType<ReaderWebView>().As<ReaderWebView>();
         }
 
     }

@@ -38,6 +38,7 @@
     <Compile Include="App.cs" />
     <Compile Include="DependencyService\IAssetsManager.cs" />
     <Compile Include="DependencyService\IBrightnessProvider.cs" />
+    <Compile Include="DependencyService\ICryproService.cs" />
     <Compile Include="Exceptions\Epub\UnknownEpubVersionException.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
     <Compile Include="Helpers\EpubVersionHelper.cs" />
@@ -47,7 +48,12 @@
     <Compile Include="Model\EpubLoader\HtmlResult.cs" />
     <Compile Include="Model\EpubLoader\Image.cs" />
     <Compile Include="Model\EpubSpine.cs" />
+    <Compile Include="Model\Messages\ChangeFontSize.cs" />
+    <Compile Include="Model\Messages\ChangeMargin.cs" />
     <Compile Include="Model\Messages\ChangesBrightness.cs" />
+    <Compile Include="Model\Messages\AddBookClicked.cs" />
+    <Compile Include="Model\Messages\DeleteBook.cs" />
+    <Compile Include="Model\Messages\OpenBook.cs" />
     <Compile Include="Model\Navigation\Item.cs" />
     <Compile Include="Model\WebViewMessages\Message.cs" />
     <Compile Include="Model\WebViewMessages\NextChapterRequest.cs" />
@@ -57,6 +63,13 @@
     <Compile Include="Page\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\Home\AddBookCard.xaml.cs">
+      <DependentUpon>AddBookCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Home\BookCard.xaml.cs">
+      <DependentUpon>BookCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Home\Card.cs" />
     <Compile Include="Page\ReaderPage.xaml.cs">
       <DependentUpon>ReaderPage.xaml</DependentUpon>
     </Compile>
@@ -73,16 +86,19 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\BookshelfService.cs" />
+    <Compile Include="Model\Bookshelf\Book.cs" />
+    <Compile Include="Model\Bookshelf\Bookshelf.cs" />
     <Compile Include="Service\EpubLoader.cs" />
     <Compile Include="Service\Epub\Epub200Parser.cs" />
     <Compile Include="Service\Epub\Epub300Parser.cs" />
     <Compile Include="Service\Epub\Epub301Parser.cs" />
     <Compile Include="Service\Epub\EpubParser.cs" />
     <Compile Include="Service\FileService.cs" />
+    <Compile Include="Service\IBookshelfService.cs" />
     <Compile Include="Service\IEpubLoader.cs" />
     <Compile Include="Service\IFileService.cs" />
     <Compile Include="Service\IMessageBus.cs" />
-    <Compile Include="Service\IWebViewMessages.cs" />
     <Compile Include="Service\MessageBus.cs" />
     <Compile Include="Service\WebViewMessages.cs" />
     <Compile Include="View\ReaderWebView.cs" />
@@ -157,7 +173,19 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Page\Home\AddBookCard.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Page\Reader\QuickPanelTab\Content.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\Home\BookCard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -13,12 +13,10 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Content : StackLayout {
 
-        private IWebViewMessages _messages;
 
         public event EventHandler<Model.Navigation.Item> OnChapterChange;
 
         public Content() {
-            _messages = IocManager.Container.Resolve<IWebViewMessages>();
 
             InitializeComponent();
         }

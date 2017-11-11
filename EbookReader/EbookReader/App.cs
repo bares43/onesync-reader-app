@@ -10,7 +10,6 @@ namespace EbookReader {
     public class App : Application {
 
         static HomePage homePage;
-        static ReaderPage readerPage;
         static SettingsPage settingsPage;
 
         public App() {
@@ -25,14 +24,6 @@ namespace EbookReader {
             return homePage;
         }
         
-        public static ReaderPage ReaderPage() {
-            if(readerPage == null) {
-                readerPage = new ReaderPage();
-            }
-
-            return readerPage;
-        }
-
         public static SettingsPage SettingsPage() {
             if(settingsPage == null) {
                 settingsPage = new SettingsPage();

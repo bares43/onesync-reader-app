@@ -9,7 +9,7 @@ using EbookReader.View;
 using Xamarin.Forms;
 
 namespace EbookReader.Service {
-    public class WebViewMessages : IWebViewMessages {
+    public class WebViewMessages {
 
         ReaderWebView _webView;
         bool webViewLoaded = false;
@@ -57,8 +57,6 @@ namespace EbookReader.Service {
                 Device.BeginInvokeOnMainThread(async () => {
                     await _webView.InjectJavascriptAsync(string.Format("Messages.parse('{0}')", toSend));
                 });
-
-
 
                 if (message.Action == "init") {
                     this.webViewReaderInit = true;

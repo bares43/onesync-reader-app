@@ -57,6 +57,23 @@ namespace EbookReader.Service.Epub {
 
         public abstract Task<List<Model.Navigation.Item>> GetNavigation();
 
+        public string GetCover() {
+            var cover = string.Empty;
+
+            var id = this.GetMetadata()
+                .Elements()
+                .Where(o => o.Name.LocalName == "meta")
+                .Where(o => o.Attributes().Any(i => i.Name.LocalName == "name" && i.Value == "cover"))
+                .Select(o => o.Attributes().First(i => i.Name.LocalName == "content").Value)
+                .FirstOrDefault();
+
+            if (!string.IsNullOrEmpty(id)) {
+                cover = "OEBPS/" + this.GetFiles().First(o => o.Id == id).Href;
+            }
+
+            return cover;
+        }
+
         private XElement GetMetadata() {
             return Package.Descendants().Where(o => o.Name.LocalName == "metadata").First();
         }
