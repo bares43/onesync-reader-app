@@ -34,6 +34,10 @@
                 <Label Text="Odsazení" />
                 <Picker x:Name="MarginPicker" ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}" />
             </StackLayout>
+            <StackLayout Style="{StaticResource settingsWrapper}">
+                <Label Text="Rychlost scrollováni (ms)" />
+                <Picker ItemsSource="{Binding ScrollSpeed.Items}" SelectedItem="{Binding ScrollSpeed.Value}" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

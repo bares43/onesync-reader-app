@@ -14,10 +14,14 @@ namespace EbookReader.Model.View {
         public SettingsReaderVM() {
             FontSize = new FontSizeVM();
             Margin = new MarginVM();
+            ScrollSpeed = new ScrollSpeedVM();
         }
 
         public FontSizeVM FontSize { get; set; }
 
         public MarginVM Margin { get; set; }
+
+        public ScrollSpeedVM ScrollSpeed { get; set; }
+
     }
 }

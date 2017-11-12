@@ -16,6 +16,7 @@ namespace EbookReader {
         public static class Reader {
             private static int FontSizeDefault = 20;
             private static int MarginDefault = 30;
+            private static int ScrollSpeedDefault = 200;
 
             public static int FontSize {
                 get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(FontSize)), FontSizeDefault);
@@ -25,6 +26,11 @@ namespace EbookReader {
             public static int Margin {
                 get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(Margin)), MarginDefault);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(Margin)), value);
+            }
+
+            public static int ScrollSpeed {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(ScrollSpeed)), ScrollSpeedDefault);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(ScrollSpeed)), value);
             }
         }
 

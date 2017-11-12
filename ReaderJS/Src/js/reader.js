@@ -25,11 +25,13 @@ window.Ebook = {
   webViewWidth: 0,
   webViewHeight: 0,
   webViewMargin: 0,
-  init: function(width, height, margin, fontSize) {
+  scrollSpeed: 0,
+  init: function(width, height, margin, fontSize, scrollSpeed) {
     this.webViewWidth = width;
     this.webViewHeight = height;
     this.webViewMargin = margin;
     this.fontSize = fontSize;
+    this.scrollSpeed = scrollSpeed;
 
     this.htmlHelper.setFontSize();
     this.htmlHelper.setWidth();
@@ -132,7 +134,7 @@ window.Ebook = {
   },
   goToPage: function(page, duration) {
     if (duration === undefined) {
-      duration = 500;
+      duration = Ebook.scrollSpeed;
     }
 
     this.goToPageInternal(page, duration);
@@ -442,7 +444,7 @@ window.Messages = {
   },
   actions: {
     init: function(data) {
-      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize);
+      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed);
     },
     loadHtml: function(data) {
       $("#content").html(data.Html);

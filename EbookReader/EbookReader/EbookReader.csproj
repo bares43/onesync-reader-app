@@ -60,6 +60,7 @@
     <Compile Include="Model\View\FontSizeVM.cs" />
     <Compile Include="Model\View\MarginVM.cs" />
     <Compile Include="Model\View\QuickPanelSettingsVM.cs" />
+    <Compile Include="Model\View\ScrollSpeedVM.cs" />
     <Compile Include="Model\View\SettingsReaderVM.cs" />
     <Compile Include="Model\WebViewMessages\Message.cs" />
     <Compile Include="Model\WebViewMessages\NextChapterRequest.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\FontSizeProvider.cs" />
     <Compile Include="Provider\MarginProvider.cs" />
+    <Compile Include="Provider\ScrollSpeedProvider.cs" />
     <Compile Include="Service\BookshelfService.cs" />
     <Compile Include="Model\Bookshelf\Book.cs" />
     <Compile Include="Model\Bookshelf\Bookshelf.cs" />
