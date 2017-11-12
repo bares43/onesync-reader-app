@@ -13,7 +13,7 @@
             <Button Text="Zavřít" Clicked="ButtonClose_Clicked"></Button>
         </StackLayout>
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <local:Settings x:Name="PanelSettings" x:FieldModifier="public" OnSet="PanelSettings_OnSet"></local:Settings>
+            <local:Settings x:Name="PanelSettings" x:FieldModifier="public"></local:Settings>
             <local:Content x:Name="PanelContent" x:FieldModifier="public" IsVisible="False" OnChapterChange="PanelContent_OnChapterChange"></local:Content>
         </StackLayout>
     </StackLayout.Children>

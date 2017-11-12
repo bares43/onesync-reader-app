@@ -40,14 +40,14 @@
                     <ViewCell>
                         <StackLayout Style="{StaticResource settingsWrapper}">
                             <Label Text="Písmo" />
-                            <Picker x:Name="FontPicker" SelectedIndexChanged="FontPicker_SelectedIndexChanged">
+                            <Picker x:Name="FontPicker" ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}">
                             </Picker>
                         </StackLayout>
                     </ViewCell>
                     <ViewCell>
                         <StackLayout Style="{StaticResource settingsWrapper}">
                             <Label Text="Odsazení" />
-                            <Picker x:Name="MarginPicker" SelectedIndexChanged="MarginPicker_SelectedIndexChanged">
+                            <Picker x:Name="MarginPicker" ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}">
                             </Picker>
                         </StackLayout>
                     </ViewCell>

@@ -102,10 +102,10 @@ namespace EbookReader.Page {
 
         private void WebView_OnContentLoaded(object sender, EventArgs e) {
             this.InitWebView(
-                (int)this.WebView.Width,
-                (int)this.WebView.Height,
-                30,
-                20
+                (int)WebView.Width,
+                (int)WebView.Height,
+                UserSettings.Reader.Margin,
+                UserSettings.Reader.FontSize
             );
         }
 

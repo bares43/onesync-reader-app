@@ -8,26 +8,11 @@ using Xamarin.Forms.Xaml;
 
 namespace EbookReader.Page {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage {
+    public partial class SettingsPage : TabbedPage {
         public SettingsPage() {
             InitializeComponent();
 
-            Init();
-        }
-
-        private void Init() {
-
-            Title = "E-book Reader - Nastavení";
-
-            Content = new StackLayout {
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Children = {
-                    new Label {
-                        Text = "Nastavení..."
-                    }
-                }
-            };
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

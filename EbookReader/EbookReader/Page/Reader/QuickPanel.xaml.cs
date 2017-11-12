@@ -3,7 +3,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Autofac;
+using EbookReader.Model.Messages;
+using EbookReader.Service;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,16 +13,20 @@ namespace EbookReader.Page.Reader {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QuickPanel : StackLayout {
 
+        IMessageBus _messageBus;
+
         public QuickPanel() {
+
+            _messageBus = IocManager.Container.Resolve<IMessageBus>();
+
             InitializeComponent();
 
             this.OpenSettings();
-        }
 
-        private void PanelSettings_OnSet(object sender, EventArgs e) {
-            this.Hide();
-        }
+            _messageBus.Subscribe<CloseQuickPanel>((msg) => this.Hide());
 
+        }
+        
         private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
             this.Hide();
         }

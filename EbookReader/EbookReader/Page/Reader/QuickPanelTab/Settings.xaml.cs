@@ -9,49 +9,13 @@ using EbookReader.Service;
 using EbookReader.Model.Messages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using EbookReader.Model.View;
 
 namespace EbookReader.Page.Reader.QuickPanelTab {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Settings : StackLayout {
 
-        public List<string> FontSizes {
-            get {
-                return new List<string> {
-                    "12",
-                    "14",
-                    "16",
-                    "18",
-                    "20",
-                    "22",
-                    "24",
-                    "26",
-                    "28",
-                    "30",
-                    "32",
-                    "34",
-                    "36",
-                    "38",
-                    "40"
-                };
-            }
-        }
-
-        public List<string> Margins {
-            get {
-                return new List<string> {
-                    "15",
-                    "30",
-                    "45",
-                };
-            }
-        }
-
-        public string DefaultFont = "20";
-        public string DefaultMargin = "30";
-
         private IMessageBus _messageBus;
-
-        public event EventHandler OnSet;
 
         public Settings() {
 
@@ -60,11 +24,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
 
             InitializeComponent();
 
-            FontPicker.ItemsSource = this.FontSizes;
-            FontPicker.SelectedItem = this.DefaultFont;
-
-            MarginPicker.ItemsSource = this.Margins;
-            MarginPicker.SelectedItem = this.DefaultMargin;
+            BindingContext = new QuickPanelSettingsVM();
 
             if (Device.RuntimePlatform == Device.Android) {
                 FontPicker.WidthRequest = 75;
@@ -85,26 +45,11 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
 
         private void Brightness_ValueChanged(object sender, ValueChangedEventArgs e) {
             if (e.OldValue != e.NewValue) {
-                _messageBus.Send(new Model.Messages.ChangesBrightness {
+                _messageBus.Send(new ChangesBrightness {
                     Brightness = (float)e.NewValue / 100
                 });
             }
         }
 
-        private void MarginPicker_SelectedIndexChanged(object sender, EventArgs e) {
-            if (this.MarginPicker.SelectedIndex != -1) {
-                var margin = int.Parse(this.Margins[this.MarginPicker.SelectedIndex]);
-                _messageBus.Send(new ChangeMargin { Margin = margin });
-                this.OnSet?.Invoke(this, e);
-            }
-        }
-
-        private void FontPicker_SelectedIndexChanged(object sender, EventArgs e) {
-            if (this.FontPicker.SelectedIndex != -1) {
-                var fontSize = int.Parse(this.FontSizes[this.FontPicker.SelectedIndex]);
-                _messageBus.Send(new ChangeFontSize { FontSize = fontSize });
-                this.OnSet?.Invoke(this, e);
-            }
-        }
     }
 }
