@@ -25,7 +25,17 @@ namespace EbookReader.Page {
 
             Init();
 
-            NavigationPage.SetHasNavigationBar(this, false);
+            var settingsItem = new ToolbarItem {
+                Text = "Nastavení",
+                Icon = "settings.png"
+            };
+            settingsItem.Clicked += SettingsItem_Clicked;
+
+            ToolbarItems.Add(settingsItem);
+        }
+
+        private async void SettingsItem_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(App.SettingsPage());
         }
 
         private async void Init() {

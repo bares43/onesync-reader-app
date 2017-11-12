@@ -35,7 +35,9 @@ namespace EbookReader {
         }
 
         public static void Build() {
-            _container = ContainerBuilder.Build();
+            if(_container == null) {
+                _container = ContainerBuilder.Build();
+            }
         }
 
         private static void SetUpIoc() {
