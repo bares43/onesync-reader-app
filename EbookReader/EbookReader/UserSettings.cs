@@ -34,6 +34,26 @@ namespace EbookReader {
             }
         }
 
+        public static class Synchronization {
+
+            public static bool Enabled {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(Enabled)), true);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(Enabled)), value);
+            }
+
+            public static string Service {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(Service)), "");
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(Service)), value);
+            }
+
+            public static class Dropbox {
+                public static string AccessToken {
+                    get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(Dropbox), nameof(AccessToken)), "");
+                    set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(Dropbox), nameof(AccessToken)), value);
+                }
+            }
+        }
+
         private static string CreateKey(params string[] names) {
             return string.Join(".", names);
         }
