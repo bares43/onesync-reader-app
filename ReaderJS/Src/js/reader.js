@@ -159,10 +159,10 @@ window.Ebook = {
     var currentPage = Ebook.currentPage;
     this.goToPageFast(1);
 
-    var result = this.pagerHelper.findNodeAtPosition(position, $("#content").get(0));
+    var result = this.pagerHelper.findNodeAtPosition(position, document.getElementById("content"));
     if (result.node !== null) {
       this.pagerHelper.createMark(result.node, position - result.positionCounter);
-      var page = this.pageOfElement($("#js-ebook-mark"));
+      var page = this.pageOfElement(document.getElementById("js-ebook-mark"));
 
       this.goToPageFast(currentPage);
       this.goToPage(page, duration);
@@ -447,7 +447,7 @@ window.Messages = {
       Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed);
     },
     loadHtml: function(data) {
-      $("#content").html(data.Html);
+      document.getElementById("content").innerHTML = data.Html;
 
       Ebook.loadImages(data.Images);
       Ebook.setUpEbook();
