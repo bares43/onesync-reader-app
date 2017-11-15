@@ -108,6 +108,7 @@
       <DependentUpon>Synchronization.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\DeviceNameProvider.cs" />
     <Compile Include="Provider\FontSizeProvider.cs" />
     <Compile Include="Provider\MarginProvider.cs" />
     <Compile Include="Provider\ScrollSpeedProvider.cs" />

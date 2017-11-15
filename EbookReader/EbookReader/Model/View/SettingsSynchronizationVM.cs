@@ -26,6 +26,17 @@ namespace EbookReader.Model.View {
             }
         }
 
+        public string DeviceName {
+            get => UserSettings.Synchronization.DeviceName;
+            set {
+                if(UserSettings.Synchronization.DeviceName == value)
+                    return;
+
+                UserSettings.Synchronization.DeviceName = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string DropboxAccessToken {
             get => UserSettings.Synchronization.Dropbox.AccessToken;
             set {

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using EbookReader.DependencyService;
+using EbookReader.Provider;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
@@ -37,19 +38,24 @@ namespace EbookReader {
         public static class Synchronization {
 
             public static bool Enabled {
-                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(Enabled)), true);
-                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(Enabled)), value);
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(Enabled)), true);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(Enabled)), value);
+            }
+
+            public static string DeviceName {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(DeviceName)), DeviceNameProvider.Name);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(DeviceName)), value);
             }
 
             public static string Service {
-                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(Service)), "");
-                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(Service)), value);
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(Service)), "");
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(Service)), value);
             }
 
             public static class Dropbox {
                 public static string AccessToken {
-                    get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(Dropbox), nameof(AccessToken)), "");
-                    set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(Dropbox), nameof(AccessToken)), value);
+                    get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(Dropbox), nameof(AccessToken)), "");
+                    set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(Dropbox), nameof(AccessToken)), value);
                 }
             }
         }

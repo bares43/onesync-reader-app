@@ -9,6 +9,13 @@
             <Style TargetType="Picker">
                 <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
                 <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="WidthRequest" Value="200"></Setter>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="WidthRequest" Value="200"></Setter>
             </Style>
 
             <OnPlatform x:TypeArguments="Thickness" Android="10,0" WinPhone="10" x:Key="settingsWrapperPadding" />
@@ -33,6 +40,12 @@
             </StackLayout>
 
             <StackLayout IsVisible="{Binding Enabled}">
+
+                <StackLayout Style="{StaticResource settingsWrapper}">
+                    <Label Text="Název zařízení" />
+                    <Entry Text="{Binding DeviceName}" />
+                </StackLayout>
+                
                 <StackLayout Style="{StaticResource settingsWrapper}">
                     <Label Text="Synchronizovat pomocí" />
                     <Picker ItemsSource="{Binding SynchronizationService.Items}" SelectedItem="{Binding SynchronizationService.Value}" />
