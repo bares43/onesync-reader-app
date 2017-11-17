@@ -49,6 +49,7 @@ namespace EbookReader {
             ContainerBuilder.RegisterType<MessageBus>().As<IMessageBus>().SingleInstance();
             ContainerBuilder.RegisterType<BookshelfService>().As<IBookshelfService>();
             ContainerBuilder.RegisterType<ReaderWebView>().As<ReaderWebView>();
+            ContainerBuilder.RegisterType<DropboxSyncService>().Keyed<ISyncService>(Model.Sync.Service.Dropbox);
         }
 
     }

@@ -23,6 +23,7 @@ namespace EbookReader.Page {
         IAssetsManager _assetsManager;
         IBookshelfService _bookshelfService;
         IMessageBus _messageBus;
+        ISyncService _syncService;
 
         Model.EpubSpine currentChapter;
 
@@ -43,6 +44,7 @@ namespace EbookReader.Page {
             _assetsManager = IocManager.Container.Resolve<IAssetsManager>();
             _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
+            _syncService = IocManager.Container.ResolveKeyed<ISyncService>(Model.Sync.Service.Dropbox);
 
             // webview events
             WebView.Messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
@@ -67,6 +69,7 @@ namespace EbookReader.Page {
         protected override void OnDisappearing() {
             base.OnDisappearing();
             _bookshelfService.SaveBook(_book);
+            _syncService.SaveProgress(_book.Id, _book.Position);
         }
 
         private void Messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
@@ -110,6 +113,15 @@ namespace EbookReader.Page {
                 if (loadedChapter != null) {
                     chapter = loadedChapter;
                     positionInChapter = position.SpinePosition;
+                }
+            }
+
+            var syncPosition = await _syncService.LoadProgress(_book.Id);
+            if(syncPosition != null && syncPosition.DeviceName != UserSettings.Synchronization.DeviceName) {
+                var res = await DisplayAlert("Pozice k dispozici", $"K dispozici je pozice ze zařízení {syncPosition.DeviceName}. Načíst?", "Ano", "Ne");
+                if(res) {
+                    chapter = _epub.Spines.FirstOrDefault(o => o.Idref == syncPosition.Position.Spine);
+                    positionInChapter = syncPosition.Position.SpinePosition;
                 }
             }
 
