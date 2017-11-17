@@ -44,7 +44,7 @@ describe('When resize', () => {
       const currentContent = await chromeless.getReaderContent();
 
       expect(currentContent).toBe(
-        'in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum'
+        'Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem.'
       );
 
       await chromeless.end();

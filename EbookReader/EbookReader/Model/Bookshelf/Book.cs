@@ -10,5 +10,16 @@ namespace EbookReader.Model.Bookshelf {
         public string Title { get; set; }
         public string Path { get; set; }
         public string Cover { get; set; }
+        public Position Position { get; set; }
+
+        public Book() {
+            Position = new Position();
+        }
+
+    }
+
+    public class Position {
+        public string Spine { get; set; }
+        public int SpinePosition { get; set; }
     }
 }

@@ -65,6 +65,16 @@ namespace EbookReader.Service {
             }
         }
 
+        public async void SaveBook(Model.Bookshelf.Book book) {
+            var bookshelf = await this.LoadBookshelf();
+            var currentBook = bookshelf.Books.FirstOrDefault(o => o.Id == book.Id);
+            if(currentBook != null) {
+                bookshelf.Books.Remove(currentBook);
+            }
+            bookshelf.Books.Add(book);
+            this.Save(bookshelf);
+        }
+
         private async Task<Model.Bookshelf.Bookshelf> LoadBookshelf() {
             var bookshelf = new Model.Bookshelf.Bookshelf();
 

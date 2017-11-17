@@ -11,5 +11,6 @@ namespace EbookReader.Service {
         Task<List<Model.Bookshelf.Book>> LoadBooks();
         Task<Model.Bookshelf.Book> LoadBookById(string id);
         void RemoveById(string id);
+        void SaveBook(Model.Bookshelf.Book book);
     }
 }

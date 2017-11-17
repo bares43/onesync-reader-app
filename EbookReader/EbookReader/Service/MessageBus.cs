@@ -12,7 +12,9 @@ namespace EbookReader.Service {
         public void Send<T>(T message) {
             var type = typeof(T);
 
-            foreach (var handler in _handlers.Where(o => o.Key == type).SelectMany(o => o.Value)) {
+            var handlers = _handlers.Where(o => o.Key == type).SelectMany(o => o.Value).ToList();
+
+            foreach (var handler in handlers) {
                 if (handler is Action<T> action) {
                     action.Invoke(message);
                 }

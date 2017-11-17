@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using EbookReader.DependencyService;
+using EbookReader.Model.Bookshelf;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Reader;
 using EbookReader.Service;
@@ -25,7 +26,14 @@ namespace EbookReader.Page {
 
         Model.EpubSpine currentChapter;
 
+        Book _book;
         Model.Epub _epub;
+
+
+        bool ResizeFirstRun = true;
+        bool ResizeTimerRunning = false;
+        int? ResizeTimerWidth;
+        int? ResizeTimerHeight;
 
         public ReaderPage() {
             InitializeComponent();
@@ -40,6 +48,7 @@ namespace EbookReader.Page {
             WebView.Messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
             WebView.Messages.OnPrevChapterRequest += _messages_OnPrevChapterRequest;
             WebView.Messages.OnOpenQuickPanelRequest += _messages_OnOpenQuickPanelRequest;
+            WebView.Messages.OnPageChange += Messages_OnPageChange;
 
             QuickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
@@ -53,9 +62,16 @@ namespace EbookReader.Page {
             _messageBus.Subscribe<ChangeFontSize>((msg) => this.SetFontSize(msg.FontSize));
 
             NavigationPage.SetHasNavigationBar(this, false);
-
         }
 
+        protected override void OnDisappearing() {
+            base.OnDisappearing();
+            _bookshelfService.SaveBook(_book);
+        }
+
+        private void Messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
+            _book.Position.SpinePosition = e.Position;
+        }
 
         private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
             var file = _epub.Files.FirstOrDefault(o => o.Href == e.Id);
@@ -79,17 +95,32 @@ namespace EbookReader.Page {
             await Navigation.PushAsync(App.HomePage());
         }
 
-        public void LoadBook(Model.Epub epub) {
-            _epub = epub;
-            QuickPanel.PanelContent.SetNavigation(epub.Navigation);
-            this.SendChapter(epub.Spines.First());
+        public async void LoadBook(Book book) {
+            _book = book;
+            _epub = await _epubLoader.OpenEpub(book.Path);
+            var position = _book.Position;
+
+            QuickPanel.PanelContent.SetNavigation(_epub.Navigation);
+
+            var chapter = _epub.Spines.First();
+            var positionInChapter = 0;
+
+            if (position != null && !string.IsNullOrEmpty(position.Spine)) {
+                var loadedChapter = _epub.Spines.FirstOrDefault(o => o.Idref == position.Spine);
+                if (loadedChapter != null) {
+                    chapter = loadedChapter;
+                    positionInChapter = position.SpinePosition;
+                }
+            }
+
+            this.SendChapter(chapter, position: positionInChapter);
         }
 
 
         private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
             var i = _epub.Spines.IndexOf(currentChapter);
             if (i > 0) {
-                this.SendChapter(_epub.Spines[i - 1], "last");
+                this.SendChapter(_epub.Spines[i - 1], lastPage: true);
             }
         }
 
@@ -110,20 +141,41 @@ namespace EbookReader.Page {
             );
         }
 
-        private async void SendChapter(Model.EpubSpine chapter, string page = "") {
+        private async void SendChapter(Model.EpubSpine chapter, int position = 0, bool lastPage = false) {
             currentChapter = chapter;
+            _book.Position.Spine = chapter.Idref;
 
             var html = await _epubLoader.GetChapter(_epub, chapter);
             var htmlResult = await _epubLoader.PrepareHTML(html, _epub.Folder);
 
             Device.BeginInvokeOnMainThread(() => {
-                this.SendHtml(htmlResult, page);
+                this.SendHtml(htmlResult, position, lastPage);
             });
 
         }
-
         private void WebView_SizeChanged(object sender, EventArgs e) {
-            this.ResizeWebView((int)this.WebView.Width, (int)this.WebView.Height);
+
+            if (ResizeFirstRun) {
+                ResizeFirstRun = false;
+                return;
+            }
+
+            ResizeTimerWidth = (int)WebView.Width;
+            ResizeTimerHeight = (int)WebView.Height;
+
+            if (!ResizeTimerRunning) {
+                ResizeTimerRunning = true;
+                Device.StartTimer(new TimeSpan(0, 0, 0, 0, 500), () => {
+
+                    if (ResizeTimerWidth.HasValue && ResizeTimerHeight.HasValue) {
+                        this.ResizeWebView(ResizeTimerWidth.Value, ResizeTimerHeight.Value);
+                    }
+
+                    ResizeTimerRunning = false;
+
+                    return false;
+                });
+            }
         }
 
         private void GoToStartOfPageInput_TextChanged(object sender, TextChangedEventArgs e) {
@@ -159,11 +211,12 @@ namespace EbookReader.Page {
             WebView.Messages.Send("resize", json);
         }
 
-        private void SendHtml(Model.EpubLoader.HtmlResult htmlResult, string page) {
+        private void SendHtml(Model.EpubLoader.HtmlResult htmlResult, int position = 0, bool lastPage = false) {
             var json = new {
                 Html = htmlResult.Html,
                 Images = htmlResult.Images,
-                Page = page,
+                Position = position,
+                LastPage = lastPage,
             };
 
             WebView.Messages.Send("loadHtml", json);

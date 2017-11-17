@@ -88,10 +88,8 @@ namespace EbookReader.Page {
         }
 
         private async void SendBookToReader(Model.Bookshelf.Book book) {
-            var epub = await _epubLoader.OpenEpub(book.Path);
-
             var page = new ReaderPage();
-            page.LoadBook(epub);
+            page.LoadBook(book);
             await Navigation.PushAsync(page);
         }
 

@@ -48,6 +48,49 @@ describe('When loadHtml', () => {
     await chromeless.end();
   });
 
+  test('should be currentPage set to correct value', async() => {
+    const chromeless = DevToolsLibrary.getChromeless();
+
+    await chromeless
+      .initDevTools(400, 800, 30, 45)
+      .sendLoadHtmlMessage(DevToolsLibrary.generateLoremIpsum());
+
+    const readerJS = await chromeless.getReaderJS();
+
+    expect(readerJS.currentPage).toBe(1);
+
+    await chromeless.end();
+  });
+
+  test('should be currentPosition set to correct value', async() => {
+    const chromeless = DevToolsLibrary.getChromeless();
+
+    await chromeless
+      .initDevTools(400, 800, 30, 45)
+      .sendLoadHtmlMessage(DevToolsLibrary.generateLoremIpsum());
+
+    const lastMessage = await chromeless.getLastReceivedMessage();
+
+    expect(lastMessage.data.Position).toBe(0);
+
+    await chromeless.end();
+  });
+
+  test('should be currentPosition set to correct value at second page', async() => {
+    const chromeless = DevToolsLibrary.getChromeless();
+
+    await chromeless
+      .initDevTools(400, 800, 30, 45)
+      .sendLoadHtmlMessage(DevToolsLibrary.generateLoremIpsum())
+      .goToPageFast(2);
+
+    const lastMessage = await chromeless.getLastReceivedMessage();
+      
+    expect(lastMessage.data.Position).toBe(0);
+
+    await chromeless.end();
+  });
+
   beforeAll(() => {
     DevToolsLibrary.init();
   });
