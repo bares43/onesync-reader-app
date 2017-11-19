@@ -26,12 +26,14 @@ window.Ebook = {
   webViewHeight: 0,
   webViewMargin: 0,
   scrollSpeed: 0,
-  init: function(width, height, margin, fontSize, scrollSpeed) {
+  clickEverywhere: false,
+  init: function(width, height, margin, fontSize, scrollSpeed, clickEverywhere) {
     this.webViewWidth = width;
     this.webViewHeight = height;
     this.webViewMargin = margin;
     this.fontSize = fontSize;
     this.scrollSpeed = scrollSpeed;
+    this.clickEverywhere = clickEverywhere;
 
     this.htmlHelper.setFontSize();
     this.htmlHelper.setWidth();
@@ -418,7 +420,7 @@ window.Messages = {
   },
   actions: {
     init: function(data) {
-      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed);
+      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed, data.ClickEverywhere);
     },
     loadHtml: function(data) {
       document.getElementById("content").innerHTML = data.Html;
@@ -523,7 +525,7 @@ window.Gestures = {
   },
   actions: {
     tap: function(x) {
-      if (x > Math.round(Ebook.pageWidth / 2)) {
+      if (Ebook.clickEverywhere || x > Math.round(Ebook.pageWidth / 2)) {
         Ebook.goToNextPage();
       } else {
         Ebook.goToPreviousPage();

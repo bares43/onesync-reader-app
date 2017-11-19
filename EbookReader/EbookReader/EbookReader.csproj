@@ -68,6 +68,7 @@
     <Compile Include="Model\View\MarginVM.cs" />
     <Compile Include="Model\View\QuickPanelSettingsVM.cs" />
     <Compile Include="Model\View\ScrollSpeedVM.cs" />
+    <Compile Include="Model\View\SettingsControlVM.cs" />
     <Compile Include="Model\View\SettingsReaderVM.cs" />
     <Compile Include="Model\View\SettingsSynchronizationVM.cs" />
     <Compile Include="Model\View\SynchronizationServiceVM.cs" />
@@ -100,6 +101,9 @@
     </Compile>
     <Compile Include="Page\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Settings\Control.xaml.cs">
+      <DependentUpon>Control.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page\Settings\Reader.xaml.cs">
       <DependentUpon>Reader.xaml</DependentUpon>
@@ -300,6 +304,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Page\Settings\SyncDropbox.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\Settings\Control.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

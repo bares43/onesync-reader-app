@@ -152,7 +152,8 @@ namespace EbookReader.Page {
                 (int)WebView.Height,
                 UserSettings.Reader.Margin,
                 UserSettings.Reader.FontSize,
-                UserSettings.Reader.ScrollSpeed
+                UserSettings.Reader.ScrollSpeed,
+                UserSettings.Control.ClickEverywhere
             );
         }
 
@@ -205,13 +206,14 @@ namespace EbookReader.Page {
             }
         }
 
-        private void InitWebView(int width, int height, int margin, int fontSize, int scrollSpeed) {
+        private void InitWebView(int width, int height, int margin, int fontSize, int scrollSpeed, bool clickEverywhere) {
             var json = new {
                 Width = width,
                 Height = height,
                 Margin = margin,
                 FontSize = fontSize,
                 ScrollSpeed = scrollSpeed,
+                ClickEverywhere = clickEverywhere,
             };
 
             WebView.Messages.Send("init", json);

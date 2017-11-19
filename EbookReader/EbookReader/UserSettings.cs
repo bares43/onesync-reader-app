@@ -78,6 +78,13 @@ namespace EbookReader {
 
         }
 
+        public static class Control {
+            public static bool ClickEverywhere {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Control), nameof(ClickEverywhere)), false);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(ClickEverywhere)), value);
+            }
+        }
+
         private static string CreateKey(params string[] names) {
             return string.Join(".", names);
         }

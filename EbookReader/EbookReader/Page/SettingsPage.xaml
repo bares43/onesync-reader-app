@@ -5,4 +5,5 @@
              x:Class="EbookReader.Page.SettingsPage">
     <local:Reader />
     <local:Synchronization />
+    <local:Control />
 </TabbedPage>
