@@ -9,11 +9,13 @@ namespace EbookReader.Provider {
 
         public const string Dumb = "Dumb";
         public const string Dropbox = "Dropbox";
+        public const string Firebase = "Firebase";
 
         public static List<string> Items {
             get {
                 return new List<string> {
                     Dropbox,
+                    Firebase,
                 };
             }
         }

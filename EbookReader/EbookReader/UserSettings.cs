@@ -58,6 +58,19 @@ namespace EbookReader {
                     set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(Dropbox), nameof(AccessToken)), value);
                 }
             }
+
+            public static class Firebase {
+                public static string Email {
+                    get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(Firebase), nameof(Email)), "");
+                    set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(Firebase), nameof(Email)), value);
+                }
+
+                public static string Password {
+                    get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(Firebase), nameof(Password)), "");
+                    set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(Firebase), nameof(Password)), value);
+                }
+            }
+
         }
 
         private static string CreateKey(params string[] names) {

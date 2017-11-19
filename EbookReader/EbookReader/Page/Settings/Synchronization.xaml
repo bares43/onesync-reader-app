@@ -58,6 +58,26 @@
                         <Button Text="Odpojit Dropbox" Command="{Binding DisconnectDropboxCommand}" />
                     </StackLayout>
                 </StackLayout>
+                <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Firebase'}}">
+                    <StackLayout Style="{StaticResource settingsWrapper}">
+                        <Label Text="E-mail" />
+                        <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}">
+                        <Label Text="Heslo" />
+                        <Entry Text="{Binding Firebase.Password}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" IsPassword="True" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}">
+                        <Button Text="Připojit" Command="{Binding Firebase.ConnectCommand}" />
+                        <Button Text="Zapomenuté heslo" Command="{Binding Firebase.ResetCommand}" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.LoginFailed}">
+                        <Label Text="Přihlášení se nepodařilo. Heslo musí být dlouhé minimálně 6 znaků."></Label>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.IsConnected}">
+                        <Button Text="Odpojit" Command="{Binding Firebase.DisconnectCommand}" />
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

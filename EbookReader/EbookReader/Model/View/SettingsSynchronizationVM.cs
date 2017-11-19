@@ -15,6 +15,8 @@ namespace EbookReader.Model.View {
 
         public SynchronizationServiceVM SynchronizationService { get; set; }
 
+        public FirebaseVM Firebase { get; set; }
+
         public bool Enabled {
             get => UserSettings.Synchronization.Enabled;
             set {
@@ -58,6 +60,7 @@ namespace EbookReader.Model.View {
 
         public SettingsSynchronizationVM() {
             SynchronizationService = new SynchronizationServiceVM();
+            Firebase = new FirebaseVM();
             ConnectToDropboxCommand = new Command(ConnectToDropbox);
             DisconnectDropboxCommand = new Command(DisconnectDropboxAsync);
 
