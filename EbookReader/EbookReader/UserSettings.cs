@@ -48,7 +48,7 @@ namespace EbookReader {
             }
 
             public static string Service {
-                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(Service)), "");
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(Service)), SynchronizationServicesProvider.Dumb);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(Service)), value);
             }
 

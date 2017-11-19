@@ -61,7 +61,6 @@
     <Compile Include="Model\Messages\OpenDropboxLogin.cs" />
     <Compile Include="Model\Navigation\Item.cs" />
     <Compile Include="Model\Sync\Position.cs" />
-    <Compile Include="Model\Sync\Service.cs" />
     <Compile Include="Model\View\BaseVM.cs" />
     <Compile Include="Model\View\FontSizeVM.cs" />
     <Compile Include="Model\View\MarginVM.cs" />
@@ -118,7 +117,8 @@
     <Compile Include="Service\BookshelfService.cs" />
     <Compile Include="Model\Bookshelf\Book.cs" />
     <Compile Include="Model\Bookshelf\Bookshelf.cs" />
-    <Compile Include="Service\DropboxSyncService.cs" />
+    <Compile Include="Service\DropboxCloudStorageService.cs" />
+    <Compile Include="Service\DumbCloudStorageService.cs" />
     <Compile Include="Service\EpubLoader.cs" />
     <Compile Include="Service\Epub\Epub200Parser.cs" />
     <Compile Include="Service\Epub\Epub300Parser.cs" />
@@ -126,11 +126,13 @@
     <Compile Include="Service\Epub\EpubParser.cs" />
     <Compile Include="Service\FileService.cs" />
     <Compile Include="Service\IBookshelfService.cs" />
+    <Compile Include="Service\ICloudStorageService.cs" />
     <Compile Include="Service\IEpubLoader.cs" />
     <Compile Include="Service\IFileService.cs" />
     <Compile Include="Service\IMessageBus.cs" />
     <Compile Include="Service\ISyncService.cs" />
     <Compile Include="Service\MessageBus.cs" />
+    <Compile Include="Service\SyncService.cs" />
     <Compile Include="Service\WebViewMessages.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="View\ReaderWebView.cs" />

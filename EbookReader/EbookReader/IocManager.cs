@@ -10,6 +10,7 @@ using EbookReader.Service.Epub;
 using EbookReader.View;
 using Xam.Plugin.WebView.Abstractions;
 using EbookReader.View;
+using EbookReader.Provider;
 
 namespace EbookReader {
     public static class IocManager {
@@ -49,7 +50,9 @@ namespace EbookReader {
             ContainerBuilder.RegisterType<MessageBus>().As<IMessageBus>().SingleInstance();
             ContainerBuilder.RegisterType<BookshelfService>().As<IBookshelfService>();
             ContainerBuilder.RegisterType<ReaderWebView>().As<ReaderWebView>();
-            ContainerBuilder.RegisterType<DropboxSyncService>().Keyed<ISyncService>(Model.Sync.Service.Dropbox);
+            ContainerBuilder.RegisterType<SyncService>().As<ISyncService>();
+            ContainerBuilder.RegisterType<DumbCloudStorageService>().Keyed<ICloudStorageService>(SynchronizationServicesProvider.Dumb);
+            ContainerBuilder.RegisterType<DropboxCloudStorageService>().Keyed<ICloudStorageService>(SynchronizationServicesProvider.Dropbox);
         }
 
     }

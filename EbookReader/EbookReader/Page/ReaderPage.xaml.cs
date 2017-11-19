@@ -44,7 +44,7 @@ namespace EbookReader.Page {
             _assetsManager = IocManager.Container.Resolve<IAssetsManager>();
             _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
-            _syncService = IocManager.Container.ResolveKeyed<ISyncService>(Model.Sync.Service.Dropbox);
+            _syncService = IocManager.Container.Resolve<ISyncService>();
 
             // webview events
             WebView.Messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
@@ -117,11 +117,14 @@ namespace EbookReader.Page {
             }
 
             var syncPosition = await _syncService.LoadProgress(_book.Id);
-            if(syncPosition != null && syncPosition.DeviceName != UserSettings.Synchronization.DeviceName) {
+            if (syncPosition != null && syncPosition.Position != null && syncPosition.DeviceName != UserSettings.Synchronization.DeviceName) {
                 var res = await DisplayAlert("Pozice k dispozici", $"K dispozici je pozice ze zařízení {syncPosition.DeviceName}. Načíst?", "Ano", "Ne");
-                if(res) {
-                    chapter = _epub.Spines.FirstOrDefault(o => o.Idref == syncPosition.Position.Spine);
-                    positionInChapter = syncPosition.Position.SpinePosition;
+                if (res) {
+                    var loadedChapter = _epub.Spines.FirstOrDefault(o => o.Idref == syncPosition.Position.Spine);
+                    if (loadedChapter != null) {
+                        chapter = loadedChapter;
+                        positionInChapter = syncPosition.Position.SpinePosition;
+                    }
                 }
             }
 
