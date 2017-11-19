@@ -542,18 +542,10 @@ window.Gestures = {
       Ebook.goToPreviousPage();
     },
     swipeLeftDouble: function() {
-      if (Ebook.currentPage < Ebook.totalPages) {
-        Ebook.goToPage(Ebook.totalPages);
-      } else {
-        Ebook.messagesHelper.nextChapterRequest();
-      }
+      Ebook.messagesHelper.nextChapterRequest();
     },
     swipeRightDouble: function() {
-      if (Ebook.currentPage > 1) {
-        Ebook.goToPage(1);
-      } else {
-        Ebook.messagesHelper.prevChapterRequest();
-      }
+      Ebook.goToPage(1);
     },
   },
 };
