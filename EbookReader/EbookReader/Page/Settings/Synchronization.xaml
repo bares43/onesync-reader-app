@@ -40,6 +40,10 @@
             </StackLayout>
 
             <StackLayout IsVisible="{Binding Enabled}">
+                <StackLayout Style="{StaticResource settingsWrapper}">
+                    <Label Text="Pouze na wifi" />
+                    <Switch IsToggled="{Binding OnlyWifi}" />
+                </StackLayout>
 
                 <StackLayout Style="{StaticResource settingsWrapper}">
                     <Label Text="Název zařízení" />

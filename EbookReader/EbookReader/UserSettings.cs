@@ -52,6 +52,11 @@ namespace EbookReader {
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(Service)), value);
             }
 
+            public static bool OnlyWifi {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(OnlyWifi)), false);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(OnlyWifi)), value);
+            }
+
             public static class Dropbox {
                 public static string AccessToken {
                     get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(Dropbox), nameof(AccessToken)), "");

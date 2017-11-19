@@ -28,6 +28,17 @@ namespace EbookReader.Model.View {
             }
         }
 
+        public bool OnlyWifi {
+            get => UserSettings.Synchronization.OnlyWifi;
+            set {
+                if (UserSettings.Synchronization.OnlyWifi == value)
+                    return;
+
+                UserSettings.Synchronization.OnlyWifi = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string DeviceName {
             get => UserSettings.Synchronization.DeviceName;
             set {

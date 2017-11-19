@@ -8,6 +8,7 @@ using EbookReader.Model.Bookshelf;
 using EbookReader.Model.Sync;
 using EbookReader.Provider;
 using Newtonsoft.Json;
+using Plugin.Connectivity;
 
 namespace EbookReader.Service {
     public class SyncService : ISyncService {
@@ -22,12 +23,17 @@ namespace EbookReader.Service {
         }
 
         public async Task<Progress> LoadProgress(string bookID) {
+
+            if (!CanSync()) return null;
+
             var path = this.PathGenerator(bookID, ProgressNode);
 
             return await _cloudStorageService.LoadJson<Progress>(path);
         }
 
         public void SaveProgress(string bookID, Position position) {
+
+            if (!CanSync()) return;
 
             var progress = new Progress {
                 BookID = bookID,
@@ -43,6 +49,17 @@ namespace EbookReader.Service {
 
         private string[] PathGenerator(string bookID, string node) {
             return new string[] { "data", bookID, node };
+        }
+
+        private bool CanSync() {
+            if (!UserSettings.Synchronization.Enabled) return false;
+            if (!CrossConnectivity.Current.IsConnected) return false;
+            if (UserSettings.Synchronization.OnlyWifi && 
+                !(CrossConnectivity.Current.ConnectionTypes.Contains(Plugin.Connectivity.Abstractions.ConnectionType.WiFi) ||
+                  CrossConnectivity.Current.ConnectionTypes.Contains(Plugin.Connectivity.Abstractions.ConnectionType.Desktop))
+                ) return false;
+
+            return true;
         }
     }
 }
