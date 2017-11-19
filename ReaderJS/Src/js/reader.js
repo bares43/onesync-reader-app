@@ -477,8 +477,18 @@ window.Gestures = {
       event: "swiperight",
       direction: Hammer.DIRECTION_RIGHT,
     });
+    var swipeleftdouble = new Hammer.Swipe({
+      event: "swipeleftdouble",
+      direction: Hammer.DIRECTION_LEFT,
+      pointers: 2,
+    });
+    var swiperightdouble = new Hammer.Swipe({
+      event: "swiperightdouble",
+      direction: Hammer.DIRECTION_RIGHT,
+      pointers: 2,
+    });
 
-    hammer.add([doubleTap, tap, press, swipeleft, swiperight]);
+    hammer.add([doubleTap, tap, press, swipeleft, swiperight, swipeleftdouble, swiperightdouble]);
 
     doubleTap.recognizeWith(tap);
     tap.requireFailure([doubleTap]);
@@ -502,6 +512,14 @@ window.Gestures = {
     hammer.on("swiperight", function() {
       Gestures.actions.swipeRight();
     });
+
+    hammer.on("swipeleftdouble", function() {
+      Gestures.actions.swipeLeftDouble();
+    });
+
+    hammer.on("swiperightdouble", function() {
+      Gestures.actions.swipeRightDouble();
+    });
   },
   actions: {
     tap: function(x) {
@@ -522,6 +540,20 @@ window.Gestures = {
     },
     swipeRight: function() {
       Ebook.goToPreviousPage();
+    },
+    swipeLeftDouble: function() {
+      if (Ebook.currentPage < Ebook.totalPages) {
+        Ebook.goToPage(Ebook.totalPages);
+      } else {
+        Ebook.messagesHelper.nextChapterRequest();
+      }
+    },
+    swipeRightDouble: function() {
+      if (Ebook.currentPage > 1) {
+        Ebook.goToPage(1);
+      } else {
+        Ebook.messagesHelper.prevChapterRequest();
+      }
     },
   },
 };
