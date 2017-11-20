@@ -425,6 +425,8 @@ window.Messages = {
       Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed, data.ClickEverywhere, data.DoubleSwipe);
     },
     loadHtml: function(data) {
+      Ebook.htmlHelper.hideContent();
+
       document.getElementById("content").innerHTML = data.Html;
 
       Ebook.loadImages(data.Images);
@@ -440,7 +442,9 @@ window.Messages = {
           Ebook.goToPageFast(1);
           Ebook.messagesHelper.sendPageChange();
         }
-
+      }, 5);
+      
+      setTimeout(function() {
         Ebook.htmlHelper.showContent();
       }, 5);
     },
