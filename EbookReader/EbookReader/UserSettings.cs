@@ -83,6 +83,11 @@ namespace EbookReader {
                 get => AppSettings.GetValueOrDefault(CreateKey(nameof(Control), nameof(ClickEverywhere)), false);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(ClickEverywhere)), value);
             }
+
+            public static bool DoubleSwipe {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Control), nameof(DoubleSwipe)), false);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(DoubleSwipe)), value);
+            }
         }
 
         private static string CreateKey(params string[] names) {

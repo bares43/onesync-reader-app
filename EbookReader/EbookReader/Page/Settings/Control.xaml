@@ -29,6 +29,10 @@
                 <Label Text="Posun vpřed klikem kamkoliv" />
                 <Switch IsToggled="{Binding ClickEverywhere}" />
             </StackLayout>
+            <StackLayout Style="{StaticResource settingsWrapper}">
+                <Label Text="Přechod mezi kapitolami pomocí swipu dvěma prsty" />
+                <Switch IsToggled="{Binding DoubleSwipe}" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

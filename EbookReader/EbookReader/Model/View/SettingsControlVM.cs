@@ -16,5 +16,16 @@ namespace EbookReader.Model.View {
                 OnPropertyChanged();
             }
         }
+
+        public bool DoubleSwipe {
+            get => UserSettings.Control.DoubleSwipe;
+            set {
+                if (UserSettings.Control.DoubleSwipe == value)
+                    return;
+
+                UserSettings.Control.DoubleSwipe = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

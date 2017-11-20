@@ -27,13 +27,15 @@ window.Ebook = {
   webViewMargin: 0,
   scrollSpeed: 0,
   clickEverywhere: false,
-  init: function(width, height, margin, fontSize, scrollSpeed, clickEverywhere) {
+  doubleSwipe: false,
+  init: function(width, height, margin, fontSize, scrollSpeed, clickEverywhere, doubleSwipe) {
     this.webViewWidth = width;
     this.webViewHeight = height;
     this.webViewMargin = margin;
     this.fontSize = fontSize;
     this.scrollSpeed = scrollSpeed;
     this.clickEverywhere = clickEverywhere;
+    this.doubleSwipe = doubleSwipe;
 
     this.htmlHelper.setFontSize();
     this.htmlHelper.setWidth();
@@ -420,7 +422,7 @@ window.Messages = {
   },
   actions: {
     init: function(data) {
-      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed, data.ClickEverywhere);
+      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed, data.ClickEverywhere, data.DoubleSwipe);
     },
     loadHtml: function(data) {
       document.getElementById("content").innerHTML = data.Html;
@@ -544,10 +546,14 @@ window.Gestures = {
       Ebook.goToPreviousPage();
     },
     swipeLeftDouble: function() {
-      Ebook.messagesHelper.nextChapterRequest();
+      if (Ebook.doubleSwipe) {
+        Ebook.messagesHelper.nextChapterRequest();
+      }
     },
     swipeRightDouble: function() {
-      Ebook.goToPage(1);
+      if (Ebook.doubleSwipe) {
+        Ebook.goToPage(1);
+      }
     },
   },
 };
