@@ -18,7 +18,6 @@ $.fn.removeClassRegex = function(regex) {
 
 window.Ebook = {
   pageWidth: 0,
-  scrollStep: 0,
   totalPages: 0,
   currentPage: 1,
   fontSize: 0,
@@ -57,13 +56,13 @@ window.Ebook = {
 
     this.goToPageFast(1);
 
-    var endOfChapterLeft = $("#js-ebook-end-of-chapter").position().left;
+    var endOfChapterLeft = document.getElementById("js-ebook-end-of-chapter").offsetLeft;
     this.totalPages = Math.ceil(endOfChapterLeft / this.pageWidth);
   },
   setUpColumns: function() {
-    this.pageWidth = $("#columns-inner").width();
-    $("#columns-inner").css("column-width", this.pageWidth + "px");
-    this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
+    var columnsInner = document.getElementById("columns-inner");
+    this.pageWidth = columnsInner.getBoundingClientRect().width;
+    columnsInner.style["column-width"] = this.pageWidth + "px";
   },
   resize: function(width, height) {
     Ebook.htmlHelper.hideContent();
@@ -149,12 +148,8 @@ window.Ebook = {
     this.currentPage = page;
 
     $('#columns-outer').animate({
-      scrollLeft: (page - 1) * this.scrollStep,
+      scrollLeft: (page - 1) * this.pageWidth,
     }, duration);
-  },
-  pageOfElement: function(el) {
-    var left = $(el).position().left + 1;
-    return Math.ceil(left / this.pageWidth);
   },
   goToPosition: function(position, duration) {
     Ebook.pagerHelper.computeLengthOfAllPages();
@@ -260,7 +255,7 @@ window.Ebook = {
 
       this.markAllPages();
 
-      var html = $("#content").html();
+      var html = document.getElementById("content").innerHTML;
       var pages = html.split('<span class="js-ebook-page-begin"></span>');
 
       var result = [];
@@ -382,10 +377,10 @@ window.Ebook = {
       $("body").addClass("reader-margin-" + Ebook.webViewMargin);
     },
     showContent: function() {
-      $("#content").css("opacity", 1);
+      document.getElementById("content").style.opacity = 1;
     },
     hideContent: function() {
-      $("#content").css("opacity", 0);
+      document.getElementById("content").style.opacity = 0;
     },
   },
   messagesHelper: {
