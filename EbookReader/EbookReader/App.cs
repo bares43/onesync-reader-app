@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Autofac;
+using EbookReader.Model.Messages;
 using EbookReader.Page;
+using EbookReader.Service;
 using Xamarin.Forms;
 
 namespace EbookReader {
@@ -38,6 +40,7 @@ namespace EbookReader {
 
         protected override void OnSleep() {
             // Handle when your app sleeps
+            IocManager.Container.Resolve<IMessageBus>().Send(new AppSleep());
         }
 
         protected override void OnResume() {

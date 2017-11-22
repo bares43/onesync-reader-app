@@ -36,6 +36,8 @@ namespace EbookReader.Page {
         int? ResizeTimerWidth;
         int? ResizeTimerHeight;
 
+        bool backgroundSync = true;
+
         public ReaderPage() {
             InitializeComponent();
 
@@ -62,14 +64,34 @@ namespace EbookReader.Page {
 
             _messageBus.Subscribe<ChangeMargin>((msg) => this.SetMargin(msg.Margin));
             _messageBus.Subscribe<ChangeFontSize>((msg) => this.SetFontSize(msg.FontSize));
+            _messageBus.Subscribe<AppSleep>(AppSleepSubscriber);
+
+            Device.StartTimer(new TimeSpan(0, 5, 0), () => {
+                if (backgroundSync) {
+                    this.SaveProgress();
+                }
+
+                return backgroundSync;
+            });
 
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
         protected override void OnDisappearing() {
             base.OnDisappearing();
+            this.SaveProgress();
+            backgroundSync = false;
+        }
+
+        private void SaveProgress() {
             _bookshelfService.SaveBook(_book);
             _syncService.SaveProgress(_book.Id, _book.Position);
+        }
+
+        private void AppSleepSubscriber(AppSleep msg) {
+            if (Device.RuntimePlatform == Device.UWP && backgroundSync) {
+                this.SaveProgress();
+            }
         }
 
         private void Messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
