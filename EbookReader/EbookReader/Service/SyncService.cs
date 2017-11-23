@@ -36,9 +36,7 @@ namespace EbookReader.Service {
             if (!CanSync()) return;
 
             var progress = new Progress {
-                BookID = bookID,
                 DeviceName = UserSettings.Synchronization.DeviceName,
-                DateTime = DateTime.UtcNow,
                 Position = position,
             };
 

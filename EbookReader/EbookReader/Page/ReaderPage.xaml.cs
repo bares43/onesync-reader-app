@@ -22,7 +22,7 @@ namespace EbookReader.Page {
         IMessageBus _messageBus;
         ISyncService _syncService;
 
-        Model.EpubSpine currentChapter;
+        int currentChapter;
 
         Book _book;
         Model.Epub _epub;
@@ -98,8 +98,8 @@ namespace EbookReader.Page {
             var chapter = _epub.Spines.First();
             var positionInChapter = 0;
 
-            if (position != null && !string.IsNullOrEmpty(position.Spine)) {
-                var loadedChapter = _epub.Spines.FirstOrDefault(o => o.Idref == position.Spine);
+            if (position != null) {
+                var loadedChapter = _epub.Spines.ElementAt(position.Spine);
                 if (loadedChapter != null) {
                     chapter = loadedChapter;
                     positionInChapter = position.SpinePosition;
@@ -120,8 +120,8 @@ namespace EbookReader.Page {
         }
 
         private async void SendChapter(Model.EpubSpine chapter, int position = 0, bool lastPage = false) {
-            currentChapter = chapter;
-            _book.Position.Spine = chapter.Idref;
+            currentChapter = _epub.Spines.IndexOf(chapter);
+            _book.Position.Spine = currentChapter;
 
             var html = await _epubLoader.GetChapter(_epub, chapter);
             var htmlResult = await _epubLoader.PrepareHTML(html, _epub.Folder);
@@ -148,15 +148,15 @@ namespace EbookReader.Page {
                 syncPosition.Position != null &&
                 !syncPosition.Position.Equals(_book.Position) &&
                 !syncPosition.Position.Equals(lastLoadedPosition) &&
-                syncPosition.DeviceName != UserSettings.Synchronization.DeviceName) {
-                var loadedChapter = _epub.Spines.FirstOrDefault(o => o.Idref == syncPosition.Position.Spine);
+                syncPosition.D != UserSettings.Synchronization.DeviceName) {
+                var loadedChapter = _epub.Spines.ElementAt(syncPosition.Position.Spine);
                 if (loadedChapter != null) {
-                    lastLoadedPosition = syncPosition.Position;
+                    lastLoadedPosition = new Position(syncPosition.Position);
                     Device.BeginInvokeOnMainThread(async () => {
                         syncPending = true;
-                        var loadPosition = await DisplayAlert("Postup čtení na jiném zařízení", $"Načíst postup čtení ze zařízení {syncPosition.DeviceName}?", "Načíst", "Ne");
+                        var loadPosition = await DisplayAlert("Postup čtení na jiném zařízení", $"Načíst postup čtení ze zařízení {syncPosition.D}?", "Načíst", "Ne");
                         if (loadPosition) {
-                            if (currentChapter.Idref != loadedChapter.Idref) {
+                            if (currentChapter != syncPosition.Position.Spine) {
                                 this.SendChapter(loadedChapter, position: syncPosition.Position.SpinePosition);
                             } else {
                                 _book.Position.SpinePosition = syncPosition.Position.SpinePosition;
@@ -190,16 +190,14 @@ namespace EbookReader.Page {
         }
 
         private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
-            var i = _epub.Spines.IndexOf(currentChapter);
-            if (i > 0) {
-                this.SendChapter(_epub.Spines[i - 1], lastPage: true);
+            if (currentChapter > 0) {
+                this.SendChapter(_epub.Spines[currentChapter - 1], lastPage: true);
             }
         }
 
         private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
-            var i = _epub.Spines.IndexOf(currentChapter);
-            if (i < _epub.Spines.Count - 1) {
-                this.SendChapter(_epub.Spines[i + 1]);
+            if (currentChapter < _epub.Spines.Count - 1) {
+                this.SendChapter(_epub.Spines[currentChapter + 1]);
             }
         }
 

@@ -19,7 +19,7 @@ namespace EbookReader.Model.Bookshelf {
     }
 
     public class Position {
-        public string Spine { get; set; }
+        public int Spine { get; set; }
         public int SpinePosition { get; set; }
 
         public Position() {
