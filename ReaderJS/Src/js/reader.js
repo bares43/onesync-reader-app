@@ -443,8 +443,8 @@ window.Messages = {
         Ebook.htmlHelper.showContent();
       }, 5);
     },
-    goToStartOfPage: function(data) {
-      Ebook.goToPosition(Ebook.pagerHelper.startOfPage(data.Page));
+    goToPosition: function(data) {
+      Ebook.goToPositionFast(data.Position);
     },
     changeFontSize: function(data) {
       Ebook.changeFontSize(data.FontSize);

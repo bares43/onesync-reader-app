@@ -9,9 +9,6 @@ using EbookReader.Model.Bookshelf;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Reader;
 using EbookReader.Service;
-using HtmlAgilityPack;
-using Plugin.FilePicker.Abstractions;
-using Xam.Plugin.WebView.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -30,13 +27,15 @@ namespace EbookReader.Page {
         Book _book;
         Model.Epub _epub;
 
-
         bool ResizeFirstRun = true;
         bool ResizeTimerRunning = false;
         int? ResizeTimerWidth;
         int? ResizeTimerHeight;
 
         bool backgroundSync = true;
+        Position lastSavedPosition = null;
+        Position lastLoadedPosition = new Position();
+        bool syncPending = false;
 
         public ReaderPage() {
             InitializeComponent();
@@ -68,6 +67,7 @@ namespace EbookReader.Page {
 
             Device.StartTimer(new TimeSpan(0, 5, 0), () => {
                 if (backgroundSync) {
+                    this.LoadProgress();
                     this.SaveProgress();
                 }
 
@@ -81,6 +81,11 @@ namespace EbookReader.Page {
             base.OnDisappearing();
             this.SaveProgress();
             backgroundSync = false;
+        }
+
+        protected override void OnAppearing() {
+            base.OnAppearing();
+            backgroundSync = true;
         }
 
         public async void LoadBook(Book book) {
@@ -101,19 +106,11 @@ namespace EbookReader.Page {
                 }
             }
 
-            var syncPosition = await _syncService.LoadProgress(_book.Id);
-            if (syncPosition != null && syncPosition.Position != null && syncPosition.DeviceName != UserSettings.Synchronization.DeviceName) {
-                var res = await DisplayAlert("Pozice k dispozici", $"K dispozici je pozice ze zařízení {syncPosition.DeviceName}. Načíst?", "Ano", "Ne");
-                if (res) {
-                    var loadedChapter = _epub.Spines.FirstOrDefault(o => o.Idref == syncPosition.Position.Spine);
-                    if (loadedChapter != null) {
-                        chapter = loadedChapter;
-                        positionInChapter = syncPosition.Position.SpinePosition;
-                    }
-                }
-            }
-
             this.SendChapter(chapter, position: positionInChapter);
+
+            var task = Task.Run(() => {
+                this.LoadProgress();
+            });
         }
 
         private void AppSleepSubscriber(AppSleep msg) {
@@ -121,7 +118,7 @@ namespace EbookReader.Page {
                 this.SaveProgress();
             }
         }
-        
+
         private async void SendChapter(Model.EpubSpine chapter, int position = 0, bool lastPage = false) {
             currentChapter = chapter;
             _book.Position.Spine = chapter.Idref;
@@ -134,11 +131,42 @@ namespace EbookReader.Page {
             });
 
         }
-        
+
         #region sync
         private void SaveProgress() {
             _bookshelfService.SaveBook(_book);
-            _syncService.SaveProgress(_book.Id, _book.Position);
+            if (!_book.Position.Equals(lastSavedPosition)) {
+                lastSavedPosition = new Position(_book.Position);
+                _syncService.SaveProgress(_book.Id, _book.Position);
+            }
+        }
+
+        private async void LoadProgress() {
+            var syncPosition = await _syncService.LoadProgress(_book.Id);
+            if (!syncPending &&
+                syncPosition != null &&
+                syncPosition.Position != null &&
+                !syncPosition.Position.Equals(_book.Position) &&
+                !syncPosition.Position.Equals(lastLoadedPosition) &&
+                syncPosition.DeviceName != UserSettings.Synchronization.DeviceName) {
+                var loadedChapter = _epub.Spines.FirstOrDefault(o => o.Idref == syncPosition.Position.Spine);
+                if (loadedChapter != null) {
+                    lastLoadedPosition = syncPosition.Position;
+                    Device.BeginInvokeOnMainThread(async () => {
+                        syncPending = true;
+                        var loadPosition = await DisplayAlert("Postup čtení na jiném zařízení", $"Načíst postup čtení ze zařízení {syncPosition.DeviceName}?", "Načíst", "Ne");
+                        if (loadPosition) {
+                            if (currentChapter.Idref != loadedChapter.Idref) {
+                                this.SendChapter(loadedChapter, position: syncPosition.Position.SpinePosition);
+                            } else {
+                                _book.Position.SpinePosition = syncPosition.Position.SpinePosition;
+                                this.GoToPosition(syncPosition.Position.SpinePosition);
+                            }
+                        }
+                        syncPending = false;
+                    });
+                }
+            }
         }
         #endregion
 
@@ -152,7 +180,7 @@ namespace EbookReader.Page {
                 }
             }
         }
-      
+
         private void Messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
             _book.Position.SpinePosition = e.Position;
         }
@@ -257,6 +285,14 @@ namespace EbookReader.Page {
             };
 
             WebView.Messages.Send("changeMargin", json);
+        }
+
+        private void GoToPosition(int position) {
+            var json = new {
+                Position = position,
+            };
+
+            WebView.Messages.Send("goToPosition", json);
         }
         #endregion
     }

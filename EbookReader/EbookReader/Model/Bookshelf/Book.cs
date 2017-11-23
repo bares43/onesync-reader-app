@@ -21,5 +21,17 @@ namespace EbookReader.Model.Bookshelf {
     public class Position {
         public string Spine { get; set; }
         public int SpinePosition { get; set; }
+
+        public Position() {
+        }
+
+        public Position(Position position) {
+            Spine = position.Spine;
+            SpinePosition = position.SpinePosition;
+        }
+
+        public bool Equals(Position obj) {
+            return obj != null && Spine == obj.Spine && SpinePosition == obj.SpinePosition;
+        }
     }
 }
