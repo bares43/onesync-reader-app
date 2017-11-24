@@ -261,8 +261,7 @@ window.Ebook = {
       var result = [];
 
       for (var i = 1; i <= Ebook.totalPages; i++) {
-        var partOfHtml = pages[i];
-        var clearText = this.clearText($("<p>" + partOfHtml + "</p>").text());
+        var clearText = this.clearText(this.stripHtmlTags(pages[i]));
         var length = clearText.length;
         result.push({
           page: i,
@@ -293,6 +292,11 @@ window.Ebook = {
       }
 
       Ebook.pagerHelper.cache = result;
+    },
+    stripHtmlTags: function(html) {
+      var div = document.createElement("div");
+      div.innerHTML = html;
+      return div.textContent;
     },
     removeMark: function() {
       var mark = document.getElementById("js-ebook-mark");
@@ -364,17 +368,17 @@ window.Ebook = {
   htmlHelper: {
     setFontSize: function() {
       $("body").removeClassRegex(/^reader-font-size-/);
-      $("body").addClass("reader-font-size-" + Ebook.fontSize);
+      document.getElementsByTagName("body")[0].classList.add("reader-font-size-" + Ebook.fontSize);
     },
     setWidth: function() {
-      $("#columns-outer").css("width", (Ebook.webViewWidth - (2 * Ebook.webViewMargin)) + "px");
+      document.getElementById("columns-outer").style.width = (Ebook.webViewWidth - (2 * Ebook.webViewMargin)) + "px";
     },
     setHeight: function() {
-      $("#columns-outer").css("height", (Ebook.webViewHeight - (2 * Ebook.webViewMargin)) + "px");
+      document.getElementById("columns-outer").style.height = (Ebook.webViewHeight - (2 * Ebook.webViewMargin)) + "px";
     },
     setMargin: function() {
       $("body").removeClassRegex(/^reader-margin-/);
-      $("body").addClass("reader-margin-" + Ebook.webViewMargin);
+      document.getElementsByTagName("body")[0].classList.add("reader-margin-" + Ebook.webViewMargin);
     },
     showContent: function() {
       document.getElementById("content").style.opacity = 1;
