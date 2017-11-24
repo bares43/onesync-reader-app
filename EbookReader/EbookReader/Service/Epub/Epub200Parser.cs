@@ -12,7 +12,7 @@ namespace EbookReader.Service.Epub {
 
         private IFileService _fileService;
 
-        public Epub200Parser(IFileService fileService, XElement package, IFolder folder) : base(package, folder) {
+        public Epub200Parser(IFileService fileService, XElement package, IFolder folder, string contentBasePath) : base(package, folder, contentBasePath) {
             _fileService = fileService;
         }
 
@@ -21,7 +21,7 @@ namespace EbookReader.Service.Epub {
             var tocFilename = this.GetTocFilename();
 
             if (!string.IsNullOrEmpty(tocFilename)) {
-                var tocFile = await _fileService.OpenFile($"OEBPS/{tocFilename}", Folder);
+                var tocFile = await _fileService.OpenFile($"{ContentBasePath}{tocFilename}", Folder);
                 var tocFileData = await tocFile.ReadAllTextAsync();
                 var xmlContainer = XDocument.Parse(tocFileData);
                 var items = xmlContainer.Root.Descendants().First(o => o.Name.LocalName == "navMap").Elements();

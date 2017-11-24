@@ -11,10 +11,12 @@ namespace EbookReader.Service.Epub {
 
         protected XElement Package { get; set; }
         protected IFolder Folder { get; set; }
+        protected string ContentBasePath { get; set; }
 
-        public EpubParser(XElement package, IFolder folder) {
+        public EpubParser(XElement package, IFolder folder, string contentBasePath) {
             this.Package = package;
             this.Folder = folder;
+            this.ContentBasePath = contentBasePath;
         }
 
         public virtual string GetTitle() {
@@ -68,7 +70,7 @@ namespace EbookReader.Service.Epub {
                 .FirstOrDefault();
 
             if (!string.IsNullOrEmpty(id)) {
-                cover = "OEBPS/" + this.GetFiles().First(o => o.Id == id).Href;
+                cover = $"{ContentBasePath}{this.GetFiles().First(o => o.Id == id).Href}";
             }
 
             return cover;

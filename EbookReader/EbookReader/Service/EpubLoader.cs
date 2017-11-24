@@ -32,6 +32,11 @@ namespace EbookReader.Service {
             var epubFolder = await FileSystem.Current.LocalStorage.GetFolderAsync(path);
 
             var contentFilePath = await this.GetContentFilePath(epubFolder);
+            var contentFilePathParts = contentFilePath.Split('/');
+            var contentBasePath = string.Join("/", contentFilePathParts.Take(contentFilePathParts.Length - 1));
+            if (!string.IsNullOrEmpty(contentBasePath)) {
+                contentBasePath += "/";
+            }
 
             var contentFileData = await _fileService.ReadFileData(contentFilePath, epubFolder);
 
@@ -41,7 +46,12 @@ namespace EbookReader.Service {
 
             var epubVersion = this.GetEpubVersion(package);
 
-            var epubParser = IocManager.Container.ResolveKeyed<EpubParser>(epubVersion, new NamedParameter("package", package), new NamedParameter("folder", epubFolder));
+            var epubParser = IocManager.Container.ResolveKeyed<EpubParser>(
+                epubVersion, 
+                new NamedParameter("package", package), 
+                new NamedParameter("folder", epubFolder),
+                new NamedParameter("contentBasePath", contentBasePath)
+            );
 
             var epub = new Model.Epub() {
                 Version = epubVersion,
@@ -52,6 +62,7 @@ namespace EbookReader.Service {
                 Spines = epubParser.GetSpines(),
                 Files = epubParser.GetFiles(),
                 Folder = path,
+                ContentBasePath = contentBasePath,
                 Navigation = await epubParser.GetNavigation(),
                 Cover = epubParser.GetCover()
             };
@@ -62,7 +73,7 @@ namespace EbookReader.Service {
         public async Task<string> GetChapter(Model.Epub epub, EpubSpine chapter) {
             var filename = epub.Files.Where(o => o.Id == chapter.Idref).First();
             var folder = await FileSystem.Current.LocalStorage.GetFolderAsync(epub.Folder);
-            return await _fileService.ReadFileData(string.Format("OEBPS/{0}", filename.Href), folder);
+            return await _fileService.ReadFileData($"{epub.ContentBasePath}{filename.Href}", folder);
         }
 
         public async Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, string epubFolderName) {
