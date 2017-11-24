@@ -50,5 +50,19 @@ namespace EbookReader.Service {
                 }
             } catch (DropboxException) { }
         }
+
+        public async void DeleteNode(string[] path) {
+
+            try {
+                var accessToken = UserSettings.Synchronization.Dropbox.AccessToken;
+
+                if (!string.IsNullOrEmpty(accessToken)) {
+                    using (var dbx = new DropboxClient(accessToken)) {
+                        await dbx.Files.DeleteV2Async($"/{string.Join("/", path)}");
+                    }
+                }
+
+            } catch (DropboxException) { }
+        }
     }
 }

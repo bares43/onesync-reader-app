@@ -45,8 +45,15 @@ namespace EbookReader.Service {
             _cloudStorageService.SaveJson(progress, path);
         }
 
+        public void DeleteBook(string bookID) {
+
+            if (!CanSync()) return;
+
+            _cloudStorageService.DeleteNode(this.PathGenerator(bookID, string.Empty));
+        }
+
         private string[] PathGenerator(string bookID, string node) {
-            return new string[] { "data", bookID, node };
+            return new string[] { "data", bookID, node }.Where(o => !string.IsNullOrEmpty(o)).ToArray();
         }
 
         private bool CanSync() {

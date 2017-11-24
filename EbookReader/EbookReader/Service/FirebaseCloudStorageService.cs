@@ -26,6 +26,13 @@ namespace EbookReader.Service {
             } catch (Exception) { }
         }
 
+        public async void DeleteNode(string[] path) {
+            try {
+                var auth = await this.GetAuth();
+                await this.GetFirebase().Child($"{this.PathGenerator(path, auth)}").WithAuth(auth.FirebaseToken).DeleteAsync();
+            } catch (Exception) { }
+        }
+
         private FirebaseClient GetFirebase() {
             return new FirebaseClient(AppSettings.Synchronization.Firebase.BaseUrl);
         }

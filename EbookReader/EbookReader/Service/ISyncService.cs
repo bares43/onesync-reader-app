@@ -10,5 +10,6 @@ namespace EbookReader.Service {
     public interface ISyncService {
         void SaveProgress(string bookID, Position position);
         Task<Progress> LoadProgress(string bookID);
+        void DeleteBook(string bookID);
     }
 }

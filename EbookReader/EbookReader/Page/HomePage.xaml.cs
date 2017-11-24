@@ -18,6 +18,7 @@ namespace EbookReader.Page {
         IBookshelfService _bookshelfService;
         IMessageBus _messageBus;
         IEpubLoader _epubLoader;
+        ISyncService _syncService;
 
         public HomePage() {
 
@@ -44,6 +45,7 @@ namespace EbookReader.Page {
             _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
             _epubLoader = IocManager.Container.Resolve<IEpubLoader>();
+            _syncService = IocManager.Container.Resolve<ISyncService>();
 
             var books = await _bookshelfService.LoadBooks();
 
@@ -77,13 +79,19 @@ namespace EbookReader.Page {
         }
 
         private async void DeleteBook(DeleteBook msg) {
-            var confirm = await DisplayActionSheet("Smazat knihu?", "Smazat", "Ne");
-            if (confirm == "Smazat") {
+            var deleteButton = "Smazat";
+            var deleteSyncButton = "Smazat včetně všech synchronizací";
+            var confirm = await DisplayActionSheet("Smazat knihu z knihovny?", deleteButton, "Ne", deleteSyncButton);
+            if (confirm == deleteButton || confirm == deleteSyncButton) {
                 var card = Bookshelf.Children.FirstOrDefault(o => o.StyleId == msg.Book.Id);
                 if (card != null) {
                     Bookshelf.Children.Remove(card);
                 }
                 _bookshelfService.RemoveById(msg.Book.Id);
+
+                if(confirm == deleteSyncButton) {
+                    _syncService.DeleteBook(msg.Book.Id);
+                }
             }
         }
 
