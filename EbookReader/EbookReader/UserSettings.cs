@@ -42,6 +42,17 @@ namespace EbookReader {
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(Enabled)), value);
             }
 
+            public static long DeviceID {
+                get {
+                    var id = AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(DeviceID)), default(long));
+                    if(id == default(long)) {
+                        id = DeviceIdProvider.ID;
+                        AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(DeviceID)), id);
+                    }
+                    return id;
+                }
+            }
+
             public static string DeviceName {
                 get => AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(DeviceName)), DeviceNameProvider.Name);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(DeviceName)), value);
