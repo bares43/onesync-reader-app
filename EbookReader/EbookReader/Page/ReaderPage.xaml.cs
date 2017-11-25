@@ -172,7 +172,11 @@ namespace EbookReader.Page {
 
         #region events
         private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
-            var file = _epub.Files.FirstOrDefault(o => o.Href == e.Id);
+            var requestedID = e.Id;
+            if (!string.IsNullOrEmpty(requestedID)) {
+                requestedID = requestedID.Split('#').First();
+            }
+            var file = _epub.Files.FirstOrDefault(o => o.Href == requestedID);
             if (file != null) {
                 var spine = _epub.Spines.FirstOrDefault(o => o.Idref == file.Id);
                 if (spine != null) {
