@@ -160,7 +160,7 @@ window.Ebook = {
     while (currentPosition < position) {
       page++;
 
-      var length = Ebook.pagerHelper.getCachedItem(page);
+      var length = Ebook.pagerHelper.cache.get(page);
       if (length !== undefined) {
         currentPosition += length;
       }
@@ -184,20 +184,9 @@ window.Ebook = {
     $("img").css("max-height", (Ebook.webViewHeight - (2 * Ebook.webViewMargin)) + "px");
   },
   pagerHelper: {
-    cache: [],
+    cache: new Map(),
     invalideCache: function() {
-      this.cache = [];
-    },
-    getCachedItem: function(page) {
-      var cache = this.cache.filter(function(item) {
-        return item.page === page;
-      })[0];
-
-      if (cache) {
-        return cache.length;
-      }
-
-      return undefined;
+      this.cache = new Map();
     },
     startOfPage: function(page) {
       page = Math.min(Math.max(page, 1), Ebook.totalPages);
@@ -207,7 +196,7 @@ window.Ebook = {
       var start = 0;
 
       for (var i = 1; i < page; i++) {
-        var length = this.getCachedItem(i);
+        var length = this.cache.get(i);
         if (length !== undefined) {
           start += length;
         }
@@ -219,37 +208,36 @@ window.Ebook = {
 
       return start;
     },
-    markStartOfPage: function() {
-      var rect = {
-        top: Ebook.webViewMargin,
-        left: Ebook.webViewMargin,
-        width: Ebook.webViewWidth - (2 * Ebook.webViewMargin),
-        height: Ebook.webViewHeight - (2 * Ebook.webViewMargin),
-      };
-
-      if (document.caretRangeFromPoint) {
-        var range = document.caretRangeFromPoint(rect.left, rect.top);
-
-        if (range !== null) {
-          var mark = document.createElement("span");
-          mark.setAttribute("class", "js-ebook-page-begin");
-
-          range.insertNode(mark);
-        }
-      }
-    },
     markAllPages: function() {
       var currentPage = Ebook.currentPage;
 
+      var rect = {
+        top: Ebook.webViewMargin,
+        left: Ebook.webViewMargin,
+      };
+
+      var ranges = [];
       for (var i = 1; i <= Ebook.totalPages; i++) {
         Ebook.goToPageFast(i);
-        this.markStartOfPage();
+
+        var range = document.caretRangeFromPoint(rect.left, rect.top);
+        
+        if (range !== null) {
+          ranges.push(range);
+        }
       }
+
+      ranges.forEach(function(range) {
+        var mark = document.createElement("span");
+        mark.setAttribute("class", "js-ebook-page-begin");
+
+        range.insertNode(mark);
+      });
 
       Ebook.goToPageFast(currentPage);
     },
     computeLengthOfAllPages: function() {
-      if (this.cache.length > 0) { 
+      if (this.cache.size > 0) { 
         return; 
       }
 
@@ -258,15 +246,12 @@ window.Ebook = {
       var html = document.getElementById("content").innerHTML;
       var pages = html.split('<span class="js-ebook-page-begin"></span>');
 
-      var result = [];
+      var result = new Map();
 
       for (var i = 1; i <= Ebook.totalPages; i++) {
         var clearText = this.clearText(this.stripHtmlTags(pages[i]));
         var length = clearText.length;
-        result.push({
-          page: i,
-          length: length,
-        });
+        result.set(i, length);
       }
 
       var mark = document.getElementsByClassName("js-ebook-page-begin")[0];
@@ -297,69 +282,6 @@ window.Ebook = {
       var div = document.createElement("div");
       div.innerHTML = html;
       return div.textContent;
-    },
-    removeMark: function() {
-      var mark = document.getElementById("js-ebook-mark");
-
-      if (mark !== null) {
-        var textNode = mark.firstChild;
-        if (textNode !== null) {
-          var previousNode = mark.previousSibling;
-          var text = textNode.nodeValue;
-
-          if (previousNode !== null && previousNode.nodeType === Node.TEXT_NODE) {
-            text = previousNode.nodeValue + text;
-            previousNode.remove();
-          }
-
-          mark.parentNode.replaceChild(document.createTextNode(text), mark);
-        } else {
-          mark.remove();
-        }
-      }
-    },
-    createMark: function(node, position) {
-      var regex = /(\s*\S+)(\s+)?([\S\s]*)?/;
-      var counter = 0;
-      var found = false;
-
-      var text = node.nodeValue;
-
-      var textBefore = "";
-
-      var mark = document.createElement("span");
-      mark.setAttribute("id", "js-ebook-mark");
-
-      while (regex.test(text) && !found) {
-        var match = regex.exec(text);
-
-        var currentText = match[1];
-        var whiteCharacters = match[2];
-
-        text = match[3];
-
-        if (text === undefined) {
-          text = "";
-        }
-
-        var length = this.clearText(currentText).length;
-
-        counter += length;
-
-        if (counter >= position) {
-          found = true;
-          mark.appendChild(document.createTextNode(currentText + whiteCharacters + text));
-        } else {
-          textBefore += currentText + whiteCharacters;
-        }
-      }
-
-      var textBeforeNode = document.createTextNode(textBefore);
-
-      var parent = node.parentNode;
-
-      parent.replaceChild(mark, node);
-      parent.insertBefore(textBeforeNode, mark);
     },
     clearText: function(text) {
       return text.replace(/\s/g, '');
