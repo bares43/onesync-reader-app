@@ -4,18 +4,6 @@
 /*global csCallback*/
 /*global Hammer*/
 /*global Gestures*/
-
-$.fn.removeClassRegex = function(regex) {
-  return $(this).removeClass(function(index, classes) {
-    return classes
-      .split(/\s+/)
-      .filter(function(c) {
-        return regex.test(c);
-      })
-      .join(' ');
-  });
-};
-
 window.Ebook = {
   pageWidth: 0,
   totalPages: 0,
@@ -327,8 +315,9 @@ window.Ebook = {
   },
   htmlHelper: {
     setFontSize: function() {
-      $("body").removeClassRegex(/^reader-font-size-/);
-      document.getElementsByTagName("body")[0].classList.add("reader-font-size-" + Ebook.fontSize);
+      var body = document.getElementsByTagName("body")[0];
+      body.className = body.className.replace(/reader-font-size-\S+/, " ");
+      body.classList.add("reader-font-size-" + Ebook.fontSize);
     },
     setWidth: function() {
       document.getElementById("columns-outer").style.width = (Ebook.webViewWidth - (2 * Ebook.webViewMargin)) + "px";
@@ -337,8 +326,9 @@ window.Ebook = {
       document.getElementById("columns-outer").style.height = (Ebook.webViewHeight - (2 * Ebook.webViewMargin)) + "px";
     },
     setMargin: function() {
-      $("body").removeClassRegex(/^reader-margin-/);
-      document.getElementsByTagName("body")[0].classList.add("reader-margin-" + Ebook.webViewMargin);
+      var body = document.getElementsByTagName("body")[0];
+      body.className = body.className.replace(/reader-margin-\S+/, " ");
+      body.classList.add("reader-margin-" + Ebook.webViewMargin);
     },
     showContent: function() {
       document.getElementById("content").style.opacity = 1;
