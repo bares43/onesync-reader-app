@@ -78,6 +78,7 @@
     <Compile Include="Model\WebViewMessages\Message.cs" />
     <Compile Include="Model\WebViewMessages\NextChapterRequest.cs" />
     <Compile Include="Model\WebViewMessages\OpenQuickPanelRequest.cs" />
+    <Compile Include="Model\WebViewMessages\OpenUrl.cs" />
     <Compile Include="Model\WebViewMessages\PageChange.cs" />
     <Compile Include="Model\WebViewMessages\PrevChapterRequest.cs" />
     <Compile Include="Page\HomePage.xaml.cs">

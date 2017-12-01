@@ -189,7 +189,7 @@ window.Ebook = {
           if (href.startsWith("#")) {
             Ebook.goToMarker(href.slice(1));
           } else if (link.hostname) {
-            // externi url #29
+            Ebook.messagesHelper.sendOpenUrl(href);
           } else {
             Ebook.messagesHelper.sendChapterRequest(href);
           }
@@ -366,6 +366,9 @@ window.Ebook = {
     },
     sendChapterRequest: function(chapter) {
       Messages.send("ChapterRequest", {Chapter: chapter});
+    },
+    sendOpenUrl: function(url) {
+      Messages.send("OpenUrl", {Url: url});
     },
   },
 };

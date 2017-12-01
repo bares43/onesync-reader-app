@@ -54,6 +54,7 @@ namespace EbookReader.Page {
             WebView.Messages.OnOpenQuickPanelRequest += _messages_OnOpenQuickPanelRequest;
             WebView.Messages.OnPageChange += Messages_OnPageChange;
             WebView.Messages.OnChapterRequest += Messages_OnChapterRequest;
+            WebView.Messages.OnOpenUrl += Messages_OnOpenUrl;
 
             QuickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
@@ -77,6 +78,15 @@ namespace EbookReader.Page {
             });
 
             NavigationPage.SetHasNavigationBar(this, false);
+        }
+
+        private void Messages_OnOpenUrl(object sender, Model.WebViewMessages.OpenUrl e) {
+            if (!string.IsNullOrEmpty(e.Url)) {
+                try {
+                    var uri = new Uri(e.Url);
+                    Device.OpenUri(uri);
+                } catch (Exception) { }
+            }
         }
 
         private void Messages_OnChapterRequest(object sender, Model.WebViewMessages.ChapterRequest e) {
