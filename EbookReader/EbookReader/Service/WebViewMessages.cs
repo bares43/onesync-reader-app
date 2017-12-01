@@ -20,6 +20,7 @@ namespace EbookReader.Service {
         public event EventHandler<Model.WebViewMessages.NextChapterRequest> OnNextChapterRequest;
         public event EventHandler<Model.WebViewMessages.PrevChapterRequest> OnPrevChapterRequest;
         public event EventHandler<Model.WebViewMessages.OpenQuickPanelRequest> OnOpenQuickPanelRequest;
+        public event EventHandler<Model.WebViewMessages.ChapterRequest> OnChapterRequest;
 
         public WebViewMessages(ReaderWebView webView) {
             _webView = webView;
@@ -82,6 +83,9 @@ namespace EbookReader.Service {
                     break;
                 case Model.WebViewMessages.OpenQuickPanelRequest.Name:
                     this.OnOpenQuickPanelRequest?.Invoke(this, msg as Model.WebViewMessages.OpenQuickPanelRequest);
+                    break;
+                case Model.WebViewMessages.ChapterRequest.Name:
+                    this.OnChapterRequest?.Invoke(this, msg as Model.WebViewMessages.ChapterRequest);
                     break;
             }
 

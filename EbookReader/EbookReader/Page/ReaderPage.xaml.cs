@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using EbookReader.DependencyService;
+using EbookReader.Helpers;
 using EbookReader.Model.Bookshelf;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Reader;
@@ -52,6 +53,7 @@ namespace EbookReader.Page {
             WebView.Messages.OnPrevChapterRequest += _messages_OnPrevChapterRequest;
             WebView.Messages.OnOpenQuickPanelRequest += _messages_OnOpenQuickPanelRequest;
             WebView.Messages.OnPageChange += Messages_OnPageChange;
+            WebView.Messages.OnChapterRequest += Messages_OnChapterRequest;
 
             QuickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
@@ -75,6 +77,30 @@ namespace EbookReader.Page {
             });
 
             NavigationPage.SetHasNavigationBar(this, false);
+        }
+
+        private void Messages_OnChapterRequest(object sender, Model.WebViewMessages.ChapterRequest e) {
+            System.Diagnostics.Debug.WriteLine(e.Chapter);
+            if (!string.IsNullOrEmpty(e.Chapter)) {
+                var filename = e.Chapter.Split('#');
+                var hash = filename.Skip(1).FirstOrDefault();
+                var path = filename.FirstOrDefault();
+
+                var currentChapterPath = _epub.Files.First(o => o.Id == _epub.Spines.ElementAt(currentChapter).Idref).Href;
+
+                var newChapterPath = PathHelper.NormalizePath(PathHelper.CombinePath(currentChapterPath, path));
+                var chapterId = _epub.Files.Where(o => PathHelper.NormalizePath(o.Href) == newChapterPath).Select(o => o.Id).FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(chapterId)) {
+                    var chapter = _epub.Spines.FirstOrDefault(o => o.Idref == chapterId);
+
+                    System.Diagnostics.Debug.WriteLine(chapter);
+                    if (chapter != null) {
+                        this.SendChapter(chapter, marker: hash);
+                    }
+                }
+
+            }
         }
 
         protected override void OnDisappearing() {
@@ -119,7 +145,7 @@ namespace EbookReader.Page {
             }
         }
 
-        private async void SendChapter(Model.EpubSpine chapter, int position = 0, bool lastPage = false) {
+        private async void SendChapter(Model.EpubSpine chapter, int position = 0, bool lastPage = false, string marker = "") {
             currentChapter = _epub.Spines.IndexOf(chapter);
             _book.Position.Spine = currentChapter;
 
@@ -127,7 +153,7 @@ namespace EbookReader.Page {
             var htmlResult = await _epubLoader.PrepareHTML(html, _epub.Folder);
 
             Device.BeginInvokeOnMainThread(() => {
-                this.SendHtml(htmlResult, position, lastPage);
+                this.SendHtml(htmlResult, position, lastPage, marker);
             });
 
         }
@@ -172,15 +198,18 @@ namespace EbookReader.Page {
 
         #region events
         private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
-            var requestedID = e.Id;
-            if (!string.IsNullOrEmpty(requestedID)) {
-                requestedID = requestedID.Split('#').First();
-            }
-            var file = _epub.Files.FirstOrDefault(o => o.Href == requestedID);
-            if (file != null) {
-                var spine = _epub.Spines.FirstOrDefault(o => o.Idref == file.Id);
-                if (spine != null) {
-                    this.SendChapter(spine);
+            if (e.Id != null) {
+                var path = e.Id.Split('#');
+                var id = path.First();
+                var marker = path.Skip(1).FirstOrDefault() ?? string.Empty;
+
+                var file = _epub.Files.FirstOrDefault(o => o.Href == id);
+                if (file != null) {
+                    var spine = _epub.Spines.FirstOrDefault(o => o.Idref == file.Id);
+                    if (spine != null) {
+                        //TODO[bares]: pokud se nemeni kapitola, poslat jen marker
+                        this.SendChapter(spine, marker: marker);
+                    }
                 }
             }
         }
@@ -262,12 +291,13 @@ namespace EbookReader.Page {
             WebView.Messages.Send("resize", json);
         }
 
-        private void SendHtml(Model.EpubLoader.HtmlResult htmlResult, int position = 0, bool lastPage = false) {
+        private void SendHtml(Model.EpubLoader.HtmlResult htmlResult, int position = 0, bool lastPage = false, string marker = "") {
             var json = new {
                 Html = htmlResult.Html,
                 Images = htmlResult.Images,
                 Position = position,
                 LastPage = lastPage,
+                Marker = marker,
             };
 
             WebView.Messages.Send("loadHtml", json);

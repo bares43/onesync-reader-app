@@ -45,6 +45,7 @@
     <Compile Include="Exceptions\Epub\UnknownEpubVersionException.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
     <Compile Include="Helpers\EpubVersionHelper.cs" />
+    <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="IocManager.cs" />
     <Compile Include="Model\Epub.cs" />
     <Compile Include="Model\EpubFile.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Model\View\SettingsReaderVM.cs" />
     <Compile Include="Model\View\SettingsSynchronizationVM.cs" />
     <Compile Include="Model\View\SynchronizationServiceVM.cs" />
+    <Compile Include="Model\WebViewMessages\ChapterRequest.cs" />
     <Compile Include="Model\WebViewMessages\Message.cs" />
     <Compile Include="Model\WebViewMessages\NextChapterRequest.cs" />
     <Compile Include="Model\WebViewMessages\OpenQuickPanelRequest.cs" />
