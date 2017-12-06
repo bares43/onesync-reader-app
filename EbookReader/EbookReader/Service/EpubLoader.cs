@@ -78,8 +78,6 @@ namespace EbookReader.Service {
 
         public async Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, Model.Epub epub) {
 
-            HtmlNode.ElementsFlags["script"] = HtmlElementFlag.Empty;
-
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
