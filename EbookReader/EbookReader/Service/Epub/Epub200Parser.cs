@@ -32,6 +32,18 @@ namespace EbookReader.Service.Epub {
             return navigation;
         }
 
+        public override string GetCover() {
+            var cover = string.Empty;
+
+            var id = this.GetAttributeOnElementWithAttributeValue(this.GetMetadata(), "content", "name", "cover", "meta");
+
+            if (!string.IsNullOrEmpty(id)) {
+                cover = $"{ContentBasePath}{this.GetFiles().First(o => o.Id == id).Href}";
+            }
+
+            return cover;
+        }
+
         private List<Item> LoadItems(IEnumerable<XElement> elements, int depth = 0) {
             var items = new List<Item>();
 

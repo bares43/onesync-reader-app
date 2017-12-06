@@ -8,12 +8,8 @@ using EbookReader.Model.Navigation;
 using PCLStorage;
 
 namespace EbookReader.Service.Epub {
-    public class Epub301Parser : EpubParser {
-        public Epub301Parser(XElement package, IFolder folder, string contentBasePath) : base(package, folder, contentBasePath) {
-        }
-
-        public override async Task<List<Item>> GetNavigation() {
-            throw new NotImplementedException();
+    public class Epub301Parser : Epub300Parser {
+        public Epub301Parser(IFileService fileService, XElement package, IFolder folder, string contentBasePath) : base(fileService, package, folder, contentBasePath) {
         }
     }
 }

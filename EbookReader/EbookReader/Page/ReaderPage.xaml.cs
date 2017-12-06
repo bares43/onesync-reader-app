@@ -160,7 +160,7 @@ namespace EbookReader.Page {
             _book.Position.Spine = currentChapter;
 
             var html = await _epubLoader.GetChapter(_epub, chapter);
-            var htmlResult = await _epubLoader.PrepareHTML(html, _epub.Folder);
+            var htmlResult = await _epubLoader.PrepareHTML(html, _epub);
 
             Device.BeginInvokeOnMainThread(() => {
                 this.SendHtml(htmlResult, position, lastPage, marker);
@@ -213,7 +213,7 @@ namespace EbookReader.Page {
                 var id = path.First();
                 var marker = path.Skip(1).FirstOrDefault() ?? string.Empty;
 
-                var file = _epub.Files.FirstOrDefault(o => o.Href == id);
+                var file = _epub.Files.FirstOrDefault(o => o.Href.Contains(id));
                 if (file != null) {
                     var spine = _epub.Spines.FirstOrDefault(o => o.Idref == file.Id);
                     if (spine != null) {

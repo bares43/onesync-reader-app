@@ -59,28 +59,13 @@ namespace EbookReader.Service.Epub {
 
         public abstract Task<List<Model.Navigation.Item>> GetNavigation();
 
-        public string GetCover() {
-            var cover = string.Empty;
+        public abstract string GetCover();
 
-            var id = this.GetMetadata()
-                .Elements()
-                .Where(o => o.Name.LocalName == "meta")
-                .Where(o => o.Attributes().Any(i => i.Name.LocalName == "name" && i.Value == "cover"))
-                .Select(o => o.Attributes().First(i => i.Name.LocalName == "content").Value)
-                .FirstOrDefault();
-
-            if (!string.IsNullOrEmpty(id)) {
-                cover = $"{ContentBasePath}{this.GetFiles().First(o => o.Id == id).Href}";
-            }
-
-            return cover;
-        }
-
-        private XElement GetMetadata() {
+        protected XElement GetMetadata() {
             return Package.Descendants().Where(o => o.Name.LocalName == "metadata").First();
         }
 
-        private XElement GetManifest() {
+        protected XElement GetManifest() {
             return Package.Descendants().Where(o => o.Name.LocalName == "manifest").First();
         }
 
@@ -95,6 +80,15 @@ namespace EbookReader.Service.Epub {
         private string GetOptionalElementValue(string localName, IEnumerable<XElement> elements) {
             var element = elements.Where(o => o.Name.LocalName == localName).FirstOrDefault();
             return element != null ? element.Value : string.Empty;
+        }
+
+        protected string GetAttributeOnElementWithAttributeValue(XElement parent, string attributeName, string attributeFilterName, string attributeFilterValue, string elementName = "") {
+            return parent
+                .Elements()
+                .Where(o => string.IsNullOrEmpty(elementName) || o.Name.LocalName == elementName)
+                .Where(o => o.Attributes().Any(i => i.Name.LocalName == attributeFilterName && i.Value == attributeFilterValue))
+                .Select(o => o.Attributes().First(i => i.Name.LocalName == attributeName).Value)
+                .FirstOrDefault();
         }
     }
 }

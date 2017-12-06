@@ -76,13 +76,16 @@ namespace EbookReader.Service {
             return await _fileService.ReadFileData($"{epub.ContentBasePath}{filename.Href}", folder);
         }
 
-        public async Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, string epubFolderName) {
+        public async Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, Model.Epub epub) {
+
+            HtmlNode.ElementsFlags["script"] = HtmlElementFlag.Empty;
+
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
             this.StripHtmlTags(doc);
 
-            var images = await this.PrepareHtmlImages(doc, epubFolderName);
+            var images = await this.PrepareHtmlImages(doc, epub);
 
             var result = new Model.EpubLoader.HtmlResult {
                 Html = doc.DocumentNode.Descendants("body").First().InnerHtml,
@@ -104,19 +107,19 @@ namespace EbookReader.Service {
             }
         }
 
-        private async Task<List<Model.EpubLoader.Image>> PrepareHtmlImages(HtmlDocument doc, string epubFolderName) {
+        private async Task<List<Model.EpubLoader.Image>> PrepareHtmlImages(HtmlDocument doc, Model.Epub epub) {
             var imagesModel = this.GetImages(doc);
 
-            return await this.ReplaceImagesWithBase64(imagesModel, epubFolderName);
+            return await this.ReplaceImagesWithBase64(imagesModel, epub);
         }
 
-        private async Task<List<Model.EpubLoader.Image>> ReplaceImagesWithBase64(List<Model.EpubLoader.Image> imagesModel, string epubFolderName) {
-            var epubFolder = await FileSystem.Current.LocalStorage.GetFolderAsync(epubFolderName);
+        private async Task<List<Model.EpubLoader.Image>> ReplaceImagesWithBase64(List<Model.EpubLoader.Image> imagesModel, Model.Epub epub) {
+            var epubFolder = await FileSystem.Current.LocalStorage.GetFolderAsync(epub.Folder);
 
             foreach (var imageModel in imagesModel) {
                 var extension = imageModel.FileName.Split('.').Last();
 
-                var fileName = string.Format("OEBPS/{0}", imageModel.FileName.Replace("../", "")).Replace("//", "/").Replace("%20", " ");
+                var fileName = $"{epub.ContentBasePath}/{imageModel.FileName.Replace("../", "")}".Replace("//", "/").Replace("%20", " ");
 
                 var file = await _fileService.OpenFile(fileName, epubFolder);
 
