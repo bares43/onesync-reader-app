@@ -38,4 +38,12 @@ body {
 #content {
     position: relative;
     opacity: 0;
+
+    * {
+      word-break: break-all;
+    }
+
+    pre {
+      white-space: pre-wrap;
+    }
 }
