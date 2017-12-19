@@ -90,7 +90,6 @@ namespace EbookReader.Page {
         }
 
         private void Messages_OnChapterRequest(object sender, Model.WebViewMessages.ChapterRequest e) {
-            System.Diagnostics.Debug.WriteLine(e.Chapter);
             if (!string.IsNullOrEmpty(e.Chapter)) {
                 var filename = e.Chapter.Split('#');
                 var hash = filename.Skip(1).FirstOrDefault();
@@ -213,7 +212,9 @@ namespace EbookReader.Page {
                 var id = path.First();
                 var marker = path.Skip(1).FirstOrDefault() ?? string.Empty;
 
-                var file = _epub.Files.FirstOrDefault(o => o.Href.Contains(id));
+                var normalizedId = PathHelper.NormalizePath(PathHelper.CombinePath(_epub.ContentBasePath, id));
+
+                var file = _epub.Files.FirstOrDefault(o => o.Href.Contains(id) || o.Href.Contains(normalizedId));
                 if (file != null) {
                     var spine = _epub.Spines.FirstOrDefault(o => o.Idref == file.Id);
                     if (spine != null) {
