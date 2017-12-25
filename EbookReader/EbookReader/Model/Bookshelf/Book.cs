@@ -11,27 +11,12 @@ namespace EbookReader.Model.Bookshelf {
         public string Path { get; set; }
         public string Cover { get; set; }
         public Position Position { get; set; }
+        public List<Bookmark> Bookmarks { get; set; }
 
         public Book() {
             Position = new Position();
+            Bookmarks = new List<Bookmark>();
         }
 
-    }
-
-    public class Position {
-        public int Spine { get; set; }
-        public int SpinePosition { get; set; }
-
-        public Position() {
-        }
-
-        public Position(Position position) {
-            Spine = position.Spine;
-            SpinePosition = position.SpinePosition;
-        }
-
-        public bool Equals(Position obj) {
-            return obj != null && Spine == obj.Spine && SpinePosition == obj.SpinePosition;
-        }
     }
 }

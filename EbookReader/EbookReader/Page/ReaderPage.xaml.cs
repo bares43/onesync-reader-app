@@ -67,6 +67,10 @@ namespace EbookReader.Page {
             _messageBus.Subscribe<ChangeMargin>((msg) => this.SetMargin(msg.Margin));
             _messageBus.Subscribe<ChangeFontSize>((msg) => this.SetFontSize(msg.FontSize));
             _messageBus.Subscribe<AppSleep>(AppSleepSubscriber);
+            _messageBus.Subscribe<AddBookmark>(AddBookmark);
+            _messageBus.Subscribe<OpenBookmark>(OpenBookmark);
+            _messageBus.Subscribe<DeleteBookmark>(DeleteBookmark);
+            _messageBus.Subscribe<ChangedBookmarkName>(ChangedBookmarkName);
 
             Device.StartTimer(new TimeSpan(0, 5, 0), () => {
                 if (backgroundSync) {
@@ -129,6 +133,7 @@ namespace EbookReader.Page {
             var position = _book.Position;
 
             QuickPanel.PanelContent.SetNavigation(_epub.Navigation);
+            QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
 
             var chapter = _epub.Spines.First();
             var positionInChapter = 0;
@@ -151,6 +156,38 @@ namespace EbookReader.Page {
         private void AppSleepSubscriber(AppSleep msg) {
             if (Device.RuntimePlatform == Device.UWP && backgroundSync) {
                 this.SaveProgress();
+            }
+        }
+
+        private void AddBookmark(AddBookmark msg) {
+            _book.Bookmarks.Add(new Bookmark {
+                Name = DateTime.Now.ToString(),
+                Position = new Position(_book.Position)
+            });
+            _bookshelfService.SaveBook(_book);
+            QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
+        }
+
+        private void DeleteBookmark(DeleteBookmark msg) {
+            _book.Bookmarks.Remove(msg.Bookmark);
+            _bookshelfService.SaveBook(_book);
+            QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
+        }
+
+        public void ChangedBookmarkName(ChangedBookmarkName msg) {
+            _bookshelfService.SaveBook(_book);
+            QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
+        }
+
+        private void OpenBookmark(OpenBookmark msg) {
+            var loadedChapter = _epub.Spines.ElementAt(msg.Bookmark.Position.Spine);
+            if (loadedChapter != null) {
+                if (currentChapter != msg.Bookmark.Position.Spine) {
+                    this.SendChapter(loadedChapter, position: msg.Bookmark.Position.SpinePosition);
+                } else {
+                    _book.Position.SpinePosition = msg.Bookmark.Position.SpinePosition;
+                    this.GoToPosition(msg.Bookmark.Position.SpinePosition);
+                }
             }
         }
 

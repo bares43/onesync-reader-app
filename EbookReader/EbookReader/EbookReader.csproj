@@ -47,24 +47,31 @@
     <Compile Include="Helpers\EpubVersionHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="IocManager.cs" />
+    <Compile Include="Model\Bookshelf\Bookmark.cs" />
+    <Compile Include="Model\Bookshelf\Position.cs" />
     <Compile Include="Model\Epub.cs" />
     <Compile Include="Model\EpubFile.cs" />
     <Compile Include="Model\EpubLoader\HtmlResult.cs" />
     <Compile Include="Model\EpubLoader\Image.cs" />
     <Compile Include="Model\EpubSpine.cs" />
+    <Compile Include="Model\Messages\AddBookmark.cs" />
     <Compile Include="Model\Messages\AppSleep.cs" />
+    <Compile Include="Model\Messages\ChangedBookmarkName.cs" />
     <Compile Include="Model\Messages\ChangeFontSize.cs" />
     <Compile Include="Model\Messages\ChangeMargin.cs" />
     <Compile Include="Model\Messages\ChangesBrightness.cs" />
     <Compile Include="Model\Messages\AddBookClicked.cs" />
     <Compile Include="Model\Messages\CloseQuickPanel.cs" />
     <Compile Include="Model\Messages\DeleteBook.cs" />
+    <Compile Include="Model\Messages\DeleteBookmark.cs" />
     <Compile Include="Model\Messages\DropboxAccessTokenMessage.cs" />
     <Compile Include="Model\Messages\OpenBook.cs" />
+    <Compile Include="Model\Messages\OpenBookmark.cs" />
     <Compile Include="Model\Messages\OpenDropboxLogin.cs" />
     <Compile Include="Model\Navigation\Item.cs" />
     <Compile Include="Model\Sync\Position.cs" />
     <Compile Include="Model\View\BaseVM.cs" />
+    <Compile Include="Model\View\BookmarksVM.cs" />
     <Compile Include="Model\View\FirebaseVM.cs" />
     <Compile Include="Model\View\FontSizeVM.cs" />
     <Compile Include="Model\View\MarginVM.cs" />
@@ -96,6 +103,9 @@
     </Compile>
     <Compile Include="Page\Reader\QuickPanel.xaml.cs">
       <DependentUpon>QuickPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Reader\QuickPanelTab\Bookmarks.xaml.cs">
+      <DependentUpon>Bookmarks.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page\Reader\QuickPanelTab\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -305,6 +315,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\delete.png" />
+    <Content Include="Content\edit.png" />
+    <Content Include="Content\save.png" />
     <Content Include="Content\settings.png" />
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +327,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Page\Settings\Control.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\Reader\QuickPanelTab\Bookmarks.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

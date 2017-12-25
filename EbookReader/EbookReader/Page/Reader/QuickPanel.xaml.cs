@@ -54,14 +54,26 @@ namespace EbookReader.Page.Reader {
         private void ButtonSettings_Clicked(object sender, EventArgs e) {
             this.OpenSettings();
         }
-        
+
+        private void ButtonBookmarks_Clicked(object sender, EventArgs e) {
+            this.OpenBookmarks();
+        }
+
         private void OpenContents() {
             PanelContent.IsVisible = true;
             PanelSettings.IsVisible = false;
+            PanelBookmarks.IsVisible = false;
         }
 
         private void OpenSettings() {
             PanelSettings.IsVisible = true;
+            PanelContent.IsVisible = false;
+            PanelBookmarks.IsVisible = false;
+        }
+
+        private void OpenBookmarks() {
+            PanelBookmarks.IsVisible = true;
+            PanelSettings.IsVisible = false;
             PanelContent.IsVisible = false;
         }
     }

@@ -10,11 +10,13 @@
         <StackLayout Orientation="Horizontal">
             <Button Text="Nastavení" HorizontalOptions="FillAndExpand" Clicked="ButtonSettings_Clicked"></Button>
             <Button Text="Obsah" HorizontalOptions="FillAndExpand" Clicked="ButtonContents_Clicked"></Button>
+            <Button Text="Záložky" HorizontalOptions="FillAndExpand" Clicked="ButtonBookmarks_Clicked"></Button>
             <Button Text="Zavřít" Clicked="ButtonClose_Clicked"></Button>
         </StackLayout>
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <local:Settings x:Name="PanelSettings" x:FieldModifier="public"></local:Settings>
             <local:Content x:Name="PanelContent" x:FieldModifier="public" IsVisible="False" OnChapterChange="PanelContent_OnChapterChange"></local:Content>
+            <local:Bookmarks x:Name="PanelBookmarks" x:FieldModifier="public"></local:Bookmarks>
         </StackLayout>
     </StackLayout.Children>
 </StackLayout>
