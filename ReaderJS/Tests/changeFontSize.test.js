@@ -11,7 +11,7 @@ describe('When change font size', () => {
 
     const readerJS = await chromeless.getReaderJS();
 
-    expect(readerJS.totalPages).toBe(18);
+    expect(readerJS.totalPages).toBe(19);
 
     await chromeless.end();
   });
@@ -26,7 +26,7 @@ describe('When change font size', () => {
 
     const lastReceivedMessage = await chromeless.getLastReceivedMessage();
 
-    expect(lastReceivedMessage.data.TotalPages).toBe(18);
+    expect(lastReceivedMessage.data.TotalPages).toBe(19);
 
     await chromeless.end();
   });
