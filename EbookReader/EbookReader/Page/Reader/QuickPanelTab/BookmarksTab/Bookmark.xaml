@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:EbookReader.Converter"
+             x:Class="EbookReader.Page.Reader.QuickPanelTab.BookmarksTab.Bookmark"
+             Orientation="Horizontal">
+    <StackLayout.Children>
+        <Image Source="delete.png" WidthRequest="26" HeightRequest="26">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding DeleteBookmarkCommand}"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <StackLayout x:Name="previewMode"
+                     Orientation="Horizontal"
+                     IsVisible="{Binding EditMode, Converter={converter:InverseBoolConverter}}}">
+            <Image Source="edit.png" WidthRequest="26" HeightRequest="26">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowEditCommand}" CommandParameter="{x:Reference NameEntry}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="{Binding Bookmark.Name}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenBookmarkCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+        <StackLayout x:Name="editMode"
+                     Orientation="Horizontal"
+                     IsVisible="{Binding EditMode}"
+                     HorizontalOptions="FillAndExpand">
+            <Image Source="save.png" WidthRequest="26" HeightRequest="26">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SaveCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Entry x:Name="NameEntry" HorizontalOptions="FillAndExpand" Text="{Binding Bookmark.Name}" />
+        </StackLayout>
+    </StackLayout.Children>
+</StackLayout>
