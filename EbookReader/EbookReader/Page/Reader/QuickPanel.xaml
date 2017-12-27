@@ -4,19 +4,97 @@
              xmlns:local="clr-namespace:EbookReader.Page.Reader.QuickPanelTab" 
              x:Class="EbookReader.Page.Reader.QuickPanel"
              Orientation="Vertical"
-             BackgroundColor="LightGray">
+             VerticalOptions="FillAndExpand"
+             HorizontalOptions="FillAndExpand">
+
+    <StackLayout.Resources>
+        <ResourceDictionary>
+            <Style x:Key="sectionLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="7,0" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+
+            <Style TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="HeightRequest" Value="1" />
+            </Style>
+
+            <Style x:Key="Tab" TargetType="StackLayout">
+                <Setter Property="Padding" Value="10" />
+            </Style>
+        </ResourceDictionary>
+    </StackLayout.Resources>
 
     <StackLayout.Children>
-        <StackLayout Orientation="Horizontal">
-            <Button Text="Nastavení" HorizontalOptions="FillAndExpand" Clicked="ButtonSettings_Clicked"></Button>
-            <Button Text="Obsah" HorizontalOptions="FillAndExpand" Clicked="ButtonContents_Clicked"></Button>
-            <Button Text="Záložky" HorizontalOptions="FillAndExpand" Clicked="ButtonBookmarks_Clicked"></Button>
-            <Button Text="Zavřít" Clicked="ButtonClose_Clicked"></Button>
-        </StackLayout>
-        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <local:Settings x:Name="PanelSettings" x:FieldModifier="public"></local:Settings>
-            <local:Content x:Name="PanelContent" x:FieldModifier="public" IsVisible="False" OnChapterChange="PanelContent_OnChapterChange"></local:Content>
-            <local:Bookmarks x:Name="PanelBookmarks" x:FieldModifier="public"></local:Bookmarks>
-        </StackLayout>
+
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <BoxView x:Name="Overlay"
+                     BackgroundColor="Black"
+                     Opacity="0.7" 
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     AbsoluteLayout.LayoutFlags="SizeProportional"
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseCommand}" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand"
+                         Padding="7,5"
+                         BackgroundColor="#3c4044"
+                         AbsoluteLayout.LayoutFlags="SizeProportional"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" Android="20,30" WinPhone="100" />
+                </StackLayout.Margin>
+                
+                <local:Settings x:Name="PanelSettings" VerticalOptions="Start" x:FieldModifier="public"></local:Settings>
+
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Obsah" Grid.Column="0" Style="{StaticResource sectionLabel}" />
+                    <Label Text="Záložky" Grid.Column="1" Style="{StaticResource sectionLabel}" />
+
+                    <BoxView IsVisible="{Binding TabContentVisible}" Grid.Column="0" />
+                    <BoxView IsVisible="{Binding TabBookmarksVisible}" Grid.Column="1" />
+
+                    <ContentView BackgroundColor="Transparent" Grid.Column="0">
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabContentTappedCommand}"></TapGestureRecognizer>
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+
+                    <ContentView BackgroundColor="Transparent" Grid.Column="1">
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabBookmarksTappedCommand}"></TapGestureRecognizer>
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+                </Grid>
+
+                <StackLayout IsVisible="{Binding TabContentVisible}">
+                    <local:Content Style="{StaticResource Tab}" x:Name="PanelContent" x:FieldModifier="public" OnChapterChange="PanelContent_OnChapterChange"></local:Content>
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding TabBookmarksVisible}">
+                    <local:Bookmarks Style="{StaticResource Tab}" x:Name="PanelBookmarks" x:FieldModifier="public"></local:Bookmarks>
+                </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
     </StackLayout.Children>
 </StackLayout>

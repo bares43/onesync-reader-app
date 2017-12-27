@@ -45,7 +45,8 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
                     StyleId = item.Id,
                     Text = item.Title,
                     Margin = new Thickness(item.Depth * 20, 0),
-                    FontSize = Device.GetNamedSize(Device.RuntimePlatform == Device.Android ? NamedSize.Large : NamedSize.Medium, typeof(Label))
+                    FontSize = Device.GetNamedSize(Device.RuntimePlatform == Device.Android ? NamedSize.Large : NamedSize.Medium, typeof(Label)),
+                    TextColor = Color.White,
                 };
 
                 var tgr = new TapGestureRecognizer();

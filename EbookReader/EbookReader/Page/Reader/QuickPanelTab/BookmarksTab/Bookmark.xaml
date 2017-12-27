@@ -4,8 +4,28 @@
              xmlns:converter="clr-namespace:EbookReader.Converter"
              x:Class="EbookReader.Page.Reader.QuickPanelTab.BookmarksTab.Bookmark"
              Orientation="Horizontal">
+
+
+    <StackLayout.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="Color" Android="White" Default="Black" x:Key="entryTextColor" />
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource entryTextColor}"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            </Style>
+
+            <Style TargetType="Image">
+                <Setter Property="HeightRequest" Value="26" />
+                <Setter Property="WidthRequest" Value="26" />
+                <Setter Property="Margin" Value="0,3,0,0" />
+            </Style>
+            
+        </ResourceDictionary>
+    </StackLayout.Resources>
+
     <StackLayout.Children>
-        <Image Source="delete.png" WidthRequest="26" HeightRequest="26">
+        <Image Source="delete.png">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding DeleteBookmarkCommand}"/>
             </Image.GestureRecognizers>
@@ -13,12 +33,15 @@
         <StackLayout x:Name="previewMode"
                      Orientation="Horizontal"
                      IsVisible="{Binding EditMode, Converter={converter:InverseBoolConverter}}}">
-            <Image Source="edit.png" WidthRequest="26" HeightRequest="26">
+            <Image Source="edit.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ShowEditCommand}" CommandParameter="{x:Reference NameEntry}" />
                 </Image.GestureRecognizers>
             </Image>
-            <Label Text="{Binding Bookmark.Name}">
+            <Label Text="{Binding Bookmark.Name}" TextColor="White">
+                <Label.Font>
+                    <OnPlatform x:TypeArguments="Font" Android="Large" WinPhone="Medium" />
+                </Label.Font>
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OpenBookmarkCommand}"/>
                 </Label.GestureRecognizers>
@@ -28,12 +51,12 @@
                      Orientation="Horizontal"
                      IsVisible="{Binding EditMode}"
                      HorizontalOptions="FillAndExpand">
-            <Image Source="save.png" WidthRequest="26" HeightRequest="26">
+            <Image Source="save.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SaveCommand}"/>
                 </Image.GestureRecognizers>
             </Image>
-            <Entry x:Name="NameEntry" HorizontalOptions="FillAndExpand" Text="{Binding Bookmark.Name}" />
+            <Entry x:Name="NameEntry" Text="{Binding Bookmark.Name}" />
         </StackLayout>
     </StackLayout.Children>
 </StackLayout>

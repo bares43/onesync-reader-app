@@ -38,6 +38,7 @@ namespace EbookReader.Model.View {
 
         private void OpenBookmark() {
             IocManager.Container.Resolve<IMessageBus>().Send(new OpenBookmark { Bookmark = Bookmark });
+            IocManager.Container.Resolve<IMessageBus>().Send(new CloseQuickPanel());
         }
 
         private void DeleteBookmark() {

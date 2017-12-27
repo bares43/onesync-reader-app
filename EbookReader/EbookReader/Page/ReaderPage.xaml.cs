@@ -84,6 +84,15 @@ namespace EbookReader.Page {
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
+        protected override bool OnBackButtonPressed() {
+            if (QuickPanel.IsVisible) {
+                QuickPanel.Hide();
+                return true;
+            }
+
+            return base.OnBackButtonPressed();
+        }
+
         private void Messages_OnOpenUrl(object sender, Model.WebViewMessages.OpenUrl e) {
             if (!string.IsNullOrEmpty(e.Url)) {
                 try {

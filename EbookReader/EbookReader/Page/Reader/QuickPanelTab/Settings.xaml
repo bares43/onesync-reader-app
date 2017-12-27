@@ -5,9 +5,14 @@
 
     <StackLayout.Resources>
         <ResourceDictionary>
+            <OnPlatform x:TypeArguments="Color" Android="White" WinPhone="Black" x:Key="pickerBackgroundColor" />
+
             <Style TargetType="Picker">
                 <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
                 <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                <Setter Property="HeightRequest" Value="45"></Setter>
             </Style>
 
             <OnPlatform x:TypeArguments="Thickness" Android="10,0" WinPhone="10" x:Key="settingsWrapperPadding" />
@@ -16,43 +21,29 @@
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Padding" Value="{StaticResource settingsWrapperPadding}" />
+                <Setter Property="HeightRequest" Value="45" />
             </Style>
             <Style TargetType="Label">
                 <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
             </Style>
         </ResourceDictionary>
     </StackLayout.Resources>
 
-    <StackLayout.Padding>
-        15,0
-    </StackLayout.Padding>
-
     <StackLayout.Children>
-        <TableView>
-            <TableRoot>
-                <TableSection x:Name="SectionLook" Title="Vzhled">
-                    <ViewCell x:Name="BrightnessWrapper">
-                        <StackLayout Style="{StaticResource settingsWrapper}">
-                            <Label Text="Jas" WidthRequest="100" />
-                            <Slider x:Name="Brightness" HorizontalOptions="FillAndExpand" Maximum="100" Minimum="1" ValueChanged="Brightness_ValueChanged"></Slider>
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell>
-                        <StackLayout Style="{StaticResource settingsWrapper}">
-                            <Label Text="Písmo" />
-                            <Picker x:Name="FontPicker" ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}">
-                            </Picker>
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell>
-                        <StackLayout Style="{StaticResource settingsWrapper}">
-                            <Label Text="Odsazení" />
-                            <Picker x:Name="MarginPicker" ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}">
-                            </Picker>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+        <StackLayout Style="{StaticResource settingsWrapper}" x:Name="BrightnessWrapper">
+            <Label Text="Jas" WidthRequest="100" FontSize="Medium" />
+            <Slider x:Name="Brightness" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="45" Maximum="100" Minimum="1" ValueChanged="Brightness_ValueChanged"></Slider>
+        </StackLayout>
+        <StackLayout Style="{StaticResource settingsWrapper}">
+            <Label Text="Písmo" FontSize="Medium" />
+            <Picker x:Name="FontPicker" ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}">
+            </Picker>
+        </StackLayout>
+        <StackLayout Style="{StaticResource settingsWrapper}">
+            <Label Text="Odsazení" FontSize="Medium" />
+            <Picker x:Name="MarginPicker" ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}">
+            </Picker>
+        </StackLayout>
     </StackLayout.Children>
 </StackLayout>

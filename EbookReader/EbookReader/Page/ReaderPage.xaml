@@ -16,11 +16,10 @@
                               SizeChanged="WebView_SizeChanged"
                               AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                               AbsoluteLayout.LayoutFlags="SizeProportional" />
-            <local:QuickPanel x:Name="QuickPanel" IsVisible="False" AbsoluteLayout.LayoutFlags="SizeProportional">
-                <AbsoluteLayout.LayoutBounds>
-                    <OnPlatform x:TypeArguments="Rectangle" Android="0, 0, 1, 0.75" WinPhone="0, 0, 0.33, 1" />
-                </AbsoluteLayout.LayoutBounds>
-            </local:QuickPanel>
+            <local:QuickPanel x:Name="QuickPanel" 
+                              IsVisible="False"
+                              AbsoluteLayout.LayoutFlags="SizeProportional" 
+                              AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

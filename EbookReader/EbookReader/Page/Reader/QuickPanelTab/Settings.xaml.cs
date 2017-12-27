@@ -38,7 +38,7 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
             }
 
             if (Device.RuntimePlatform == Device.UWP) {
-                SectionLook.Remove(BrightnessWrapper);
+                BrightnessWrapper.IsVisible = false;
             }
 
         }

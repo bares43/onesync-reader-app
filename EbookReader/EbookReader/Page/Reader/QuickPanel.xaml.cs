@@ -21,10 +21,9 @@ namespace EbookReader.Page.Reader {
 
             InitializeComponent();
 
-            this.OpenSettings();
+            BindingContext = new Model.View.QuickPanelVM();
 
             _messageBus.Subscribe<CloseQuickPanel>((msg) => this.Hide());
-
         }
         
         private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {
@@ -41,40 +40,6 @@ namespace EbookReader.Page.Reader {
             Device.BeginInvokeOnMainThread(() => {
                 IsVisible = false;
             });
-        }
-
-        private void ButtonClose_Clicked(object sender, EventArgs e) {
-            this.Hide();
-        }
-
-        private void ButtonContents_Clicked(object sender, EventArgs e) {
-            this.OpenContents();
-        }
-
-        private void ButtonSettings_Clicked(object sender, EventArgs e) {
-            this.OpenSettings();
-        }
-
-        private void ButtonBookmarks_Clicked(object sender, EventArgs e) {
-            this.OpenBookmarks();
-        }
-
-        private void OpenContents() {
-            PanelContent.IsVisible = true;
-            PanelSettings.IsVisible = false;
-            PanelBookmarks.IsVisible = false;
-        }
-
-        private void OpenSettings() {
-            PanelSettings.IsVisible = true;
-            PanelContent.IsVisible = false;
-            PanelBookmarks.IsVisible = false;
-        }
-
-        private void OpenBookmarks() {
-            PanelBookmarks.IsVisible = true;
-            PanelSettings.IsVisible = false;
-            PanelContent.IsVisible = false;
         }
     }
 }
