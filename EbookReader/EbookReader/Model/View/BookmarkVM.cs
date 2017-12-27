@@ -42,7 +42,9 @@ namespace EbookReader.Model.View {
         }
 
         private void DeleteBookmark() {
-            IocManager.Container.Resolve<IMessageBus>().Send(new DeleteBookmark { Bookmark = Bookmark });
+            if (BookshelfLock.Lock()) {
+                IocManager.Container.Resolve<IMessageBus>().Send(new DeleteBookmark { Bookmark = Bookmark });
+            }
         }
 
         public void ShowEdit(object obj) {
@@ -53,8 +55,10 @@ namespace EbookReader.Model.View {
         }
 
         public void ChangeName() {
-            IocManager.Container.Resolve<IMessageBus>().Send(new ChangedBookmarkName { Bookmark = Bookmark });
-            EditMode = false;
+            if (BookshelfLock.Lock()) {
+                IocManager.Container.Resolve<IMessageBus>().Send(new ChangedBookmarkName { Bookmark = Bookmark });
+                EditMode = false;
+            }
         }
     }
 }

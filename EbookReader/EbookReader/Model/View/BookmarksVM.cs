@@ -18,7 +18,9 @@ namespace EbookReader.Model.View {
         }
 
         void AddBookmark() {
-            IocManager.Container.Resolve<IMessageBus>().Send(new AddBookmark());
+            if (BookshelfLock.Lock()) {
+                IocManager.Container.Resolve<IMessageBus>().Send(new AddBookmark());
+            }
         }
     }
 }
