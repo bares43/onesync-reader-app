@@ -76,6 +76,7 @@
     <Compile Include="Model\View\FirebaseVM.cs" />
     <Compile Include="Model\View\FontSizeVM.cs" />
     <Compile Include="Model\View\MarginVM.cs" />
+    <Compile Include="Model\View\NightModeVM.cs" />
     <Compile Include="Model\View\QuickPanelSettingsVM.cs" />
     <Compile Include="Model\View\QuickPanelVM.cs" />
     <Compile Include="Model\View\ScrollSpeedVM.cs" />

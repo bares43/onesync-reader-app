@@ -33,6 +33,11 @@ namespace EbookReader {
                 get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(ScrollSpeed)), ScrollSpeedDefault);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(ScrollSpeed)), value);
             }
+
+            public static bool NightMode {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(NightMode)), false);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(NightMode)), value);
+            }
         }
 
         public static class Synchronization {

@@ -38,6 +38,10 @@
                 <Label Text="Rychlost scrollováni (ms)" />
                 <Picker ItemsSource="{Binding ScrollSpeed.Items}" SelectedItem="{Binding ScrollSpeed.Value}" />
             </StackLayout>
+            <StackLayout Style="{StaticResource settingsWrapper}">
+                <Label Text="Noční režim" />
+                <Switch IsToggled="{Binding NightMode.Enabled}" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

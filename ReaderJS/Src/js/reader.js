@@ -15,7 +15,8 @@ window.Ebook = {
   scrollSpeed: 0,
   clickEverywhere: false,
   doubleSwipe: false,
-  init: function(width, height, margin, fontSize, scrollSpeed, clickEverywhere, doubleSwipe) {
+  nightMode: false,
+  init: function(width, height, margin, fontSize, scrollSpeed, clickEverywhere, doubleSwipe, nightMode) {
     this.webViewWidth = width;
     this.webViewHeight = height;
     this.webViewMargin = margin;
@@ -23,11 +24,13 @@ window.Ebook = {
     this.scrollSpeed = scrollSpeed;
     this.clickEverywhere = clickEverywhere;
     this.doubleSwipe = doubleSwipe;
+    this.nightMode = nightMode;
 
     this.htmlHelper.setFontSize();
     this.htmlHelper.setWidth();
     this.htmlHelper.setHeight();
     this.htmlHelper.setMargin();
+    this.htmlHelper.setNightMode();
 
     this.setUpColumns();
     this.setUpEvents();
@@ -336,6 +339,15 @@ window.Ebook = {
     hideContent: function() {
       document.getElementById("content").style.opacity = 0;
     },
+    setNightMode: function() {
+      var body = document.getElementsByTagName("body")[0];
+      var className = "reader-night-mode";
+      if (Ebook.nightMode) {
+        body.classList.add(className);
+      } else {
+        body.classList.remove(className);
+      }
+    },
   },
   messagesHelper: {
     sendPageChange: function() {
@@ -377,7 +389,7 @@ window.Messages = {
   },
   actions: {
     init: function(data) {
-      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed, data.ClickEverywhere, data.DoubleSwipe);
+      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed, data.ClickEverywhere, data.DoubleSwipe, data.NightMode);
     },
     loadHtml: function(data) {
       Ebook.htmlHelper.hideContent();

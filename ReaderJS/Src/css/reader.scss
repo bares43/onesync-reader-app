@@ -21,6 +21,11 @@ body {
             }
         }
     }
+
+    &.reader-night-mode {
+      background-color: #181819;
+      color: #eff2f7;
+    }
 }
 
 #columns-outer {

@@ -334,6 +334,7 @@ namespace EbookReader.Page {
                 ScrollSpeed = UserSettings.Reader.ScrollSpeed,
                 ClickEverywhere = UserSettings.Control.ClickEverywhere,
                 DoubleSwipe = UserSettings.Control.DoubleSwipe,
+                NightMode = UserSettings.Reader.NightMode,
             };
 
             WebView.Messages.Send("init", json);
