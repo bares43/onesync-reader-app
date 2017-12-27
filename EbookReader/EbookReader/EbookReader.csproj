@@ -69,6 +69,7 @@
     <Compile Include="Model\Messages\OpenBook.cs" />
     <Compile Include="Model\Messages\OpenBookmark.cs" />
     <Compile Include="Model\Messages\OpenDropboxLogin.cs" />
+    <Compile Include="Model\Messages\PageChange.cs" />
     <Compile Include="Model\Navigation\Item.cs" />
     <Compile Include="Model\Sync\Position.cs" />
     <Compile Include="Model\View\AboutVM.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Model\View\FirebaseVM.cs" />
     <Compile Include="Model\View\FontSizeVM.cs" />
     <Compile Include="Model\View\FullscreenVM.cs" />
+    <Compile Include="Model\View\InfoPanelVM.cs" />
     <Compile Include="Model\View\MarginVM.cs" />
     <Compile Include="Model\View\NightModeVM.cs" />
     <Compile Include="Model\View\QuickPanelSettingsVM.cs" />
@@ -109,6 +111,9 @@
     <Compile Include="Page\Home\Card.cs" />
     <Compile Include="Page\ReaderPage.xaml.cs">
       <DependentUpon>ReaderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Reader\InfoPanel.xaml.cs">
+      <DependentUpon>InfoPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page\Reader\QuickPanel.xaml.cs">
       <DependentUpon>QuickPanel.xaml</DependentUpon>
@@ -358,6 +363,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Page\AboutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\Reader\InfoPanel.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

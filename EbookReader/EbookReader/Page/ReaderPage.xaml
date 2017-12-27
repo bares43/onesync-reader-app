@@ -14,8 +14,10 @@
                               ContentType="StringData"
                               OnContentLoaded="WebView_OnContentLoaded"
                               SizeChanged="WebView_SizeChanged"
+                              Margin="0,40,0,0"
                               AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                               AbsoluteLayout.LayoutFlags="SizeProportional" />
+            <local:InfoPanel AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0,0,1,40" />
             <local:QuickPanel x:Name="QuickPanel" 
                               IsVisible="False"
                               AbsoluteLayout.LayoutFlags="SizeProportional" 

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EbookReader.Page.Reader.InfoPanel"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="FillAndExpand"
+             BackgroundColor="{Binding BackgroundColor}"
+             Orientation="Horizontal"
+             Padding="5">
+    <StackLayout.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="TextColor" Value="{Binding TextColor}" />
+            </Style>
+        </ResourceDictionary>
+    </StackLayout.Resources>
+
+    <StackLayout.Children>
+        <Label Text="{Binding Pages}" HorizontalOptions="StartAndExpand"></Label>
+        <Label Text="{Binding Clock}" HorizontalOptions="EndAndExpand"></Label>
+    </StackLayout.Children>
+</StackLayout>

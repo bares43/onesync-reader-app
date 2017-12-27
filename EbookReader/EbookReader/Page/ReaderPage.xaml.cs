@@ -276,6 +276,7 @@ namespace EbookReader.Page {
 
         private void Messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
             _book.Position.SpinePosition = e.Position;
+            _messageBus.Send(new PageChange { CurrentPage = e.CurrentPage, TotalPages = e.TotalPages, Position = e.Position });
         }
 
         private void _messages_OnOpenQuickPanelRequest(object sender, Model.WebViewMessages.OpenQuickPanelRequest e) {
