@@ -31,8 +31,19 @@ namespace EbookReader.Page {
                 Icon = "settings.png"
             };
             settingsItem.Clicked += SettingsItem_Clicked;
-
             ToolbarItems.Add(settingsItem);
+
+            var aboutItem = new ToolbarItem {
+                Text = "O aplikaci",
+                Icon = "info.png"
+            };
+            aboutItem.Clicked += AboutItem_Clicked;
+
+            ToolbarItems.Add(aboutItem);
+        }
+
+        private async void AboutItem_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(App.AboutPage());
         }
 
         private async void SettingsItem_Clicked(object sender, EventArgs e) {

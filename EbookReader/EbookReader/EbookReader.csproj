@@ -70,6 +70,7 @@
     <Compile Include="Model\Messages\OpenDropboxLogin.cs" />
     <Compile Include="Model\Navigation\Item.cs" />
     <Compile Include="Model\Sync\Position.cs" />
+    <Compile Include="Model\View\AboutVM.cs" />
     <Compile Include="Model\View\BaseVM.cs" />
     <Compile Include="Model\View\BookmarksVM.cs" />
     <Compile Include="Model\View\BookmarkVM.cs" />
@@ -91,6 +92,9 @@
     <Compile Include="Model\WebViewMessages\OpenUrl.cs" />
     <Compile Include="Model\WebViewMessages\PageChange.cs" />
     <Compile Include="Model\WebViewMessages\PrevChapterRequest.cs" />
+    <Compile Include="Page\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -322,6 +326,7 @@
   <ItemGroup>
     <Content Include="Content\delete.png" />
     <Content Include="Content\edit.png" />
+    <Content Include="Content\info.png" />
     <Content Include="Content\save.png" />
     <Content Include="Content\settings.png" />
   </ItemGroup>
@@ -345,6 +350,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Page\Reader\QuickPanelTab\BookmarksTab\Bookmark.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

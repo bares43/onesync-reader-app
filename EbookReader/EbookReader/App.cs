@@ -13,6 +13,7 @@ namespace EbookReader {
 
         static HomePage homePage;
         static SettingsPage settingsPage;
+        static AboutPage aboutPage;
 
         public App() {
             MainPage = new NavigationPage(new HomePage());
@@ -32,6 +33,14 @@ namespace EbookReader {
             }
 
             return settingsPage;
+        }
+
+        public static AboutPage AboutPage() {
+            if(aboutPage == null) {
+                aboutPage = new AboutPage();
+            }
+
+            return aboutPage;
         }
 
         protected override void OnStart() {

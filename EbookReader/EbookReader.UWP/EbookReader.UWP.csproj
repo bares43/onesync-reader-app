@@ -131,6 +131,9 @@
     <Content Include="..\EbookReader\Content\edit.png">
       <Link>edit.png</Link>
     </Content>
+    <Content Include="..\EbookReader\Content\info.png">
+      <Link>info.png</Link>
+    </Content>
     <Content Include="..\EbookReader\Content\save.png">
       <Link>save.png</Link>
     </Content>
