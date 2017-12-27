@@ -9,6 +9,7 @@ using EbookReader.DependencyService;
 using EbookReader.Provider;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
+using Xamarin.Forms;
 
 namespace EbookReader {
     public static class UserSettings {
@@ -37,6 +38,11 @@ namespace EbookReader {
             public static bool NightMode {
                 get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(NightMode)), false);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(NightMode)), value);
+            }
+
+            public static bool Fullscreen {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(Fullscreen)), Device.RuntimePlatform == Device.Android);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(Fullscreen)), value);
             }
         }
 

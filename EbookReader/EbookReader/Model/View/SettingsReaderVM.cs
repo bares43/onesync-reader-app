@@ -16,6 +16,7 @@ namespace EbookReader.Model.View {
             Margin = new MarginVM();
             ScrollSpeed = new ScrollSpeedVM();
             NightMode = new NightModeVM();
+            Fullscreen = new FullscreenVM();
         }
 
         public FontSizeVM FontSize { get; set; }
@@ -26,5 +27,6 @@ namespace EbookReader.Model.View {
 
         public NightModeVM NightMode { get; set; }
 
+        public FullscreenVM Fullscreen { get; set; }
     }
 }

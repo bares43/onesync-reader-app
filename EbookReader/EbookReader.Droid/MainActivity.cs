@@ -47,6 +47,7 @@ namespace EbookReader.Droid {
         private void SetUpSubscribers() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
             messageBus.Subscribe<Model.Messages.ChangesBrightness>(ChangeBrightness);
+            messageBus.Subscribe<Model.Messages.FullscreenRequest>(ToggleFullscreen);
         }
 
         private void ChangeBrightness(Model.Messages.ChangesBrightness msg) {
@@ -55,6 +56,20 @@ namespace EbookReader.Droid {
             attributesWindow.ScreenBrightness = msg.Brightness;
             Window.Attributes = attributesWindow;
         }
+
+        private void ToggleFullscreen(Model.Messages.FullscreenRequest msg) {
+            if (msg.Fullscreen) {
+                RunOnUiThread(() => {
+                    Window.AddFlags(WindowManagerFlags.Fullscreen);
+                });
+            } else {
+                RunOnUiThread(() => {
+                    Window.ClearFlags(WindowManagerFlags.Fullscreen);
+                });
+            }
+        }
+
+
     }
 }
 

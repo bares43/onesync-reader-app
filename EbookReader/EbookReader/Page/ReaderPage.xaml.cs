@@ -72,6 +72,8 @@ namespace EbookReader.Page {
             _messageBus.Subscribe<DeleteBookmark>(DeleteBookmark);
             _messageBus.Subscribe<ChangedBookmarkName>(ChangedBookmarkName);
 
+            _messageBus.Send(new FullscreenRequest(true));
+
             Device.StartTimer(new TimeSpan(0, 5, 0), () => {
                 if (backgroundSync) {
                     this.LoadProgress();
@@ -129,6 +131,7 @@ namespace EbookReader.Page {
             base.OnDisappearing();
             this.SaveProgress();
             backgroundSync = false;
+            _messageBus.Send(new FullscreenRequest(false));
         }
 
         protected override void OnAppearing() {

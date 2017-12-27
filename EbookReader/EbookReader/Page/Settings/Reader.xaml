@@ -42,6 +42,10 @@
                 <Label Text="Noční režim" />
                 <Switch IsToggled="{Binding NightMode.Enabled}" />
             </StackLayout>
+            <StackLayout Style="{StaticResource settingsWrapper}">
+                <Label Text="Fullscreen" />
+                <Switch IsToggled="{Binding Fullscreen.Enabled}" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

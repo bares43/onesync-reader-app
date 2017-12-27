@@ -65,6 +65,7 @@
     <Compile Include="Model\Messages\DeleteBook.cs" />
     <Compile Include="Model\Messages\DeleteBookmark.cs" />
     <Compile Include="Model\Messages\DropboxAccessTokenMessage.cs" />
+    <Compile Include="Model\Messages\FullscreenRequest.cs" />
     <Compile Include="Model\Messages\OpenBook.cs" />
     <Compile Include="Model\Messages\OpenBookmark.cs" />
     <Compile Include="Model\Messages\OpenDropboxLogin.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Model\View\BookmarkVM.cs" />
     <Compile Include="Model\View\FirebaseVM.cs" />
     <Compile Include="Model\View\FontSizeVM.cs" />
+    <Compile Include="Model\View\FullscreenVM.cs" />
     <Compile Include="Model\View\MarginVM.cs" />
     <Compile Include="Model\View\NightModeVM.cs" />
     <Compile Include="Model\View\QuickPanelSettingsVM.cs" />
