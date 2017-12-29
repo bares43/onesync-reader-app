@@ -31,6 +31,7 @@ body {
 #columns-outer {
     overflow: hidden;
     position: relative;
+    will-change: scroll-position;
 }
 
 #columns-inner {
@@ -48,6 +49,7 @@ body {
 
     * {
       word-wrap: break-word;
+      will-change: position; // Chrome
     }
 
     pre {
