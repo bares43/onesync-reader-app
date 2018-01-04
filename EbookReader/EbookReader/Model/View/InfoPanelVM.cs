@@ -60,9 +60,7 @@ namespace EbookReader.Model.View {
         }
 
         private void SetClock() {
-            var now = DateTime.Now;
-
-            Clock = $"{now.Hour}:{now.Minute}";
+            Clock = DateTime.Now.ToString("HH:mm");
         }
     }
 }
