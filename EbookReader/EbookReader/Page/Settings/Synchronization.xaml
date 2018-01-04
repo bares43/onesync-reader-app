@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:EbookReader.Converter"
+             x:Class="EbookReader.Page.Settings.Synchronization"
+             Title="Synchronizace">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Picker">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="WidthRequest" Value="200"></Setter>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="WidthRequest" Value="200"></Setter>
+            </Style>
+
+            <OnPlatform x:TypeArguments="Thickness" Android="10,0" WinPhone="10" x:Key="settingsWrapperPadding" />
+
+            <Style x:Key="settingsWrapper" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Padding" Value="{StaticResource settingsWrapperPadding}" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Fill">
+
+            <StackLayout Style="{StaticResource settingsWrapper}">
+                <Label Text="Synchronizovat" />
+                <Switch IsToggled="{Binding Enabled}" />
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding Enabled}">
+                <StackLayout Style="{StaticResource settingsWrapper}">
+                    <Label Text="Pouze na wifi" />
+                    <Switch IsToggled="{Binding OnlyWifi}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource settingsWrapper}">
+                    <Label Text="Název zařízení" />
+                    <Entry Text="{Binding DeviceName}" />
+                </StackLayout>
+                
+                <StackLayout Style="{StaticResource settingsWrapper}">
+                    <Label Text="Synchronizovat pomocí" />
+                    <Picker ItemsSource="{Binding SynchronizationService.Items}" SelectedItem="{Binding SynchronizationService.Value}" />
+                </StackLayout>
+                <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Dropbox'}}">
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding IsConnected, Converter={converter:InverseBoolConverter}}">
+                        <Button Text="Připojit Dropbox" Command="{Binding ConnectToDropboxCommand}" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding IsConnected}">
+                        <Button Text="Odpojit Dropbox" Command="{Binding DisconnectDropboxCommand}" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Firebase'}}">
+                    <StackLayout Style="{StaticResource settingsWrapper}">
+                        <Label Text="E-mail" />
+                        <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}">
+                        <Label Text="Heslo" />
+                        <Entry Text="{Binding Firebase.Password}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" IsPassword="True" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}">
+                        <Button Text="Připojit" Command="{Binding Firebase.ConnectCommand}" />
+                        <Button Text="Zapomenuté heslo" Command="{Binding Firebase.ResetCommand}" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.LoginFailed}">
+                        <Label Text="Přihlášení se nepodařilo. Heslo musí být dlouhé minimálně 6 znaků."></Label>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.IsConnected}">
+                        <Button Text="Odpojit" Command="{Binding Firebase.DisconnectCommand}" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

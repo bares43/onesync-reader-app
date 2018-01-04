@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     uglify: {
       target: {
         files: {
-          'Build/reader.js': ['Src/js/jquery-3.2.1.min.js', 'Src/js/Base64.js', 'Src/js/reader.js'],
+          'Build/reader.js': ['Src/js/jquery-3.2.1.min.js', 'Src/js/hammer.min.js', 'Src/js/Base64.js', 'Src/js/reader.js'],
         },
       },
     },
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
       },
     },
     eslint: {
-      target: ['Src/js/*', '!Src/js/Base64.js', '!Src/js/jquery-3.2.1.min.js'],
+      target: ['Src/js/*', '!Src/js/Base64.js', '!Src/js/jquery-3.2.1.min.js', '!Src/js/hammer.min.js'],
     },
   });
 

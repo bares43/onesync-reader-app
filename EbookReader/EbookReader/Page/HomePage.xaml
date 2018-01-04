@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EbookReader.Page.Home"
+             x:Class="EbookReader.Page.HomePage">
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Margin="30,5">
+            <Label Text="Knihovna" FontSize="Large" HorizontalOptions="FillAndExpand"></Label>
+            <ScrollView HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="10">
+                <StackLayout x:Name="Bookshelf" x:FieldModifier="public" Orientation="Horizontal">
+                    <local:AddBookCard />
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

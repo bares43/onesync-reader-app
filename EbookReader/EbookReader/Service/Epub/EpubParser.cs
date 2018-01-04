@@ -4,14 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using PCLStorage;
 
 namespace EbookReader.Service.Epub {
     public abstract class EpubParser {
 
         protected XElement Package { get; set; }
+        protected IFolder Folder { get; set; }
+        protected string ContentBasePath { get; set; }
 
-        public EpubParser(XElement package) {
+        public EpubParser(XElement package, IFolder folder, string contentBasePath) {
             this.Package = package;
+            this.Folder = folder;
+            this.ContentBasePath = contentBasePath;
         }
 
         public virtual string GetTitle() {
@@ -30,7 +35,7 @@ namespace EbookReader.Service.Epub {
             return this.GetOptionalElementValue("description", this.GetMetadata().Descendants());
         }
 
-        public virtual IEnumerable<Model.EpubSpine> GetSpines() {
+        public virtual List<Model.EpubSpine> GetSpines() {
             return this.GetSpine()
                 .Descendants()
                 .Where(o => o.Name.LocalName == "itemref")
@@ -52,11 +57,15 @@ namespace EbookReader.Service.Epub {
                 .ToList();
         }
 
-        private XElement GetMetadata() {
+        public abstract Task<List<Model.Navigation.Item>> GetNavigation();
+
+        public abstract string GetCover();
+
+        protected XElement GetMetadata() {
             return Package.Descendants().Where(o => o.Name.LocalName == "metadata").First();
         }
 
-        private XElement GetManifest() {
+        protected XElement GetManifest() {
             return Package.Descendants().Where(o => o.Name.LocalName == "manifest").First();
         }
 
@@ -71,6 +80,15 @@ namespace EbookReader.Service.Epub {
         private string GetOptionalElementValue(string localName, IEnumerable<XElement> elements) {
             var element = elements.Where(o => o.Name.LocalName == localName).FirstOrDefault();
             return element != null ? element.Value : string.Empty;
+        }
+
+        protected string GetAttributeOnElementWithAttributeValue(XElement parent, string attributeName, string attributeFilterName, string attributeFilterValue, string elementName = "") {
+            return parent
+                .Elements()
+                .Where(o => string.IsNullOrEmpty(elementName) || o.Name.LocalName == elementName)
+                .Where(o => o.Attributes().Any(i => i.Name.LocalName == attributeFilterName && i.Value == attributeFilterValue))
+                .Select(o => o.Attributes().First(i => i.Name.LocalName == attributeName).Value)
+                .FirstOrDefault();
         }
     }
 }

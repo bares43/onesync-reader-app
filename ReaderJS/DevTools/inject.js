@@ -1,17 +1,18 @@
 ﻿/*global Ebook*/
 /*global Messages*/
+/*global Simulator*/
 /* exported csCallback */
 
 function clickToLeft() {
-  var event = $.Event('click');
-  event.pageX = 1;
-  $('#columns-outer').trigger(event);
+  Simulator.gestures.tap(document.getElementsByTagName('body')[0], {
+    pos: [1, 1],
+  });
 }
 
 function clickToRight() {
-  var event = $.Event('click');
-  event.pageX = $("#columns-outer").width() - 1;
-  $('#columns-outer').trigger(event);
+  Simulator.gestures.tap(document.getElementsByTagName('body')[0], {
+    pos: [$("body").width() - 1, 1],
+  });
 }
 
 function getCurrentContent() {
@@ -28,18 +29,18 @@ function getCurrentContent() {
     var caretRangeStart = document.caretRangeFromPoint(rect.left, rect.top);
     var caretRangeEnd = document.caretRangeFromPoint(rect.left + rect.width - 1, rect.top + rect.height - 1);
 
-    if (caretRangeStart === null || caretRangeEnd === null) { 
-      return null; 
+    if (caretRangeStart === null || caretRangeEnd === null) {
+      return null;
     }
-	
+
     var range = document.createRange();
     range.setStart(caretRangeStart.startContainer, caretRangeStart.startOffset);
     range.setEnd(caretRangeEnd.endContainer, caretRangeEnd.endOffset);
-	
+
     result = range.toString();
-	
+
     return result;
-  } 
+  }
   return null;
 }
 

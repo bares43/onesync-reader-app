@@ -6,11 +6,13 @@ using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Autofac;
 using EbookReader.DependencyService;
+using EbookReader.Service;
 using EbookReader.UWP.DependencyService;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -18,7 +20,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Xam.Plugin.Shared;
+using Xam.Plugin.WebView.UWP;
 
 namespace EbookReader.UWP {
     /// <summary>
@@ -31,7 +33,8 @@ namespace EbookReader.UWP {
         /// </summary>
         public App() {
             this.SetUpIoc();
-            
+            this.SetUpSubscribers();
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -56,7 +59,7 @@ namespace EbookReader.UWP {
                     typeof(FormsWebViewRenderer).GetTypeInfo().Assembly
                 };
 
-                FormsWebViewRenderer.Init();
+                FormsWebViewRenderer.Initialize();
 
                 Xamarin.Forms.Forms.Init(e, assemblies);
 
@@ -104,7 +107,21 @@ namespace EbookReader.UWP {
 
         private void SetUpIoc() {
             IocManager.ContainerBuilder.RegisterType<UWPAssetsManager>().As<IAssetsManager>();
+            IocManager.ContainerBuilder.RegisterType<CryptoService>().As<ICryptoService>();
             IocManager.Build();
+        }
+
+        private void SetUpSubscribers() {
+            var messageBus = IocManager.Container.Resolve<IMessageBus>();
+            messageBus.Subscribe<Model.Messages.FullscreenRequest>(ToggleFullscreen);
+        }
+
+        private void ToggleFullscreen(Model.Messages.FullscreenRequest msg) {
+            if (msg.Fullscreen) {
+                ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+            } else {
+                ApplicationView.GetForCurrentView().ExitFullScreenMode();
+            }
         }
     }
 }

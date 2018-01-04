@@ -2,117 +2,111 @@
 /*global Messages*/
 /*global Base64*/
 /*global csCallback*/
-
-$.fn.removeClassRegex = function(regex) {
-  return $(this).removeClass(function(index, classes) {
-    return classes
-      .split(/\s+/)
-      .filter(function(c) {
-        return regex.test(c);
-      })
-      .join(' ');
-  });
-};
-
+/*global Hammer*/
+/*global Gestures*/
 window.Ebook = {
   pageWidth: 0,
-  scrollStep: 0,
   totalPages: 0,
   currentPage: 1,
   fontSize: 0,
   webViewWidth: 0,
   webViewHeight: 0,
   webViewMargin: 0,
-  init: function(width, height, margin, fontSize) {
+  scrollSpeed: 0,
+  clickEverywhere: false,
+  doubleSwipe: false,
+  nightMode: false,
+  init: function(width, height, margin, fontSize, scrollSpeed, clickEverywhere, doubleSwipe, nightMode) {
     this.webViewWidth = width;
     this.webViewHeight = height;
     this.webViewMargin = margin;
     this.fontSize = fontSize;
+    this.scrollSpeed = scrollSpeed;
+    this.clickEverywhere = clickEverywhere;
+    this.doubleSwipe = doubleSwipe;
+    this.nightMode = nightMode;
 
     this.htmlHelper.setFontSize();
     this.htmlHelper.setWidth();
     this.htmlHelper.setHeight();
     this.htmlHelper.setMargin();
+    this.htmlHelper.setNightMode();
 
     this.setUpColumns();
     this.setUpEvents();
-    this.setUpEbook();
   },
   setUpEvents: function() {
-    $("#columns-outer").on('click', function(e) {
-      if (e.pageX > Math.round(Ebook.pageWidth / 2)) {
-        Ebook.goToNextPage();
-      } else {
-        Ebook.goToPreviousPage();
-      }
-    });
+    var wrapper = document.getElementsByTagName("body")[0];
+
+    Gestures.init(wrapper);
   },
   setUpEbook: function() {
     this.resizeImages();
 
     this.pagerHelper.invalideCache();
 
-    var endOfChapterLeft = $("#js-ebook-end-of-chapter").position().left;
-    this.totalPages = Math.ceil(endOfChapterLeft / this.pageWidth);
+    this.goToPageFast(1);
 
-    this.messagesHelper.sendPageChange();
+    this.totalPages = this.getPageOfMarker("js-ebook-end-of-chapter");
+
+    this.setUpLinksListener();
   },
   setUpColumns: function() {
-    this.pageWidth = $("#columns-inner").width();
-    $("#columns-inner").css("column-width", this.pageWidth + "px");
-    this.scrollStep = this.pageWidth + parseInt($("#columns-inner").css("column-gap"));
+    var columnsInner = document.getElementById("columns-inner");
+    this.pageWidth = columnsInner.getBoundingClientRect().width;
+    columnsInner.style["column-width"] = this.pageWidth + "px";
   },
   resize: function(width, height) {
-    this.doWithSpinner(function() {
-      var position = Ebook.getCurrentPosition();
+    Ebook.htmlHelper.hideContent();
+    var position = Ebook.getCurrentPosition();
 
-      Ebook.goToPageFast(1);
-      Ebook.webViewWidth = width;
-      Ebook.webViewHeight = height;
-      Ebook.htmlHelper.setWidth();
-      Ebook.htmlHelper.setHeight();
+    Ebook.goToPageFast(1);
+    Ebook.webViewWidth = width;
+    Ebook.webViewHeight = height;
+    Ebook.htmlHelper.setWidth();
+    Ebook.htmlHelper.setHeight();
 
-      Ebook.setUpColumns();
-      Ebook.setUpEbook();
+    Ebook.setUpColumns();
+    Ebook.setUpEbook();
 
+    setTimeout(function() {
       Ebook.goToPositionFast(position);
-    });
+      Ebook.htmlHelper.showContent();
+    }, 5);
   },
   changeFontSize: function(fontSize) {
-    this.doWithSpinner(function() {
-      var position = Ebook.getCurrentPosition();
+    Ebook.htmlHelper.hideContent();
+    var position = Ebook.getCurrentPosition();
 
-      Ebook.goToPageFast(1);
-      Ebook.fontSize = fontSize;
-      Ebook.htmlHelper.setFontSize();
+    Ebook.goToPageFast(1);
+    Ebook.fontSize = fontSize;
+    Ebook.htmlHelper.setFontSize();
 
-      Ebook.setUpEbook();
+    Ebook.setUpColumns();
+    Ebook.setUpEbook();
+
+    setTimeout(function() {
       Ebook.goToPositionFast(position);
-    });
+      Ebook.htmlHelper.showContent();
+    }, 5);
   },
   changeMargin: function(margin) {
-    this.doWithSpinner(function() {
-      var position = Ebook.getCurrentPosition();
+    Ebook.htmlHelper.hideContent();
+    var position = Ebook.getCurrentPosition();
 
-      Ebook.goToPageFast(1);
-      Ebook.webViewMargin = margin;
-      Ebook.htmlHelper.setWidth();
-      Ebook.htmlHelper.setHeight();
-      Ebook.htmlHelper.setMargin();
+    Ebook.goToPageFast(1);
+    Ebook.webViewMargin = margin;
+    Ebook.htmlHelper.setWidth();
+    Ebook.htmlHelper.setHeight();
+    Ebook.htmlHelper.setMargin();
 
-      Ebook.setUpColumns();
-      Ebook.setUpEbook();
+    Ebook.setUpColumns();
+    Ebook.setUpEbook();
+
+    setTimeout(function() {
       Ebook.goToPositionFast(position);
-    });
-  },
-  doWithSpinner: function(callback) {
-    this.htmlHelper.showSpinner();
-    setTimeout(function() {
-      callback();
-    }, 10);
-    setTimeout(function() {
-      Ebook.htmlHelper.hideSpinner();
-    }, 100);
+      Ebook.htmlHelper.showContent();
+    }, 5);
   },
   goToNextPage: function() {
     var page = this.currentPage + 1;
@@ -132,7 +126,7 @@ window.Ebook = {
   },
   goToPage: function(page, duration) {
     if (duration === undefined) {
-      duration = 500;
+      duration = Ebook.scrollSpeed;
     }
 
     this.goToPageInternal(page, duration);
@@ -146,33 +140,68 @@ window.Ebook = {
     this.currentPage = page;
 
     $('#columns-outer').animate({
-      scrollLeft: (page - 1) * this.scrollStep,
+      scrollLeft: (page - 1) * this.pageWidth,
     }, duration);
   },
-  pageOfElement: function(el) {
-    var left = $(el).position().left + 1;
-    return Math.ceil(left / this.pageWidth);
-  },
   goToPosition: function(position, duration) {
-    var currentPage = Ebook.currentPage;
-    this.goToPageFast(1);
+    Ebook.pagerHelper.computeLengthOfAllPages();
 
-    var result = this.pagerHelper.findNodeAtPosition(position, $("#content").get(0));
-    if (result.node !== null) {
-      this.pagerHelper.createMark(result.node, position - result.positionCounter);
-      var page = this.pageOfElement($("#js-ebook-mark"));
+    var page = 0;
+    var currentPosition = 0;
 
-      this.goToPageFast(currentPage);
-      this.goToPage(page, duration);
+    while (currentPosition < position) {
+      page++;
+
+      var length = Ebook.pagerHelper.cache.get(page);
+      if (length !== undefined) {
+        currentPosition += length;
+      }
     }
 
-    this.pagerHelper.removeMark();
+    this.goToPage(page, duration);
   },
   goToPositionFast: function(position) {
     this.goToPosition(position, 0);
   },
   getCurrentPosition: function() {
     return this.pagerHelper.startOfPage(this.currentPage);
+  },
+  setUpLinksListener: function() {
+    var links = document.getElementById("content").getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener("click", function(e) {
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+        e.preventDefault();
+        e.cancelBubble = true;
+        var link = this;
+        var href = link.getAttribute("href");
+        if (href) {
+          if (href.startsWith("#")) {
+            Ebook.goToMarker(href.slice(1));
+          } else if (link.hostname) {
+            Ebook.messagesHelper.sendOpenUrl(href);
+          } else {
+            Ebook.messagesHelper.sendChapterRequest(href);
+          }
+        }
+
+        return false;
+      }, false);
+    }
+  },
+  getPageOfMarker: function(marker) {
+    var currentPage = this.currentPage;
+    this.goToPageFast(1);
+    var position = document.getElementById(marker).getBoundingClientRect().left;
+    this.goToPageFast(currentPage);
+    return Math.ceil(position / this.pageWidth);
+  },
+  goToMarker: function(marker, duration) {
+    var page = this.getPageOfMarker(marker);
+    if (page > 0) {
+      this.goToPage(page, duration);
+    }
   },
   loadImages: function(images) {
     images.forEach(function(item) {
@@ -184,25 +213,22 @@ window.Ebook = {
     $("img").css("max-height", (Ebook.webViewHeight - (2 * Ebook.webViewMargin)) + "px");
   },
   pagerHelper: {
-    cache: [],
+    cache: new Map(),
     invalideCache: function() {
-      this.cache = [];
+      this.cache = new Map();
     },
     startOfPage: function(page) {
       page = Math.min(Math.max(page, 1), Ebook.totalPages);
 
-      if (this.cache.length === 0) {
-        Ebook.pagerHelper.getLengthOfAllPages();
-      }
+      Ebook.pagerHelper.computeLengthOfAllPages();
 
       var start = 0;
 
       for (var i = 1; i < page; i++) {
-        var cache = this.cache.filter(function(item) {
-          return item.page === i;
-        })[0];
-
-        start += cache.length;
+        var length = this.cache.get(i);
+        if (length !== undefined) {
+          start += length;
+        }
       }
 
       if (page > 1) {
@@ -211,51 +237,50 @@ window.Ebook = {
 
       return start;
     },
-    markStartOfPage: function() {
-      var rect = {
-        top: Ebook.webViewMargin,
-        left: Ebook.webViewMargin,
-        width: Ebook.webViewWidth - (2 * Ebook.webViewMargin),
-        height: Ebook.webViewHeight - (2 * Ebook.webViewMargin),
-      };
-
-      if (document.caretRangeFromPoint) {
-        var range = document.caretRangeFromPoint(rect.left, rect.top);
-
-        if (range !== null) {
-          var mark = document.createElement("span");
-          mark.setAttribute("class", "js-ebook-page-begin");
-
-          range.insertNode(mark);
-        }
-      }
-    },
     markAllPages: function() {
       var currentPage = Ebook.currentPage;
 
+      var rect = {
+        top: Ebook.webViewMargin,
+        left: Ebook.webViewMargin,
+      };
+
+      var ranges = [];
       for (var i = 1; i <= Ebook.totalPages; i++) {
         Ebook.goToPageFast(i);
-        this.markStartOfPage();
+
+        var range = document.caretRangeFromPoint(rect.left, rect.top);
+        
+        if (range !== null) {
+          ranges.push(range);
+        }
       }
+
+      ranges.forEach(function(range) {
+        var mark = document.createElement("span");
+        mark.setAttribute("class", "js-ebook-page-begin");
+
+        range.insertNode(mark);
+      });
 
       Ebook.goToPageFast(currentPage);
     },
-    getLengthOfAllPages: function() {
+    computeLengthOfAllPages: function() {
+      if (this.cache.size > 0) { 
+        return; 
+      }
+
       this.markAllPages();
 
-      var html = $("#content").html();
+      var html = document.getElementById("content").innerHTML;
       var pages = html.split('<span class="js-ebook-page-begin"></span>');
 
-      var result = [];
+      var result = new Map();
 
       for (var i = 1; i <= Ebook.totalPages; i++) {
-        var partOfHtml = pages[i];
-        var clearText = this.clearText($("<p>" + partOfHtml + "</p>").text());
+        var clearText = this.clearText(this.stripHtmlTags(pages[i]));
         var length = clearText.length;
-        result.push({
-          page: i,
-          length: length,
-        });
+        result.set(i, length);
       }
 
       var mark = document.getElementsByClassName("js-ebook-page-begin")[0];
@@ -282,106 +307,10 @@ window.Ebook = {
 
       Ebook.pagerHelper.cache = result;
     },
-    findNodeAtPosition: function(position, currentNode, positionCounter) {
-      if (positionCounter === undefined) {
-        positionCounter = 0;
-      }
-
-      var result = {
-        node: null,
-        positionCounter: 0,
-      };
-
-      var nodeLength = this.getNodeLength(currentNode);
-      var nodeLengthPlusCounter = nodeLength + positionCounter;
-
-      if (nodeLengthPlusCounter >= position) {
-        if (currentNode.nodeType === Node.ELEMENT_NODE) {
-          result = this.findNodeAtPosition(position, currentNode.firstChild, positionCounter);
-        } else if (currentNode.nodeType === Node.TEXT_NODE) {
-          result.node = currentNode;
-          result.positionCounter = positionCounter;
-        }
-      } else if (currentNode.nextSibling !== null) {
-        result = this.findNodeAtPosition(position, currentNode.nextSibling,
-          nodeLengthPlusCounter);
-      }
-
-      return result;
-    },
-    removeMark: function() {
-      var mark = document.getElementById("js-ebook-mark");
-
-      if (mark !== null) {
-        var textNode = mark.firstChild;
-        if (textNode !== null) {
-          var previousNode = mark.previousSibling;
-          var text = textNode.nodeValue;
-
-          if (previousNode !== null && previousNode.nodeType === Node.TEXT_NODE) {
-            text = previousNode.nodeValue + text;
-            previousNode.remove();
-          }
-
-          mark.parentNode.replaceChild(document.createTextNode(text), mark);
-        } else {
-          mark.remove();
-        }
-      }
-    },
-    createMark: function(node, position) {
-      var regex = /(\s*\S+)(\s+)?([\S\s]*)?/;
-      var counter = 0;
-      var found = false;
-
-      var text = node.nodeValue;
-
-      var textBefore = "";
-
-      var mark = document.createElement("span");
-      mark.setAttribute("id", "js-ebook-mark");
-
-      while (regex.test(text) && !found) {
-        var match = regex.exec(text);
-
-        var currentText = match[1];
-        var whiteCharacters = match[2];
-
-        text = match[3];
-
-        if (text === undefined) {
-          text = "";
-        }
-
-        var length = this.clearText(currentText).length;
-
-        counter += length;
-
-        if (counter >= position) {
-          found = true;
-          mark.appendChild(document.createTextNode(currentText + whiteCharacters + text));
-        } else {
-          textBefore += currentText + whiteCharacters;
-        }
-      }
-
-      var textBeforeNode = document.createTextNode(textBefore);
-
-      var parent = node.parentNode;
-
-      parent.replaceChild(mark, node);
-      parent.insertBefore(textBeforeNode, mark);
-    },
-    getNodeLength: function(node) {
-      var rawText = "";
-
-      if (node.nodeType === Node.ELEMENT_NODE) {
-        rawText = node.innerText;
-      } else if (node.nodeType === Node.TEXT_NODE) {
-        rawText = node.nodeValue;
-      }
-
-      return this.clearText(rawText).length;
+    stripHtmlTags: function(html) {
+      var div = document.createElement("div");
+      div.innerHTML = html;
+      return div.textContent;
     },
     clearText: function(text) {
       return text.replace(/\s/g, '');
@@ -389,30 +318,44 @@ window.Ebook = {
   },
   htmlHelper: {
     setFontSize: function() {
-      $("body").removeClassRegex(/^reader-font-size-/);
-      $("body").addClass("reader-font-size-" + Ebook.fontSize);
+      var body = document.getElementsByTagName("body")[0];
+      body.className = body.className.replace(/reader-font-size-\S+/, " ");
+      body.classList.add("reader-font-size-" + Ebook.fontSize);
     },
     setWidth: function() {
-      $("#columns-outer").css("width", (Ebook.webViewWidth - (2 * Ebook.webViewMargin)) + "px");
+      document.getElementById("columns-outer").style.width = (Ebook.webViewWidth - (2 * Ebook.webViewMargin)) + "px";
     },
     setHeight: function() {
-      $("#columns-outer").css("height", (Ebook.webViewHeight - (2 * Ebook.webViewMargin)) + "px");
+      document.getElementById("columns-outer").style.height = (Ebook.webViewHeight - (2 * Ebook.webViewMargin)) + "px";
     },
     setMargin: function() {
-      $("body").removeClassRegex(/^reader-margin-/);
-      $("body").addClass("reader-margin-" + Ebook.webViewMargin);
+      var body = document.getElementsByTagName("body")[0];
+      body.className = body.className.replace(/reader-margin-\S+/, " ");
+      body.classList.add("reader-margin-" + Ebook.webViewMargin);
     },
-    showSpinner: function() {
-      $(".js-ebook-overlay").addClass("show");
+    showContent: function() {
+      document.getElementById("content").style.opacity = 1;
     },
-    hideSpinner: function() {
-      $(".js-ebook-overlay").removeClass("show");
+    hideContent: function() {
+      document.getElementById("content").style.opacity = 0;
+    },
+    setNightMode: function() {
+      var body = document.getElementsByTagName("body")[0];
+      var className = "reader-night-mode";
+      if (Ebook.nightMode) {
+        body.classList.add(className);
+      } else {
+        body.classList.remove(className);
+      }
     },
   },
   messagesHelper: {
     sendPageChange: function() {
-      Messages.send("PageChange", { CurrentPage: Ebook.currentPage,
-        TotalPages: Ebook.totalPages });
+      Messages.send("PageChange", {
+        CurrentPage: Ebook.currentPage,
+        TotalPages: Ebook.totalPages,
+        Position: Ebook.getCurrentPosition(),
+      });
     },
     nextChapterRequest: function() {
       Messages.send("NextChapterRequest", {});
@@ -420,9 +363,17 @@ window.Ebook = {
     prevChapterRequest: function() {
       Messages.send("PrevChapterRequest", {});
     },
+    sendOpenQuickPanelRequest: function() {
+      Messages.send("OpenQuickPanelRequest", {});
+    },
+    sendChapterRequest: function(chapter) {
+      Messages.send("ChapterRequest", {Chapter: chapter});
+    },
+    sendOpenUrl: function(url) {
+      Messages.send("OpenUrl", {Url: url});
+    },
   },
 };
-
 window.Messages = {
   send: function(action, data) {
     var json = JSON.stringify({
@@ -438,24 +389,36 @@ window.Messages = {
   },
   actions: {
     init: function(data) {
-      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize);
+      Ebook.init(data.Width, data.Height, data.Margin, data.FontSize, data.ScrollSpeed, data.ClickEverywhere, data.DoubleSwipe, data.NightMode);
     },
     loadHtml: function(data) {
-      $("#content").html(data.Html);
+      Ebook.htmlHelper.hideContent();
+
+      document.getElementById("content").innerHTML = data.Html;
 
       Ebook.loadImages(data.Images);
       Ebook.setUpEbook();
 
-      if (data.Page === 'last') {
-        Ebook.goToPageFast(Ebook.totalPages);
-      } else {
-        Ebook.goToPageFast(1);
-      }
-
-      Ebook.messagesHelper.sendPageChange();
+      setTimeout(function() {
+        if (data.Position > 0) {
+          Ebook.goToPositionFast(data.Position);
+        } else if (data.LastPage) {
+          Ebook.goToPageFast(Ebook.totalPages);
+          Ebook.messagesHelper.sendPageChange();
+        } else if (data.Marker) {
+          Ebook.goToMarker(data.Marker);
+        } else {
+          Ebook.goToPageFast(1);
+          Ebook.messagesHelper.sendPageChange();
+        }
+      }, 5);
+      
+      setTimeout(function() {
+        Ebook.htmlHelper.showContent();
+      }, 5);
     },
-    goToStartOfPage: function(data) {
-      Ebook.goToPosition(Ebook.pagerHelper.startOfPage(data.Page));
+    goToPosition: function(data) {
+      Ebook.goToPositionFast(data.Position);
     },
     changeFontSize: function(data) {
       Ebook.changeFontSize(data.FontSize);
@@ -465,6 +428,124 @@ window.Messages = {
     },
     changeMargin: function(data) {
       Ebook.changeMargin(data.Margin);
+    },
+  },
+};
+
+window.Gestures = {
+  init: function(element) {
+    var hammer = new Hammer.Manager(element);
+
+    var tap = new Hammer.Tap({
+      event: "singletap",
+    });
+    var doubleTap = new Hammer.Tap({
+      event: "doubletap",
+      taps: 2,
+    });
+    var press = new Hammer.Press({
+      event: "press",
+    });
+    var swipeleft = new Hammer.Swipe({
+      event: "swipeleft",
+      direction: Hammer.DIRECTION_LEFT,
+    });
+    var swiperight = new Hammer.Swipe({
+      event: "swiperight",
+      direction: Hammer.DIRECTION_RIGHT,
+    });
+    var swipeleftdouble = new Hammer.Swipe({
+      event: "swipeleftdouble",
+      direction: Hammer.DIRECTION_LEFT,
+      pointers: 2,
+    });
+    var swiperightdouble = new Hammer.Swipe({
+      event: "swiperightdouble",
+      direction: Hammer.DIRECTION_RIGHT,
+      pointers: 2,
+    });
+
+    hammer.add([doubleTap, tap, press, swipeleft, swiperight, swipeleftdouble, swiperightdouble]);
+
+    doubleTap.recognizeWith(tap);
+    tap.requireFailure([doubleTap]);
+
+    hammer.on("singletap", function(e) {
+      if (!Gestures.isLink(e)) {
+        Gestures.actions.tap(e.center.x, e.center.y);
+      }
+    });
+
+    hammer.on("doubletap", function(e) {
+      if (!Gestures.isLink(e)) {
+        Gestures.actions.doubleTap();
+      }
+    });
+
+    hammer.on("press", function(e) {
+      if (!Gestures.isLink(e)) {
+        Gestures.actions.press();
+      }
+    });
+
+    hammer.on("swipeleft", function() {
+      Gestures.actions.swipeLeft();
+    });
+
+    hammer.on("swiperight", function() {
+      Gestures.actions.swipeRight();
+    });
+
+    hammer.on("swipeleftdouble", function() {
+      Gestures.actions.swipeLeftDouble();
+    });
+
+    hammer.on("swiperightdouble", function() {
+      Gestures.actions.swipeRightDouble();
+    });
+  },
+  isLink: function(e) {
+    if (e && e.target) {
+      var el = e.target;
+      while (el !== null && el.id !== "content") {
+        if (el.localName === "a") {
+          return true;
+        }
+
+        el = el.parentElement;
+      }
+    }
+    return false;
+  },
+  actions: {
+    tap: function(x) {
+      if (Ebook.clickEverywhere || x > Math.round(Ebook.pageWidth / 2)) {
+        Ebook.goToNextPage();
+      } else {
+        Ebook.goToPreviousPage();
+      }
+    },
+    doubleTap: function() {
+      Ebook.messagesHelper.sendOpenQuickPanelRequest();
+    },
+    press: function() {
+      Ebook.messagesHelper.sendOpenQuickPanelRequest();
+    },
+    swipeLeft: function() {
+      Ebook.goToNextPage();
+    },
+    swipeRight: function() {
+      Ebook.goToPreviousPage();
+    },
+    swipeLeftDouble: function() {
+      if (Ebook.doubleSwipe) {
+        Ebook.messagesHelper.nextChapterRequest();
+      }
+    },
+    swipeRightDouble: function() {
+      if (Ebook.doubleSwipe) {
+        Ebook.goToPage(1);
+      }
     },
   },
 };

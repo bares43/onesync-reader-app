@@ -32,6 +32,9 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <Optimize>false</Optimize>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -99,6 +102,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DependencyService\CryptoService.cs" />
     <Compile Include="DependencyService\UWPAssetsManager.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -120,6 +124,21 @@
     </Content>
     <Content Include="..\..\ReaderJS\Build\reader.js">
       <Link>Assets\reader.js</Link>
+    </Content>
+    <Content Include="..\EbookReader\Content\delete.png">
+      <Link>delete.png</Link>
+    </Content>
+    <Content Include="..\EbookReader\Content\edit.png">
+      <Link>edit.png</Link>
+    </Content>
+    <Content Include="..\EbookReader\Content\info.png">
+      <Link>info.png</Link>
+    </Content>
+    <Content Include="..\EbookReader\Content\save.png">
+      <Link>save.png</Link>
+    </Content>
+    <Content Include="..\EbookReader\Content\settings.png">
+      <Link>settings.png</Link>
     </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

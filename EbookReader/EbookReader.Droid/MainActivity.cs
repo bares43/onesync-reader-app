@@ -6,10 +6,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Xam.Plugin.Droid;
 using EbookReader.DependencyService;
 using EbookReader.Droid.DependencyService;
 using Autofac;
+using Xam.Plugin.WebView.Droid;
+using EbookReader.Service;
 
 namespace EbookReader.Droid {
     [Activity(Label = "EbookReader", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -21,11 +22,11 @@ namespace EbookReader.Droid {
             base.OnCreate(bundle);
 
             this.SetUpIoc();
+            this.SetUpSubscribers();
 
-            FormsWebViewRenderer.Init();
+            FormsWebViewRenderer.Initialize();
 
-            FormsWebViewRenderer.OnControlChanging += (sender, element, control) => {
-                var webView = control as Android.Webkit.WebView;
+            FormsWebViewRenderer.OnControlChanged += (sender, webView) => {
                 webView.SetLayerType(LayerType.Software, null);
                 webView.Settings.LoadWithOverviewMode = true;
                 webView.Settings.UseWideViewPort = true;
@@ -34,11 +35,41 @@ namespace EbookReader.Droid {
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
-
+        
         private void SetUpIoc() {
             IocManager.ContainerBuilder.RegisterType<AndroidAssetsManager>().As<IAssetsManager>();
+            IocManager.ContainerBuilder.RegisterType<BrightnessProvider>().As<IBrightnessProvider>();
+            IocManager.ContainerBuilder.RegisterInstance(new BrightnessProvider { Brightness = Android.Provider.Settings.System.GetFloat(ContentResolver, Android.Provider.Settings.System.ScreenBrightness) / 255 }).As<IBrightnessProvider>();
+            IocManager.ContainerBuilder.RegisterType<CryptoService>().As<ICryptoService>();
             IocManager.Build();
         }
+
+        private void SetUpSubscribers() {
+            var messageBus = IocManager.Container.Resolve<IMessageBus>();
+            messageBus.Subscribe<Model.Messages.ChangesBrightness>(ChangeBrightness);
+            messageBus.Subscribe<Model.Messages.FullscreenRequest>(ToggleFullscreen);
+        }
+
+        private void ChangeBrightness(Model.Messages.ChangesBrightness msg) {
+            var attributesWindow = new WindowManagerLayoutParams();
+            attributesWindow.CopyFrom(Window.Attributes);
+            attributesWindow.ScreenBrightness = msg.Brightness;
+            Window.Attributes = attributesWindow;
+        }
+
+        private void ToggleFullscreen(Model.Messages.FullscreenRequest msg) {
+            if (msg.Fullscreen) {
+                RunOnUiThread(() => {
+                    Window.AddFlags(WindowManagerFlags.Fullscreen);
+                });
+            } else {
+                RunOnUiThread(() => {
+                    Window.ClearFlags(WindowManagerFlags.Fullscreen);
+                });
+            }
+        }
+
+
     }
 }
 

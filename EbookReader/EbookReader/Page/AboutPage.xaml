@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EbookReader.Page.AboutPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            </Style>
+            
+            <Style x:Key="link" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Italic"></Setter>
+                <Setter Property="TextColor" Value="Blue"></Setter>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="OneSync Reader"
+                   FontSize="Large"
+                   Margin="25"/>
+            <Label Text="{Binding Version}" FontSize="Small" />
+            <Label Text="Vytvořil Jan Bareš, 2017"></Label>
+            <Label Text="janbares.cz" Style="{StaticResource link}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://janbares.cz"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="https://github.com/bares43/thesis-ebook-reader" Style="{StaticResource link}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/bares43/thesis-ebook-reader"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Text="Copyright" FontSize="Medium" Margin="10,0,0,0"></Label>
+            <WebView x:Name="Flaticon" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></WebView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

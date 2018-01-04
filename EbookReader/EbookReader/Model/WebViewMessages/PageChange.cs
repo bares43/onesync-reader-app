@@ -10,5 +10,6 @@ namespace EbookReader.Model.WebViewMessages {
 
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
+        public int Position { get; set; }
     }
 }

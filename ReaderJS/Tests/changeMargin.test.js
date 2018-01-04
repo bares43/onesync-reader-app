@@ -36,7 +36,7 @@ describe('When change margin', () => {
       const chromeless = DevToolsLibrary.getChromeless();
 
       await chromeless
-        .initDevTools(400, 800, 30, 45)
+        .initDevTools(400, 800, 30, 15)
         .sendLoadHtmlMessage(DevToolsLibrary.generateLoremIpsum())
         .goToPageFast(2)
         .sendChangeMarginMessage(30);

@@ -4,11 +4,14 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <!-- dev -->
     <script src="../Src/js/jquery-3.2.1.min.js"></script>
+    <script src="../Src/js/hammer.min.js"></script>
     <script src="../Src/js/Base64.js"></script>
     <script src="../Src/js/reader.js"></script>
+    <script src="../DevTools/hammer.simulator.js"></script>
     <script src="../DevTools/inject.js"></script>
 
     <link href="../Build/reader.css" rel="stylesheet" />
@@ -19,15 +22,6 @@
 
     <div id="columns-outer">
         <div id="columns-inner">
-            <div class="js-ebook-overlay">
-                <div class="spinner-wrapper">
-                    <div class="spinner">
-                        <div class="bounce1"></div>
-                        <div class="bounce2"></div>
-                        <div class="bounce3"></div>
-                    </div>
-                </div>
-            </div>
             <div id="content"></div>
             <span id="js-ebook-end-of-chapter"></span>
         </div>

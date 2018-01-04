@@ -7,7 +7,10 @@ using Autofac;
 using EbookReader.Model;
 using EbookReader.Service;
 using EbookReader.Service.Epub;
-using Xam.Plugin.Abstractions;
+using EbookReader.View;
+using Xam.Plugin.WebView.Abstractions;
+using EbookReader.View;
+using EbookReader.Provider;
 
 namespace EbookReader {
     public static class IocManager {
@@ -33,17 +36,24 @@ namespace EbookReader {
         }
 
         public static void Build() {
-            _container = ContainerBuilder.Build();
+            if(_container == null) {
+                _container = ContainerBuilder.Build();
+            }
         }
 
         private static void SetUpIoc() {
             ContainerBuilder.RegisterType<EpubLoader>().As<IEpubLoader>();
             ContainerBuilder.RegisterType<FileService>().As<IFileService>();
-            ContainerBuilder.RegisterType<FormsWebView>().As<FormsWebView>().SingleInstance();
-            ContainerBuilder.RegisterType<WebViewMessages>().As<IWebViewMessages>();
             ContainerBuilder.RegisterType<Epub200Parser>().Keyed<EpubParser>(EpubVersion.V200);
             ContainerBuilder.RegisterType<Epub300Parser>().Keyed<EpubParser>(EpubVersion.V300);
             ContainerBuilder.RegisterType<Epub301Parser>().Keyed<EpubParser>(EpubVersion.V301);
+            ContainerBuilder.RegisterType<MessageBus>().As<IMessageBus>().SingleInstance();
+            ContainerBuilder.RegisterType<BookshelfService>().As<IBookshelfService>();
+            ContainerBuilder.RegisterType<ReaderWebView>().As<ReaderWebView>();
+            ContainerBuilder.RegisterType<SyncService>().As<ISyncService>();
+            ContainerBuilder.RegisterType<DumbCloudStorageService>().Keyed<ICloudStorageService>(SynchronizationServicesProvider.Dumb);
+            ContainerBuilder.RegisterType<DropboxCloudStorageService>().Keyed<ICloudStorageService>(SynchronizationServicesProvider.Dropbox);
+            ContainerBuilder.RegisterType<FirebaseCloudStorageService>().Keyed<ICloudStorageService>(SynchronizationServicesProvider.Firebase);
         }
 
     }
