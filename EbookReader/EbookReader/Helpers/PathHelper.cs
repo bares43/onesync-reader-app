@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace EbookReader.Helpers {
@@ -21,6 +22,9 @@ namespace EbookReader.Helpers {
                 if (path.StartsWith("/")) {
                     path = path.Substring(1);
                 }
+
+                path = path.Replace("%20", " ");
+                path = Regex.Replace(path, "/+", "/");
             }
 
             return path;

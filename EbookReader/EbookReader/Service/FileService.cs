@@ -14,6 +14,9 @@ namespace EbookReader.Service {
         }
 
         public async Task<IFolder> GetFileFolder(string name, IFolder folder) {
+            if (name.StartsWith("/")) {
+                name = name.Substring(1);
+            }
             while (name.Contains("/")) {
                 var path = name.Split(new char[] { '/' }, 2);
                 var folderName = path[0];

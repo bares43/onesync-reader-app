@@ -208,7 +208,7 @@ namespace EbookReader.Page {
             _book.Position.Spine = currentChapter;
 
             var html = await _epubLoader.GetChapter(_epub, chapter);
-            var htmlResult = await _epubLoader.PrepareHTML(html, _epub);
+            var htmlResult = await _epubLoader.PrepareHTML(html, _epub, _epub.Files.Where(o => o.Id == chapter.Idref).First());
 
             Device.BeginInvokeOnMainThread(() => {
                 this.SendHtml(htmlResult, position, lastPage, marker);

@@ -76,14 +76,14 @@ namespace EbookReader.Service {
             return await _fileService.ReadFileData($"{epub.ContentBasePath}{filename.Href}", folder);
         }
 
-        public async Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, Model.Epub epub) {
+        public async Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, Model.Epub epub, Model.EpubFile chapter) {
 
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
             this.StripHtmlTags(doc);
 
-            var images = await this.PrepareHtmlImages(doc, epub);
+            var images = await this.PrepareHtmlImages(doc, epub, chapter);
 
             var result = new Model.EpubLoader.HtmlResult {
                 Html = doc.DocumentNode.Descendants("body").First().InnerHtml,
@@ -105,8 +105,8 @@ namespace EbookReader.Service {
             }
         }
 
-        private async Task<List<Model.EpubLoader.Image>> PrepareHtmlImages(HtmlDocument doc, Model.Epub epub) {
-            var imagesModel = this.GetImages(doc);
+        private async Task<List<Model.EpubLoader.Image>> PrepareHtmlImages(HtmlDocument doc, Model.Epub epub, Model.EpubFile chapter) {
+            var imagesModel = this.GetImages(doc, chapter);
 
             return await this.ReplaceImagesWithBase64(imagesModel, epub);
         }
@@ -117,8 +117,7 @@ namespace EbookReader.Service {
             foreach (var imageModel in imagesModel) {
                 var extension = imageModel.FileName.Split('.').Last();
 
-                var fileName = $"{epub.ContentBasePath}/{imageModel.FileName.Replace("../", "")}".Replace("//", "/").Replace("%20", " ");
-
+                var fileName = PathHelper.NormalizePath($"{epub.ContentBasePath}/{imageModel.FileName.Replace("../", "")}");
                 var file = await _fileService.OpenFile(fileName, epubFolder);
 
                 using (var stream = await file.OpenAsync(FileAccess.Read)) {
@@ -132,7 +131,7 @@ namespace EbookReader.Service {
             return imagesModel;
         }
 
-        private List<Model.EpubLoader.Image> GetImages(HtmlDocument doc) {
+        private List<Model.EpubLoader.Image> GetImages(HtmlDocument doc, Model.EpubFile chapter) {
             var images = doc.DocumentNode.Descendants("img").ToList();
             var imagesModel = new List<Model.EpubLoader.Image>();
 
@@ -149,9 +148,10 @@ namespace EbookReader.Service {
                         id = existingImageModel.ID;
                     } else {
                         id = cnt;
+                        var path = PathHelper.CombinePath(chapter.Href, srcAttribute.Value);
                         imagesModel.Add(new Model.EpubLoader.Image {
                             ID = id,
-                            FileName = srcAttribute.Value,
+                            FileName = path,
                         });
 
                         cnt++;
