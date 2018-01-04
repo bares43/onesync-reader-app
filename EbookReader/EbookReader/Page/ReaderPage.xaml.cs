@@ -137,6 +137,7 @@ namespace EbookReader.Page {
         protected override void OnAppearing() {
             base.OnAppearing();
             backgroundSync = true;
+            _messageBus.Send(new FullscreenRequest(true));
         }
 
         public async void LoadBook(Book book) {
