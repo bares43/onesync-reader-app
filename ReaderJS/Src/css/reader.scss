@@ -1,5 +1,4 @@
-﻿$font-sizes: 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40;
-$margins: 15, 30, 45;
+﻿$margins: 15, 30, 45;
 
 body {
     padding: 0;
@@ -7,7 +6,7 @@ body {
     width: 100%;
     height: 100%;
 
-    @each $size in $font-sizes {
+    @for $size from 12 through 80 {
         &.reader-font-size-#{$size} {
             font-size: #{$size}px;
         }

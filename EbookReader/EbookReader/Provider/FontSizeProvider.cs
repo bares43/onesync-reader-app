@@ -8,23 +8,10 @@ namespace EbookReader.Provider {
     public static class FontSizeProvider {
         public static List<int> Items {
             get {
-                return new List<int> {
-                    12,
-                    14,
-                    16,
-                    18,
-                    20,
-                    22,
-                    24,
-                    26,
-                    28,
-                    30,
-                    32,
-                    34,
-                    36,
-                    38,
-                    40
-                };
+                var min = 12;
+                var max = 80;
+
+                return Enumerable.Range(min, max - min + 1).Where(o => o % 2 == 0).ToList();
             }
         }
     }
