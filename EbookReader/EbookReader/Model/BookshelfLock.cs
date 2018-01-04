@@ -14,7 +14,7 @@ namespace EbookReader.Model {
             if (locked) return false;
 
             locked = true; ;
-            Device.StartTimer(new TimeSpan(0, 0, 2), () => {
+            Device.StartTimer(new TimeSpan(0, 0, 1), () => {
                 locked = false;
                 return false;
             });

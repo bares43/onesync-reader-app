@@ -64,14 +64,6 @@ namespace EbookReader.Page {
                 quickPanelPosition = new Rectangle(0, 0, 0.33, 1);
             }
 
-            _messageBus.Subscribe<ChangeMargin>((msg) => this.SetMargin(msg.Margin));
-            _messageBus.Subscribe<ChangeFontSize>((msg) => this.SetFontSize(msg.FontSize));
-            _messageBus.Subscribe<AppSleep>(AppSleepSubscriber);
-            _messageBus.Subscribe<AddBookmark>(AddBookmark);
-            _messageBus.Subscribe<OpenBookmark>(OpenBookmark);
-            _messageBus.Subscribe<DeleteBookmark>(DeleteBookmark);
-            _messageBus.Subscribe<ChangedBookmarkName>(ChangedBookmarkName);
-
             _messageBus.Send(new FullscreenRequest(true));
 
             Device.StartTimer(new TimeSpan(0, 5, 0), () => {
@@ -84,6 +76,24 @@ namespace EbookReader.Page {
             });
 
             NavigationPage.SetHasNavigationBar(this, false);
+        }
+
+        private void SubscribeMessages() {
+            _messageBus.Subscribe<ChangeMargin>(ChangeMargin, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<ChangeFontSize>(ChangeFontSize, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<AppSleep>(AppSleepSubscriber, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<AddBookmark>(AddBookmark, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<OpenBookmark>(OpenBookmark, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<DeleteBookmark>(DeleteBookmark, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<ChangedBookmarkName>(ChangedBookmarkName, new string[] { nameof(ReaderPage) });
+        }
+
+        private void UnSubscribeMessages() {
+            _messageBus.UnSubscribe(nameof(ReaderPage));
+        }
+
+        private void SubscribeMessage<M>(Action<M> action) {
+            _messageBus.Subscribe(action, new string[] { nameof(ReaderPage) });
         }
 
         protected override bool OnBackButtonPressed() {
@@ -132,12 +142,14 @@ namespace EbookReader.Page {
             this.SaveProgress();
             backgroundSync = false;
             _messageBus.Send(new FullscreenRequest(false));
+            this.UnSubscribeMessages();
         }
 
         protected override void OnAppearing() {
             base.OnAppearing();
             backgroundSync = true;
             _messageBus.Send(new FullscreenRequest(true));
+            this.SubscribeMessages();
         }
 
         public async void LoadBook(Book book) {
@@ -202,6 +214,14 @@ namespace EbookReader.Page {
                     this.GoToPosition(msg.Bookmark.Position.SpinePosition);
                 }
             }
+        }
+
+        private void ChangeMargin(ChangeMargin msg) {
+            this.SetMargin(msg.Margin);
+        }
+
+        private void ChangeFontSize(ChangeFontSize msg) {
+            this.SetFontSize(msg.FontSize);
         }
 
         private async void SendChapter(Model.EpubSpine chapter, int position = 0, bool lastPage = false, string marker = "") {
