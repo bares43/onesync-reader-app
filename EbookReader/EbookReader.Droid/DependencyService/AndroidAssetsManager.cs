@@ -18,12 +18,10 @@ namespace EbookReader.Droid.DependencyService {
     public class AndroidAssetsManager : IAssetsManager {
 
         public async Task<string> GetFileContentAsync(string filename) {
-            var assetsPath = string.Format(@"{0}", filename);
-
             var content = string.Empty;
 
             return await Task.Run(() => {
-                var file = Application.Context.Assets.Open(assetsPath, Access.Buffer);
+                var file = Application.Context.Assets.Open(filename, Access.Buffer);
                 using (var sr = new StreamReader(file)) {
                     content = sr.ReadToEnd();
                 }

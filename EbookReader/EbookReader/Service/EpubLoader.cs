@@ -123,7 +123,7 @@ namespace EbookReader.Service {
                 using (var stream = await file.OpenAsync(FileAccess.Read)) {
                     var base64 = Base64Helper.GetFileBase64(stream);
 
-                    imageModel.Data = string.Format("data:image/{0};base64,{1}", extension, base64);
+                    imageModel.Data = $"data:image/{extension};base64,{base64}";
                 }
 
             }

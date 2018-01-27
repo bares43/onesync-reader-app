@@ -35,8 +35,8 @@ namespace EbookReader.View {
 
             var doc = new HtmlDocument();
             doc.LoadHtml(layout);
-            doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode(string.Format("<script>{0}</script>", js)));
-            doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode(string.Format("<style>{0}</style>", css)));
+            doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode($"<script>{js}</script>"));
+            doc.DocumentNode.Descendants("head").First().AppendChild(HtmlNode.CreateNode($"<style>{css}</style>"));
 
             Source = doc.DocumentNode.OuterHtml;
         }
