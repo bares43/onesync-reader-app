@@ -68,8 +68,8 @@
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Label Text="Obsah" Grid.Column="0" Style="{StaticResource sectionLabel}" />
-                    <Label Text="Záložky" Grid.Column="1" Style="{StaticResource sectionLabel}" />
+                    <Label Text="Content" Grid.Column="0" Style="{StaticResource sectionLabel}" />
+                    <Label Text="Bookmarks" Grid.Column="1" Style="{StaticResource sectionLabel}" />
 
                     <BoxView IsVisible="{Binding TabContentVisible}" Grid.Column="0" />
                     <BoxView IsVisible="{Binding TabBookmarksVisible}" Grid.Column="1" />

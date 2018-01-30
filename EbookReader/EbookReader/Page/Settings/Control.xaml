@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EbookReader.Page.Settings.Control"
-             Title="Ovládání">
+             Title="Controls">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Picker">
@@ -26,11 +26,11 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill">
             <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Posun vpřed klikem kamkoliv" />
+                <Label Text="Tap anywhere to move to next page" />
                 <Switch IsToggled="{Binding ClickEverywhere}" />
             </StackLayout>
             <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Přechod mezi kapitolami pomocí swipu dvěma prsty" />
+                <Label Text="Double swipe to move between chapters" />
                 <Switch IsToggled="{Binding DoubleSwipe}" />
             </StackLayout>
         </StackLayout>

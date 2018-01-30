@@ -22,7 +22,7 @@
                    FontSize="Large"
                    Margin="25"/>
             <Label Text="{Binding Version}" FontSize="Small" />
-            <Label Text="Vytvořil Jan Bareš, 2017"></Label>
+            <Label Text="Created by Jan Bareš, 2017"></Label>
             <Label Text="janbares.cz" Style="{StaticResource link}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://janbares.cz"></TapGestureRecognizer>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converter="clr-namespace:EbookReader.Converter"
              x:Class="EbookReader.Page.Settings.Synchronization"
-             Title="Synchronizace">
+             Title="Synchronization">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Picker">
@@ -35,31 +35,31 @@
         <StackLayout HorizontalOptions="Fill">
 
             <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Synchronizovat" />
+                <Label Text="Synchronize" />
                 <Switch IsToggled="{Binding Enabled}" />
             </StackLayout>
 
             <StackLayout IsVisible="{Binding Enabled}">
                 <StackLayout Style="{StaticResource settingsWrapper}">
-                    <Label Text="Pouze na wifi" />
+                    <Label Text="Only on WiFi" />
                     <Switch IsToggled="{Binding OnlyWifi}" />
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource settingsWrapper}">
-                    <Label Text="Název zařízení" />
+                    <Label Text="Device name" />
                     <Entry Text="{Binding DeviceName}" />
                 </StackLayout>
                 
                 <StackLayout Style="{StaticResource settingsWrapper}">
-                    <Label Text="Synchronizovat pomocí" />
+                    <Label Text="Synchronization provider" />
                     <Picker ItemsSource="{Binding SynchronizationService.Items}" SelectedItem="{Binding SynchronizationService.Value}" />
                 </StackLayout>
                 <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Dropbox'}}">
                     <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding IsConnected, Converter={converter:InverseBoolConverter}}">
-                        <Button Text="Připojit Dropbox" Command="{Binding ConnectToDropboxCommand}" />
+                        <Button Text="Connect to Dropbox" Command="{Binding ConnectToDropboxCommand}" />
                     </StackLayout>
                     <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding IsConnected}">
-                        <Button Text="Odpojit Dropbox" Command="{Binding DisconnectDropboxCommand}" />
+                        <Button Text="Disconnect" Command="{Binding DisconnectDropboxCommand}" />
                     </StackLayout>
                 </StackLayout>
                 <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Firebase'}}">
@@ -68,18 +68,18 @@
                         <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" />
                     </StackLayout>
                     <StackLayout Style="{StaticResource settingsWrapper}">
-                        <Label Text="Heslo" />
+                        <Label Text="Password" />
                         <Entry Text="{Binding Firebase.Password}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" IsPassword="True" />
                     </StackLayout>
                     <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}">
-                        <Button Text="Připojit" Command="{Binding Firebase.ConnectCommand}" />
-                        <Button Text="Zapomenuté heslo" Command="{Binding Firebase.ResetCommand}" />
+                        <Button Text="Connect" Command="{Binding Firebase.ConnectCommand}" />
+                        <Button Text="Lost password" Command="{Binding Firebase.ResetCommand}" />
                     </StackLayout>
                     <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.LoginFailed}">
-                        <Label Text="Přihlášení se nepodařilo. Heslo musí být dlouhé minimálně 6 znaků."></Label>
+                        <Label Text="Login failed. The password must be at least 6 characters long."></Label>
                     </StackLayout>
                     <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.IsConnected}">
-                        <Button Text="Odpojit" Command="{Binding Firebase.DisconnectCommand}" />
+                        <Button Text="Disconnect" Command="{Binding Firebase.DisconnectCommand}" />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

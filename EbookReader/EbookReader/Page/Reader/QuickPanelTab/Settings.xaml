@@ -32,16 +32,16 @@
 
     <StackLayout.Children>
         <StackLayout Style="{StaticResource settingsWrapper}" x:Name="BrightnessWrapper">
-            <Label Text="Jas" WidthRequest="100" FontSize="Medium" />
+            <Label Text="Brightness" WidthRequest="100" FontSize="Medium" />
             <Slider x:Name="Brightness" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="45" Maximum="100" Minimum="1" ValueChanged="Brightness_ValueChanged"></Slider>
         </StackLayout>
         <StackLayout Style="{StaticResource settingsWrapper}">
-            <Label Text="Písmo" FontSize="Medium" />
+            <Label Text="Font size" FontSize="Medium" />
             <Picker x:Name="FontPicker" ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}">
             </Picker>
         </StackLayout>
         <StackLayout Style="{StaticResource settingsWrapper}">
-            <Label Text="Odsazení" FontSize="Medium" />
+            <Label Text="Margin" FontSize="Medium" />
             <Picker x:Name="MarginPicker" ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}">
             </Picker>
         </StackLayout>

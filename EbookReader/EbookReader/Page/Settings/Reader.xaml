@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EbookReader.Page.Settings.Reader"
-             Title="Čtení">
+             Title="Reading">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -27,19 +27,19 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill">
             <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Písmo" />
+                <Label Text="Font size" />
                 <Picker x:Name="FontPicker" ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}" />
             </StackLayout>
             <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Odsazení" />
+                <Label Text="Margin" />
                 <Picker x:Name="MarginPicker" ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}" />
             </StackLayout>
             <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Rychlost scrollováni (ms)" />
+                <Label Text="Scrolling speed (ms)" />
                 <Picker ItemsSource="{Binding ScrollSpeed.Items}" SelectedItem="{Binding ScrollSpeed.Value}" />
             </StackLayout>
             <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Noční režim" />
+                <Label Text="Night mode" />
                 <Switch IsToggled="{Binding NightMode.Enabled}" />
             </StackLayout>
             <StackLayout Style="{StaticResource settingsWrapper}">

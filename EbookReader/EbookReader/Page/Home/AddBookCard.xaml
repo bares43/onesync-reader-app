@@ -5,6 +5,6 @@
              WidthRequest="{Binding Width}"
              HeightRequest="{Binding Height}">
     <StackLayout.Children>
-        <Label Text="Otevřít e-book" LineBreakMode="WordWrap" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        <Label Text="Add e-book" LineBreakMode="WordWrap" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
     </StackLayout.Children>
 </StackLayout>

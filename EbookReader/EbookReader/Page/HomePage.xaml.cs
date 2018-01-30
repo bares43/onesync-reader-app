@@ -27,14 +27,14 @@ namespace EbookReader.Page {
             Init();
 
             var settingsItem = new ToolbarItem {
-                Text = "Nastavení",
+                Text = "Settings",
                 Icon = "settings.png"
             };
             settingsItem.Clicked += SettingsItem_Clicked;
             ToolbarItems.Add(settingsItem);
 
             var aboutItem = new ToolbarItem {
-                Text = "O aplikaci",
+                Text = "About",
                 Icon = "info.png"
             };
             aboutItem.Clicked += AboutItem_Clicked;
@@ -79,7 +79,7 @@ namespace EbookReader.Page {
                     Bookshelf.Children.Add(new BookCard(book));
                     this.SendBookToReader(book);
                 } catch (Exception) {
-                    await DisplayAlert("Chyba", "Soubor se nepodařilo otevřít", "OK");
+                    await DisplayAlert("Error", "File failed to open", "OK");
                 }
 
             }
@@ -90,9 +90,9 @@ namespace EbookReader.Page {
         }
 
         private async void DeleteBook(DeleteBook msg) {
-            var deleteButton = "Smazat";
-            var deleteSyncButton = "Smazat včetně všech synchronizací";
-            var confirm = await DisplayActionSheet("Smazat knihu z knihovny?", deleteButton, "Ne", deleteSyncButton);
+            var deleteButton = "Delete";
+            var deleteSyncButton = "Delete including all synchronizations";
+            var confirm = await DisplayActionSheet("Delete book?", deleteButton, "No", deleteSyncButton);
             if (confirm == deleteButton || confirm == deleteSyncButton) {
                 var card = Bookshelf.Children.FirstOrDefault(o => o.StyleId == msg.Book.Id);
                 if (card != null) {

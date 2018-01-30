@@ -9,7 +9,7 @@ namespace EbookReader.Provider {
     public static class DeviceNameProvider {
         public static string Name {
             get {
-                return Device.RuntimePlatform == Device.UWP ? "Počítač" : "Mobil";
+                return Device.RuntimePlatform == Device.UWP ? "Computer" : "Phone";
             }
         }
     }

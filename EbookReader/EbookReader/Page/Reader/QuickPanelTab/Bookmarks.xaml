@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EbookReader.Page.Reader.QuickPanelTab.Bookmarks">
 
-    <Button Text="Přidat záložku" Command="{Binding AddBookmarkCommand}">
+    <Button Text="Add bookmark" Command="{Binding AddBookmarkCommand}">
         <Button.TextColor>
             <OnPlatform x:TypeArguments="Color" WinPhone="White" />
         </Button.TextColor>

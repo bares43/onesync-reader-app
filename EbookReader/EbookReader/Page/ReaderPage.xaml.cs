@@ -259,7 +259,7 @@ namespace EbookReader.Page {
                     lastLoadedPosition = new Position(syncPosition.Position);
                     Device.BeginInvokeOnMainThread(async () => {
                         syncPending = true;
-                        var loadPosition = await DisplayAlert("Postup čtení na jiném zařízení", $"Načíst postup čtení ze zařízení {syncPosition.D}?", "Načíst", "Ne");
+                        var loadPosition = await DisplayAlert("Reading position at the another device", $"Load reading position from the device {syncPosition.D}?", "Yes, load it", "No");
                         if (loadPosition) {
                             if (currentChapter != syncPosition.Position.Spine) {
                                 this.SendChapter(loadedChapter, position: syncPosition.Position.SpinePosition);

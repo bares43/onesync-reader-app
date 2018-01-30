@@ -6,7 +6,7 @@
     
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Margin="30,5">
-            <Label Text="Knihovna" FontSize="Large" HorizontalOptions="FillAndExpand"></Label>
+            <Label Text="My books" FontSize="Large" HorizontalOptions="FillAndExpand"></Label>
             <ScrollView HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="10">
                 <StackLayout x:Name="Bookshelf" x:FieldModifier="public" Orientation="Horizontal">
                     <local:AddBookCard />
