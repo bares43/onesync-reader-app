@@ -1,6 +1,9 @@
 ﻿{
   "dependencies": {
     "Autofac": "3.5.2",
+    "Microsoft.AppCenter": "1.3.0",
+    "Microsoft.AppCenter.Analytics": "1.3.0",
+    "Microsoft.AppCenter.Crashes": "1.3.0",
     "Microsoft.Bcl.Compression": "3.9.85",
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
     "PCLStorage": "1.0.2",

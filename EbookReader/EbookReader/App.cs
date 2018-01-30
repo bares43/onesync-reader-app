@@ -7,6 +7,9 @@ using EbookReader.Model.Messages;
 using EbookReader.Page;
 using EbookReader.Service;
 using Xamarin.Forms;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace EbookReader {
     public class App : Application {
@@ -45,6 +48,7 @@ namespace EbookReader {
 
         protected override void OnStart() {
             // Handle when your app starts
+            AppCenter.Start($"android={AppSettings.AppCenter.Android};uwp={AppSettings.AppCenter.UWP};", typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep() {
