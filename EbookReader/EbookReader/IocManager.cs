@@ -43,6 +43,7 @@ namespace EbookReader {
         private static void SetUpIoc() {
             ContainerBuilder.RegisterType<EpubLoader>().Keyed<IBookLoader>(EbookFormat.Epub);
             ContainerBuilder.RegisterType<TxtLoader>().Keyed<IBookLoader>(EbookFormat.Txt);
+            ContainerBuilder.RegisterType<HtmlLoader>().Keyed<IBookLoader>(EbookFormat.Html);
             ContainerBuilder.RegisterType<FileService>().As<IFileService>();
             ContainerBuilder.RegisterType<Epub200Parser>().Keyed<EpubParser>(EpubVersion.V200);
             ContainerBuilder.RegisterType<Epub300Parser>().Keyed<EpubParser>(EpubVersion.V300);

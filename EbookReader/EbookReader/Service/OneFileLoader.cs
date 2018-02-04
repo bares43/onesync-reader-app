@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using EbookReader.Model.Bookshelf;
 using EbookReader.Model.EpubLoader;
 using EbookReader.Model.Format;
+using HtmlAgilityPack;
 using PCLStorage;
 
 namespace EbookReader.Service {
@@ -14,7 +15,15 @@ namespace EbookReader.Service {
 
         private IFileService _fileService;
 
-        protected string ContentPath;
+        protected string[] Extensions;
+
+        protected string ContentPath {
+            get {
+                return $"content.{Extensions[0]}";
+            }
+        }
+
+        protected EbookFormat EbookFormat;
 
         public OneFileLoader(IFileService fileService) {
             _fileService = fileService;
@@ -23,7 +32,7 @@ namespace EbookReader.Service {
         public virtual Book CreateBookshelfBook(Ebook book) {
             return new Book {
                 Title = book.Title,
-                Format = EbookFormat.Txt,
+                Format = EbookFormat,
                 Path = book.Folder,
             };
         }
@@ -42,10 +51,16 @@ namespace EbookReader.Service {
         public virtual async Task<Ebook> OpenBook(string path) {
             var epubFolder = await FileSystem.Current.LocalStorage.GetFolderAsync(path);
 
+            var title = path;
+
+            foreach(var toRemove in Extensions) {
+                title = title.Replace($".{toRemove}", "");
+            }
+
             var epub = new Ebook() {
-                Title = path.Replace(".txt", ""),
-                Spines = new List<Spine>() { new Spine { Idref = "text" } },
-                Files = new List<File>() { new File { Id = "text", Href = ContentPath } },
+                Title = title,
+                Spines = new List<Spine>() { new Spine { Idref = "content" } },
+                Files = new List<File>() { new File { Id = "content", Href = ContentPath } },
                 Folder = path,
                 Navigation = new List<Model.Navigation.Item>(),
             };
@@ -54,6 +69,14 @@ namespace EbookReader.Service {
         }
 
         public virtual async Task<HtmlResult> PrepareHTML(string html, Ebook book, File chapter) {
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            this.StripHtmlTags(doc);
+
+            html = doc.DocumentNode.Descendants("body").First().InnerHtml;
+
             return await Task.Run(() => {
                 var result = new HtmlResult {
                     Html = html,
@@ -76,6 +99,18 @@ namespace EbookReader.Service {
             }
 
             return folder.Name;
+        }
+
+        protected virtual void StripHtmlTags(HtmlDocument doc) {
+            var tagsToRemove = new string[] { "script", "style", "iframe" };
+            var nodesToRemove = doc.DocumentNode
+                .Descendants()
+                .Where(o => tagsToRemove.Contains(o.Name))
+                .ToList();
+
+            foreach (var node in nodesToRemove) {
+                node.Remove();
+            }
         }
     }
 }

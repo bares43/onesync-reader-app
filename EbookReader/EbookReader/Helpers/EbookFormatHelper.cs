@@ -19,7 +19,11 @@ namespace EbookReader.Helpers {
                 if (filename.EndsWith(".txt")) {
                     ebookFormat = EbookFormat.Txt;
                 }
-                
+
+                if (filename.EndsWith(".html") || filename.EndsWith(".htm") || filename.EndsWith(".xhtml") || filename.EndsWith(".xhtm")) {
+                    ebookFormat = EbookFormat.Html;
+                }
+
                 return GetBookLoader(ebookFormat);
             }
 

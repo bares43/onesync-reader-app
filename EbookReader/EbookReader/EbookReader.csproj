@@ -172,6 +172,7 @@
     <Compile Include="Service\Epub\EpubParser.cs" />
     <Compile Include="Service\FileService.cs" />
     <Compile Include="Service\FirebaseCloudStorageService.cs" />
+    <Compile Include="Service\HtmlLoader.cs" />
     <Compile Include="Service\IBookLoader.cs" />
     <Compile Include="Service\IBookshelfService.cs" />
     <Compile Include="Service\ICloudStorageService.cs" />

@@ -8,5 +8,6 @@ namespace EbookReader.Model.Format {
     public enum EbookFormat {
         Epub,
         Txt,
+        Html,
     }
 }
