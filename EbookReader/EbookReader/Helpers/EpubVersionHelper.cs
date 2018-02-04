@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EbookReader.Exceptions.Epub;
-using EbookReader.Model;
+using EbookReader.Model.Format.EpubFormat;
 
 namespace EbookReader.Helpers {
     public static class EpubVersionHelper {

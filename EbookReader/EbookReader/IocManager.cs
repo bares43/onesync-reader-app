@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
-using EbookReader.Model;
 using EbookReader.Service;
 using EbookReader.Service.Epub;
 using EbookReader.View;
-using Xam.Plugin.WebView.Abstractions;
-using EbookReader.View;
 using EbookReader.Provider;
+using EbookReader.Model.Format.EpubFormat;
+using EbookReader.Model.Format;
 
 namespace EbookReader {
     public static class IocManager {
@@ -42,7 +41,8 @@ namespace EbookReader {
         }
 
         private static void SetUpIoc() {
-            ContainerBuilder.RegisterType<EpubLoader>().As<IEpubLoader>();
+            ContainerBuilder.RegisterType<EpubLoader>().Keyed<IBookLoader>(EbookFormat.Epub);
+            ContainerBuilder.RegisterType<TxtLoader>().Keyed<IBookLoader>(EbookFormat.Txt);
             ContainerBuilder.RegisterType<FileService>().As<IFileService>();
             ContainerBuilder.RegisterType<Epub200Parser>().Keyed<EpubParser>(EpubVersion.V200);
             ContainerBuilder.RegisterType<Epub300Parser>().Keyed<EpubParser>(EpubVersion.V300);

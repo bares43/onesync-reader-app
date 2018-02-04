@@ -9,7 +9,8 @@
             <Image x:Name="Cover" 
                    WidthRequest="{Binding Width}" 
                    HeightRequest="{Binding Height}"
-                   AbsoluteLayout.LayoutBounds="{Binding ImagePosition}" />
+                   AbsoluteLayout.LayoutBounds="{Binding ImagePosition}"
+                   Source="book.png"/>
             <AbsoluteLayout x:Name="Panel" BackgroundColor="#90000000" AbsoluteLayout.LayoutBounds="{Binding PanelPosition}">
                 <Image x:Name="DeleteIcon" Source="delete.png" WidthRequest="26" HeightRequest="26" AbsoluteLayout.LayoutBounds="{Binding DeletePosition}" />
             </AbsoluteLayout>

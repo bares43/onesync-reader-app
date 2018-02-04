@@ -3,46 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 using EbookReader.DependencyService;
+using EbookReader.Exceptions;
+using EbookReader.Helpers;
+using EbookReader.Model.Format;
 using Newtonsoft.Json;
 using Plugin.FilePicker.Abstractions;
 
 namespace EbookReader.Service {
     public class BookshelfService : IBookshelfService {
 
-        IEpubLoader _epubLoader;
         IFileService _fileService;
         ICryptoService _cryptoService;
 
         const string BookshelfFilename = "bookshelf.json";
 
-        public BookshelfService(IEpubLoader epubLoader, IFileService fileService, ICryptoService cryptoService) {
-            _epubLoader = epubLoader;
+        public BookshelfService(IFileService fileService, ICryptoService cryptoService) {
             _fileService = fileService;
             _cryptoService = cryptoService;
         }
 
         public async Task<Model.Bookshelf.Book> AddBook(FileData file) {
 
-            var epub = await _epubLoader.GetEpub(file.FileName, file.DataArray);
+            var bookLoader = EbookFormatHelper.GetBookLoader(file.FileName);
 
-            var id = _cryptoService.GetMd5(file.DataArray);
+            var ebook = await bookLoader.GetBook(file.FileName, file.DataArray);
 
             var bookshelf = await this.LoadBookshelf();
 
-            var book = bookshelf.Books.FirstOrDefault(o => o.Id == id);
-            if (book == null) {
-                book = new Model.Bookshelf.Book {
-                    Id = id,
-                    Title = epub.Title,
-                    Path = epub.Folder,
-                    Cover = epub.Cover
-                };
-                bookshelf.Books.Add(book);
+            var id = _cryptoService.GetMd5(file.DataArray);
+
+            var bookshelfBook = bookshelf.Books.FirstOrDefault(o => o.Id == id);
+            if (bookshelfBook == null) {
+                bookshelfBook = bookLoader.CreateBookshelfBook(ebook);
+                bookshelfBook.Id = id;
+                bookshelf.Books.Add(bookshelfBook);
                 this.Save(bookshelf);
             }
 
-            return book;
+            return bookshelfBook;
         }
 
         public async Task<List<Model.Bookshelf.Book>> LoadBooks() {

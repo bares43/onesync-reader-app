@@ -17,7 +17,6 @@ namespace EbookReader.Page {
 
         IBookshelfService _bookshelfService;
         IMessageBus _messageBus;
-        IEpubLoader _epubLoader;
         ISyncService _syncService;
 
         public HomePage() {
@@ -55,7 +54,6 @@ namespace EbookReader.Page {
             // ioc
             _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
-            _epubLoader = IocManager.Container.Resolve<IEpubLoader>();
             _syncService = IocManager.Container.Resolve<ISyncService>();
 
             var books = await _bookshelfService.LoadBooks();

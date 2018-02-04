@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EbookReader.Model.Format;
 
 namespace EbookReader.Model.Bookshelf {
     public class Book {
@@ -13,6 +14,7 @@ namespace EbookReader.Model.Bookshelf {
         public Position Position { get; set; }
         public List<Bookmark> Bookmarks { get; set; }
         public DateTime? BookmarksSyncLastChange { get; set; }
+        public EbookFormat Format { get; set; }
 
         public Book() {
             Position = new Position();

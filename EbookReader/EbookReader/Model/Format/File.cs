@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EbookReader.Model {
-    public class EpubFile {
+namespace EbookReader.Model.Format {
+    public class File {
         public string Id { get; set; }
         public string Href { get; set; }
         public string MediaType { get; set; }

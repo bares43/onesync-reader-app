@@ -43,17 +43,21 @@
     <Compile Include="DependencyService\IBrightnessProvider.cs" />
     <Compile Include="DependencyService\ICryproService.cs" />
     <Compile Include="Exceptions\Epub\UnknownEpubVersionException.cs" />
+    <Compile Include="Exceptions\UnknownFileFormatException.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
+    <Compile Include="Helpers\EbookFormatHelper.cs" />
     <Compile Include="Helpers\EpubVersionHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="IocManager.cs" />
     <Compile Include="Model\Bookshelf\Bookmark.cs" />
     <Compile Include="Model\Bookshelf\Position.cs" />
-    <Compile Include="Model\Epub.cs" />
-    <Compile Include="Model\EpubFile.cs" />
+    <Compile Include="Model\Format\Ebook.cs" />
+    <Compile Include="Model\Format\EbookFormat.cs" />
+    <Compile Include="Model\Format\EpubFormat\EpubVersion.cs" />
+    <Compile Include="Model\Format\File.cs" />
     <Compile Include="Model\EpubLoader\HtmlResult.cs" />
     <Compile Include="Model\EpubLoader\Image.cs" />
-    <Compile Include="Model\EpubSpine.cs" />
+    <Compile Include="Model\Format\Spine.cs" />
     <Compile Include="Model\Messages\AddBookmark.cs" />
     <Compile Include="Model\Messages\AppSleep.cs" />
     <Compile Include="Model\Messages\BookmarksChangedMessage.cs" />
@@ -168,14 +172,16 @@
     <Compile Include="Service\Epub\EpubParser.cs" />
     <Compile Include="Service\FileService.cs" />
     <Compile Include="Service\FirebaseCloudStorageService.cs" />
+    <Compile Include="Service\IBookLoader.cs" />
     <Compile Include="Service\IBookshelfService.cs" />
     <Compile Include="Service\ICloudStorageService.cs" />
-    <Compile Include="Service\IEpubLoader.cs" />
     <Compile Include="Service\IFileService.cs" />
     <Compile Include="Service\IMessageBus.cs" />
     <Compile Include="Service\ISyncService.cs" />
     <Compile Include="Service\MessageBus.cs" />
     <Compile Include="Service\SyncService.cs" />
+    <Compile Include="Service\OneFileLoader.cs" />
+    <Compile Include="Service\TxtLoader.cs" />
     <Compile Include="Service\WebViewMessages.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="View\ReaderWebView.cs" />
@@ -344,6 +350,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\book.png" />
     <Content Include="Content\delete.png" />
     <Content Include="Content\edit.png" />
     <Content Include="Content\info.png" />

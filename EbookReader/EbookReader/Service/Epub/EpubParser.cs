@@ -35,21 +35,21 @@ namespace EbookReader.Service.Epub {
             return this.GetOptionalElementValue("description", this.GetMetadata().Descendants());
         }
 
-        public virtual List<Model.EpubSpine> GetSpines() {
+        public virtual List<Model.Format.Spine> GetSpines() {
             return this.GetSpine()
                 .Descendants()
                 .Where(o => o.Name.LocalName == "itemref")
-                .Select(o => new Model.EpubSpine {
+                .Select(o => new Model.Format.Spine {
                     Idref = o.Attributes().Where(i => i.Name.LocalName == "idref").First().Value
                 })
                 .ToList();
         }
 
-        public virtual IEnumerable<Model.EpubFile> GetFiles() {
+        public virtual IEnumerable<Model.Format.File> GetFiles() {
             return this.GetManifest()
                 .Descendants()
                 .Where(o => o.Name.LocalName == "item")
-                .Select(o => new Model.EpubFile {
+                .Select(o => new Model.Format.File {
                     Id = o.Attributes().Where(i => i.Name.LocalName == "id").First().Value,
                     Href = o.Attributes().Where(i => i.Name.LocalName == "href").First().Value,
                     MediaType = o.Attributes().Where(i => i.Name.LocalName == "media-type").First().Value
