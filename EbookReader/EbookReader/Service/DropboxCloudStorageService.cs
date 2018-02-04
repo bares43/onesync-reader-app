@@ -44,7 +44,8 @@ namespace EbookReader.Service {
                             await dbx.Files.UploadAsync(
                                 $"/{string.Join("/", path)}.json",
                                 WriteMode.Overwrite.Instance,
-                                body: mem);
+                                body: mem,
+                                mute: true);
                         }
                     }
                 }
@@ -63,6 +64,33 @@ namespace EbookReader.Service {
                 }
 
             } catch (DropboxException) { }
+        }
+
+        public async Task<List<T>> LoadJsonList<T>(string[] path) {
+
+            var result = new List<T>();
+
+            try {
+                var accessToken = UserSettings.Synchronization.Dropbox.AccessToken;
+
+                if (!string.IsNullOrEmpty(accessToken)) {
+                    using (var dbx = new DropboxClient(accessToken)) {
+
+                        var files = await dbx.Files.ListFolderAsync($"/{string.Join("/", path)}");
+
+                        foreach (var file in files.Entries) {
+
+                            var filePath = file.PathLower.Replace(".json", "").Split('/').Where(o => !string.IsNullOrEmpty(o)).ToArray();
+
+                            var bookmark = await this.LoadJson<T>(filePath);
+
+                            result.Add(bookmark);
+                        }
+                    }
+                }
+            } catch (DropboxException) { }
+
+            return result;
         }
     }
 }

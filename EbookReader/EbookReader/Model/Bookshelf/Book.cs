@@ -12,6 +12,7 @@ namespace EbookReader.Model.Bookshelf {
         public string Cover { get; set; }
         public Position Position { get; set; }
         public List<Bookmark> Bookmarks { get; set; }
+        public DateTime? BookmarksSyncLastChange { get; set; }
 
         public Book() {
             Position = new Position();

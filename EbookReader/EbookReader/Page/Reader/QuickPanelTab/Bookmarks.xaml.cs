@@ -17,6 +17,8 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
             InitializeComponent();
 
             BindingContext = new BookmarksVM();
+
+            IocManager.Container.Resolve<IMessageBus>().Subscribe<BookmarksChangedMessage>(BookmarksChangedSubsciber);
         }
 
         public void SetBookmarks(List<Model.Bookshelf.Bookmark> items) {
@@ -38,11 +40,15 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
 
             var layouts = new List<StackLayout>();
 
-            foreach (var item in items.OrderBy(o => o.Position.Spine).ThenBy(o => o.Position.SpinePosition)) {
+            foreach (var item in items.Where(o => !o.Deleted).OrderBy(o => o.Position.Spine).ThenBy(o => o.Position.SpinePosition)) {
                 layouts.Add(new BookmarksTab.Bookmark(item));
             }
 
             return layouts;
+        }
+
+        private void BookmarksChangedSubsciber(BookmarksChangedMessage msg) {
+            this.SetBookmarks(msg.Bookmarks);
         }
     }
 }

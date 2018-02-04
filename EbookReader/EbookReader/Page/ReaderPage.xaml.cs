@@ -9,6 +9,7 @@ using EbookReader.Helpers;
 using EbookReader.Model.Bookshelf;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Reader;
+using EbookReader.Provider;
 using EbookReader.Service;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -66,10 +67,11 @@ namespace EbookReader.Page {
 
             _messageBus.Send(new FullscreenRequest(true));
 
-            Device.StartTimer(new TimeSpan(0, 5, 0), () => {
+            Device.StartTimer(new TimeSpan(0, 1, 0), () => {
                 if (backgroundSync) {
                     this.LoadProgress();
                     this.SaveProgress();
+                    this.SynchronizeBookmarks();
                 }
 
                 return backgroundSync;
@@ -175,6 +177,7 @@ namespace EbookReader.Page {
 
             var task = Task.Run(() => {
                 this.LoadProgress();
+                this.SynchronizeBookmarks();
             });
         }
 
@@ -185,22 +188,32 @@ namespace EbookReader.Page {
         }
 
         private void AddBookmark(AddBookmark msg) {
-            _book.Bookmarks.Add(new Bookmark {
+            var bookmark = new Bookmark {
+                ID = BookmarkIdProvider.ID,
                 Name = DateTime.Now.ToString(),
-                Position = new Position(_book.Position)
-            });
+                Position = new Position(_book.Position),
+                LastChange = DateTime.UtcNow,
+            };
+            _book.Bookmarks.Add(bookmark);
             _bookshelfService.SaveBook(_book);
+            _syncService.SaveBookmark(_book.Id, bookmark);
             QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
         }
 
         private void DeleteBookmark(DeleteBookmark msg) {
-            _book.Bookmarks.Remove(msg.Bookmark);
+            msg.Bookmark.Deleted = true;
+            msg.Bookmark.Name = string.Empty;
+            msg.Bookmark.Position = new Position();
+            msg.Bookmark.LastChange = DateTime.UtcNow;
             _bookshelfService.SaveBook(_book);
+            _syncService.SaveBookmark(_book.Id, msg.Bookmark);
             QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
         }
 
         public void ChangedBookmarkName(ChangedBookmarkName msg) {
+            msg.Bookmark.LastChange = DateTime.UtcNow;
             _bookshelfService.SaveBook(_book);
+            _syncService.SaveBookmark(_book.Id, msg.Bookmark);
             QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
         }
 
@@ -272,6 +285,10 @@ namespace EbookReader.Page {
                     });
                 }
             }
+        }
+
+        private void SynchronizeBookmarks() {
+            _syncService.SynchronizeBookmarks(_book);
         }
         #endregion
 

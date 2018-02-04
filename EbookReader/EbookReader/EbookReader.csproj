@@ -56,6 +56,7 @@
     <Compile Include="Model\EpubSpine.cs" />
     <Compile Include="Model\Messages\AddBookmark.cs" />
     <Compile Include="Model\Messages\AppSleep.cs" />
+    <Compile Include="Model\Messages\BookmarksChangedMessage.cs" />
     <Compile Include="Model\Messages\ChangedBookmarkName.cs" />
     <Compile Include="Model\Messages\ChangeFontSize.cs" />
     <Compile Include="Model\Messages\ChangeMargin.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Model\Messages\OpenDropboxLogin.cs" />
     <Compile Include="Model\Messages\PageChange.cs" />
     <Compile Include="Model\Navigation\Item.cs" />
+    <Compile Include="Model\Sync\Bookmark.cs" />
     <Compile Include="Model\Sync\Position.cs" />
     <Compile Include="Model\View\AboutVM.cs" />
     <Compile Include="Model\View\BaseVM.cs" />
@@ -147,6 +149,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\BookshelfLock.cs" />
+    <Compile Include="Provider\BookmarkIdProvider.cs" />
     <Compile Include="Provider\DeviceIdProvider.cs" />
     <Compile Include="Provider\DeviceNameProvider.cs" />
     <Compile Include="Provider\FontSizeProvider.cs" />

@@ -19,6 +19,16 @@ namespace EbookReader.Service {
             return default(T);
         }
 
+        public async Task<List<T>> LoadJsonList<T>(string[] path) {
+            try {
+                var auth = await this.GetAuth();
+                var result = await this.GetFirebase().Child(this.PathGenerator(path, auth)).WithAuth(auth.FirebaseToken).OnceAsync<T>();
+                return result.Select(o => o.Object).ToList();
+            } catch (Exception) { }
+
+            return new List<T>();
+        }
+
         public async void SaveJson<T>(T json, string[] path) {
             try {
                 var auth = await this.GetAuth();

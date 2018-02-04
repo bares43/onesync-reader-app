@@ -11,6 +11,10 @@ namespace EbookReader.Service {
             return default(T);
         }
 
+        public async Task<List<T>> LoadJsonList<T>(string[] path) {
+            return new List<T>();
+        }
+
         public void SaveJson<T>(T json, string[] path) {
         }
 
