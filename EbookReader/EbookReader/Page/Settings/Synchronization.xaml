@@ -62,7 +62,8 @@
                         <Button Text="Disconnect" Command="{Binding DisconnectDropboxCommand}" />
                     </StackLayout>
                 </StackLayout>
-                <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Firebase'}}">
+                <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='E-mail'}}">
+                    <Label Text="Your data will be synchronize using Firebase. Just login with same credentials on all your devices."></Label>
                     <StackLayout Style="{StaticResource settingsWrapper}">
                         <Label Text="E-mail" />
                         <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" />
@@ -77,6 +78,12 @@
                     </StackLayout>
                     <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.LoginFailed}">
                         <Label Text="Login failed. The password must be at least 6 characters long."></Label>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.ResetMailSent}">
+                        <Label Text="E-mail with reset link was sent to you."></Label>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.MailNotFound}">
+                        <Label Text="E-mail not found"></Label>
                     </StackLayout>
                     <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.IsConnected}">
                         <Button Text="Disconnect" Command="{Binding Firebase.DisconnectCommand}" />

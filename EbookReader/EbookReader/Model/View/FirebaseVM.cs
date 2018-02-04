@@ -52,6 +52,24 @@ namespace EbookReader.Model.View {
             }
         }
 
+        bool _resetMailSent = false;
+        public bool ResetMailSent {
+            get => _resetMailSent;
+            set {
+                _resetMailSent = value;
+                OnPropertyChanged();
+            }
+        }
+
+        bool _mailNotFound = false;
+        public bool MailNotFound {
+            get => _mailNotFound;
+            set {
+                _mailNotFound = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand ConnectCommand { get; set; }
         public ICommand DisconnectCommand { get; set; }
         public ICommand ResetCommand { get; set; }
@@ -82,6 +100,8 @@ namespace EbookReader.Model.View {
 
             IsConnected = connected;
             LoginFailed = !connected;
+            MailNotFound = false;
+            ResetMailSent = false;
         }
 
         private async Task<bool> TrySignIn() {
@@ -111,10 +131,15 @@ namespace EbookReader.Model.View {
         }
 
         private async void Reset() {
+            ResetMailSent = false;
+            MailNotFound = false;
             try {
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyA4TOO3_Pa1kb_s6zjBMqpehPLrTk8SrLA"));
                 await authProvider.SendPasswordResetEmailAsync(Email);
-            } catch (Exception e) { }
+                ResetMailSent = true;
+            } catch (Exception e) {
+                MailNotFound = true;
+            }
         }
 
     }
