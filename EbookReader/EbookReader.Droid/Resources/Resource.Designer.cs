@@ -28,6 +28,1657 @@ namespace EbookReader.Droid
 		{
 			global::PCLStorage.Resource.String.ApplicationName = global::EbookReader.Droid.Resource.String.ApplicationName;
 			global::PCLStorage.Resource.String.Hello = global::EbookReader.Droid.Resource.String.Hello;
+			global::Xamarin.Auth.Resource.Animation.slide_in_right = global::EbookReader.Droid.Resource.Animation.slide_in_right;
+			global::Xamarin.Auth.Resource.Animation.slide_out_left = global::EbookReader.Droid.Resource.Animation.slide_out_left;
+			global::Xamarin.Auth.Resource.Drawable.ic_arrow_back = global::EbookReader.Droid.Resource.Drawable.ic_arrow_back;
+			global::Xamarin.Auth.Resource.Id.webview = global::EbookReader.Droid.Resource.Id.webview;
+			global::Xamarin.Auth.Resource.Layout.activity_webview = global::EbookReader.Droid.Resource.Layout.activity_webview;
+			global::Xamarin.Auth.Resource.String.ApplicationName = global::EbookReader.Droid.Resource.String.ApplicationName;
+			global::Xamarin.Auth.Resource.String.Hello = global::EbookReader.Droid.Resource.String.Hello;
+			global::Xamarin.Auth.Resource.String.title_activity_webview = global::EbookReader.Droid.Resource.String.title_activity_webview;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_fade_in = global::EbookReader.Droid.Resource.Animation.abc_fade_in;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_fade_out = global::EbookReader.Droid.Resource.Animation.abc_fade_out;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_grow_fade_in_from_bottom = global::EbookReader.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_popup_enter = global::EbookReader.Droid.Resource.Animation.abc_popup_enter;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_popup_exit = global::EbookReader.Droid.Resource.Animation.abc_popup_exit;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_shrink_fade_out_from_bottom = global::EbookReader.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_slide_in_bottom = global::EbookReader.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_slide_in_top = global::EbookReader.Droid.Resource.Animation.abc_slide_in_top;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_slide_out_bottom = global::EbookReader.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.abc_slide_out_top = global::EbookReader.Droid.Resource.Animation.abc_slide_out_top;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.design_bottom_sheet_slide_in = global::EbookReader.Droid.Resource.Animation.design_bottom_sheet_slide_in;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.design_bottom_sheet_slide_out = global::EbookReader.Droid.Resource.Animation.design_bottom_sheet_slide_out;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.design_fab_in = global::EbookReader.Droid.Resource.Animation.design_fab_in;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.design_fab_out = global::EbookReader.Droid.Resource.Animation.design_fab_out;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.design_snackbar_in = global::EbookReader.Droid.Resource.Animation.design_snackbar_in;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.design_snackbar_out = global::EbookReader.Droid.Resource.Animation.design_snackbar_out;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.slide_in_right = global::EbookReader.Droid.Resource.Animation.slide_in_right;
+			global::Xamarin.Auth.XamarinForms.Resource.Animation.slide_out_left = global::EbookReader.Droid.Resource.Animation.slide_out_left;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarDivider = global::EbookReader.Droid.Resource.Attribute.actionBarDivider;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarItemBackground = global::EbookReader.Droid.Resource.Attribute.actionBarItemBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarPopupTheme = global::EbookReader.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarSize = global::EbookReader.Droid.Resource.Attribute.actionBarSize;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarSplitStyle = global::EbookReader.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarStyle = global::EbookReader.Droid.Resource.Attribute.actionBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarTabBarStyle = global::EbookReader.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarTabStyle = global::EbookReader.Droid.Resource.Attribute.actionBarTabStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarTabTextStyle = global::EbookReader.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarTheme = global::EbookReader.Droid.Resource.Attribute.actionBarTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionBarWidgetTheme = global::EbookReader.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionButtonStyle = global::EbookReader.Droid.Resource.Attribute.actionButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionDropDownStyle = global::EbookReader.Droid.Resource.Attribute.actionDropDownStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionLayout = global::EbookReader.Droid.Resource.Attribute.actionLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionMenuTextAppearance = global::EbookReader.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionMenuTextColor = global::EbookReader.Droid.Resource.Attribute.actionMenuTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeBackground = global::EbookReader.Droid.Resource.Attribute.actionModeBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeCloseButtonStyle = global::EbookReader.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeCloseDrawable = global::EbookReader.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeCopyDrawable = global::EbookReader.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeCutDrawable = global::EbookReader.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeFindDrawable = global::EbookReader.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModePasteDrawable = global::EbookReader.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModePopupWindowStyle = global::EbookReader.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeSelectAllDrawable = global::EbookReader.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeShareDrawable = global::EbookReader.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeSplitBackground = global::EbookReader.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeStyle = global::EbookReader.Droid.Resource.Attribute.actionModeStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionModeWebSearchDrawable = global::EbookReader.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionOverflowButtonStyle = global::EbookReader.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionOverflowMenuStyle = global::EbookReader.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionProviderClass = global::EbookReader.Droid.Resource.Attribute.actionProviderClass;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.actionViewClass = global::EbookReader.Droid.Resource.Attribute.actionViewClass;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.activityChooserViewStyle = global::EbookReader.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.alertDialogButtonGroupStyle = global::EbookReader.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.alertDialogCenterButtons = global::EbookReader.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.alertDialogStyle = global::EbookReader.Droid.Resource.Attribute.alertDialogStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.alertDialogTheme = global::EbookReader.Droid.Resource.Attribute.alertDialogTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.allowStacking = global::EbookReader.Droid.Resource.Attribute.allowStacking;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.arrowHeadLength = global::EbookReader.Droid.Resource.Attribute.arrowHeadLength;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.arrowShaftLength = global::EbookReader.Droid.Resource.Attribute.arrowShaftLength;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.autoCompleteTextViewStyle = global::EbookReader.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.background = global::EbookReader.Droid.Resource.Attribute.background;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.backgroundSplit = global::EbookReader.Droid.Resource.Attribute.backgroundSplit;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.backgroundStacked = global::EbookReader.Droid.Resource.Attribute.backgroundStacked;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.backgroundTint = global::EbookReader.Droid.Resource.Attribute.backgroundTint;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.backgroundTintMode = global::EbookReader.Droid.Resource.Attribute.backgroundTintMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.barLength = global::EbookReader.Droid.Resource.Attribute.barLength;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.behavior_hideable = global::EbookReader.Droid.Resource.Attribute.behavior_hideable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.behavior_overlapTop = global::EbookReader.Droid.Resource.Attribute.behavior_overlapTop;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.behavior_peekHeight = global::EbookReader.Droid.Resource.Attribute.behavior_peekHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.borderWidth = global::EbookReader.Droid.Resource.Attribute.borderWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.borderlessButtonStyle = global::EbookReader.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.bottomSheetDialogTheme = global::EbookReader.Droid.Resource.Attribute.bottomSheetDialogTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.bottomSheetStyle = global::EbookReader.Droid.Resource.Attribute.bottomSheetStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonBarButtonStyle = global::EbookReader.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonBarNegativeButtonStyle = global::EbookReader.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonBarNeutralButtonStyle = global::EbookReader.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonBarPositiveButtonStyle = global::EbookReader.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonBarStyle = global::EbookReader.Droid.Resource.Attribute.buttonBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonPanelSideLayout = global::EbookReader.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonStyle = global::EbookReader.Droid.Resource.Attribute.buttonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonStyleSmall = global::EbookReader.Droid.Resource.Attribute.buttonStyleSmall;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonTint = global::EbookReader.Droid.Resource.Attribute.buttonTint;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.buttonTintMode = global::EbookReader.Droid.Resource.Attribute.buttonTintMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.cardBackgroundColor = global::EbookReader.Droid.Resource.Attribute.cardBackgroundColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.cardCornerRadius = global::EbookReader.Droid.Resource.Attribute.cardCornerRadius;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.cardElevation = global::EbookReader.Droid.Resource.Attribute.cardElevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.cardMaxElevation = global::EbookReader.Droid.Resource.Attribute.cardMaxElevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.cardPreventCornerOverlap = global::EbookReader.Droid.Resource.Attribute.cardPreventCornerOverlap;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.cardUseCompatPadding = global::EbookReader.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.checkboxStyle = global::EbookReader.Droid.Resource.Attribute.checkboxStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.checkedTextViewStyle = global::EbookReader.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.closeIcon = global::EbookReader.Droid.Resource.Attribute.closeIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.closeItemLayout = global::EbookReader.Droid.Resource.Attribute.closeItemLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.collapseContentDescription = global::EbookReader.Droid.Resource.Attribute.collapseContentDescription;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.collapseIcon = global::EbookReader.Droid.Resource.Attribute.collapseIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.collapsedTitleGravity = global::EbookReader.Droid.Resource.Attribute.collapsedTitleGravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.collapsedTitleTextAppearance = global::EbookReader.Droid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.color = global::EbookReader.Droid.Resource.Attribute.color;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.colorAccent = global::EbookReader.Droid.Resource.Attribute.colorAccent;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.colorButtonNormal = global::EbookReader.Droid.Resource.Attribute.colorButtonNormal;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.colorControlActivated = global::EbookReader.Droid.Resource.Attribute.colorControlActivated;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.colorControlHighlight = global::EbookReader.Droid.Resource.Attribute.colorControlHighlight;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.colorControlNormal = global::EbookReader.Droid.Resource.Attribute.colorControlNormal;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.colorPrimary = global::EbookReader.Droid.Resource.Attribute.colorPrimary;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.colorPrimaryDark = global::EbookReader.Droid.Resource.Attribute.colorPrimaryDark;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.colorSwitchThumbNormal = global::EbookReader.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.commitIcon = global::EbookReader.Droid.Resource.Attribute.commitIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentInsetEnd = global::EbookReader.Droid.Resource.Attribute.contentInsetEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentInsetLeft = global::EbookReader.Droid.Resource.Attribute.contentInsetLeft;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentInsetRight = global::EbookReader.Droid.Resource.Attribute.contentInsetRight;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentInsetStart = global::EbookReader.Droid.Resource.Attribute.contentInsetStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentPadding = global::EbookReader.Droid.Resource.Attribute.contentPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentPaddingBottom = global::EbookReader.Droid.Resource.Attribute.contentPaddingBottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentPaddingLeft = global::EbookReader.Droid.Resource.Attribute.contentPaddingLeft;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentPaddingRight = global::EbookReader.Droid.Resource.Attribute.contentPaddingRight;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentPaddingTop = global::EbookReader.Droid.Resource.Attribute.contentPaddingTop;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.contentScrim = global::EbookReader.Droid.Resource.Attribute.contentScrim;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.controlBackground = global::EbookReader.Droid.Resource.Attribute.controlBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.counterEnabled = global::EbookReader.Droid.Resource.Attribute.counterEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.counterMaxLength = global::EbookReader.Droid.Resource.Attribute.counterMaxLength;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.counterOverflowTextAppearance = global::EbookReader.Droid.Resource.Attribute.counterOverflowTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.counterTextAppearance = global::EbookReader.Droid.Resource.Attribute.counterTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.customNavigationLayout = global::EbookReader.Droid.Resource.Attribute.customNavigationLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.defaultQueryHint = global::EbookReader.Droid.Resource.Attribute.defaultQueryHint;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.dialogPreferredPadding = global::EbookReader.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.dialogTheme = global::EbookReader.Droid.Resource.Attribute.dialogTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.displayOptions = global::EbookReader.Droid.Resource.Attribute.displayOptions;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.divider = global::EbookReader.Droid.Resource.Attribute.divider;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.dividerHorizontal = global::EbookReader.Droid.Resource.Attribute.dividerHorizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.dividerPadding = global::EbookReader.Droid.Resource.Attribute.dividerPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.dividerVertical = global::EbookReader.Droid.Resource.Attribute.dividerVertical;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.drawableSize = global::EbookReader.Droid.Resource.Attribute.drawableSize;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.drawerArrowStyle = global::EbookReader.Droid.Resource.Attribute.drawerArrowStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.dropDownListViewStyle = global::EbookReader.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.dropdownListPreferredItemHeight = global::EbookReader.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.editTextBackground = global::EbookReader.Droid.Resource.Attribute.editTextBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.editTextColor = global::EbookReader.Droid.Resource.Attribute.editTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.editTextStyle = global::EbookReader.Droid.Resource.Attribute.editTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.elevation = global::EbookReader.Droid.Resource.Attribute.elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.errorEnabled = global::EbookReader.Droid.Resource.Attribute.errorEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.errorTextAppearance = global::EbookReader.Droid.Resource.Attribute.errorTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.expandActivityOverflowButtonDrawable = global::EbookReader.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.expanded = global::EbookReader.Droid.Resource.Attribute.expanded;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.expandedTitleGravity = global::EbookReader.Droid.Resource.Attribute.expandedTitleGravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.expandedTitleMargin = global::EbookReader.Droid.Resource.Attribute.expandedTitleMargin;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.expandedTitleMarginBottom = global::EbookReader.Droid.Resource.Attribute.expandedTitleMarginBottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.expandedTitleMarginEnd = global::EbookReader.Droid.Resource.Attribute.expandedTitleMarginEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.expandedTitleMarginStart = global::EbookReader.Droid.Resource.Attribute.expandedTitleMarginStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.expandedTitleMarginTop = global::EbookReader.Droid.Resource.Attribute.expandedTitleMarginTop;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.expandedTitleTextAppearance = global::EbookReader.Droid.Resource.Attribute.expandedTitleTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.externalRouteEnabledDrawable = global::EbookReader.Droid.Resource.Attribute.externalRouteEnabledDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.fabSize = global::EbookReader.Droid.Resource.Attribute.fabSize;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.foregroundInsidePadding = global::EbookReader.Droid.Resource.Attribute.foregroundInsidePadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.gapBetweenBars = global::EbookReader.Droid.Resource.Attribute.gapBetweenBars;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.goIcon = global::EbookReader.Droid.Resource.Attribute.goIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.headerLayout = global::EbookReader.Droid.Resource.Attribute.headerLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.height = global::EbookReader.Droid.Resource.Attribute.height;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.hideOnContentScroll = global::EbookReader.Droid.Resource.Attribute.hideOnContentScroll;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.hintAnimationEnabled = global::EbookReader.Droid.Resource.Attribute.hintAnimationEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.hintEnabled = global::EbookReader.Droid.Resource.Attribute.hintEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.hintTextAppearance = global::EbookReader.Droid.Resource.Attribute.hintTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.homeAsUpIndicator = global::EbookReader.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.homeLayout = global::EbookReader.Droid.Resource.Attribute.homeLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.icon = global::EbookReader.Droid.Resource.Attribute.icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.iconifiedByDefault = global::EbookReader.Droid.Resource.Attribute.iconifiedByDefault;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.imageButtonStyle = global::EbookReader.Droid.Resource.Attribute.imageButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.indeterminateProgressStyle = global::EbookReader.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.initialActivityCount = global::EbookReader.Droid.Resource.Attribute.initialActivityCount;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.insetForeground = global::EbookReader.Droid.Resource.Attribute.insetForeground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.isLightTheme = global::EbookReader.Droid.Resource.Attribute.isLightTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.itemBackground = global::EbookReader.Droid.Resource.Attribute.itemBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.itemIconTint = global::EbookReader.Droid.Resource.Attribute.itemIconTint;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.itemPadding = global::EbookReader.Droid.Resource.Attribute.itemPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.itemTextAppearance = global::EbookReader.Droid.Resource.Attribute.itemTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.itemTextColor = global::EbookReader.Droid.Resource.Attribute.itemTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.keylines = global::EbookReader.Droid.Resource.Attribute.keylines;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layout = global::EbookReader.Droid.Resource.Attribute.layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layoutManager = global::EbookReader.Droid.Resource.Attribute.layoutManager;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layout_anchor = global::EbookReader.Droid.Resource.Attribute.layout_anchor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layout_anchorGravity = global::EbookReader.Droid.Resource.Attribute.layout_anchorGravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layout_behavior = global::EbookReader.Droid.Resource.Attribute.layout_behavior;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layout_collapseMode = global::EbookReader.Droid.Resource.Attribute.layout_collapseMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layout_collapseParallaxMultiplier = global::EbookReader.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layout_keyline = global::EbookReader.Droid.Resource.Attribute.layout_keyline;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layout_scrollFlags = global::EbookReader.Droid.Resource.Attribute.layout_scrollFlags;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.layout_scrollInterpolator = global::EbookReader.Droid.Resource.Attribute.layout_scrollInterpolator;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listChoiceBackgroundIndicator = global::EbookReader.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listDividerAlertDialog = global::EbookReader.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listItemLayout = global::EbookReader.Droid.Resource.Attribute.listItemLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listLayout = global::EbookReader.Droid.Resource.Attribute.listLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listPopupWindowStyle = global::EbookReader.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listPreferredItemHeight = global::EbookReader.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listPreferredItemHeightLarge = global::EbookReader.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listPreferredItemHeightSmall = global::EbookReader.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listPreferredItemPaddingLeft = global::EbookReader.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.listPreferredItemPaddingRight = global::EbookReader.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.logo = global::EbookReader.Droid.Resource.Attribute.logo;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.logoDescription = global::EbookReader.Droid.Resource.Attribute.logoDescription;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.maxActionInlineWidth = global::EbookReader.Droid.Resource.Attribute.maxActionInlineWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.maxButtonHeight = global::EbookReader.Droid.Resource.Attribute.maxButtonHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.measureWithLargestChild = global::EbookReader.Droid.Resource.Attribute.measureWithLargestChild;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.mediaRouteAudioTrackDrawable = global::EbookReader.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.mediaRouteButtonStyle = global::EbookReader.Droid.Resource.Attribute.mediaRouteButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.mediaRouteCloseDrawable = global::EbookReader.Droid.Resource.Attribute.mediaRouteCloseDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.mediaRouteDefaultIconDrawable = global::EbookReader.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.mediaRoutePauseDrawable = global::EbookReader.Droid.Resource.Attribute.mediaRoutePauseDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.mediaRoutePlayDrawable = global::EbookReader.Droid.Resource.Attribute.mediaRoutePlayDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable = global::EbookReader.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.mediaRouteSpeakerIconDrawable = global::EbookReader.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.mediaRouteTvIconDrawable = global::EbookReader.Droid.Resource.Attribute.mediaRouteTvIconDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.menu = global::EbookReader.Droid.Resource.Attribute.menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.multiChoiceItemLayout = global::EbookReader.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.navigationContentDescription = global::EbookReader.Droid.Resource.Attribute.navigationContentDescription;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.navigationIcon = global::EbookReader.Droid.Resource.Attribute.navigationIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.navigationMode = global::EbookReader.Droid.Resource.Attribute.navigationMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.overlapAnchor = global::EbookReader.Droid.Resource.Attribute.overlapAnchor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.paddingEnd = global::EbookReader.Droid.Resource.Attribute.paddingEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.paddingStart = global::EbookReader.Droid.Resource.Attribute.paddingStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.panelBackground = global::EbookReader.Droid.Resource.Attribute.panelBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.panelMenuListTheme = global::EbookReader.Droid.Resource.Attribute.panelMenuListTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.panelMenuListWidth = global::EbookReader.Droid.Resource.Attribute.panelMenuListWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.popupMenuStyle = global::EbookReader.Droid.Resource.Attribute.popupMenuStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.popupTheme = global::EbookReader.Droid.Resource.Attribute.popupTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.popupWindowStyle = global::EbookReader.Droid.Resource.Attribute.popupWindowStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.preserveIconSpacing = global::EbookReader.Droid.Resource.Attribute.preserveIconSpacing;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.pressedTranslationZ = global::EbookReader.Droid.Resource.Attribute.pressedTranslationZ;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.progressBarPadding = global::EbookReader.Droid.Resource.Attribute.progressBarPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.progressBarStyle = global::EbookReader.Droid.Resource.Attribute.progressBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.queryBackground = global::EbookReader.Droid.Resource.Attribute.queryBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.queryHint = global::EbookReader.Droid.Resource.Attribute.queryHint;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.radioButtonStyle = global::EbookReader.Droid.Resource.Attribute.radioButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.ratingBarStyle = global::EbookReader.Droid.Resource.Attribute.ratingBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.ratingBarStyleIndicator = global::EbookReader.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.ratingBarStyleSmall = global::EbookReader.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.reverseLayout = global::EbookReader.Droid.Resource.Attribute.reverseLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.rippleColor = global::EbookReader.Droid.Resource.Attribute.rippleColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.searchHintIcon = global::EbookReader.Droid.Resource.Attribute.searchHintIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.searchIcon = global::EbookReader.Droid.Resource.Attribute.searchIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.searchViewStyle = global::EbookReader.Droid.Resource.Attribute.searchViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.seekBarStyle = global::EbookReader.Droid.Resource.Attribute.seekBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.selectableItemBackground = global::EbookReader.Droid.Resource.Attribute.selectableItemBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.selectableItemBackgroundBorderless = global::EbookReader.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.showAsAction = global::EbookReader.Droid.Resource.Attribute.showAsAction;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.showDividers = global::EbookReader.Droid.Resource.Attribute.showDividers;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.showText = global::EbookReader.Droid.Resource.Attribute.showText;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.singleChoiceItemLayout = global::EbookReader.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.spanCount = global::EbookReader.Droid.Resource.Attribute.spanCount;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.spinBars = global::EbookReader.Droid.Resource.Attribute.spinBars;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.spinnerDropDownItemStyle = global::EbookReader.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.spinnerStyle = global::EbookReader.Droid.Resource.Attribute.spinnerStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.splitTrack = global::EbookReader.Droid.Resource.Attribute.splitTrack;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.srcCompat = global::EbookReader.Droid.Resource.Attribute.srcCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.stackFromEnd = global::EbookReader.Droid.Resource.Attribute.stackFromEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.state_above_anchor = global::EbookReader.Droid.Resource.Attribute.state_above_anchor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.statusBarBackground = global::EbookReader.Droid.Resource.Attribute.statusBarBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.statusBarScrim = global::EbookReader.Droid.Resource.Attribute.statusBarScrim;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.submitBackground = global::EbookReader.Droid.Resource.Attribute.submitBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.subtitle = global::EbookReader.Droid.Resource.Attribute.subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.subtitleTextAppearance = global::EbookReader.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.subtitleTextColor = global::EbookReader.Droid.Resource.Attribute.subtitleTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.subtitleTextStyle = global::EbookReader.Droid.Resource.Attribute.subtitleTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.suggestionRowLayout = global::EbookReader.Droid.Resource.Attribute.suggestionRowLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.switchMinWidth = global::EbookReader.Droid.Resource.Attribute.switchMinWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.switchPadding = global::EbookReader.Droid.Resource.Attribute.switchPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.switchStyle = global::EbookReader.Droid.Resource.Attribute.switchStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.switchTextAppearance = global::EbookReader.Droid.Resource.Attribute.switchTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabBackground = global::EbookReader.Droid.Resource.Attribute.tabBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabContentStart = global::EbookReader.Droid.Resource.Attribute.tabContentStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabGravity = global::EbookReader.Droid.Resource.Attribute.tabGravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabIndicatorColor = global::EbookReader.Droid.Resource.Attribute.tabIndicatorColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabIndicatorHeight = global::EbookReader.Droid.Resource.Attribute.tabIndicatorHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabMaxWidth = global::EbookReader.Droid.Resource.Attribute.tabMaxWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabMinWidth = global::EbookReader.Droid.Resource.Attribute.tabMinWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabMode = global::EbookReader.Droid.Resource.Attribute.tabMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabPadding = global::EbookReader.Droid.Resource.Attribute.tabPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabPaddingBottom = global::EbookReader.Droid.Resource.Attribute.tabPaddingBottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabPaddingEnd = global::EbookReader.Droid.Resource.Attribute.tabPaddingEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabPaddingStart = global::EbookReader.Droid.Resource.Attribute.tabPaddingStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabPaddingTop = global::EbookReader.Droid.Resource.Attribute.tabPaddingTop;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabSelectedTextColor = global::EbookReader.Droid.Resource.Attribute.tabSelectedTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabTextAppearance = global::EbookReader.Droid.Resource.Attribute.tabTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.tabTextColor = global::EbookReader.Droid.Resource.Attribute.tabTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textAllCaps = global::EbookReader.Droid.Resource.Attribute.textAllCaps;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textAppearanceLargePopupMenu = global::EbookReader.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textAppearanceListItem = global::EbookReader.Droid.Resource.Attribute.textAppearanceListItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textAppearanceListItemSmall = global::EbookReader.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textAppearanceSearchResultSubtitle = global::EbookReader.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textAppearanceSearchResultTitle = global::EbookReader.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textAppearanceSmallPopupMenu = global::EbookReader.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textColorAlertDialogListItem = global::EbookReader.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textColorError = global::EbookReader.Droid.Resource.Attribute.textColorError;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.textColorSearchUrl = global::EbookReader.Droid.Resource.Attribute.textColorSearchUrl;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.theme = global::EbookReader.Droid.Resource.Attribute.theme;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.thickness = global::EbookReader.Droid.Resource.Attribute.thickness;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.thumbTextPadding = global::EbookReader.Droid.Resource.Attribute.thumbTextPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.title = global::EbookReader.Droid.Resource.Attribute.title;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.titleEnabled = global::EbookReader.Droid.Resource.Attribute.titleEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.titleMarginBottom = global::EbookReader.Droid.Resource.Attribute.titleMarginBottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.titleMarginEnd = global::EbookReader.Droid.Resource.Attribute.titleMarginEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.titleMarginStart = global::EbookReader.Droid.Resource.Attribute.titleMarginStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.titleMarginTop = global::EbookReader.Droid.Resource.Attribute.titleMarginTop;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.titleMargins = global::EbookReader.Droid.Resource.Attribute.titleMargins;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.titleTextAppearance = global::EbookReader.Droid.Resource.Attribute.titleTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.titleTextColor = global::EbookReader.Droid.Resource.Attribute.titleTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.titleTextStyle = global::EbookReader.Droid.Resource.Attribute.titleTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.toolbarId = global::EbookReader.Droid.Resource.Attribute.toolbarId;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.toolbarNavigationButtonStyle = global::EbookReader.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.toolbarStyle = global::EbookReader.Droid.Resource.Attribute.toolbarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.track = global::EbookReader.Droid.Resource.Attribute.track;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.useCompatPadding = global::EbookReader.Droid.Resource.Attribute.useCompatPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.voiceIcon = global::EbookReader.Droid.Resource.Attribute.voiceIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowActionBar = global::EbookReader.Droid.Resource.Attribute.windowActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowActionBarOverlay = global::EbookReader.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowActionModeOverlay = global::EbookReader.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowFixedHeightMajor = global::EbookReader.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowFixedHeightMinor = global::EbookReader.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowFixedWidthMajor = global::EbookReader.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowFixedWidthMinor = global::EbookReader.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowMinWidthMajor = global::EbookReader.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowMinWidthMinor = global::EbookReader.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::Xamarin.Auth.XamarinForms.Resource.Attribute.windowNoTitle = global::EbookReader.Droid.Resource.Attribute.windowNoTitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Boolean.abc_action_bar_embed_tabs = global::EbookReader.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Xamarin.Auth.XamarinForms.Resource.Boolean.abc_allow_stacked_button_bar = global::EbookReader.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::Xamarin.Auth.XamarinForms.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::EbookReader.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::Xamarin.Auth.XamarinForms.Resource.Boolean.abc_config_closeDialogWhenTouchOutside = global::EbookReader.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside;
+			global::Xamarin.Auth.XamarinForms.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::EbookReader.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_background_cache_hint_selector_material_dark = global::EbookReader.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_background_cache_hint_selector_material_light = global::EbookReader.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_color_highlight_material = global::EbookReader.Droid.Resource.Color.abc_color_highlight_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_input_method_navigation_guard = global::EbookReader.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_primary_text_disable_only_material_dark = global::EbookReader.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_primary_text_disable_only_material_light = global::EbookReader.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_primary_text_material_dark = global::EbookReader.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_primary_text_material_light = global::EbookReader.Droid.Resource.Color.abc_primary_text_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_search_url_text = global::EbookReader.Droid.Resource.Color.abc_search_url_text;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_search_url_text_normal = global::EbookReader.Droid.Resource.Color.abc_search_url_text_normal;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_search_url_text_pressed = global::EbookReader.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_search_url_text_selected = global::EbookReader.Droid.Resource.Color.abc_search_url_text_selected;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_secondary_text_material_dark = global::EbookReader.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.abc_secondary_text_material_light = global::EbookReader.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.accent_material_dark = global::EbookReader.Droid.Resource.Color.accent_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.accent_material_light = global::EbookReader.Droid.Resource.Color.accent_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.background_floating_material_dark = global::EbookReader.Droid.Resource.Color.background_floating_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.background_floating_material_light = global::EbookReader.Droid.Resource.Color.background_floating_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.background_material_dark = global::EbookReader.Droid.Resource.Color.background_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.background_material_light = global::EbookReader.Droid.Resource.Color.background_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.bright_foreground_disabled_material_dark = global::EbookReader.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.bright_foreground_disabled_material_light = global::EbookReader.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.bright_foreground_inverse_material_dark = global::EbookReader.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.bright_foreground_inverse_material_light = global::EbookReader.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.bright_foreground_material_dark = global::EbookReader.Droid.Resource.Color.bright_foreground_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.bright_foreground_material_light = global::EbookReader.Droid.Resource.Color.bright_foreground_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.button_material_dark = global::EbookReader.Droid.Resource.Color.button_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.button_material_light = global::EbookReader.Droid.Resource.Color.button_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.cardview_dark_background = global::EbookReader.Droid.Resource.Color.cardview_dark_background;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.cardview_light_background = global::EbookReader.Droid.Resource.Color.cardview_light_background;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.cardview_shadow_end_color = global::EbookReader.Droid.Resource.Color.cardview_shadow_end_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.cardview_shadow_start_color = global::EbookReader.Droid.Resource.Color.cardview_shadow_start_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_fab_shadow_end_color = global::EbookReader.Droid.Resource.Color.design_fab_shadow_end_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_fab_shadow_mid_color = global::EbookReader.Droid.Resource.Color.design_fab_shadow_mid_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_fab_shadow_start_color = global::EbookReader.Droid.Resource.Color.design_fab_shadow_start_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_fab_stroke_end_inner_color = global::EbookReader.Droid.Resource.Color.design_fab_stroke_end_inner_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_fab_stroke_end_outer_color = global::EbookReader.Droid.Resource.Color.design_fab_stroke_end_outer_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_fab_stroke_top_inner_color = global::EbookReader.Droid.Resource.Color.design_fab_stroke_top_inner_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_fab_stroke_top_outer_color = global::EbookReader.Droid.Resource.Color.design_fab_stroke_top_outer_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_snackbar_background_color = global::EbookReader.Droid.Resource.Color.design_snackbar_background_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_textinput_error_color_dark = global::EbookReader.Droid.Resource.Color.design_textinput_error_color_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.design_textinput_error_color_light = global::EbookReader.Droid.Resource.Color.design_textinput_error_color_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.dim_foreground_disabled_material_dark = global::EbookReader.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.dim_foreground_disabled_material_light = global::EbookReader.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.dim_foreground_material_dark = global::EbookReader.Droid.Resource.Color.dim_foreground_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.dim_foreground_material_light = global::EbookReader.Droid.Resource.Color.dim_foreground_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.foreground_material_dark = global::EbookReader.Droid.Resource.Color.foreground_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.foreground_material_light = global::EbookReader.Droid.Resource.Color.foreground_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.highlighted_text_material_dark = global::EbookReader.Droid.Resource.Color.highlighted_text_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.highlighted_text_material_light = global::EbookReader.Droid.Resource.Color.highlighted_text_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_blue_grey_800 = global::EbookReader.Droid.Resource.Color.material_blue_grey_800;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_blue_grey_900 = global::EbookReader.Droid.Resource.Color.material_blue_grey_900;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_blue_grey_950 = global::EbookReader.Droid.Resource.Color.material_blue_grey_950;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_deep_teal_200 = global::EbookReader.Droid.Resource.Color.material_deep_teal_200;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_deep_teal_500 = global::EbookReader.Droid.Resource.Color.material_deep_teal_500;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_grey_100 = global::EbookReader.Droid.Resource.Color.material_grey_100;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_grey_300 = global::EbookReader.Droid.Resource.Color.material_grey_300;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_grey_50 = global::EbookReader.Droid.Resource.Color.material_grey_50;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_grey_600 = global::EbookReader.Droid.Resource.Color.material_grey_600;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_grey_800 = global::EbookReader.Droid.Resource.Color.material_grey_800;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_grey_850 = global::EbookReader.Droid.Resource.Color.material_grey_850;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.material_grey_900 = global::EbookReader.Droid.Resource.Color.material_grey_900;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.primary_dark_material_dark = global::EbookReader.Droid.Resource.Color.primary_dark_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.primary_dark_material_light = global::EbookReader.Droid.Resource.Color.primary_dark_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.primary_material_dark = global::EbookReader.Droid.Resource.Color.primary_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.primary_material_light = global::EbookReader.Droid.Resource.Color.primary_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.primary_text_default_material_dark = global::EbookReader.Droid.Resource.Color.primary_text_default_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.primary_text_default_material_light = global::EbookReader.Droid.Resource.Color.primary_text_default_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.primary_text_disabled_material_dark = global::EbookReader.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.primary_text_disabled_material_light = global::EbookReader.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.ripple_material_dark = global::EbookReader.Droid.Resource.Color.ripple_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.ripple_material_light = global::EbookReader.Droid.Resource.Color.ripple_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.secondary_text_default_material_dark = global::EbookReader.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.secondary_text_default_material_light = global::EbookReader.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.secondary_text_disabled_material_dark = global::EbookReader.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.secondary_text_disabled_material_light = global::EbookReader.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.switch_thumb_disabled_material_dark = global::EbookReader.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.switch_thumb_disabled_material_light = global::EbookReader.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.switch_thumb_material_dark = global::EbookReader.Droid.Resource.Color.switch_thumb_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.switch_thumb_material_light = global::EbookReader.Droid.Resource.Color.switch_thumb_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.switch_thumb_normal_material_dark = global::EbookReader.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Color.switch_thumb_normal_material_light = global::EbookReader.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_content_inset_material = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_default_height_material = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_default_padding_end_material = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_default_padding_start_material = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_progress_bar_size = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_progress_bar_size;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_stacked_max_height = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::EbookReader.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_button_min_height_material = global::EbookReader.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_button_min_width_material = global::EbookReader.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_action_button_min_width_overflow_material = global::EbookReader.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_alert_dialog_button_bar_height = global::EbookReader.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_button_inset_horizontal_material = global::EbookReader.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_button_inset_vertical_material = global::EbookReader.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_button_padding_horizontal_material = global::EbookReader.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_button_padding_vertical_material = global::EbookReader.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_config_prefDialogWidth = global::EbookReader.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_control_corner_material = global::EbookReader.Droid.Resource.Dimension.abc_control_corner_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_control_inset_material = global::EbookReader.Droid.Resource.Dimension.abc_control_inset_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_control_padding_material = global::EbookReader.Droid.Resource.Dimension.abc_control_padding_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dialog_fixed_height_major = global::EbookReader.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dialog_fixed_height_minor = global::EbookReader.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dialog_fixed_width_major = global::EbookReader.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dialog_fixed_width_minor = global::EbookReader.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dialog_min_width_major = global::EbookReader.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dialog_min_width_minor = global::EbookReader.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dialog_padding_material = global::EbookReader.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dialog_padding_top_material = global::EbookReader.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_disabled_alpha_material_dark = global::EbookReader.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_disabled_alpha_material_light = global::EbookReader.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dropdownitem_icon_width = global::EbookReader.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dropdownitem_text_padding_left = global::EbookReader.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_dropdownitem_text_padding_right = global::EbookReader.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_edit_text_inset_bottom_material = global::EbookReader.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::EbookReader.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_edit_text_inset_top_material = global::EbookReader.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_floating_window_z = global::EbookReader.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_list_item_padding_horizontal_material = global::EbookReader.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_panel_menu_list_width = global::EbookReader.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_search_view_preferred_width = global::EbookReader.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_seekbar_track_background_height_material = global::EbookReader.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_seekbar_track_progress_height_material = global::EbookReader.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_select_dialog_padding_start_material = global::EbookReader.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_switch_padding = global::EbookReader.Droid.Resource.Dimension.abc_switch_padding;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_body_1_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_body_2_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_button_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_caption_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_display_1_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_display_2_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_display_3_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_display_4_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_headline_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_large_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_medium_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_menu_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_small_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_subhead_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::EbookReader.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_title_material = global::EbookReader.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.abc_text_size_title_material_toolbar = global::EbookReader.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.cardview_compat_inset_shadow = global::EbookReader.Droid.Resource.Dimension.cardview_compat_inset_shadow;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.cardview_default_elevation = global::EbookReader.Droid.Resource.Dimension.cardview_default_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.cardview_default_radius = global::EbookReader.Droid.Resource.Dimension.cardview_default_radius;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_appbar_elevation = global::EbookReader.Droid.Resource.Dimension.design_appbar_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_bottom_sheet_modal_elevation = global::EbookReader.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_fab_border_width = global::EbookReader.Droid.Resource.Dimension.design_fab_border_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_fab_elevation = global::EbookReader.Droid.Resource.Dimension.design_fab_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_fab_image_size = global::EbookReader.Droid.Resource.Dimension.design_fab_image_size;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_fab_size_mini = global::EbookReader.Droid.Resource.Dimension.design_fab_size_mini;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_fab_size_normal = global::EbookReader.Droid.Resource.Dimension.design_fab_size_normal;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_fab_translation_z_pressed = global::EbookReader.Droid.Resource.Dimension.design_fab_translation_z_pressed;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_navigation_elevation = global::EbookReader.Droid.Resource.Dimension.design_navigation_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_navigation_icon_padding = global::EbookReader.Droid.Resource.Dimension.design_navigation_icon_padding;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_navigation_icon_size = global::EbookReader.Droid.Resource.Dimension.design_navigation_icon_size;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_navigation_max_width = global::EbookReader.Droid.Resource.Dimension.design_navigation_max_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_navigation_padding_bottom = global::EbookReader.Droid.Resource.Dimension.design_navigation_padding_bottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_navigation_separator_vertical_padding = global::EbookReader.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_action_inline_max_width = global::EbookReader.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_background_corner_radius = global::EbookReader.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_elevation = global::EbookReader.Droid.Resource.Dimension.design_snackbar_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::EbookReader.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_max_width = global::EbookReader.Droid.Resource.Dimension.design_snackbar_max_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_min_width = global::EbookReader.Droid.Resource.Dimension.design_snackbar_min_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_padding_horizontal = global::EbookReader.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_padding_vertical = global::EbookReader.Droid.Resource.Dimension.design_snackbar_padding_vertical;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::EbookReader.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_snackbar_text_size = global::EbookReader.Droid.Resource.Dimension.design_snackbar_text_size;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_tab_max_width = global::EbookReader.Droid.Resource.Dimension.design_tab_max_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_tab_scrollable_min_width = global::EbookReader.Droid.Resource.Dimension.design_tab_scrollable_min_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_tab_text_size = global::EbookReader.Droid.Resource.Dimension.design_tab_text_size;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.design_tab_text_size_2line = global::EbookReader.Droid.Resource.Dimension.design_tab_text_size_2line;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.disabled_alpha_material_dark = global::EbookReader.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.disabled_alpha_material_light = global::EbookReader.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.highlight_alpha_material_colored = global::EbookReader.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.highlight_alpha_material_dark = global::EbookReader.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.highlight_alpha_material_light = global::EbookReader.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::EbookReader.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::EbookReader.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::EbookReader.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.mr_controller_volume_group_list_item_height = global::EbookReader.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.mr_controller_volume_group_list_item_icon_size = global::EbookReader.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.mr_controller_volume_group_list_max_height = global::EbookReader.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::EbookReader.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.mr_dialog_fixed_width_major = global::EbookReader.Droid.Resource.Dimension.mr_dialog_fixed_width_major;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.mr_dialog_fixed_width_minor = global::EbookReader.Droid.Resource.Dimension.mr_dialog_fixed_width_minor;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.notification_large_icon_height = global::EbookReader.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.notification_large_icon_width = global::EbookReader.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Dimension.notification_subtext_size = global::EbookReader.Droid.Resource.Dimension.notification_subtext_size;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_action_bar_item_background_material = global::EbookReader.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_borderless_material = global::EbookReader.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_check_material = global::EbookReader.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::EbookReader.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::EbookReader.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_colored_material = global::EbookReader.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_default_mtrl_shape = global::EbookReader.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_radio_material = global::EbookReader.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::EbookReader.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::EbookReader.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::EbookReader.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::EbookReader.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_cab_background_internal_bg = global::EbookReader.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_cab_background_top_material = global::EbookReader.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_control_background_material = global::EbookReader.Droid.Resource.Drawable.abc_control_background_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_edit_text_material = global::EbookReader.Droid.Resource.Drawable.abc_edit_text_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::EbookReader.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::EbookReader.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_star_black_16dp = global::EbookReader.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_star_black_36dp = global::EbookReader.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_star_half_black_16dp = global::EbookReader.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ic_star_half_black_36dp = global::EbookReader.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_item_background_holo_dark = global::EbookReader.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_item_background_holo_light = global::EbookReader.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_divider_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_focused_holo = global::EbookReader.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_longpressed_holo = global::EbookReader.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_pressed_holo_dark = global::EbookReader.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_pressed_holo_light = global::EbookReader.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::EbookReader.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::EbookReader.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::EbookReader.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_selector_disabled_holo_light = global::EbookReader.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_selector_holo_dark = global::EbookReader.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_list_selector_holo_light = global::EbookReader.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::EbookReader.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_popup_background_mtrl_mult = global::EbookReader.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ratingbar_indicator_material = global::EbookReader.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_ratingbar_small_material = global::EbookReader.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::EbookReader.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::EbookReader.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_seekbar_thumb_material = global::EbookReader.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_seekbar_track_material = global::EbookReader.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::EbookReader.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_spinner_textfield_background_material = global::EbookReader.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_switch_thumb_material = global::EbookReader.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_switch_track_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_tab_indicator_material = global::EbookReader.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_text_cursor_material = global::EbookReader.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::EbookReader.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.abc_textfield_search_material = global::EbookReader.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.design_fab_background = global::EbookReader.Droid.Resource.Drawable.design_fab_background;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.design_snackbar_background = global::EbookReader.Droid.Resource.Drawable.design_snackbar_background;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.ic_arrow_back = global::EbookReader.Droid.Resource.Drawable.ic_arrow_back;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.ic_audiotrack_light = global::EbookReader.Droid.Resource.Drawable.ic_audiotrack_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.mr_dialog_material_background_dark = global::EbookReader.Droid.Resource.Drawable.mr_dialog_material_background_dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.mr_dialog_material_background_light = global::EbookReader.Droid.Resource.Drawable.mr_dialog_material_background_light;
+			global::Xamarin.Auth.XamarinForms.Resource.Drawable.notification_template_icon_bg = global::EbookReader.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action0 = global::EbookReader.Droid.Resource.Id.action0;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_bar = global::EbookReader.Droid.Resource.Id.action_bar;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_bar_activity_content = global::EbookReader.Droid.Resource.Id.action_bar_activity_content;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_bar_container = global::EbookReader.Droid.Resource.Id.action_bar_container;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_bar_root = global::EbookReader.Droid.Resource.Id.action_bar_root;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_bar_spinner = global::EbookReader.Droid.Resource.Id.action_bar_spinner;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_bar_subtitle = global::EbookReader.Droid.Resource.Id.action_bar_subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_bar_title = global::EbookReader.Droid.Resource.Id.action_bar_title;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_context_bar = global::EbookReader.Droid.Resource.Id.action_context_bar;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_divider = global::EbookReader.Droid.Resource.Id.action_divider;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_menu_divider = global::EbookReader.Droid.Resource.Id.action_menu_divider;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_menu_presenter = global::EbookReader.Droid.Resource.Id.action_menu_presenter;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_mode_bar = global::EbookReader.Droid.Resource.Id.action_mode_bar;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_mode_bar_stub = global::EbookReader.Droid.Resource.Id.action_mode_bar_stub;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.action_mode_close_button = global::EbookReader.Droid.Resource.Id.action_mode_close_button;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.activity_chooser_view_content = global::EbookReader.Droid.Resource.Id.activity_chooser_view_content;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.alertTitle = global::EbookReader.Droid.Resource.Id.alertTitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.always = global::EbookReader.Droid.Resource.Id.always;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.beginning = global::EbookReader.Droid.Resource.Id.beginning;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.bottom = global::EbookReader.Droid.Resource.Id.bottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.buttonPanel = global::EbookReader.Droid.Resource.Id.buttonPanel;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.cancel_action = global::EbookReader.Droid.Resource.Id.cancel_action;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.center = global::EbookReader.Droid.Resource.Id.center;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.center_horizontal = global::EbookReader.Droid.Resource.Id.center_horizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.center_vertical = global::EbookReader.Droid.Resource.Id.center_vertical;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.checkbox = global::EbookReader.Droid.Resource.Id.checkbox;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.chronometer = global::EbookReader.Droid.Resource.Id.chronometer;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.clip_horizontal = global::EbookReader.Droid.Resource.Id.clip_horizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.clip_vertical = global::EbookReader.Droid.Resource.Id.clip_vertical;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.collapseActionView = global::EbookReader.Droid.Resource.Id.collapseActionView;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.contentPanel = global::EbookReader.Droid.Resource.Id.contentPanel;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.custom = global::EbookReader.Droid.Resource.Id.custom;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.customPanel = global::EbookReader.Droid.Resource.Id.customPanel;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.decor_content_parent = global::EbookReader.Droid.Resource.Id.decor_content_parent;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.default_activity_button = global::EbookReader.Droid.Resource.Id.default_activity_button;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.design_bottom_sheet = global::EbookReader.Droid.Resource.Id.design_bottom_sheet;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.design_menu_item_action_area = global::EbookReader.Droid.Resource.Id.design_menu_item_action_area;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.design_menu_item_action_area_stub = global::EbookReader.Droid.Resource.Id.design_menu_item_action_area_stub;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.design_menu_item_text = global::EbookReader.Droid.Resource.Id.design_menu_item_text;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.design_navigation_view = global::EbookReader.Droid.Resource.Id.design_navigation_view;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.disableHome = global::EbookReader.Droid.Resource.Id.disableHome;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.edit_query = global::EbookReader.Droid.Resource.Id.edit_query;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.end = global::EbookReader.Droid.Resource.Id.end;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.end_padder = global::EbookReader.Droid.Resource.Id.end_padder;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.enterAlways = global::EbookReader.Droid.Resource.Id.enterAlways;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.enterAlwaysCollapsed = global::EbookReader.Droid.Resource.Id.enterAlwaysCollapsed;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.exitUntilCollapsed = global::EbookReader.Droid.Resource.Id.exitUntilCollapsed;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.expand_activities_button = global::EbookReader.Droid.Resource.Id.expand_activities_button;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.expanded_menu = global::EbookReader.Droid.Resource.Id.expanded_menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.fill = global::EbookReader.Droid.Resource.Id.fill;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.fill_horizontal = global::EbookReader.Droid.Resource.Id.fill_horizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.fill_vertical = global::EbookReader.Droid.Resource.Id.fill_vertical;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.@fixed = global::EbookReader.Droid.Resource.Id.@fixed;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.home = global::EbookReader.Droid.Resource.Id.home;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.homeAsUp = global::EbookReader.Droid.Resource.Id.homeAsUp;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.icon = global::EbookReader.Droid.Resource.Id.icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.ifRoom = global::EbookReader.Droid.Resource.Id.ifRoom;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.image = global::EbookReader.Droid.Resource.Id.image;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.info = global::EbookReader.Droid.Resource.Id.info;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.item_touch_helper_previous_elevation = global::EbookReader.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.left = global::EbookReader.Droid.Resource.Id.left;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.line1 = global::EbookReader.Droid.Resource.Id.line1;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.line3 = global::EbookReader.Droid.Resource.Id.line3;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.listMode = global::EbookReader.Droid.Resource.Id.listMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.list_item = global::EbookReader.Droid.Resource.Id.list_item;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.media_actions = global::EbookReader.Droid.Resource.Id.media_actions;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.middle = global::EbookReader.Droid.Resource.Id.middle;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mini = global::EbookReader.Droid.Resource.Id.mini;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_art = global::EbookReader.Droid.Resource.Id.mr_art;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_chooser_list = global::EbookReader.Droid.Resource.Id.mr_chooser_list;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_chooser_route_desc = global::EbookReader.Droid.Resource.Id.mr_chooser_route_desc;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_chooser_route_icon = global::EbookReader.Droid.Resource.Id.mr_chooser_route_icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_chooser_route_name = global::EbookReader.Droid.Resource.Id.mr_chooser_route_name;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_close = global::EbookReader.Droid.Resource.Id.mr_close;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_control_divider = global::EbookReader.Droid.Resource.Id.mr_control_divider;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_control_subtitle = global::EbookReader.Droid.Resource.Id.mr_control_subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_control_title = global::EbookReader.Droid.Resource.Id.mr_control_title;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_control_title_container = global::EbookReader.Droid.Resource.Id.mr_control_title_container;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_custom_control = global::EbookReader.Droid.Resource.Id.mr_custom_control;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_default_control = global::EbookReader.Droid.Resource.Id.mr_default_control;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_dialog_area = global::EbookReader.Droid.Resource.Id.mr_dialog_area;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_expandable_area = global::EbookReader.Droid.Resource.Id.mr_expandable_area;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_group_expand_collapse = global::EbookReader.Droid.Resource.Id.mr_group_expand_collapse;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_media_main_control = global::EbookReader.Droid.Resource.Id.mr_media_main_control;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_name = global::EbookReader.Droid.Resource.Id.mr_name;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_playback_control = global::EbookReader.Droid.Resource.Id.mr_playback_control;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_title_bar = global::EbookReader.Droid.Resource.Id.mr_title_bar;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_volume_control = global::EbookReader.Droid.Resource.Id.mr_volume_control;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_volume_group_list = global::EbookReader.Droid.Resource.Id.mr_volume_group_list;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_volume_item_icon = global::EbookReader.Droid.Resource.Id.mr_volume_item_icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.mr_volume_slider = global::EbookReader.Droid.Resource.Id.mr_volume_slider;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.multiply = global::EbookReader.Droid.Resource.Id.multiply;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.navigation_header_container = global::EbookReader.Droid.Resource.Id.navigation_header_container;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.never = global::EbookReader.Droid.Resource.Id.never;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.none = global::EbookReader.Droid.Resource.Id.none;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.normal = global::EbookReader.Droid.Resource.Id.normal;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.parallax = global::EbookReader.Droid.Resource.Id.parallax;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.parentPanel = global::EbookReader.Droid.Resource.Id.parentPanel;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.pin = global::EbookReader.Droid.Resource.Id.pin;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.progress_circular = global::EbookReader.Droid.Resource.Id.progress_circular;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.progress_horizontal = global::EbookReader.Droid.Resource.Id.progress_horizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.radio = global::EbookReader.Droid.Resource.Id.radio;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.right = global::EbookReader.Droid.Resource.Id.right;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.screen = global::EbookReader.Droid.Resource.Id.screen;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.scroll = global::EbookReader.Droid.Resource.Id.scroll;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.scrollIndicatorDown = global::EbookReader.Droid.Resource.Id.scrollIndicatorDown;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.scrollIndicatorUp = global::EbookReader.Droid.Resource.Id.scrollIndicatorUp;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.scrollView = global::EbookReader.Droid.Resource.Id.scrollView;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.scrollable = global::EbookReader.Droid.Resource.Id.scrollable;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_badge = global::EbookReader.Droid.Resource.Id.search_badge;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_bar = global::EbookReader.Droid.Resource.Id.search_bar;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_button = global::EbookReader.Droid.Resource.Id.search_button;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_close_btn = global::EbookReader.Droid.Resource.Id.search_close_btn;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_edit_frame = global::EbookReader.Droid.Resource.Id.search_edit_frame;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_go_btn = global::EbookReader.Droid.Resource.Id.search_go_btn;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_mag_icon = global::EbookReader.Droid.Resource.Id.search_mag_icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_plate = global::EbookReader.Droid.Resource.Id.search_plate;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_src_text = global::EbookReader.Droid.Resource.Id.search_src_text;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.search_voice_btn = global::EbookReader.Droid.Resource.Id.search_voice_btn;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.select_dialog_listview = global::EbookReader.Droid.Resource.Id.select_dialog_listview;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.shortcut = global::EbookReader.Droid.Resource.Id.shortcut;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.showCustom = global::EbookReader.Droid.Resource.Id.showCustom;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.showHome = global::EbookReader.Droid.Resource.Id.showHome;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.showTitle = global::EbookReader.Droid.Resource.Id.showTitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.snackbar_action = global::EbookReader.Droid.Resource.Id.snackbar_action;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.snackbar_text = global::EbookReader.Droid.Resource.Id.snackbar_text;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.snap = global::EbookReader.Droid.Resource.Id.snap;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.spacer = global::EbookReader.Droid.Resource.Id.spacer;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.split_action_bar = global::EbookReader.Droid.Resource.Id.split_action_bar;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.src_atop = global::EbookReader.Droid.Resource.Id.src_atop;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.src_in = global::EbookReader.Droid.Resource.Id.src_in;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.src_over = global::EbookReader.Droid.Resource.Id.src_over;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.start = global::EbookReader.Droid.Resource.Id.start;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.status_bar_latest_event_content = global::EbookReader.Droid.Resource.Id.status_bar_latest_event_content;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.submit_area = global::EbookReader.Droid.Resource.Id.submit_area;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.tabMode = global::EbookReader.Droid.Resource.Id.tabMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.text = global::EbookReader.Droid.Resource.Id.text;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.text2 = global::EbookReader.Droid.Resource.Id.text2;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.textSpacerNoButtons = global::EbookReader.Droid.Resource.Id.textSpacerNoButtons;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.time = global::EbookReader.Droid.Resource.Id.time;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.title = global::EbookReader.Droid.Resource.Id.title;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.title_template = global::EbookReader.Droid.Resource.Id.title_template;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.top = global::EbookReader.Droid.Resource.Id.top;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.topPanel = global::EbookReader.Droid.Resource.Id.topPanel;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.touch_outside = global::EbookReader.Droid.Resource.Id.touch_outside;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.up = global::EbookReader.Droid.Resource.Id.up;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.useLogo = global::EbookReader.Droid.Resource.Id.useLogo;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.view_offset_helper = global::EbookReader.Droid.Resource.Id.view_offset_helper;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.volume_item_container = global::EbookReader.Droid.Resource.Id.volume_item_container;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.webview = global::EbookReader.Droid.Resource.Id.webview;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.withText = global::EbookReader.Droid.Resource.Id.withText;
+			global::Xamarin.Auth.XamarinForms.Resource.Id.wrap_content = global::EbookReader.Droid.Resource.Id.wrap_content;
+			global::Xamarin.Auth.XamarinForms.Resource.Integer.abc_config_activityDefaultDur = global::EbookReader.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::Xamarin.Auth.XamarinForms.Resource.Integer.abc_config_activityShortDur = global::EbookReader.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::Xamarin.Auth.XamarinForms.Resource.Integer.bottom_sheet_slide_duration = global::EbookReader.Droid.Resource.Integer.bottom_sheet_slide_duration;
+			global::Xamarin.Auth.XamarinForms.Resource.Integer.cancel_button_image_alpha = global::EbookReader.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Integer.design_snackbar_text_max_lines = global::EbookReader.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::Xamarin.Auth.XamarinForms.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::EbookReader.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
+			global::Xamarin.Auth.XamarinForms.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::EbookReader.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
+			global::Xamarin.Auth.XamarinForms.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::EbookReader.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
+			global::Xamarin.Auth.XamarinForms.Resource.Integer.status_bar_notification_info_maxnum = global::EbookReader.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Xamarin.Auth.XamarinForms.Resource.Interpolator.mr_fast_out_slow_in = global::EbookReader.Droid.Resource.Interpolator.mr_fast_out_slow_in;
+			global::Xamarin.Auth.XamarinForms.Resource.Interpolator.mr_linear_out_slow_in = global::EbookReader.Droid.Resource.Interpolator.mr_linear_out_slow_in;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_action_bar_title_item = global::EbookReader.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_action_bar_up_container = global::EbookReader.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_action_bar_view_list_nav_layout = global::EbookReader.Droid.Resource.Layout.abc_action_bar_view_list_nav_layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_action_menu_item_layout = global::EbookReader.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_action_menu_layout = global::EbookReader.Droid.Resource.Layout.abc_action_menu_layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_action_mode_bar = global::EbookReader.Droid.Resource.Layout.abc_action_mode_bar;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_action_mode_close_item_material = global::EbookReader.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_activity_chooser_view = global::EbookReader.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_activity_chooser_view_list_item = global::EbookReader.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_alert_dialog_button_bar_material = global::EbookReader.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_alert_dialog_material = global::EbookReader.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_dialog_title_material = global::EbookReader.Droid.Resource.Layout.abc_dialog_title_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_expanded_menu_layout = global::EbookReader.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_list_menu_item_checkbox = global::EbookReader.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_list_menu_item_icon = global::EbookReader.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_list_menu_item_layout = global::EbookReader.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_list_menu_item_radio = global::EbookReader.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_popup_menu_item_layout = global::EbookReader.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_screen_content_include = global::EbookReader.Droid.Resource.Layout.abc_screen_content_include;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_screen_simple = global::EbookReader.Droid.Resource.Layout.abc_screen_simple;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_screen_simple_overlay_action_mode = global::EbookReader.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_screen_toolbar = global::EbookReader.Droid.Resource.Layout.abc_screen_toolbar;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_search_dropdown_item_icons_2line = global::EbookReader.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_search_view = global::EbookReader.Droid.Resource.Layout.abc_search_view;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.abc_select_dialog_material = global::EbookReader.Droid.Resource.Layout.abc_select_dialog_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.activity_webview = global::EbookReader.Droid.Resource.Layout.activity_webview;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_bottom_sheet_dialog = global::EbookReader.Droid.Resource.Layout.design_bottom_sheet_dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_layout_snackbar = global::EbookReader.Droid.Resource.Layout.design_layout_snackbar;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_layout_snackbar_include = global::EbookReader.Droid.Resource.Layout.design_layout_snackbar_include;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_layout_tab_icon = global::EbookReader.Droid.Resource.Layout.design_layout_tab_icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_layout_tab_text = global::EbookReader.Droid.Resource.Layout.design_layout_tab_text;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_menu_item_action_area = global::EbookReader.Droid.Resource.Layout.design_menu_item_action_area;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_navigation_item = global::EbookReader.Droid.Resource.Layout.design_navigation_item;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_navigation_item_header = global::EbookReader.Droid.Resource.Layout.design_navigation_item_header;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_navigation_item_separator = global::EbookReader.Droid.Resource.Layout.design_navigation_item_separator;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_navigation_item_subheader = global::EbookReader.Droid.Resource.Layout.design_navigation_item_subheader;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_navigation_menu = global::EbookReader.Droid.Resource.Layout.design_navigation_menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.design_navigation_menu_item = global::EbookReader.Droid.Resource.Layout.design_navigation_menu_item;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.mr_chooser_dialog = global::EbookReader.Droid.Resource.Layout.mr_chooser_dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.mr_chooser_list_item = global::EbookReader.Droid.Resource.Layout.mr_chooser_list_item;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.mr_controller_material_dialog_b = global::EbookReader.Droid.Resource.Layout.mr_controller_material_dialog_b;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.mr_controller_volume_item = global::EbookReader.Droid.Resource.Layout.mr_controller_volume_item;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.mr_playback_control = global::EbookReader.Droid.Resource.Layout.mr_playback_control;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.mr_volume_control = global::EbookReader.Droid.Resource.Layout.mr_volume_control;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.notification_media_action = global::EbookReader.Droid.Resource.Layout.notification_media_action;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.notification_media_cancel_action = global::EbookReader.Droid.Resource.Layout.notification_media_cancel_action;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.notification_template_big_media = global::EbookReader.Droid.Resource.Layout.notification_template_big_media;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.notification_template_big_media_narrow = global::EbookReader.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.notification_template_media = global::EbookReader.Droid.Resource.Layout.notification_template_media;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.notification_template_part_chronometer = global::EbookReader.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.notification_template_part_time = global::EbookReader.Droid.Resource.Layout.notification_template_part_time;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.select_dialog_item_material = global::EbookReader.Droid.Resource.Layout.select_dialog_item_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.select_dialog_multichoice_material = global::EbookReader.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.select_dialog_singlechoice_material = global::EbookReader.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::Xamarin.Auth.XamarinForms.Resource.Layout.support_simple_spinner_dropdown_item = global::EbookReader.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Xamarin.Auth.XamarinForms.Resource.String.ApplicationName = global::EbookReader.Droid.Resource.String.ApplicationName;
+			global::Xamarin.Auth.XamarinForms.Resource.String.Hello = global::EbookReader.Droid.Resource.String.Hello;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_action_bar_home_description = global::EbookReader.Droid.Resource.String.abc_action_bar_home_description;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_action_bar_home_description_format = global::EbookReader.Droid.Resource.String.abc_action_bar_home_description_format;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_action_bar_home_subtitle_description_format = global::EbookReader.Droid.Resource.String.abc_action_bar_home_subtitle_description_format;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_action_bar_up_description = global::EbookReader.Droid.Resource.String.abc_action_bar_up_description;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_action_menu_overflow_description = global::EbookReader.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_action_mode_done = global::EbookReader.Droid.Resource.String.abc_action_mode_done;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_activity_chooser_view_see_all = global::EbookReader.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_activitychooserview_choose_application = global::EbookReader.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_capital_off = global::EbookReader.Droid.Resource.String.abc_capital_off;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_capital_on = global::EbookReader.Droid.Resource.String.abc_capital_on;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_search_hint = global::EbookReader.Droid.Resource.String.abc_search_hint;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_searchview_description_clear = global::EbookReader.Droid.Resource.String.abc_searchview_description_clear;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_searchview_description_query = global::EbookReader.Droid.Resource.String.abc_searchview_description_query;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_searchview_description_search = global::EbookReader.Droid.Resource.String.abc_searchview_description_search;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_searchview_description_submit = global::EbookReader.Droid.Resource.String.abc_searchview_description_submit;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_searchview_description_voice = global::EbookReader.Droid.Resource.String.abc_searchview_description_voice;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_shareactionprovider_share_with = global::EbookReader.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_shareactionprovider_share_with_application = global::EbookReader.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::Xamarin.Auth.XamarinForms.Resource.String.abc_toolbar_collapse_description = global::EbookReader.Droid.Resource.String.abc_toolbar_collapse_description;
+			global::Xamarin.Auth.XamarinForms.Resource.String.appbar_scrolling_view_behavior = global::EbookReader.Droid.Resource.String.appbar_scrolling_view_behavior;
+			global::Xamarin.Auth.XamarinForms.Resource.String.bottom_sheet_behavior = global::EbookReader.Droid.Resource.String.bottom_sheet_behavior;
+			global::Xamarin.Auth.XamarinForms.Resource.String.character_counter_pattern = global::EbookReader.Droid.Resource.String.character_counter_pattern;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_button_content_description = global::EbookReader.Droid.Resource.String.mr_button_content_description;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_chooser_searching = global::EbookReader.Droid.Resource.String.mr_chooser_searching;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_chooser_title = global::EbookReader.Droid.Resource.String.mr_chooser_title;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_casting_screen = global::EbookReader.Droid.Resource.String.mr_controller_casting_screen;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_close_description = global::EbookReader.Droid.Resource.String.mr_controller_close_description;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_collapse_group = global::EbookReader.Droid.Resource.String.mr_controller_collapse_group;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_disconnect = global::EbookReader.Droid.Resource.String.mr_controller_disconnect;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_expand_group = global::EbookReader.Droid.Resource.String.mr_controller_expand_group;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_no_info_available = global::EbookReader.Droid.Resource.String.mr_controller_no_info_available;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_no_media_selected = global::EbookReader.Droid.Resource.String.mr_controller_no_media_selected;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_pause = global::EbookReader.Droid.Resource.String.mr_controller_pause;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_play = global::EbookReader.Droid.Resource.String.mr_controller_play;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_controller_stop = global::EbookReader.Droid.Resource.String.mr_controller_stop;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_system_route_name = global::EbookReader.Droid.Resource.String.mr_system_route_name;
+			global::Xamarin.Auth.XamarinForms.Resource.String.mr_user_route_category_name = global::EbookReader.Droid.Resource.String.mr_user_route_category_name;
+			global::Xamarin.Auth.XamarinForms.Resource.String.status_bar_notification_info_overflow = global::EbookReader.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.String.title_activity_webview = global::EbookReader.Droid.Resource.String.title_activity_webview;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.AlertDialog_AppCompat = global::EbookReader.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.AlertDialog_AppCompat_Light = global::EbookReader.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Animation_AppCompat_Dialog = global::EbookReader.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Animation_AppCompat_DropDownUp = global::EbookReader.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Animation_Design_BottomSheetDialog = global::EbookReader.Droid.Resource.Style.Animation_Design_BottomSheetDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_AlertDialog_AppCompat = global::EbookReader.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_AlertDialog_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Animation_AppCompat_Dialog = global::EbookReader.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::EbookReader.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_CardView = global::EbookReader.Droid.Resource.Style.Base_CardView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_DialogWindowTitle_AppCompat = global::EbookReader.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::EbookReader.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Button = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Large = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Small = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Title = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::EbookReader.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Dialog = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::EbookReader.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_ThemeOverlay_AppCompat = global::EbookReader.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::EbookReader.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::EbookReader.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::EbookReader.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::EbookReader.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::EbookReader.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::EbookReader.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::EbookReader.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V21_Theme_AppCompat = global::EbookReader.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::EbookReader.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V21_Theme_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::EbookReader.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V22_Theme_AppCompat = global::EbookReader.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V22_Theme_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V23_Theme_AppCompat = global::EbookReader.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V23_Theme_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V7_Theme_AppCompat = global::EbookReader.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::EbookReader.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V7_Theme_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::EbookReader.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::EbookReader.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::EbookReader.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActionBar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActionButton = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActionMode = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Button = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Button_Small = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_EditText = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ImageButton = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ListView = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_RatingBar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_SearchView = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_SeekBar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Spinner = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Toolbar = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::EbookReader.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Base_Widget_Design_TabLayout = global::EbookReader.Droid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.CardView = global::EbookReader.Droid.Resource.Style.CardView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.CardView_Dark = global::EbookReader.Droid.Resource.Style.CardView_Dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.CardView_Light = global::EbookReader.Droid.Resource.Style.CardView_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_AppCompat = global::EbookReader.Droid.Resource.Style.Platform_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_ThemeOverlay_AppCompat = global::EbookReader.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::EbookReader.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_V11_AppCompat = global::EbookReader.Droid.Resource.Style.Platform_V11_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_V11_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Platform_V11_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_V14_AppCompat = global::EbookReader.Droid.Resource.Style.Platform_V14_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_V14_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Platform_V14_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Platform_Widget_AppCompat_Spinner = global::EbookReader.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::EbookReader.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::EbookReader.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::EbookReader.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::EbookReader.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Body1 = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Body2 = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Button = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Caption = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Display1 = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Display2 = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Display3 = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Display4 = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Headline = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Large = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Medium = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Menu = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Small = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Subhead = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Title = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::EbookReader.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::EbookReader.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Design_Counter = global::EbookReader.Droid.Resource.Style.TextAppearance_Design_Counter;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Design_Counter_Overflow = global::EbookReader.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Design_Error = global::EbookReader.Droid.Resource.Style.TextAppearance_Design_Error;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Design_Hint = global::EbookReader.Droid.Resource.Style.TextAppearance_Design_Hint;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Design_Snackbar_Message = global::EbookReader.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Design_Tab = global::EbookReader.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_StatusBar_EventContent = global::EbookReader.Droid.Resource.Style.TextAppearance_StatusBar_EventContent;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_StatusBar_EventContent_Info = global::EbookReader.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Info;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_StatusBar_EventContent_Line2 = global::EbookReader.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Line2;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_StatusBar_EventContent_Time = global::EbookReader.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Time;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_StatusBar_EventContent_Title = global::EbookReader.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::EbookReader.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::EbookReader.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::EbookReader.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat = global::EbookReader.Droid.Resource.Style.Theme_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_CompactMenu = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_DayNight = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Dialog = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Dialog_Alert = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Light = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Light_Dialog = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_AppCompat_NoActionBar = global::EbookReader.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_Design = global::EbookReader.Droid.Resource.Style.Theme_Design;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_Design_BottomSheetDialog = global::EbookReader.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_Design_Light = global::EbookReader.Droid.Resource.Style.Theme_Design_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::EbookReader.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_Design_Light_NoActionBar = global::EbookReader.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_Design_NoActionBar = global::EbookReader.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_MediaRouter = global::EbookReader.Droid.Resource.Style.Theme_MediaRouter;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_MediaRouter_Light = global::EbookReader.Droid.Resource.Style.Theme_MediaRouter_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel = global::EbookReader.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Theme_MediaRouter_LightControlPanel = global::EbookReader.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.ThemeOverlay_AppCompat = global::EbookReader.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::EbookReader.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.ThemeOverlay_AppCompat_Dark = global::EbookReader.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::EbookReader.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.ThemeOverlay_AppCompat_Light = global::EbookReader.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActionBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActionButton = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActionMode = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ActivityChooserView = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Button = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Button_Borderless = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Button_Colored = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Button_Small = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ButtonBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_EditText = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ImageButton = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionButton = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_SearchView = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ListPopupWindow = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ListView = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ListView_DropDown = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ListView_Menu = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_PopupMenu = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_PopupWindow = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ProgressBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_RatingBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_RatingBar_Small = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_SearchView = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_SeekBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Spinner = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Toolbar = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::EbookReader.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_AppBarLayout = global::EbookReader.Droid.Resource.Style.Widget_Design_AppBarLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_BottomSheet_Modal = global::EbookReader.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_CollapsingToolbar = global::EbookReader.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_CoordinatorLayout = global::EbookReader.Droid.Resource.Style.Widget_Design_CoordinatorLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_FloatingActionButton = global::EbookReader.Droid.Resource.Style.Widget_Design_FloatingActionButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_NavigationView = global::EbookReader.Droid.Resource.Style.Widget_Design_NavigationView;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::EbookReader.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_Snackbar = global::EbookReader.Droid.Resource.Style.Widget_Design_Snackbar;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_TabLayout = global::EbookReader.Droid.Resource.Style.Widget_Design_TabLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_Design_TextInputLayout = global::EbookReader.Droid.Resource.Style.Widget_Design_TextInputLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::EbookReader.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::EbookReader.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar = global::EbookReader.Droid.Resource.Styleable.ActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_background = global::EbookReader.Droid.Resource.Styleable.ActionBar_background;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_backgroundSplit = global::EbookReader.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_backgroundStacked = global::EbookReader.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_contentInsetEnd = global::EbookReader.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_contentInsetLeft = global::EbookReader.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_contentInsetRight = global::EbookReader.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_contentInsetStart = global::EbookReader.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_customNavigationLayout = global::EbookReader.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_displayOptions = global::EbookReader.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_divider = global::EbookReader.Droid.Resource.Styleable.ActionBar_divider;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_elevation = global::EbookReader.Droid.Resource.Styleable.ActionBar_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_height = global::EbookReader.Droid.Resource.Styleable.ActionBar_height;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_hideOnContentScroll = global::EbookReader.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_homeAsUpIndicator = global::EbookReader.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_homeLayout = global::EbookReader.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_icon = global::EbookReader.Droid.Resource.Styleable.ActionBar_icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::EbookReader.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_itemPadding = global::EbookReader.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_logo = global::EbookReader.Droid.Resource.Styleable.ActionBar_logo;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_navigationMode = global::EbookReader.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_popupTheme = global::EbookReader.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_progressBarPadding = global::EbookReader.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_progressBarStyle = global::EbookReader.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_subtitle = global::EbookReader.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_subtitleTextStyle = global::EbookReader.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_title = global::EbookReader.Droid.Resource.Styleable.ActionBar_title;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBar_titleTextStyle = global::EbookReader.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBarLayout = global::EbookReader.Droid.Resource.Styleable.ActionBarLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::EbookReader.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMenuItemView = global::EbookReader.Droid.Resource.Styleable.ActionMenuItemView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMenuItemView_android_minWidth = global::EbookReader.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMenuView = global::EbookReader.Droid.Resource.Styleable.ActionMenuView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMode = global::EbookReader.Droid.Resource.Styleable.ActionMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMode_background = global::EbookReader.Droid.Resource.Styleable.ActionMode_background;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMode_backgroundSplit = global::EbookReader.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMode_closeItemLayout = global::EbookReader.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMode_height = global::EbookReader.Droid.Resource.Styleable.ActionMode_height;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMode_subtitleTextStyle = global::EbookReader.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActionMode_titleTextStyle = global::EbookReader.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActivityChooserView = global::EbookReader.Droid.Resource.Styleable.ActivityChooserView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::EbookReader.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ActivityChooserView_initialActivityCount = global::EbookReader.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AlertDialog = global::EbookReader.Droid.Resource.Styleable.AlertDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AlertDialog_android_layout = global::EbookReader.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::EbookReader.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AlertDialog_listItemLayout = global::EbookReader.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AlertDialog_listLayout = global::EbookReader.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::EbookReader.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::EbookReader.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppBarLayout = global::EbookReader.Droid.Resource.Styleable.AppBarLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppBarLayout_android_background = global::EbookReader.Droid.Resource.Styleable.AppBarLayout_android_background;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppBarLayout_elevation = global::EbookReader.Droid.Resource.Styleable.AppBarLayout_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppBarLayout_expanded = global::EbookReader.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatImageView = global::EbookReader.Droid.Resource.Styleable.AppCompatImageView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatImageView_android_src = global::EbookReader.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatImageView_srcCompat = global::EbookReader.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTextView = global::EbookReader.Droid.Resource.Styleable.AppCompatTextView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTextView_android_textAppearance = global::EbookReader.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTextView_textAllCaps = global::EbookReader.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarDivider = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarSize = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarTheme = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeBackground = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_buttonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_checkboxStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_colorAccent = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_colorControlActivated = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_colorControlNormal = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_colorPrimary = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_controlBackground = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_dialogTheme = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_dividerVertical = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_editTextBackground = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_editTextColor = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_editTextStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_panelBackground = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_searchViewStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_seekBarStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_spinnerStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_switchStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_toolbarStyle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowActionBar = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.AppCompatTheme_windowNoTitle = global::EbookReader.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ButtonBarLayout = global::EbookReader.Droid.Resource.Styleable.ButtonBarLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ButtonBarLayout_allowStacking = global::EbookReader.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView = global::EbookReader.Droid.Resource.Styleable.CardView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_android_minHeight = global::EbookReader.Droid.Resource.Styleable.CardView_android_minHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_android_minWidth = global::EbookReader.Droid.Resource.Styleable.CardView_android_minWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_cardBackgroundColor = global::EbookReader.Droid.Resource.Styleable.CardView_cardBackgroundColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_cardCornerRadius = global::EbookReader.Droid.Resource.Styleable.CardView_cardCornerRadius;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_cardElevation = global::EbookReader.Droid.Resource.Styleable.CardView_cardElevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_cardMaxElevation = global::EbookReader.Droid.Resource.Styleable.CardView_cardMaxElevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_cardPreventCornerOverlap = global::EbookReader.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_cardUseCompatPadding = global::EbookReader.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_contentPadding = global::EbookReader.Droid.Resource.Styleable.CardView_contentPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_contentPaddingBottom = global::EbookReader.Droid.Resource.Styleable.CardView_contentPaddingBottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_contentPaddingLeft = global::EbookReader.Droid.Resource.Styleable.CardView_contentPaddingLeft;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_contentPaddingRight = global::EbookReader.Droid.Resource.Styleable.CardView_contentPaddingRight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CardView_contentPaddingTop = global::EbookReader.Droid.Resource.Styleable.CardView_contentPaddingTop;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_title = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::EbookReader.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CompoundButton = global::EbookReader.Droid.Resource.Styleable.CompoundButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CompoundButton_android_button = global::EbookReader.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CompoundButton_buttonTint = global::EbookReader.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CompoundButton_buttonTintMode = global::EbookReader.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CoordinatorLayout = global::EbookReader.Droid.Resource.Styleable.CoordinatorLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CoordinatorLayout_keylines = global::EbookReader.Droid.Resource.Styleable.CoordinatorLayout_keylines;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::EbookReader.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DesignTheme = global::EbookReader.Droid.Resource.Styleable.DesignTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::EbookReader.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DesignTheme_bottomSheetStyle = global::EbookReader.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DesignTheme_textColorError = global::EbookReader.Droid.Resource.Styleable.DesignTheme_textColorError;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DrawerArrowToggle = global::EbookReader.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::EbookReader.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::EbookReader.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DrawerArrowToggle_barLength = global::EbookReader.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DrawerArrowToggle_color = global::EbookReader.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DrawerArrowToggle_drawableSize = global::EbookReader.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::EbookReader.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DrawerArrowToggle_spinBars = global::EbookReader.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.DrawerArrowToggle_thickness = global::EbookReader.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.FloatingActionButton = global::EbookReader.Droid.Resource.Styleable.FloatingActionButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.FloatingActionButton_backgroundTint = global::EbookReader.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::EbookReader.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.FloatingActionButton_borderWidth = global::EbookReader.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.FloatingActionButton_elevation = global::EbookReader.Droid.Resource.Styleable.FloatingActionButton_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.FloatingActionButton_fabSize = global::EbookReader.Droid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::EbookReader.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.FloatingActionButton_rippleColor = global::EbookReader.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.FloatingActionButton_useCompatPadding = global::EbookReader.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ForegroundLinearLayout = global::EbookReader.Droid.Resource.Styleable.ForegroundLinearLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::EbookReader.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::EbookReader.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::EbookReader.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_android_gravity = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_android_orientation = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_divider = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_showDividers = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_Layout = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::EbookReader.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ListPopupWindow = global::EbookReader.Droid.Resource.Styleable.ListPopupWindow;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::EbookReader.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::EbookReader.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MediaRouteButton = global::EbookReader.Droid.Resource.Styleable.MediaRouteButton;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MediaRouteButton_android_minHeight = global::EbookReader.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MediaRouteButton_android_minWidth = global::EbookReader.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::EbookReader.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuGroup = global::EbookReader.Droid.Resource.Styleable.MenuGroup;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuGroup_android_checkableBehavior = global::EbookReader.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuGroup_android_enabled = global::EbookReader.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuGroup_android_id = global::EbookReader.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuGroup_android_menuCategory = global::EbookReader.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuGroup_android_orderInCategory = global::EbookReader.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuGroup_android_visible = global::EbookReader.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem = global::EbookReader.Droid.Resource.Styleable.MenuItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_actionLayout = global::EbookReader.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_actionProviderClass = global::EbookReader.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_actionViewClass = global::EbookReader.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_checkable = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_checked = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_enabled = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_icon = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_id = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_id;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_menuCategory = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_numericShortcut = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_onClick = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_orderInCategory = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_title = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_title;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_titleCondensed = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_android_visible = global::EbookReader.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuItem_showAsAction = global::EbookReader.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuView = global::EbookReader.Droid.Resource.Styleable.MenuView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuView_android_headerBackground = global::EbookReader.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuView_android_horizontalDivider = global::EbookReader.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuView_android_itemBackground = global::EbookReader.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::EbookReader.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuView_android_itemTextAppearance = global::EbookReader.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuView_android_verticalDivider = global::EbookReader.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuView_android_windowAnimationStyle = global::EbookReader.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.MenuView_preserveIconSpacing = global::EbookReader.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView = global::EbookReader.Droid.Resource.Styleable.NavigationView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_android_background = global::EbookReader.Droid.Resource.Styleable.NavigationView_android_background;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::EbookReader.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_android_maxWidth = global::EbookReader.Droid.Resource.Styleable.NavigationView_android_maxWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_elevation = global::EbookReader.Droid.Resource.Styleable.NavigationView_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_headerLayout = global::EbookReader.Droid.Resource.Styleable.NavigationView_headerLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_itemBackground = global::EbookReader.Droid.Resource.Styleable.NavigationView_itemBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_itemIconTint = global::EbookReader.Droid.Resource.Styleable.NavigationView_itemIconTint;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_itemTextAppearance = global::EbookReader.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_itemTextColor = global::EbookReader.Droid.Resource.Styleable.NavigationView_itemTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.NavigationView_menu = global::EbookReader.Droid.Resource.Styleable.NavigationView_menu;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.PopupWindow = global::EbookReader.Droid.Resource.Styleable.PopupWindow;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.PopupWindow_android_popupBackground = global::EbookReader.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.PopupWindow_overlapAnchor = global::EbookReader.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.PopupWindowBackgroundState = global::EbookReader.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::EbookReader.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.RecyclerView = global::EbookReader.Droid.Resource.Styleable.RecyclerView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.RecyclerView_android_orientation = global::EbookReader.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.RecyclerView_layoutManager = global::EbookReader.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.RecyclerView_reverseLayout = global::EbookReader.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.RecyclerView_spanCount = global::EbookReader.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.RecyclerView_stackFromEnd = global::EbookReader.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ScrimInsetsFrameLayout = global::EbookReader.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::EbookReader.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView = global::EbookReader.Droid.Resource.Styleable.SearchView;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_android_focusable = global::EbookReader.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_android_imeOptions = global::EbookReader.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_android_inputType = global::EbookReader.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_android_maxWidth = global::EbookReader.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_closeIcon = global::EbookReader.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_commitIcon = global::EbookReader.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_defaultQueryHint = global::EbookReader.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_goIcon = global::EbookReader.Droid.Resource.Styleable.SearchView_goIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_iconifiedByDefault = global::EbookReader.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_layout = global::EbookReader.Droid.Resource.Styleable.SearchView_layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_queryBackground = global::EbookReader.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_queryHint = global::EbookReader.Droid.Resource.Styleable.SearchView_queryHint;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_searchHintIcon = global::EbookReader.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_searchIcon = global::EbookReader.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_submitBackground = global::EbookReader.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_suggestionRowLayout = global::EbookReader.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SearchView_voiceIcon = global::EbookReader.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SnackbarLayout = global::EbookReader.Droid.Resource.Styleable.SnackbarLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SnackbarLayout_android_maxWidth = global::EbookReader.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SnackbarLayout_elevation = global::EbookReader.Droid.Resource.Styleable.SnackbarLayout_elevation;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::EbookReader.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Spinner = global::EbookReader.Droid.Resource.Styleable.Spinner;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Spinner_android_dropDownWidth = global::EbookReader.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Spinner_android_entries = global::EbookReader.Droid.Resource.Styleable.Spinner_android_entries;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Spinner_android_popupBackground = global::EbookReader.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Spinner_android_prompt = global::EbookReader.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Spinner_popupTheme = global::EbookReader.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat = global::EbookReader.Droid.Resource.Styleable.SwitchCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_android_textOff = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_android_textOn = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_android_thumb = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_showText = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_splitTrack = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_switchMinWidth = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_switchPadding = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_switchTextAppearance = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_thumbTextPadding = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.SwitchCompat_track = global::EbookReader.Droid.Resource.Styleable.SwitchCompat_track;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabItem = global::EbookReader.Droid.Resource.Styleable.TabItem;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabItem_android_icon = global::EbookReader.Droid.Resource.Styleable.TabItem_android_icon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabItem_android_layout = global::EbookReader.Droid.Resource.Styleable.TabItem_android_layout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabItem_android_text = global::EbookReader.Droid.Resource.Styleable.TabItem_android_text;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout = global::EbookReader.Droid.Resource.Styleable.TabLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabBackground = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabBackground;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabContentStart = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabContentStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabGravity = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabGravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabIndicatorColor = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabIndicatorHeight = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabMaxWidth = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabMinWidth = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabMinWidth;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabMode = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabPadding = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabPadding;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabPaddingBottom = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabPaddingEnd = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabPaddingStart = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabPaddingTop = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabSelectedTextColor = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabTextAppearance = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TabLayout_tabTextColor = global::EbookReader.Droid.Resource.Styleable.TabLayout_tabTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance = global::EbookReader.Droid.Resource.Styleable.TextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance_android_shadowColor = global::EbookReader.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance_android_shadowDx = global::EbookReader.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance_android_shadowDy = global::EbookReader.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance_android_shadowRadius = global::EbookReader.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance_android_textColor = global::EbookReader.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance_android_textSize = global::EbookReader.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance_android_textStyle = global::EbookReader.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance_android_typeface = global::EbookReader.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextAppearance_textAllCaps = global::EbookReader.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout = global::EbookReader.Droid.Resource.Styleable.TextInputLayout;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_android_hint = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_android_hint;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_android_textColorHint = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_counterEnabled = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_counterMaxLength = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_counterTextAppearance = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_errorEnabled = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_errorTextAppearance = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_hintEnabled = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.TextInputLayout_hintTextAppearance = global::EbookReader.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar = global::EbookReader.Droid.Resource.Styleable.Toolbar;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_android_gravity = global::EbookReader.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_android_minHeight = global::EbookReader.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_collapseContentDescription = global::EbookReader.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_collapseIcon = global::EbookReader.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_contentInsetEnd = global::EbookReader.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_contentInsetLeft = global::EbookReader.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_contentInsetRight = global::EbookReader.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_contentInsetStart = global::EbookReader.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_logo = global::EbookReader.Droid.Resource.Styleable.Toolbar_logo;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_logoDescription = global::EbookReader.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_maxButtonHeight = global::EbookReader.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_navigationContentDescription = global::EbookReader.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_navigationIcon = global::EbookReader.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_popupTheme = global::EbookReader.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_subtitle = global::EbookReader.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_subtitleTextAppearance = global::EbookReader.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_subtitleTextColor = global::EbookReader.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_title = global::EbookReader.Droid.Resource.Styleable.Toolbar_title;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_titleMarginBottom = global::EbookReader.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_titleMarginEnd = global::EbookReader.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_titleMarginStart = global::EbookReader.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_titleMarginTop = global::EbookReader.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_titleMargins = global::EbookReader.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_titleTextAppearance = global::EbookReader.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.Toolbar_titleTextColor = global::EbookReader.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.View = global::EbookReader.Droid.Resource.Styleable.View;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.View_android_focusable = global::EbookReader.Droid.Resource.Styleable.View_android_focusable;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.View_android_theme = global::EbookReader.Droid.Resource.Styleable.View_android_theme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.View_paddingEnd = global::EbookReader.Droid.Resource.Styleable.View_paddingEnd;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.View_paddingStart = global::EbookReader.Droid.Resource.Styleable.View_paddingStart;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.View_theme = global::EbookReader.Droid.Resource.Styleable.View_theme;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ViewBackgroundHelper = global::EbookReader.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ViewBackgroundHelper_android_background = global::EbookReader.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::EbookReader.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::EbookReader.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ViewStubCompat = global::EbookReader.Droid.Resource.Styleable.ViewStubCompat;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ViewStubCompat_android_id = global::EbookReader.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ViewStubCompat_android_inflatedId = global::EbookReader.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::Xamarin.Auth.XamarinForms.Resource.Styleable.ViewStubCompat_android_layout = global::EbookReader.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::EbookReader.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -81,6 +1732,12 @@ namespace EbookReader.Droid
 			
 			// aapt resource value: 0x7f04000f
 			public const int design_snackbar_out = 2130968591;
+			
+			// aapt resource value: 0x7f040010
+			public const int slide_in_right = 2130968592;
+			
+			// aapt resource value: 0x7f040011
+			public const int slide_out_left = 2130968593;
 			
 			static Animation()
 			{
@@ -1960,268 +3617,271 @@ namespace EbookReader.Droid
 			public const int edit = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int ic_audiotrack = 2130837584;
+			public const int ic_arrow_back = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int ic_audiotrack_light = 2130837585;
+			public const int ic_audiotrack = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int ic_bluetooth_grey = 2130837586;
+			public const int ic_audiotrack_light = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int ic_bluetooth_white = 2130837587;
+			public const int ic_bluetooth_grey = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int ic_cast_dark = 2130837588;
+			public const int ic_bluetooth_white = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int ic_cast_disabled_light = 2130837589;
+			public const int ic_cast_dark = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int ic_cast_grey = 2130837590;
+			public const int ic_cast_disabled_light = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int ic_cast_light = 2130837591;
+			public const int ic_cast_grey = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int ic_cast_off_light = 2130837592;
+			public const int ic_cast_light = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int ic_cast_on_0_light = 2130837593;
+			public const int ic_cast_off_light = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int ic_cast_on_1_light = 2130837594;
+			public const int ic_cast_on_0_light = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_cast_on_2_light = 2130837595;
+			public const int ic_cast_on_1_light = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int ic_cast_on_light = 2130837596;
+			public const int ic_cast_on_2_light = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_cast_white = 2130837597;
+			public const int ic_cast_on_light = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int ic_close_dark = 2130837598;
+			public const int ic_cast_white = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int ic_close_light = 2130837599;
+			public const int ic_close_dark = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int ic_collapse = 2130837600;
+			public const int ic_close_light = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int ic_collapse_00000 = 2130837601;
+			public const int ic_collapse = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int ic_collapse_00001 = 2130837602;
+			public const int ic_collapse_00000 = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_collapse_00002 = 2130837603;
+			public const int ic_collapse_00001 = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_collapse_00003 = 2130837604;
+			public const int ic_collapse_00002 = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_collapse_00004 = 2130837605;
+			public const int ic_collapse_00003 = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_collapse_00005 = 2130837606;
+			public const int ic_collapse_00004 = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int ic_collapse_00006 = 2130837607;
+			public const int ic_collapse_00005 = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int ic_collapse_00007 = 2130837608;
+			public const int ic_collapse_00006 = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int ic_collapse_00008 = 2130837609;
+			public const int ic_collapse_00007 = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int ic_collapse_00009 = 2130837610;
+			public const int ic_collapse_00008 = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int ic_collapse_00010 = 2130837611;
+			public const int ic_collapse_00009 = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int ic_collapse_00011 = 2130837612;
+			public const int ic_collapse_00010 = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int ic_collapse_00012 = 2130837613;
+			public const int ic_collapse_00011 = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int ic_collapse_00013 = 2130837614;
+			public const int ic_collapse_00012 = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int ic_collapse_00014 = 2130837615;
+			public const int ic_collapse_00013 = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int ic_collapse_00015 = 2130837616;
+			public const int ic_collapse_00014 = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int ic_expand = 2130837617;
+			public const int ic_collapse_00015 = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int ic_expand_00000 = 2130837618;
+			public const int ic_expand = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int ic_expand_00001 = 2130837619;
+			public const int ic_expand_00000 = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int ic_expand_00002 = 2130837620;
+			public const int ic_expand_00001 = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int ic_expand_00003 = 2130837621;
+			public const int ic_expand_00002 = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int ic_expand_00004 = 2130837622;
+			public const int ic_expand_00003 = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int ic_expand_00005 = 2130837623;
+			public const int ic_expand_00004 = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int ic_expand_00006 = 2130837624;
+			public const int ic_expand_00005 = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int ic_expand_00007 = 2130837625;
+			public const int ic_expand_00006 = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int ic_expand_00008 = 2130837626;
+			public const int ic_expand_00007 = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int ic_expand_00009 = 2130837627;
+			public const int ic_expand_00008 = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int ic_expand_00010 = 2130837628;
+			public const int ic_expand_00009 = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int ic_expand_00011 = 2130837629;
+			public const int ic_expand_00010 = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int ic_expand_00012 = 2130837630;
+			public const int ic_expand_00011 = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int ic_expand_00013 = 2130837631;
+			public const int ic_expand_00012 = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int ic_expand_00014 = 2130837632;
+			public const int ic_expand_00013 = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int ic_expand_00015 = 2130837633;
+			public const int ic_expand_00014 = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int ic_media_pause = 2130837634;
+			public const int ic_expand_00015 = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int ic_media_play = 2130837635;
+			public const int ic_media_pause = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int ic_media_route_disabled_mono_dark = 2130837636;
+			public const int ic_media_play = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int ic_media_route_off_mono_dark = 2130837637;
+			public const int ic_media_route_disabled_mono_dark = 2130837637;
 			
 			// aapt resource value: 0x7f020086
-			public const int ic_media_route_on_0_mono_dark = 2130837638;
+			public const int ic_media_route_off_mono_dark = 2130837638;
 			
 			// aapt resource value: 0x7f020087
-			public const int ic_media_route_on_1_mono_dark = 2130837639;
+			public const int ic_media_route_on_0_mono_dark = 2130837639;
 			
 			// aapt resource value: 0x7f020088
-			public const int ic_media_route_on_2_mono_dark = 2130837640;
+			public const int ic_media_route_on_1_mono_dark = 2130837640;
 			
 			// aapt resource value: 0x7f020089
-			public const int ic_media_route_on_mono_dark = 2130837641;
+			public const int ic_media_route_on_2_mono_dark = 2130837641;
 			
 			// aapt resource value: 0x7f02008a
-			public const int ic_pause_dark = 2130837642;
+			public const int ic_media_route_on_mono_dark = 2130837642;
 			
 			// aapt resource value: 0x7f02008b
-			public const int ic_pause_light = 2130837643;
+			public const int ic_pause_dark = 2130837643;
 			
 			// aapt resource value: 0x7f02008c
-			public const int ic_play_dark = 2130837644;
+			public const int ic_pause_light = 2130837644;
 			
 			// aapt resource value: 0x7f02008d
-			public const int ic_play_light = 2130837645;
+			public const int ic_play_dark = 2130837645;
 			
 			// aapt resource value: 0x7f02008e
-			public const int ic_speaker_dark = 2130837646;
+			public const int ic_play_light = 2130837646;
 			
 			// aapt resource value: 0x7f02008f
-			public const int ic_speaker_group_dark = 2130837647;
+			public const int ic_speaker_dark = 2130837647;
 			
 			// aapt resource value: 0x7f020090
-			public const int ic_speaker_group_light = 2130837648;
+			public const int ic_speaker_group_dark = 2130837648;
 			
 			// aapt resource value: 0x7f020091
-			public const int ic_speaker_light = 2130837649;
+			public const int ic_speaker_group_light = 2130837649;
 			
 			// aapt resource value: 0x7f020092
-			public const int ic_tv_dark = 2130837650;
+			public const int ic_speaker_light = 2130837650;
 			
 			// aapt resource value: 0x7f020093
-			public const int ic_tv_light = 2130837651;
+			public const int ic_tv_dark = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int icon = 2130837652;
+			public const int ic_tv_light = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int info = 2130837653;
+			public const int icon = 2130837653;
 			
 			// aapt resource value: 0x7f020096
-			public const int mr_dialog_material_background_dark = 2130837654;
+			public const int info = 2130837654;
 			
 			// aapt resource value: 0x7f020097
-			public const int mr_dialog_material_background_light = 2130837655;
+			public const int mr_dialog_material_background_dark = 2130837655;
 			
 			// aapt resource value: 0x7f020098
-			public const int mr_ic_audiotrack_light = 2130837656;
+			public const int mr_dialog_material_background_light = 2130837656;
 			
 			// aapt resource value: 0x7f020099
-			public const int mr_ic_cast_dark = 2130837657;
+			public const int mr_ic_audiotrack_light = 2130837657;
 			
 			// aapt resource value: 0x7f02009a
-			public const int mr_ic_cast_light = 2130837658;
+			public const int mr_ic_cast_dark = 2130837658;
 			
 			// aapt resource value: 0x7f02009b
-			public const int mr_ic_close_dark = 2130837659;
+			public const int mr_ic_cast_light = 2130837659;
 			
 			// aapt resource value: 0x7f02009c
-			public const int mr_ic_close_light = 2130837660;
+			public const int mr_ic_close_dark = 2130837660;
 			
 			// aapt resource value: 0x7f02009d
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837661;
+			public const int mr_ic_close_light = 2130837661;
 			
 			// aapt resource value: 0x7f02009e
-			public const int mr_ic_media_route_connecting_mono_light = 2130837662;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837662;
 			
 			// aapt resource value: 0x7f02009f
-			public const int mr_ic_media_route_mono_dark = 2130837663;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837663;
 			
 			// aapt resource value: 0x7f0200a0
-			public const int mr_ic_media_route_mono_light = 2130837664;
+			public const int mr_ic_media_route_mono_dark = 2130837664;
 			
 			// aapt resource value: 0x7f0200a1
-			public const int mr_ic_pause_dark = 2130837665;
+			public const int mr_ic_media_route_mono_light = 2130837665;
 			
 			// aapt resource value: 0x7f0200a2
-			public const int mr_ic_pause_light = 2130837666;
+			public const int mr_ic_pause_dark = 2130837666;
 			
 			// aapt resource value: 0x7f0200a3
-			public const int mr_ic_play_dark = 2130837667;
+			public const int mr_ic_pause_light = 2130837667;
 			
 			// aapt resource value: 0x7f0200a4
-			public const int mr_ic_play_light = 2130837668;
-			
-			// aapt resource value: 0x7f0200a7
-			public const int notification_template_icon_bg = 2130837671;
+			public const int mr_ic_play_dark = 2130837668;
 			
 			// aapt resource value: 0x7f0200a5
-			public const int save = 2130837669;
+			public const int mr_ic_play_light = 2130837669;
+			
+			// aapt resource value: 0x7f0200a8
+			public const int notification_template_icon_bg = 2130837672;
 			
 			// aapt resource value: 0x7f0200a6
-			public const int settings = 2130837670;
+			public const int save = 2130837670;
+			
+			// aapt resource value: 0x7f0200a7
+			public const int settings = 2130837671;
 			
 			static Drawable()
 			{
@@ -2236,8 +3896,8 @@ namespace EbookReader.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f07008b
-			public const int action0 = 2131165323;
+			// aapt resource value: 0x7f07008c
+			public const int action0 = 2131165324;
 			
 			// aapt resource value: 0x7f07005a
 			public const int action_bar = 2131165274;
@@ -2263,8 +3923,8 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f07005b
 			public const int action_context_bar = 2131165275;
 			
-			// aapt resource value: 0x7f07008f
-			public const int action_divider = 2131165327;
+			// aapt resource value: 0x7f070090
+			public const int action_divider = 2131165328;
 			
 			// aapt resource value: 0x7f070003
 			public const int action_menu_divider = 2131165187;
@@ -2299,8 +3959,8 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f070044
 			public const int buttonPanel = 2131165252;
 			
-			// aapt resource value: 0x7f07008c
-			public const int cancel_action = 2131165324;
+			// aapt resource value: 0x7f07008d
+			public const int cancel_action = 2131165325;
 			
 			// aapt resource value: 0x7f07002b
 			public const int center = 2131165227;
@@ -2314,8 +3974,8 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f070052
 			public const int checkbox = 2131165266;
 			
-			// aapt resource value: 0x7f070092
-			public const int chronometer = 2131165330;
+			// aapt resource value: 0x7f070093
+			public const int chronometer = 2131165331;
 			
 			// aapt resource value: 0x7f070033
 			public const int clip_horizontal = 2131165235;
@@ -2341,20 +4001,20 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f070040
 			public const int default_activity_button = 2131165248;
 			
-			// aapt resource value: 0x7f07006a
-			public const int design_bottom_sheet = 2131165290;
+			// aapt resource value: 0x7f07006b
+			public const int design_bottom_sheet = 2131165291;
+			
+			// aapt resource value: 0x7f070072
+			public const int design_menu_item_action_area = 2131165298;
 			
 			// aapt resource value: 0x7f070071
-			public const int design_menu_item_action_area = 2131165297;
+			public const int design_menu_item_action_area_stub = 2131165297;
 			
 			// aapt resource value: 0x7f070070
-			public const int design_menu_item_action_area_stub = 2131165296;
+			public const int design_menu_item_text = 2131165296;
 			
 			// aapt resource value: 0x7f07006f
-			public const int design_menu_item_text = 2131165295;
-			
-			// aapt resource value: 0x7f07006e
-			public const int design_navigation_view = 2131165294;
+			public const int design_navigation_view = 2131165295;
 			
 			// aapt resource value: 0x7f07000e
 			public const int disableHome = 2131165198;
@@ -2365,8 +4025,8 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f07001c
 			public const int end = 2131165212;
 			
-			// aapt resource value: 0x7f070097
-			public const int end_padder = 2131165335;
+			// aapt resource value: 0x7f070098
+			public const int end_padder = 2131165336;
 			
 			// aapt resource value: 0x7f070023
 			public const int enterAlways = 2131165219;
@@ -2410,8 +4070,8 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f07003f
 			public const int image = 2131165247;
 			
-			// aapt resource value: 0x7f070096
-			public const int info = 2131165334;
+			// aapt resource value: 0x7f070097
+			public const int info = 2131165335;
 			
 			// aapt resource value: 0x7f070000
 			public const int item_touch_helper_previous_elevation = 2131165184;
@@ -2419,11 +4079,11 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f07002f
 			public const int left = 2131165231;
 			
-			// aapt resource value: 0x7f070090
-			public const int line1 = 2131165328;
+			// aapt resource value: 0x7f070091
+			public const int line1 = 2131165329;
 			
-			// aapt resource value: 0x7f070094
-			public const int line3 = 2131165332;
+			// aapt resource value: 0x7f070095
+			public const int line3 = 2131165333;
 			
 			// aapt resource value: 0x7f07000b
 			public const int listMode = 2131165195;
@@ -2431,8 +4091,8 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f070041
 			public const int list_item = 2131165249;
 			
-			// aapt resource value: 0x7f07008e
-			public const int media_actions = 2131165326;
+			// aapt resource value: 0x7f07008f
+			public const int media_actions = 2131165327;
 			
 			// aapt resource value: 0x7f07001d
 			public const int middle = 2131165213;
@@ -2440,83 +4100,83 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f070037
 			public const int mini = 2131165239;
 			
-			// aapt resource value: 0x7f07007d
-			public const int mr_art = 2131165309;
-			
-			// aapt resource value: 0x7f070072
-			public const int mr_chooser_list = 2131165298;
-			
-			// aapt resource value: 0x7f070075
-			public const int mr_chooser_route_desc = 2131165301;
+			// aapt resource value: 0x7f07007e
+			public const int mr_art = 2131165310;
 			
 			// aapt resource value: 0x7f070073
-			public const int mr_chooser_route_icon = 2131165299;
-			
-			// aapt resource value: 0x7f070074
-			public const int mr_chooser_route_name = 2131165300;
-			
-			// aapt resource value: 0x7f07007a
-			public const int mr_close = 2131165306;
-			
-			// aapt resource value: 0x7f070080
-			public const int mr_control_divider = 2131165312;
-			
-			// aapt resource value: 0x7f070086
-			public const int mr_control_play_pause = 2131165318;
-			
-			// aapt resource value: 0x7f070089
-			public const int mr_control_subtitle = 2131165321;
-			
-			// aapt resource value: 0x7f070088
-			public const int mr_control_title = 2131165320;
-			
-			// aapt resource value: 0x7f070087
-			public const int mr_control_title_container = 2131165319;
-			
-			// aapt resource value: 0x7f07007b
-			public const int mr_custom_control = 2131165307;
-			
-			// aapt resource value: 0x7f07007c
-			public const int mr_default_control = 2131165308;
-			
-			// aapt resource value: 0x7f070077
-			public const int mr_dialog_area = 2131165303;
+			public const int mr_chooser_list = 2131165299;
 			
 			// aapt resource value: 0x7f070076
-			public const int mr_expandable_area = 2131165302;
+			public const int mr_chooser_route_desc = 2131165302;
 			
-			// aapt resource value: 0x7f07008a
-			public const int mr_group_expand_collapse = 2131165322;
+			// aapt resource value: 0x7f070074
+			public const int mr_chooser_route_icon = 2131165300;
 			
-			// aapt resource value: 0x7f07007e
-			public const int mr_media_main_control = 2131165310;
+			// aapt resource value: 0x7f070075
+			public const int mr_chooser_route_name = 2131165301;
 			
-			// aapt resource value: 0x7f070079
-			public const int mr_name = 2131165305;
-			
-			// aapt resource value: 0x7f07007f
-			public const int mr_playback_control = 2131165311;
-			
-			// aapt resource value: 0x7f070078
-			public const int mr_title_bar = 2131165304;
+			// aapt resource value: 0x7f07007b
+			public const int mr_close = 2131165307;
 			
 			// aapt resource value: 0x7f070081
-			public const int mr_volume_control = 2131165313;
+			public const int mr_control_divider = 2131165313;
+			
+			// aapt resource value: 0x7f070087
+			public const int mr_control_play_pause = 2131165319;
+			
+			// aapt resource value: 0x7f07008a
+			public const int mr_control_subtitle = 2131165322;
+			
+			// aapt resource value: 0x7f070089
+			public const int mr_control_title = 2131165321;
+			
+			// aapt resource value: 0x7f070088
+			public const int mr_control_title_container = 2131165320;
+			
+			// aapt resource value: 0x7f07007c
+			public const int mr_custom_control = 2131165308;
+			
+			// aapt resource value: 0x7f07007d
+			public const int mr_default_control = 2131165309;
+			
+			// aapt resource value: 0x7f070078
+			public const int mr_dialog_area = 2131165304;
+			
+			// aapt resource value: 0x7f070077
+			public const int mr_expandable_area = 2131165303;
+			
+			// aapt resource value: 0x7f07008b
+			public const int mr_group_expand_collapse = 2131165323;
+			
+			// aapt resource value: 0x7f07007f
+			public const int mr_media_main_control = 2131165311;
+			
+			// aapt resource value: 0x7f07007a
+			public const int mr_name = 2131165306;
+			
+			// aapt resource value: 0x7f070080
+			public const int mr_playback_control = 2131165312;
+			
+			// aapt resource value: 0x7f070079
+			public const int mr_title_bar = 2131165305;
 			
 			// aapt resource value: 0x7f070082
-			public const int mr_volume_group_list = 2131165314;
+			public const int mr_volume_control = 2131165314;
 			
-			// aapt resource value: 0x7f070084
-			public const int mr_volume_item_icon = 2131165316;
+			// aapt resource value: 0x7f070083
+			public const int mr_volume_group_list = 2131165315;
 			
 			// aapt resource value: 0x7f070085
-			public const int mr_volume_slider = 2131165317;
+			public const int mr_volume_item_icon = 2131165317;
+			
+			// aapt resource value: 0x7f070086
+			public const int mr_volume_slider = 2131165318;
 			
 			// aapt resource value: 0x7f070016
 			public const int multiply = 2131165206;
 			
-			// aapt resource value: 0x7f07006d
-			public const int navigation_header_container = 2131165293;
+			// aapt resource value: 0x7f07006e
+			public const int navigation_header_container = 2131165294;
 			
 			// aapt resource value: 0x7f070021
 			public const int never = 2131165217;
@@ -2611,14 +4271,14 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f070013
 			public const int showTitle = 2131165203;
 			
-			// aapt resource value: 0x7f070098
-			public const int sliding_tabs = 2131165336;
+			// aapt resource value: 0x7f070099
+			public const int sliding_tabs = 2131165337;
+			
+			// aapt resource value: 0x7f07006d
+			public const int snackbar_action = 2131165293;
 			
 			// aapt resource value: 0x7f07006c
-			public const int snackbar_action = 2131165292;
-			
-			// aapt resource value: 0x7f07006b
-			public const int snackbar_text = 2131165291;
+			public const int snackbar_text = 2131165292;
 			
 			// aapt resource value: 0x7f070027
 			public const int snap = 2131165223;
@@ -2641,8 +4301,8 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f070031
 			public const int start = 2131165233;
 			
-			// aapt resource value: 0x7f07008d
-			public const int status_bar_latest_event_content = 2131165325;
+			// aapt resource value: 0x7f07008e
+			public const int status_bar_latest_event_content = 2131165326;
 			
 			// aapt resource value: 0x7f070065
 			public const int submit_area = 2131165285;
@@ -2650,17 +4310,17 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f07000d
 			public const int tabMode = 2131165197;
 			
-			// aapt resource value: 0x7f070095
-			public const int text = 2131165333;
+			// aapt resource value: 0x7f070096
+			public const int text = 2131165334;
 			
-			// aapt resource value: 0x7f070093
-			public const int text2 = 2131165331;
+			// aapt resource value: 0x7f070094
+			public const int text2 = 2131165332;
 			
 			// aapt resource value: 0x7f07004d
 			public const int textSpacerNoButtons = 2131165261;
 			
-			// aapt resource value: 0x7f070091
-			public const int time = 2131165329;
+			// aapt resource value: 0x7f070092
+			public const int time = 2131165330;
 			
 			// aapt resource value: 0x7f070043
 			public const int title = 2131165251;
@@ -2668,8 +4328,8 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f070048
 			public const int title_template = 2131165256;
 			
-			// aapt resource value: 0x7f070099
-			public const int toolbar = 2131165337;
+			// aapt resource value: 0x7f07009a
+			public const int toolbar = 2131165338;
 			
 			// aapt resource value: 0x7f070032
 			public const int top = 2131165234;
@@ -2677,8 +4337,8 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f070047
 			public const int topPanel = 2131165255;
 			
-			// aapt resource value: 0x7f070069
-			public const int touch_outside = 2131165289;
+			// aapt resource value: 0x7f07006a
+			public const int touch_outside = 2131165290;
 			
 			// aapt resource value: 0x7f070009
 			public const int up = 2131165193;
@@ -2689,8 +4349,11 @@ namespace EbookReader.Droid
 			// aapt resource value: 0x7f07000a
 			public const int view_offset_helper = 2131165194;
 			
-			// aapt resource value: 0x7f070083
-			public const int volume_item_container = 2131165315;
+			// aapt resource value: 0x7f070084
+			public const int volume_item_container = 2131165316;
+			
+			// aapt resource value: 0x7f070069
+			public const int webview = 2131165289;
 			
 			// aapt resource value: 0x7f070022
 			public const int withText = 2131165218;
@@ -2849,100 +4512,103 @@ namespace EbookReader.Droid
 			public const int abc_select_dialog_material = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int design_bottom_sheet_dialog = 2130903065;
+			public const int activity_webview = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int design_layout_snackbar = 2130903066;
+			public const int design_bottom_sheet_dialog = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int design_layout_snackbar_include = 2130903067;
+			public const int design_layout_snackbar = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int design_layout_tab_icon = 2130903068;
+			public const int design_layout_snackbar_include = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int design_layout_tab_text = 2130903069;
+			public const int design_layout_tab_icon = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int design_menu_item_action_area = 2130903070;
+			public const int design_layout_tab_text = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int design_navigation_item = 2130903071;
+			public const int design_menu_item_action_area = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int design_navigation_item_header = 2130903072;
+			public const int design_navigation_item = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int design_navigation_item_separator = 2130903073;
+			public const int design_navigation_item_header = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int design_navigation_item_subheader = 2130903074;
+			public const int design_navigation_item_separator = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int design_navigation_menu = 2130903075;
+			public const int design_navigation_item_subheader = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int design_navigation_menu_item = 2130903076;
+			public const int design_navigation_menu = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int mr_chooser_dialog = 2130903077;
+			public const int design_navigation_menu_item = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int mr_chooser_list_item = 2130903078;
+			public const int mr_chooser_dialog = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int mr_controller_material_dialog_b = 2130903079;
+			public const int mr_chooser_list_item = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int mr_controller_volume_item = 2130903080;
+			public const int mr_controller_material_dialog_b = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int mr_playback_control = 2130903081;
+			public const int mr_controller_volume_item = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int mr_volume_control = 2130903082;
+			public const int mr_playback_control = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int notification_media_action = 2130903083;
+			public const int mr_volume_control = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int notification_media_cancel_action = 2130903084;
+			public const int notification_media_action = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int notification_template_big_media = 2130903085;
+			public const int notification_media_cancel_action = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int notification_template_big_media_narrow = 2130903086;
+			public const int notification_template_big_media = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int notification_template_lines = 2130903087;
+			public const int notification_template_big_media_narrow = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int notification_template_media = 2130903088;
+			public const int notification_template_lines = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int notification_template_part_chronometer = 2130903089;
+			public const int notification_template_media = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_template_part_time = 2130903090;
+			public const int notification_template_part_chronometer = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int select_dialog_item_material = 2130903091;
+			public const int notification_template_part_time = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int select_dialog_multichoice_material = 2130903092;
+			public const int select_dialog_item_material = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int select_dialog_singlechoice_material = 2130903093;
+			public const int select_dialog_multichoice_material = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int support_simple_spinner_dropdown_item = 2130903094;
+			public const int select_dialog_singlechoice_material = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int Tabbar = 2130903095;
+			public const int support_simple_spinner_dropdown_item = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int Toolbar = 2130903096;
+			public const int Tabbar = 2130903096;
+			
+			// aapt resource value: 0x7f030039
+			public const int Toolbar = 2130903097;
 			
 			static Layout()
 			{
@@ -3076,6 +4742,9 @@ namespace EbookReader.Droid
 			
 			// aapt resource value: 0x7f080022
 			public const int status_bar_notification_info_overflow = 2131230754;
+			
+			// aapt resource value: 0x7f080028
+			public const int title_activity_webview = 2131230760;
 			
 			static String()
 			{

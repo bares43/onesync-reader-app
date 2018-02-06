@@ -75,7 +75,11 @@ namespace EbookReader.Model.View {
             ConnectToDropboxCommand = new Command(ConnectToDropbox);
             DisconnectDropboxCommand = new Command(DisconnectDropboxAsync);
 
-            IocManager.Container.Resolve<IMessageBus>().Subscribe<DropboxAccessTokenMessage>((msg) => DropboxAccessToken = msg.AccessToken);
+            IocManager.Container.Resolve<IMessageBus>().Subscribe<OAuth2AccessTokenObtainedMessage>((msg) => {
+                if(msg.Provider == "Dropbox") {
+                    DropboxAccessToken = msg.AccessToken;
+                }
+            });
         }
 
         void ConnectToDropbox() {

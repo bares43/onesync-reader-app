@@ -11,6 +11,11 @@ namespace EbookReader {
                 public const string BaseUrl = "https://ebook-reader-b6053.firebaseio.com/";
                 public const string ApiKey = "AIzaSyA4TOO3_Pa1kb_s6zjBMqpehPLrTk8SrLA";
             }
+
+            public static class Dropbox {
+                public const string ClientID = "wk719mekght88r6";
+                public const string RedirectUrl = "https://janbares.cz/www/onesync-reader/oauth2-success";
+            }
         }
 
         public static class AppCenter {
