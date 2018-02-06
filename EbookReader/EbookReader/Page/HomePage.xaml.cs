@@ -39,6 +39,15 @@ namespace EbookReader.Page {
             aboutItem.Clicked += AboutItem_Clicked;
 
             ToolbarItems.Add(aboutItem);
+
+        }
+
+        protected override void OnAppearing() {
+            base.OnAppearing();
+
+            this.ShowAnalyticsAgreement();
+
+            UserSettings.FirstRun = false;
         }
 
         private async void AboutItem_Clicked(object sender, EventArgs e) {
@@ -47,6 +56,13 @@ namespace EbookReader.Page {
 
         private async void SettingsItem_Clicked(object sender, EventArgs e) {
             await Navigation.PushAsync(App.SettingsPage());
+        }
+
+        private async void ShowAnalyticsAgreement() {
+            if (UserSettings.FirstRun) {
+                var result = await DisplayAlert("Agreement with collecting anonymous data", "I agree with collecting anonymous information about using of the app which is important for improving application.", "I agree", "No");
+                UserSettings.AnalyticsAgreement = result;
+            }
         }
 
         private async void Init() {
@@ -98,7 +114,7 @@ namespace EbookReader.Page {
                 }
                 _bookshelfService.RemoveById(msg.Book.Id);
 
-                if(confirm == deleteSyncButton) {
+                if (confirm == deleteSyncButton) {
                     _syncService.DeleteBook(msg.Book.Id);
                 }
             }

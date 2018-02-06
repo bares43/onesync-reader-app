@@ -92,6 +92,7 @@
     <Compile Include="Model\View\QuickPanelSettingsVM.cs" />
     <Compile Include="Model\View\QuickPanelVM.cs" />
     <Compile Include="Model\View\ScrollSpeedVM.cs" />
+    <Compile Include="Model\View\SettingsApplicationVM.cs" />
     <Compile Include="Model\View\SettingsControlVM.cs" />
     <Compile Include="Model\View\SettingsReaderVM.cs" />
     <Compile Include="Model\View\SettingsSynchronizationVM.cs" />
@@ -142,6 +143,9 @@
     </Compile>
     <Compile Include="Page\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Settings\Application.xaml.cs">
+      <DependentUpon>Application.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page\Settings\Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
@@ -403,6 +407,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Page\OAuth2LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\Settings\Application.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

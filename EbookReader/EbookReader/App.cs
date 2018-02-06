@@ -49,6 +49,7 @@ namespace EbookReader {
         protected override void OnStart() {
             // Handle when your app starts
             AppCenter.Start($"android={AppSettings.AppCenter.Android};uwp={AppSettings.AppCenter.UWP};", typeof(Analytics), typeof(Crashes));
+            Analytics.SetEnabledAsync(UserSettings.AnalyticsAgreement);
         }
 
         protected override void OnSleep() {

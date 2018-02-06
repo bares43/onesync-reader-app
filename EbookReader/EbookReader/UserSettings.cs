@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Autofac;
 using EbookReader.DependencyService;
 using EbookReader.Provider;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using Xamarin.Forms;
@@ -14,6 +15,23 @@ using Xamarin.Forms;
 namespace EbookReader {
     public static class UserSettings {
         private static ISettings AppSettings => CrossSettings.Current;
+
+        public static bool FirstRun {
+            get => AppSettings.GetValueOrDefault(CreateKey(nameof(FirstRun)), true);
+            set => AppSettings.AddOrUpdateValue(CreateKey(nameof(FirstRun)), value);
+        }
+
+        public static bool AnalyticsAgreement {
+            get => AppSettings.GetValueOrDefault(CreateKey(nameof(AnalyticsAgreement)), false);
+            set {
+                SetAnalytics(value);
+                AppSettings.AddOrUpdateValue(CreateKey(nameof(AnalyticsAgreement)), value);
+            }
+        }
+
+        private async static void SetAnalytics(bool enabled) {
+            await Analytics.SetEnabledAsync(enabled);
+        }
 
         public static class Reader {
             private static int FontSizeDefault = 20;
@@ -56,7 +74,7 @@ namespace EbookReader {
             public static long DeviceID {
                 get {
                     var id = AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(DeviceID)), default(long));
-                    if(id == default(long)) {
+                    if (id == default(long)) {
                         id = DeviceIdProvider.ID;
                         AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(DeviceID)), id);
                     }

@@ -47,7 +47,7 @@ namespace EbookReader.Page.Settings {
                 RedirectUrl = AppSettings.Synchronization.Dropbox.RedirectUrl,
             };
 
-            Application.Current.Properties["OAuth2Data"] = OAuth2Data;
+            Xamarin.Forms.Application.Current.Properties["OAuth2Data"] = OAuth2Data;
 
             await Navigation.PushModalAsync(new OAuth2LoginPage());
         }
