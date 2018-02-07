@@ -51,10 +51,15 @@ namespace EbookReader.Droid {
         }
 
         private void ChangeBrightness(Model.Messages.ChangesBrightness msg) {
-            var attributesWindow = new WindowManagerLayoutParams();
-            attributesWindow.CopyFrom(Window.Attributes);
-            attributesWindow.ScreenBrightness = msg.Brightness;
-            Window.Attributes = attributesWindow;
+            RunOnUiThread(() => {
+                var brightness = Math.Min(msg.Brightness, 1);
+                brightness = Math.Max(brightness, 0);
+
+                var attributesWindow = new WindowManagerLayoutParams();
+                attributesWindow.CopyFrom(Window.Attributes);
+                attributesWindow.ScreenBrightness = brightness;
+                Window.Attributes = attributesWindow;
+            });
         }
 
         private void ToggleFullscreen(Model.Messages.FullscreenRequest msg) {

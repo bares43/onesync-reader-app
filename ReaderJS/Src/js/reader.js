@@ -16,6 +16,7 @@ window.Ebook = {
   clickEverywhere: false,
   doubleSwipe: false,
   nightMode: false,
+  panEventCounter: 0,
   init: function(width, height, margin, fontSize, scrollSpeed, clickEverywhere, doubleSwipe, nightMode) {
     this.webViewWidth = width;
     this.webViewHeight = height;
@@ -212,6 +213,16 @@ window.Ebook = {
     $("img").css("max-width", (Ebook.webViewWidth - (2 * Ebook.webViewMargin)) + "px");
     $("img").css("max-height", (Ebook.webViewHeight - (2 * Ebook.webViewMargin)) + "px");
   },
+  panEventHandler: function(x, y, isFinal) {
+    if (isFinal) {
+      Ebook.panEventCounter = 0;
+    }
+
+    if (Ebook.panEventCounter % 10 === 0) {
+      Ebook.messagesHelper.sendPanEvent(x, y);
+    }
+    Ebook.panEventCounter++;
+  },
   pagerHelper: {
     cache: new Map(),
     invalideCache: function() {
@@ -367,10 +378,20 @@ window.Ebook = {
       Messages.send("OpenQuickPanelRequest", {});
     },
     sendChapterRequest: function(chapter) {
-      Messages.send("ChapterRequest", {Chapter: chapter});
+      Messages.send("ChapterRequest", {
+        Chapter: chapter,
+      });
     },
     sendOpenUrl: function(url) {
-      Messages.send("OpenUrl", {Url: url});
+      Messages.send("OpenUrl", {
+        Url: url,
+      });
+    },
+    sendPanEvent: function(x, y) {
+      Messages.send("PanEvent", {
+        X: x,
+        Y: y,
+      });
     },
   },
 };
@@ -446,12 +467,12 @@ window.Gestures = {
     var press = new Hammer.Press({
       event: "press",
     });
-    var swipeleft = new Hammer.Swipe({
-      event: "swipeleft",
+    var panleft = new Hammer.Pan({
+      event: "panleft",
       direction: Hammer.DIRECTION_LEFT,
     });
-    var swiperight = new Hammer.Swipe({
-      event: "swiperight",
+    var panright = new Hammer.Pan({
+      event: "panright",
       direction: Hammer.DIRECTION_RIGHT,
     });
     var swipeleftdouble = new Hammer.Swipe({
@@ -464,8 +485,16 @@ window.Gestures = {
       direction: Hammer.DIRECTION_RIGHT,
       pointers: 2,
     });
+    var panbottom = new Hammer.Pan({
+      event: "panbottom",
+      direction: Hammer.DIRECTION_DOWN,
+    });
+    var pantop = new Hammer.Pan({
+      event: "pantop",
+      direction: Hammer.DIRECTION_UP,
+    });
 
-    hammer.add([doubleTap, tap, press, swipeleft, swiperight, swipeleftdouble, swiperightdouble]);
+    hammer.add([doubleTap, tap, press, panleft, panright, swipeleftdouble, swiperightdouble, panbottom, pantop]);
 
     doubleTap.recognizeWith(tap);
     tap.requireFailure([doubleTap]);
@@ -488,12 +517,16 @@ window.Gestures = {
       }
     });
 
-    hammer.on("swipeleft", function() {
-      Gestures.actions.swipeLeft();
+    hammer.on("panleft", function(e) {
+      if (e.isFinal) {
+        Gestures.actions.panLeft();
+      }
     });
 
-    hammer.on("swiperight", function() {
-      Gestures.actions.swipeRight();
+    hammer.on("panright", function(e) {
+      if (e.isFinal) {
+        Gestures.actions.panRight();
+      }
     });
 
     hammer.on("swipeleftdouble", function() {
@@ -502,6 +535,14 @@ window.Gestures = {
 
     hammer.on("swiperightdouble", function() {
       Gestures.actions.swipeRightDouble();
+    });
+
+    hammer.on("panbottom", function(e) {
+      Gestures.actions.panBottom(e.center.x, e.center.y, e.isFinal);
+    });
+
+    hammer.on("pantop", function(e) {
+      Gestures.actions.panTop(e.center.x, e.center.y, e.isFinal);
     });
   },
   isLink: function(e) {
@@ -531,10 +572,10 @@ window.Gestures = {
     press: function() {
       Ebook.messagesHelper.sendOpenQuickPanelRequest();
     },
-    swipeLeft: function() {
+    panLeft: function() {
       Ebook.goToNextPage();
     },
-    swipeRight: function() {
+    panRight: function() {
       Ebook.goToPreviousPage();
     },
     swipeLeftDouble: function() {
@@ -546,6 +587,12 @@ window.Gestures = {
       if (Ebook.doubleSwipe) {
         Ebook.goToPage(1);
       }
+    },
+    panBottom: function(x, y, isFinal) {
+      Ebook.panEventHandler(x, y, isFinal);
+    },
+    panTop: function(x, y, isFinal) {
+      Ebook.panEventHandler(x, y, isFinal);
     },
   },
 };

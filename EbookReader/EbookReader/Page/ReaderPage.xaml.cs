@@ -55,6 +55,7 @@ namespace EbookReader.Page {
             WebView.Messages.OnPageChange += Messages_OnPageChange;
             WebView.Messages.OnChapterRequest += Messages_OnChapterRequest;
             WebView.Messages.OnOpenUrl += Messages_OnOpenUrl;
+            WebView.Messages.OnPanEvent += Messages_OnPanEvent;
 
             QuickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
@@ -115,6 +116,22 @@ namespace EbookReader.Page {
             }
         }
 
+        private void Messages_OnPanEvent(object sender, Model.WebViewMessages.PanEvent e) {
+
+            if (UserSettings.Control.BrightnessChange == BrightnessChange.None) {
+                return;
+            }
+
+            var totalWidth = (int)WebView.Width + (2 * UserSettings.Reader.Margin);
+            var edge = totalWidth / 5;
+
+            if ((UserSettings.Control.BrightnessChange == BrightnessChange.Left && e.X <= edge) ||
+                (UserSettings.Control.BrightnessChange == BrightnessChange.Right && e.X >= totalWidth - edge)) {
+                float brightness = 1 - ((float)e.Y / ((int)WebView.Height + (2 * UserSettings.Reader.Margin)));
+                _messageBus.Send(new ChangesBrightness { Brightness = brightness });
+            }
+        }
+
         private void Messages_OnChapterRequest(object sender, Model.WebViewMessages.ChapterRequest e) {
             if (!string.IsNullOrEmpty(e.Chapter)) {
                 var filename = e.Chapter.Split('#');
@@ -129,7 +146,6 @@ namespace EbookReader.Page {
                 if (!string.IsNullOrEmpty(chapterId)) {
                     var chapter = _ebook.Spines.FirstOrDefault(o => o.Idref == chapterId);
 
-                    System.Diagnostics.Debug.WriteLine(chapter);
                     if (chapter != null) {
                         this.SendChapter(chapter, marker: hash);
                     }

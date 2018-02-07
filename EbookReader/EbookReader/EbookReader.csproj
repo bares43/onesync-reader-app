@@ -89,6 +89,7 @@
     <Compile Include="Model\View\InfoPanelVM.cs" />
     <Compile Include="Model\View\MarginVM.cs" />
     <Compile Include="Model\View\NightModeVM.cs" />
+    <Compile Include="Model\View\PanBrightnessChangeVM.cs" />
     <Compile Include="Model\View\QuickPanelSettingsVM.cs" />
     <Compile Include="Model\View\QuickPanelVM.cs" />
     <Compile Include="Model\View\ScrollSpeedVM.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Model\View\SettingsReaderVM.cs" />
     <Compile Include="Model\View\SettingsSynchronizationVM.cs" />
     <Compile Include="Model\View\SynchronizationServiceVM.cs" />
+    <Compile Include="Model\WebViewMessages\PanEvent.cs" />
     <Compile Include="Model\WebViewMessages\ChapterRequest.cs" />
     <Compile Include="Model\WebViewMessages\Message.cs" />
     <Compile Include="Model\WebViewMessages\NextChapterRequest.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\BookshelfLock.cs" />
     <Compile Include="Provider\BookmarkIdProvider.cs" />
+    <Compile Include="Provider\BrightnessChangeProvider.cs" />
     <Compile Include="Provider\DeviceIdProvider.cs" />
     <Compile Include="Provider\DeviceNameProvider.cs" />
     <Compile Include="Provider\FontSizeProvider.cs" />

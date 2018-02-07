@@ -33,6 +33,10 @@
                 <Label Text="Double swipe to move between chapters" />
                 <Switch IsToggled="{Binding DoubleSwipe}" />
             </StackLayout>
+            <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding PanBrightnessChange.Show}">
+                <Label Text="Pan on the edge to control brightness" />
+                <Picker ItemsSource="{Binding PanBrightnessChange.Items}" SelectedItem="{Binding PanBrightnessChange.Value}" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

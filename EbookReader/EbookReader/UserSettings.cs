@@ -128,6 +128,12 @@ namespace EbookReader {
                 get => AppSettings.GetValueOrDefault(CreateKey(nameof(Control), nameof(DoubleSwipe)), false);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(DoubleSwipe)), value);
             }
+
+            public static BrightnessChange BrightnessChange {
+                get => (BrightnessChange)AppSettings.GetValueOrDefault(CreateKey(nameof(Control), nameof(BrightnessChange)), 
+                    Device.RuntimePlatform == Device.Android ? (int)BrightnessChange.Left : (int)BrightnessChange.None);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(BrightnessChange)), (int)value);
+            }
         }
 
         private static string CreateKey(params string[] names) {

@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace EbookReader.Model.View {
     public class SettingsControlVM : BaseVM {
+
+        public PanBrightnessChangeVM PanBrightnessChange { get; set; }
+
+        public SettingsControlVM() {
+            PanBrightnessChange = new PanBrightnessChangeVM();
+        }
+
         public bool ClickEverywhere {
             get => UserSettings.Control.ClickEverywhere;
             set {
