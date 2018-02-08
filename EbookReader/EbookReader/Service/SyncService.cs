@@ -79,6 +79,9 @@ namespace EbookReader.Service {
         }
 
         public async void SynchronizeBookmarks(Book book) {
+
+            if (!CanSync()) return;
+
             var data = await _cloudStorageService.LoadJson<DateTime?>(this.PathGenerator(book.Id, BookmarksLastChangeNode));
 
             if (!data.HasValue || !book.BookmarksSyncLastChange.HasValue || book.BookmarksSyncLastChange.Value < data.Value) {
