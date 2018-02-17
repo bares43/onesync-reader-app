@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class ChangeMargin {
+    public class ChangeMarginMessage {
         public int Margin { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace EbookReader.Page.Reader {
 
             BindingContext = new Model.View.QuickPanelVM();
 
-            _messageBus.Subscribe<CloseQuickPanel>((msg) => this.Hide());
+            _messageBus.Subscribe<CloseQuickPanelMessage>((msg) => this.Hide());
         }
         
         private void PanelContent_OnChapterChange(object sender, Model.Navigation.Item e) {

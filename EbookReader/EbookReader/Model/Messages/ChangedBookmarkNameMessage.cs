@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class ChangesBrightness {
-        public float Brightness { get; set; }
+    public class ChangedBookmarkNameMessage {
+        public Bookshelf.Bookmark Bookmark { get; set; }
     }
 }

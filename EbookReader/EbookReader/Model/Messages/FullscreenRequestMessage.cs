@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class FullscreenRequest {
+    public class FullscreenRequestMessage {
 
         public bool Fullscreen {
             get {
@@ -15,7 +15,7 @@ namespace EbookReader.Model.Messages {
 
         bool setFullscreen;
 
-        public FullscreenRequest(bool setFullscreen) {
+        public FullscreenRequestMessage(bool setFullscreen) {
             this.setFullscreen = setFullscreen;
         }
     }

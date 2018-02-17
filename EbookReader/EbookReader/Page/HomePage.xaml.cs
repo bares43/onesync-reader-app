@@ -78,12 +78,12 @@ namespace EbookReader.Page {
                 Bookshelf.Children.Add(new BookCard(book));
             }
 
-            _messageBus.Subscribe<AddBookClicked>(AddBook);
-            _messageBus.Subscribe<OpenBook>(OpenBook);
-            _messageBus.Subscribe<DeleteBook>(DeleteBook);
+            _messageBus.Subscribe<AddBookClickedMessage>(AddBook);
+            _messageBus.Subscribe<OpenBookMessage>(OpenBook);
+            _messageBus.Subscribe<DeleteBookMessage>(DeleteBook);
         }
 
-        private async void AddBook(AddBookClicked msg) {
+        private async void AddBook(AddBookClickedMessage msg) {
             var pickedFile = await CrossFilePicker.Current.PickFile();
 
             if (pickedFile != null) {
@@ -99,11 +99,11 @@ namespace EbookReader.Page {
             }
         }
 
-        private void OpenBook(OpenBook msg) {
+        private void OpenBook(OpenBookMessage msg) {
             this.SendBookToReader(msg.Book);
         }
 
-        private async void DeleteBook(DeleteBook msg) {
+        private async void DeleteBook(DeleteBookMessage msg) {
             var deleteButton = "Delete";
             var deleteSyncButton = "Delete including all synchronizations";
             var confirm = await DisplayActionSheet("Delete book?", deleteButton, "No", deleteSyncButton);
@@ -127,7 +127,7 @@ namespace EbookReader.Page {
         }
 
         private void OpenButton_Clicked(object sender, EventArgs e) {
-            _messageBus.Send(new AddBookClicked());
+            _messageBus.Send(new AddBookClickedMessage());
         }
     }
 }

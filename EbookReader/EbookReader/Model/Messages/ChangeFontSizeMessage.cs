@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class ChangedBookmarkName {
-        public Bookshelf.Bookmark Bookmark { get; set; }
+    public class ChangeFontSizeMessage {
+        public int FontSize { get; set; }
     }
 }

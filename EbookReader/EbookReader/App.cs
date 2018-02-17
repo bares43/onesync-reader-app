@@ -54,7 +54,7 @@ namespace EbookReader {
 
         protected override void OnSleep() {
             // Handle when your app sleeps
-            IocManager.Container.Resolve<IMessageBus>().Send(new AppSleep());
+            IocManager.Container.Resolve<IMessageBus>().Send(new AppSleepMessage());
         }
 
         protected override void OnResume() {

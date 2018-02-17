@@ -27,8 +27,8 @@ namespace EbookReader.Model.View {
 
                 UserSettings.Reader.FontSize = value;
                 OnPropertyChanged();
-                _messageBus.Send(new ChangeFontSize { FontSize = value });
-                _messageBus.Send(new CloseQuickPanel());
+                _messageBus.Send(new ChangeFontSizeMessage { FontSize = value });
+                _messageBus.Send(new CloseQuickPanelMessage());
             }
         }
     }

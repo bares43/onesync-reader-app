@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class CloseQuickPanel {
+    public class OpenBookMessage {
+        public Bookshelf.Book Book { get; set; }
     }
 }

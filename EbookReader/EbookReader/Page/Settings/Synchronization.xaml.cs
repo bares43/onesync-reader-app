@@ -29,7 +29,7 @@ namespace EbookReader.Page.Settings {
 
             BindingContext = vm;
 
-            IocManager.Container.Resolve<IMessageBus>().Subscribe<OpenDropboxLogin>(OpenDropboxLogin);
+            IocManager.Container.Resolve<IMessageBus>().Subscribe<OpenDropboxLoginMessage>(OpenDropboxLogin);
 
             IocManager.Container.Resolve<IMessageBus>().Subscribe(async (OAuth2AccessTokenObtainedMessage msg) => {
                 if (msg.Provider == "Dropbox") {
@@ -38,7 +38,7 @@ namespace EbookReader.Page.Settings {
             });
         }
 
-        private async void OpenDropboxLogin(OpenDropboxLogin msg) {
+        private async void OpenDropboxLogin(OpenDropboxLoginMessage msg) {
 
             var OAuth2Data = new OAuth2RequestData {
                 Provider = "Dropbox",

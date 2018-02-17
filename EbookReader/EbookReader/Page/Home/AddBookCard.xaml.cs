@@ -24,7 +24,7 @@ namespace EbookReader.Page.Home {
 
             GestureRecognizers.Add(
                 new TapGestureRecognizer {
-                    Command = new Command(() => { messageBus.Send(new AddBookClicked()); }),
+                    Command = new Command(() => { messageBus.Send(new AddBookClickedMessage()); }),
                 }
             );
 

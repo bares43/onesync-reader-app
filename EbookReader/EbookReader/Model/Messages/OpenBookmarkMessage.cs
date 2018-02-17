@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class DeleteBookmark {
-        public Model.Bookshelf.Bookmark Bookmark { get; set; }
+    public class OpenBookmarkMessage {
+        public Bookshelf.Bookmark Bookmark { get; set; }
     }
 }

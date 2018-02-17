@@ -37,13 +37,13 @@ namespace EbookReader.Model.View {
         }
 
         private void OpenBookmark() {
-            IocManager.Container.Resolve<IMessageBus>().Send(new OpenBookmark { Bookmark = Bookmark });
-            IocManager.Container.Resolve<IMessageBus>().Send(new CloseQuickPanel());
+            IocManager.Container.Resolve<IMessageBus>().Send(new OpenBookmarkMessage { Bookmark = Bookmark });
+            IocManager.Container.Resolve<IMessageBus>().Send(new CloseQuickPanelMessage());
         }
 
         private void DeleteBookmark() {
             if (BookshelfLock.Lock()) {
-                IocManager.Container.Resolve<IMessageBus>().Send(new DeleteBookmark { Bookmark = Bookmark });
+                IocManager.Container.Resolve<IMessageBus>().Send(new DeleteBookmarkMessage { Bookmark = Bookmark });
             }
         }
 
@@ -56,7 +56,7 @@ namespace EbookReader.Model.View {
 
         public void ChangeName() {
             if (BookshelfLock.Lock()) {
-                IocManager.Container.Resolve<IMessageBus>().Send(new ChangedBookmarkName { Bookmark = Bookmark });
+                IocManager.Container.Resolve<IMessageBus>().Send(new ChangedBookmarkNameMessage { Bookmark = Bookmark });
                 EditMode = false;
             }
         }

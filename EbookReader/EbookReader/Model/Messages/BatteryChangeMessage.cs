@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    class AddBookClicked {
+    public class BatteryChangeMessage {
     }
 }

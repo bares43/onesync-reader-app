@@ -62,12 +62,12 @@ namespace EbookReader.Page.Home {
 
         private void Open() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-            messageBus.Send(new OpenBook { Book = _book });
+            messageBus.Send(new OpenBookMessage { Book = _book });
         }
 
         private void Delete() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-            messageBus.Send(new DeleteBook { Book = _book });
+            messageBus.Send(new DeleteBookMessage { Book = _book });
         }
 
     }

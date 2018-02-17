@@ -114,10 +114,10 @@ namespace EbookReader.UWP {
 
         private void SetUpSubscribers() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-            messageBus.Subscribe<Model.Messages.FullscreenRequest>(ToggleFullscreen);
+            messageBus.Subscribe<Model.Messages.FullscreenRequestMessage>(ToggleFullscreen);
         }
 
-        private void ToggleFullscreen(Model.Messages.FullscreenRequest msg) {
+        private void ToggleFullscreen(Model.Messages.FullscreenRequestMessage msg) {
             if (msg.Fullscreen) {
                 ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             } else {

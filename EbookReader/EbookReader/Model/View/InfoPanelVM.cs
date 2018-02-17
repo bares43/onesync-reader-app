@@ -57,8 +57,8 @@ namespace EbookReader.Model.View {
         }
 
         public InfoPanelVM() {
-            IocManager.Container.Resolve<IMessageBus>().Subscribe<PageChange>(HandlePageChange);
-            IocManager.Container.Resolve<IMessageBus>().Subscribe<BatteryChange>(HandleBatteryChange);
+            IocManager.Container.Resolve<IMessageBus>().Subscribe<PageChangeMessage>(HandlePageChange);
+            IocManager.Container.Resolve<IMessageBus>().Subscribe<BatteryChangeMessage>(HandleBatteryChange);
             _batteryProvider = IocManager.Container.Resolve<IBatteryProvider>();
 
             this.SetClock();
@@ -71,11 +71,11 @@ namespace EbookReader.Model.View {
             });
         }
 
-        private void HandlePageChange(PageChange msg) {
+        private void HandlePageChange(PageChangeMessage msg) {
             Pages = $"{msg.CurrentPage} / {msg.TotalPages}";
         }
 
-        private void HandleBatteryChange(BatteryChange msg) {
+        private void HandleBatteryChange(BatteryChangeMessage msg) {
             this.SetBattery();
         }
 

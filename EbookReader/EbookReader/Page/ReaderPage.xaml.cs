@@ -65,7 +65,7 @@ namespace EbookReader.Page {
                 quickPanelPosition = new Rectangle(0, 0, 0.33, 1);
             }
 
-            _messageBus.Send(new FullscreenRequest(true));
+            _messageBus.Send(new FullscreenRequestMessage(true));
 
             Device.StartTimer(new TimeSpan(0, 1, 0), () => {
                 if (backgroundSync) {
@@ -85,14 +85,14 @@ namespace EbookReader.Page {
         }
 
         private void SubscribeMessages() {
-            _messageBus.Subscribe<ChangeMargin>(ChangeMargin, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<ChangeFontSize>(ChangeFontSize, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<AppSleep>(AppSleepSubscriber, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<AddBookmark>(AddBookmark, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<OpenBookmark>(OpenBookmark, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<DeleteBookmark>(DeleteBookmark, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<ChangedBookmarkName>(ChangedBookmarkName, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<GoToPage>(GoToPageHandler, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<ChangeMarginMessage>(ChangeMargin, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<ChangeFontSizeMessage>(ChangeFontSize, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<AppSleepMessage>(AppSleepSubscriber, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<AddBookmarkMessage>(AddBookmark, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<OpenBookmarkMessage>(OpenBookmark, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<DeleteBookmarkMessage>(DeleteBookmark, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<ChangedBookmarkNameMessage>(ChangedBookmarkName, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<GoToPageMessage>(GoToPageHandler, new string[] { nameof(ReaderPage) });
         }
 
         private void UnSubscribeMessages() {
@@ -129,7 +129,7 @@ namespace EbookReader.Page {
             if ((UserSettings.Control.BrightnessChange == BrightnessChange.Left && e.X <= edge) ||
                 (UserSettings.Control.BrightnessChange == BrightnessChange.Right && e.X >= totalWidth - edge)) {
                 float brightness = 1 - ((float)e.Y / ((int)WebView.Height + (2 * UserSettings.Reader.Margin)));
-                _messageBus.Send(new ChangesBrightness { Brightness = brightness });
+                _messageBus.Send(new ChangesBrightnessMessage { Brightness = brightness });
             }
         }
 
@@ -159,14 +159,14 @@ namespace EbookReader.Page {
             base.OnDisappearing();
             this.SaveProgress();
             backgroundSync = false;
-            _messageBus.Send(new FullscreenRequest(false));
+            _messageBus.Send(new FullscreenRequestMessage(false));
             this.UnSubscribeMessages();
         }
 
         protected override void OnAppearing() {
             base.OnAppearing();
             backgroundSync = true;
-            _messageBus.Send(new FullscreenRequest(true));
+            _messageBus.Send(new FullscreenRequestMessage(true));
             this.SubscribeMessages();
         }
 
@@ -197,13 +197,13 @@ namespace EbookReader.Page {
             });
         }
 
-        private void AppSleepSubscriber(AppSleep msg) {
+        private void AppSleepSubscriber(AppSleepMessage msg) {
             if (Device.RuntimePlatform == Device.UWP && backgroundSync) {
                 this.SaveProgress();
             }
         }
 
-        private void AddBookmark(AddBookmark msg) {
+        private void AddBookmark(AddBookmarkMessage msg) {
             var bookmark = new Bookmark {
                 ID = BookmarkIdProvider.ID,
                 Name = DateTime.Now.ToString(),
@@ -216,7 +216,7 @@ namespace EbookReader.Page {
             QuickPanel.PanelBookmarks.SetBookmarks(_bookshelfBook.Bookmarks);
         }
 
-        private void DeleteBookmark(DeleteBookmark msg) {
+        private void DeleteBookmark(DeleteBookmarkMessage msg) {
             msg.Bookmark.Deleted = true;
             msg.Bookmark.Name = string.Empty;
             msg.Bookmark.Position = new Position();
@@ -226,14 +226,14 @@ namespace EbookReader.Page {
             QuickPanel.PanelBookmarks.SetBookmarks(_bookshelfBook.Bookmarks);
         }
 
-        public void ChangedBookmarkName(ChangedBookmarkName msg) {
+        public void ChangedBookmarkName(ChangedBookmarkNameMessage msg) {
             msg.Bookmark.LastChange = DateTime.UtcNow;
             _bookshelfService.SaveBook(_bookshelfBook);
             _syncService.SaveBookmark(_bookshelfBook.Id, msg.Bookmark);
             QuickPanel.PanelBookmarks.SetBookmarks(_bookshelfBook.Bookmarks);
         }
 
-        private void OpenBookmark(OpenBookmark msg) {
+        private void OpenBookmark(OpenBookmarkMessage msg) {
             var loadedChapter = _ebook.Spines.ElementAt(msg.Bookmark.Position.Spine);
             if (loadedChapter != null) {
                 if (currentChapter != msg.Bookmark.Position.Spine) {
@@ -245,15 +245,15 @@ namespace EbookReader.Page {
             }
         }
 
-        private void ChangeMargin(ChangeMargin msg) {
+        private void ChangeMargin(ChangeMarginMessage msg) {
             this.SetMargin(msg.Margin);
         }
 
-        private void ChangeFontSize(ChangeFontSize msg) {
+        private void ChangeFontSize(ChangeFontSizeMessage msg) {
             this.SetFontSize(msg.FontSize);
         }
 
-        private void GoToPageHandler(GoToPage msg) {
+        private void GoToPageHandler(GoToPageMessage msg) {
             this.SendGoToPage(msg.Page, msg.Next, msg.Previous);
         }
 
@@ -336,7 +336,7 @@ namespace EbookReader.Page {
 
         private void Messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
             _bookshelfBook.Position.SpinePosition = e.Position;
-            _messageBus.Send(new PageChange { CurrentPage = e.CurrentPage, TotalPages = e.TotalPages, Position = e.Position });
+            _messageBus.Send(new PageChangeMessage { CurrentPage = e.CurrentPage, TotalPages = e.TotalPages, Position = e.Position });
         }
 
         private void _messages_OnOpenQuickPanelRequest(object sender, Model.WebViewMessages.OpenQuickPanelRequest e) {

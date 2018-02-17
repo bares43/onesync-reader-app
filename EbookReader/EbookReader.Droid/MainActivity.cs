@@ -48,7 +48,7 @@ namespace EbookReader.Droid {
         public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e) {
             if (UserSettings.Control.VolumeButtons && (keyCode == Keycode.VolumeDown || keyCode == Keycode.VolumeUp)) {
                 var messageBus = IocManager.Container.Resolve<IMessageBus>();
-                messageBus.Send(new GoToPage { Next = keyCode == Keycode.VolumeDown, Previous = keyCode == Keycode.VolumeUp });
+                messageBus.Send(new GoToPageMessage { Next = keyCode == Keycode.VolumeDown, Previous = keyCode == Keycode.VolumeUp });
 
                 return true;
             }
@@ -67,11 +67,11 @@ namespace EbookReader.Droid {
 
         private void SetUpSubscribers() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-            messageBus.Subscribe<ChangesBrightness>(ChangeBrightness);
-            messageBus.Subscribe<FullscreenRequest>(ToggleFullscreen);
+            messageBus.Subscribe<ChangesBrightnessMessage>(ChangeBrightness);
+            messageBus.Subscribe<FullscreenRequestMessage>(ToggleFullscreen);
         }
 
-        private void ChangeBrightness(ChangesBrightness msg) {
+        private void ChangeBrightness(ChangesBrightnessMessage msg) {
             RunOnUiThread(() => {
                 var brightness = Math.Min(msg.Brightness, 1);
                 brightness = Math.Max(brightness, 0);
@@ -83,7 +83,7 @@ namespace EbookReader.Droid {
             });
         }
 
-        private void ToggleFullscreen(FullscreenRequest msg) {
+        private void ToggleFullscreen(FullscreenRequestMessage msg) {
             if (msg.Fullscreen) {
                 RunOnUiThread(() => {
                     Window.AddFlags(WindowManagerFlags.Fullscreen);

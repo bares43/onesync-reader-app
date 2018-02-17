@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class AppSleep {
+    public class DeleteBookMessage {
+        public Bookshelf.Book Book { get; set; }
     }
 }

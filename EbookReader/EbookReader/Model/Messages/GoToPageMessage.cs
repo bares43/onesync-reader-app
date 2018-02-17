@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class BatteryChange {
+    public class GoToPageMessage {
+        public int Page { get; set; }
+        public bool Next { get; set; }
+        public bool Previous { get; set; }
     }
 }

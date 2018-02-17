@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class ChangeFontSize {
-        public int FontSize { get; set; }
+    public class PageChangeMessage {
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
+        public int Position { get; set; }
     }
 }

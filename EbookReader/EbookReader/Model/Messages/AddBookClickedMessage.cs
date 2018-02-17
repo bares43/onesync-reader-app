@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookReader.Model.Messages {
-    public class OpenDropboxLogin {
+    public class AddBookClickedMessage {
     }
 }

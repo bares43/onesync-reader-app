@@ -83,7 +83,7 @@ namespace EbookReader.Model.View {
         }
 
         void ConnectToDropbox() {
-            IocManager.Container.Resolve<IMessageBus>().Send(new OpenDropboxLogin());
+            IocManager.Container.Resolve<IMessageBus>().Send(new OpenDropboxLoginMessage());
         }
 
         void DisconnectDropboxAsync() {
