@@ -174,7 +174,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatteryBroadcastReceiver.cs" />
     <Compile Include="DependencyService\AndroidAssetsManager.cs" />
+    <Compile Include="DependencyService\BatteryProvider.cs" />
     <Compile Include="DependencyService\BrightnessProvider.cs" />
     <Compile Include="DependencyService\CryptoService.cs" />
     <Compile Include="MainActivity.cs" />
@@ -252,6 +254,56 @@
   <ItemGroup>
     <AndroidResource Include="..\EbookReader\Content\book.png">
       <Link>Resources\drawable\book.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\battery_almost_full.png">
+      <Link>Resources\drawable\battery_almost_full.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\battery_almost_full_white.png">
+      <Link>Resources\drawable\battery_almost_full_white.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\empty_battery.png">
+      <Link>Resources\drawable\empty_battery.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\empty_battery_white.png">
+      <Link>Resources\drawable\empty_battery_white.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\full_battery.png">
+      <Link>Resources\drawable\full_battery.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\full_battery_white.png">
+      <Link>Resources\drawable\full_battery_white.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\half_battery.png">
+      <Link>Resources\drawable\half_battery.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\half_battery_white.png">
+      <Link>Resources\drawable\half_battery_white.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\low_battery.png">
+      <Link>Resources\drawable\low_battery.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\low_battery_white.png">
+      <Link>Resources\drawable\low_battery_white.png</Link>
     </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -40,6 +40,7 @@
     <Compile Include="Converter\EqualConverter.cs" />
     <Compile Include="Converter\InverseBoolConverter.cs" />
     <Compile Include="DependencyService\IAssetsManager.cs" />
+    <Compile Include="DependencyService\IBatteryProvider.cs" />
     <Compile Include="DependencyService\IBrightnessProvider.cs" />
     <Compile Include="DependencyService\ICryproService.cs" />
     <Compile Include="Exceptions\Epub\UnknownEpubVersionException.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Model\Format\Spine.cs" />
     <Compile Include="Model\Messages\AddBookmark.cs" />
     <Compile Include="Model\Messages\AppSleep.cs" />
+    <Compile Include="Model\Messages\BatteryChange.cs" />
     <Compile Include="Model\Messages\BookmarksChangedMessage.cs" />
     <Compile Include="Model\Messages\ChangedBookmarkName.cs" />
     <Compile Include="Model\Messages\ChangeFontSize.cs" />
@@ -373,6 +375,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\battery_almost_full_white.png" />
+    <Content Include="Content\battery_almost_full.png" />
+    <Content Include="Content\empty_battery_white.png" />
+    <Content Include="Content\empty_battery.png" />
+    <Content Include="Content\full_battery_white.png" />
+    <Content Include="Content\full_battery.png" />
+    <Content Include="Content\half_battery_white.png" />
+    <Content Include="Content\half_battery.png" />
+    <Content Include="Content\low_battery_white.png" />
+    <Content Include="Content\low_battery.png" />
     <Content Include="Content\book.png" />
     <Content Include="Content\delete.png" />
     <Content Include="Content\edit.png" />

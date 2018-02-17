@@ -12,10 +12,15 @@ using Autofac;
 using Xam.Plugin.WebView.Droid;
 using EbookReader.Service;
 using EbookReader.Model.Messages;
+using Android.Content;
 
 namespace EbookReader.Droid {
     [Activity(Label = "EbookReader", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
+
+        BatteryBroadcastReceiver _batteryBroadcastReceiver;
+        private bool disposed = false;
+
         protected override void OnCreate(Bundle bundle) {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -35,10 +40,12 @@ namespace EbookReader.Droid {
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+
+            _batteryBroadcastReceiver = new BatteryBroadcastReceiver();
+            Application.Context.RegisterReceiver(_batteryBroadcastReceiver, new IntentFilter(Intent.ActionBatteryChanged));
         }
 
         public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e) {
-            if (UserSettings.Control.VolumeButtons && keyCode == Keycode.VolumeDown || keyCode == Keycode.VolumeUp) {
             if (UserSettings.Control.VolumeButtons && (keyCode == Keycode.VolumeDown || keyCode == Keycode.VolumeUp)) {
                 var messageBus = IocManager.Container.Resolve<IMessageBus>();
                 messageBus.Send(new GoToPage { Next = keyCode == Keycode.VolumeDown, Previous = keyCode == Keycode.VolumeUp });
@@ -48,22 +55,23 @@ namespace EbookReader.Droid {
 
             return base.OnKeyDown(keyCode, e);
         }
-        
+
         private void SetUpIoc() {
             IocManager.ContainerBuilder.RegisterType<AndroidAssetsManager>().As<IAssetsManager>();
             IocManager.ContainerBuilder.RegisterType<BrightnessProvider>().As<IBrightnessProvider>();
             IocManager.ContainerBuilder.RegisterInstance(new BrightnessProvider { Brightness = Android.Provider.Settings.System.GetFloat(ContentResolver, Android.Provider.Settings.System.ScreenBrightness) / 255 }).As<IBrightnessProvider>();
             IocManager.ContainerBuilder.RegisterType<CryptoService>().As<ICryptoService>();
+            IocManager.ContainerBuilder.RegisterType<BatteryProvider>().As<IBatteryProvider>();
             IocManager.Build();
         }
 
         private void SetUpSubscribers() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-            messageBus.Subscribe<Model.Messages.ChangesBrightness>(ChangeBrightness);
-            messageBus.Subscribe<Model.Messages.FullscreenRequest>(ToggleFullscreen);
+            messageBus.Subscribe<ChangesBrightness>(ChangeBrightness);
+            messageBus.Subscribe<FullscreenRequest>(ToggleFullscreen);
         }
 
-        private void ChangeBrightness(Model.Messages.ChangesBrightness msg) {
+        private void ChangeBrightness(ChangesBrightness msg) {
             RunOnUiThread(() => {
                 var brightness = Math.Min(msg.Brightness, 1);
                 brightness = Math.Max(brightness, 0);
@@ -75,7 +83,7 @@ namespace EbookReader.Droid {
             });
         }
 
-        private void ToggleFullscreen(Model.Messages.FullscreenRequest msg) {
+        private void ToggleFullscreen(FullscreenRequest msg) {
             if (msg.Fullscreen) {
                 RunOnUiThread(() => {
                     Window.AddFlags(WindowManagerFlags.Fullscreen);
@@ -87,7 +95,20 @@ namespace EbookReader.Droid {
             }
         }
 
+        protected override void Dispose(bool disposing) {
 
+            if (!disposed) {
+                if (disposing) {
+                    if (_batteryBroadcastReceiver != null) {
+                        Application.Context.UnregisterReceiver(_batteryBroadcastReceiver);
+                    }
+                }
+
+                disposed = true;
+            }
+
+            base.Dispose(disposing);
+        }
     }
 }
 
