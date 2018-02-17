@@ -450,6 +450,15 @@ window.Messages = {
     changeMargin: function(data) {
       Ebook.changeMargin(data.Margin);
     },
+    goToPage: function(data) {
+      if (data.Page > 0) {
+        Ebook.goToPage(data.Page);
+      } else if (data.Next) {
+        Ebook.goToNextPage();
+      } else if (data.Previous) {
+        Ebook.goToPreviousPage();
+      }
+    },
   },
 };
 

@@ -134,6 +134,11 @@ namespace EbookReader {
                     Device.RuntimePlatform == Device.Android ? (int)BrightnessChange.Left : (int)BrightnessChange.None);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(BrightnessChange)), (int)value);
             }
+
+            public static bool VolumeButtons {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Control), nameof(VolumeButtons)), false);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(VolumeButtons)), value);
+            }
         }
 
         private static string CreateKey(params string[] names) {

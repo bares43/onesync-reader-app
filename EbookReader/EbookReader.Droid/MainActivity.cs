@@ -11,6 +11,7 @@ using EbookReader.Droid.DependencyService;
 using Autofac;
 using Xam.Plugin.WebView.Droid;
 using EbookReader.Service;
+using EbookReader.Model.Messages;
 
 namespace EbookReader.Droid {
     [Activity(Label = "EbookReader", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -34,6 +35,17 @@ namespace EbookReader.Droid {
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+        }
+
+        public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e) {
+            if (UserSettings.Control.VolumeButtons && keyCode == Keycode.VolumeDown || keyCode == Keycode.VolumeUp) {
+                var messageBus = IocManager.Container.Resolve<IMessageBus>();
+                messageBus.Send(new GoToPage { Next = keyCode == Keycode.VolumeDown, Previous = keyCode == Keycode.VolumeUp });
+
+                return true;
+            }
+
+            return base.OnKeyDown(keyCode, e);
         }
         
         private void SetUpIoc() {

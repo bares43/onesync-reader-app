@@ -88,14 +88,11 @@ namespace EbookReader.Page {
             _messageBus.Subscribe<OpenBookmark>(OpenBookmark, new string[] { nameof(ReaderPage) });
             _messageBus.Subscribe<DeleteBookmark>(DeleteBookmark, new string[] { nameof(ReaderPage) });
             _messageBus.Subscribe<ChangedBookmarkName>(ChangedBookmarkName, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<GoToPage>(GoToPageHandler, new string[] { nameof(ReaderPage) });
         }
 
         private void UnSubscribeMessages() {
             _messageBus.UnSubscribe(nameof(ReaderPage));
-        }
-
-        private void SubscribeMessage<M>(Action<M> action) {
-            _messageBus.Subscribe(action, new string[] { nameof(ReaderPage) });
         }
 
         protected override bool OnBackButtonPressed() {
@@ -250,6 +247,10 @@ namespace EbookReader.Page {
 
         private void ChangeFontSize(ChangeFontSize msg) {
             this.SetFontSize(msg.FontSize);
+        }
+
+        private void GoToPageHandler(GoToPage msg) {
+            this.SendGoToPage(msg.Page, msg.Next, msg.Previous);
         }
 
         private async void SendChapter(Spine chapter, int position = 0, bool lastPage = false, string marker = "") {
@@ -442,6 +443,16 @@ namespace EbookReader.Page {
             };
 
             WebView.Messages.Send("goToPosition", json);
+        }
+
+        private void SendGoToPage(int page, bool next, bool previous) {
+            var json = new {
+                Page = page,
+                Next = next,
+                Previous = previous,
+            };
+
+            WebView.Messages.Send("goToPage", json);
         }
         #endregion
     }

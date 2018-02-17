@@ -69,6 +69,7 @@
     <Compile Include="Model\Messages\CloseQuickPanel.cs" />
     <Compile Include="Model\Messages\DeleteBook.cs" />
     <Compile Include="Model\Messages\DeleteBookmark.cs" />
+    <Compile Include="Model\Messages\GoToPage.cs" />
     <Compile Include="Model\Messages\OAuth2AccessTokenObtainedMessage.cs" />
     <Compile Include="Model\Messages\FullscreenRequest.cs" />
     <Compile Include="Model\Messages\OpenBook.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Model\View\SettingsReaderVM.cs" />
     <Compile Include="Model\View\SettingsSynchronizationVM.cs" />
     <Compile Include="Model\View\SynchronizationServiceVM.cs" />
+    <Compile Include="Model\View\VolumeButtonVM.cs" />
     <Compile Include="Model\WebViewMessages\PanEvent.cs" />
     <Compile Include="Model\WebViewMessages\ChapterRequest.cs" />
     <Compile Include="Model\WebViewMessages\Message.cs" />

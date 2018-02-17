@@ -37,6 +37,10 @@
                 <Label Text="Pan on the edge to control brightness" />
                 <Picker ItemsSource="{Binding PanBrightnessChange.Items}" SelectedItem="{Binding PanBrightnessChange.Value}" />
             </StackLayout>
+            <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding VolumeButton.Show}">
+                <Label Text="Use volume buttons for navigation" />
+                <Switch IsToggled="{Binding VolumeButton.Enabled}" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
