@@ -77,6 +77,10 @@ namespace EbookReader.Page {
                 return backgroundSync;
             });
 
+            if (UserSettings.Reader.NightMode) {
+                BackgroundColor = Color.FromRgb(24, 24, 25);
+            }
+
             NavigationPage.SetHasNavigationBar(this, false);
         }
 

@@ -4,7 +4,7 @@
              x:Class="EbookReader.Page.Reader.InfoPanel"
              HorizontalOptions="FillAndExpand"
              VerticalOptions="FillAndExpand"
-             BackgroundColor="{Binding BackgroundColor}"
+             BackgroundColor="Transparent"
              Orientation="Horizontal"
              Padding="5">
     <StackLayout.Resources>

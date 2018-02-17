@@ -49,13 +49,7 @@ namespace EbookReader.Model.View {
                 return Device.RuntimePlatform == Device.Android;
             }
         }
-
-        public string BackgroundColor {
-            get {
-                return UserSettings.Reader.NightMode ? "#181819" : "transparent";
-            }
-        }
-
+        
         public string TextColor {
             get {
                 return UserSettings.Reader.NightMode ? "#eff2f7" : "#000000";
