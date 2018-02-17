@@ -39,6 +39,7 @@ namespace EbookReader.Droid {
 
         public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e) {
             if (UserSettings.Control.VolumeButtons && keyCode == Keycode.VolumeDown || keyCode == Keycode.VolumeUp) {
+            if (UserSettings.Control.VolumeButtons && (keyCode == Keycode.VolumeDown || keyCode == Keycode.VolumeUp)) {
                 var messageBus = IocManager.Container.Resolve<IMessageBus>();
                 messageBus.Send(new GoToPage { Next = keyCode == Keycode.VolumeDown, Previous = keyCode == Keycode.VolumeUp });
 
