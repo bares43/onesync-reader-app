@@ -13,6 +13,10 @@ namespace EbookReader.Service {
 
         const string ProgressFilename = "progress.json";
 
+        public bool IsConnected() {
+            return !string.IsNullOrEmpty(UserSettings.Synchronization.Dropbox.AccessToken);
+        }
+
         public async Task<T> LoadJson<T>(string[] path) {
 
             try {

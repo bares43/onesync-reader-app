@@ -9,6 +9,11 @@ using Firebase.Xamarin.Database.Query;
 
 namespace EbookReader.Service {
     public class FirebaseCloudStorageService : ICloudStorageService {
+
+        public bool IsConnected() {
+            return !string.IsNullOrEmpty(UserSettings.Synchronization.Firebase.Email) && !string.IsNullOrEmpty(UserSettings.Synchronization.Firebase.Password);
+        }
+
         public async Task<T> LoadJson<T>(string[] path) {
             try {
                 var auth = await this.GetAuth();

@@ -161,6 +161,7 @@ namespace EbookReader.Service {
                 !(CrossConnectivity.Current.ConnectionTypes.Contains(Plugin.Connectivity.Abstractions.ConnectionType.WiFi) ||
                   CrossConnectivity.Current.ConnectionTypes.Contains(Plugin.Connectivity.Abstractions.ConnectionType.Desktop))
                 ) return false;
+            if (!_cloudStorageService.IsConnected()) return false;
 
             return true;
         }
