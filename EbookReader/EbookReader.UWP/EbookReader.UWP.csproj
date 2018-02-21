@@ -105,6 +105,7 @@
     </Compile>
     <Compile Include="DependencyService\BatteryProvider.cs" />
     <Compile Include="DependencyService\CryptoService.cs" />
+    <Compile Include="DependencyService\FileHelper.cs" />
     <Compile Include="DependencyService\UWPAssetsManager.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

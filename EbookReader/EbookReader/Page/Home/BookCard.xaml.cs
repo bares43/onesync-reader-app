@@ -21,7 +21,7 @@ namespace EbookReader.Page.Home {
 
             _book = book;
 
-            StyleId = book.Id;
+            StyleId = book.ID;
 
             BindingContext = new {
                 Title = book.Title,

@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace EbookReader.Model.Bookshelf {
     public class Position {
-        public int Spine { get; set; }
-        public int SpinePosition { get; set; }
+        public int Spine { get; }
+        public int SpinePosition { get; }
 
         public Position() {
+        }
+
+        public Position(int spine, int spinePosition) {
+            this.Spine = spine;
+            this.SpinePosition = spinePosition;
         }
 
         public Position(Position position) {

@@ -10,6 +10,7 @@ using EbookReader.View;
 using EbookReader.Provider;
 using EbookReader.Model.Format.EpubFormat;
 using EbookReader.Model.Format;
+using EbookReader.Repository;
 
 namespace EbookReader {
     public static class IocManager {
@@ -55,6 +56,10 @@ namespace EbookReader {
             ContainerBuilder.RegisterType<DumbCloudStorageService>().Keyed<ICloudStorageService>(SynchronizationServicesProvider.Dumb);
             ContainerBuilder.RegisterType<DropboxCloudStorageService>().Keyed<ICloudStorageService>(SynchronizationServicesProvider.Dropbox);
             ContainerBuilder.RegisterType<FirebaseCloudStorageService>().Keyed<ICloudStorageService>(SynchronizationServicesProvider.Firebase);
+            ContainerBuilder.RegisterType<DatabaseService>().As<IDatabaseService>().SingleInstance();
+            ContainerBuilder.RegisterType<BookRepository>().As<IBookRepository>();
+            ContainerBuilder.RegisterType<BookmarkRepository>().As<IBookmarkRepository>();
+            ContainerBuilder.RegisterType<BookmarkService>().As<IBookmarkService>();
         }
 
     }

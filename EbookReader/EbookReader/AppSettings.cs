@@ -22,5 +22,9 @@ namespace EbookReader {
             public const string Android = "3409ff3e-0819-467d-b9a0-69f611f33bcb";
             public const string UWP = "737f997b-2a89-441d-8248-7f1f1fc889e3";
         }
+
+        public static class Bookshelft {
+            public const string SqlLiteFilename = "bookshelf.db3";
+        }
     }
 }

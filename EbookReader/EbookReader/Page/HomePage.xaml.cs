@@ -108,14 +108,14 @@ namespace EbookReader.Page {
             var deleteSyncButton = "Delete including all synchronizations";
             var confirm = await DisplayActionSheet("Delete book?", deleteButton, "No", deleteSyncButton);
             if (confirm == deleteButton || confirm == deleteSyncButton) {
-                var card = Bookshelf.Children.FirstOrDefault(o => o.StyleId == msg.Book.Id);
+                var card = Bookshelf.Children.FirstOrDefault(o => o.StyleId == msg.Book.ID);
                 if (card != null) {
                     Bookshelf.Children.Remove(card);
                 }
-                _bookshelfService.RemoveById(msg.Book.Id);
+                _bookshelfService.RemoveById(msg.Book.ID);
 
                 if (confirm == deleteSyncButton) {
-                    _syncService.DeleteBook(msg.Book.Id);
+                    _syncService.DeleteBook(msg.Book.ID);
                 }
             }
         }
@@ -124,10 +124,6 @@ namespace EbookReader.Page {
             var page = new ReaderPage();
             page.LoadBook(book);
             await Navigation.PushAsync(page);
-        }
-
-        private void OpenButton_Clicked(object sender, EventArgs e) {
-            _messageBus.Send(new AddBookClickedMessage());
         }
     }
 }

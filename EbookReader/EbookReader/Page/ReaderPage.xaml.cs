@@ -23,6 +23,7 @@ namespace EbookReader.Page {
         IBookshelfService _bookshelfService;
         IMessageBus _messageBus;
         ISyncService _syncService;
+        IBookmarkService _bookmarkService;
 
         int currentChapter;
 
@@ -47,6 +48,7 @@ namespace EbookReader.Page {
             _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
             _syncService = IocManager.Container.Resolve<ISyncService>();
+            _bookmarkService = IocManager.Container.Resolve<IBookmarkService>();
 
             // webview events
             WebView.Messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
@@ -176,7 +178,7 @@ namespace EbookReader.Page {
             var position = _bookshelfBook.Position;
 
             QuickPanel.PanelContent.SetNavigation(_ebook.Navigation);
-            QuickPanel.PanelBookmarks.SetBookmarks(_bookshelfBook.Bookmarks);
+            this.RefreshBookmarks();
 
             var chapter = _ebook.Spines.First();
             var positionInChapter = 0;
@@ -204,33 +206,26 @@ namespace EbookReader.Page {
         }
 
         private void AddBookmark(AddBookmarkMessage msg) {
-            var bookmark = new Bookmark {
-                ID = BookmarkIdProvider.ID,
-                Name = DateTime.Now.ToString(),
-                Position = new Position(_bookshelfBook.Position),
-                LastChange = DateTime.UtcNow,
-            };
-            _bookshelfBook.Bookmarks.Add(bookmark);
-            _bookshelfService.SaveBook(_bookshelfBook);
-            _syncService.SaveBookmark(_bookshelfBook.Id, bookmark);
-            QuickPanel.PanelBookmarks.SetBookmarks(_bookshelfBook.Bookmarks);
+            _bookmarkService.CreateBookmark(DateTime.Now.ToString(), _bookshelfBook.ID, _bookshelfBook.Position);
+
+            this.RefreshBookmarks();
         }
 
         private void DeleteBookmark(DeleteBookmarkMessage msg) {
-            msg.Bookmark.Deleted = true;
-            msg.Bookmark.Name = string.Empty;
-            msg.Bookmark.Position = new Position();
-            msg.Bookmark.LastChange = DateTime.UtcNow;
-            _bookshelfService.SaveBook(_bookshelfBook);
-            _syncService.SaveBookmark(_bookshelfBook.Id, msg.Bookmark);
-            QuickPanel.PanelBookmarks.SetBookmarks(_bookshelfBook.Bookmarks);
+            _bookmarkService.DeleteBookmark(msg.Bookmark, _bookshelfBook.ID);
+
+            this.RefreshBookmarks();
         }
 
         public void ChangedBookmarkName(ChangedBookmarkNameMessage msg) {
-            msg.Bookmark.LastChange = DateTime.UtcNow;
-            _bookshelfService.SaveBook(_bookshelfBook);
-            _syncService.SaveBookmark(_bookshelfBook.Id, msg.Bookmark);
-            QuickPanel.PanelBookmarks.SetBookmarks(_bookshelfBook.Bookmarks);
+            _bookmarkService.SaveBookmark(msg.Bookmark);
+            _syncService.SaveBookmark(_bookshelfBook.ID, msg.Bookmark);
+            this.RefreshBookmarks();
+        }
+
+        private async void RefreshBookmarks() {
+            var bookmarks = await _bookmarkService.LoadBookmarksByBookID(_bookshelfBook.ID);
+            QuickPanel.PanelBookmarks.SetBookmarks(bookmarks);
         }
 
         private void OpenBookmark(OpenBookmarkMessage msg) {
@@ -239,7 +234,7 @@ namespace EbookReader.Page {
                 if (currentChapter != msg.Bookmark.Position.Spine) {
                     this.SendChapter(loadedChapter, position: msg.Bookmark.Position.SpinePosition);
                 } else {
-                    _bookshelfBook.Position.SpinePosition = msg.Bookmark.Position.SpinePosition;
+                    _bookshelfBook.SpinePosition = msg.Bookmark.Position.SpinePosition;
                     this.GoToPosition(msg.Bookmark.Position.SpinePosition);
                 }
             }
@@ -259,7 +254,7 @@ namespace EbookReader.Page {
 
         private async void SendChapter(Spine chapter, int position = 0, bool lastPage = false, string marker = "") {
             currentChapter = _ebook.Spines.IndexOf(chapter);
-            _bookshelfBook.Position.Spine = currentChapter;
+            _bookshelfBook.Spine = currentChapter;
 
             var bookLoader = EbookFormatHelper.GetBookLoader(_bookshelfBook.Format);
 
@@ -277,12 +272,12 @@ namespace EbookReader.Page {
             _bookshelfService.SaveBook(_bookshelfBook);
             if (!_bookshelfBook.Position.Equals(lastSavedPosition)) {
                 lastSavedPosition = new Position(_bookshelfBook.Position);
-                _syncService.SaveProgress(_bookshelfBook.Id, _bookshelfBook.Position);
+                _syncService.SaveProgress(_bookshelfBook.ID, _bookshelfBook.Position);
             }
         }
 
         private async void LoadProgress() {
-            var syncPosition = await _syncService.LoadProgress(_bookshelfBook.Id);
+            var syncPosition = await _syncService.LoadProgress(_bookshelfBook.ID);
             if (!syncPending &&
                 syncPosition != null &&
                 syncPosition.Position != null &&
@@ -299,7 +294,8 @@ namespace EbookReader.Page {
                             if (currentChapter != syncPosition.Position.Spine) {
                                 this.SendChapter(loadedChapter, position: syncPosition.Position.SpinePosition);
                             } else {
-                                _bookshelfBook.Position.SpinePosition = syncPosition.Position.SpinePosition;
+                                _bookshelfBook.SpinePosition = syncPosition.Position.SpinePosition;
+                                _bookshelfService.SaveBook(_bookshelfBook);
                                 this.GoToPosition(syncPosition.Position.SpinePosition);
                             }
                         }
@@ -335,7 +331,8 @@ namespace EbookReader.Page {
         }
 
         private void Messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
-            _bookshelfBook.Position.SpinePosition = e.Position;
+            _bookshelfBook.SpinePosition = e.Position;
+            _bookshelfService.SaveBook(_bookshelfBook);
             _messageBus.Send(new PageChangeMessage { CurrentPage = e.CurrentPage, TotalPages = e.TotalPages, Position = e.Position });
         }
 

@@ -39,10 +39,13 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="Converter\EqualConverter.cs" />
     <Compile Include="Converter\InverseBoolConverter.cs" />
+    <Compile Include="Repository\BookmarkRepository.cs" />
+    <Compile Include="Repository\BookRepository.cs" />
     <Compile Include="DependencyService\IAssetsManager.cs" />
     <Compile Include="DependencyService\IBatteryProvider.cs" />
     <Compile Include="DependencyService\IBrightnessProvider.cs" />
     <Compile Include="DependencyService\ICryproService.cs" />
+    <Compile Include="DependencyService\IFileHelper.cs" />
     <Compile Include="Exceptions\Epub\UnknownEpubVersionException.cs" />
     <Compile Include="Exceptions\UnknownFileFormatException.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
@@ -163,7 +166,6 @@
       <DependentUpon>Synchronization.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\BookshelfLock.cs" />
     <Compile Include="Provider\BookmarkIdProvider.cs" />
     <Compile Include="Provider\BrightnessChangeProvider.cs" />
     <Compile Include="Provider\DeviceIdProvider.cs" />
@@ -172,9 +174,12 @@
     <Compile Include="Provider\MarginProvider.cs" />
     <Compile Include="Provider\ScrollSpeedProvider.cs" />
     <Compile Include="Provider\SynchronizationServicesProvider.cs" />
+    <Compile Include="Repository\IBookmarkRepository.cs" />
+    <Compile Include="Repository\IBookRepository.cs" />
+    <Compile Include="Service\BookmarkService.cs" />
     <Compile Include="Service\BookshelfService.cs" />
     <Compile Include="Model\Bookshelf\Book.cs" />
-    <Compile Include="Model\Bookshelf\Bookshelf.cs" />
+    <Compile Include="Service\DatabaseService.cs" />
     <Compile Include="Service\DropboxCloudStorageService.cs" />
     <Compile Include="Service\DumbCloudStorageService.cs" />
     <Compile Include="Service\EpubLoader.cs" />
@@ -186,8 +191,10 @@
     <Compile Include="Service\FirebaseCloudStorageService.cs" />
     <Compile Include="Service\HtmlLoader.cs" />
     <Compile Include="Service\IBookLoader.cs" />
+    <Compile Include="Service\IBookmarkService.cs" />
     <Compile Include="Service\IBookshelfService.cs" />
     <Compile Include="Service\ICloudStorageService.cs" />
+    <Compile Include="Service\IDatabaseService.cs" />
     <Compile Include="Service\IFileService.cs" />
     <Compile Include="Service\IMessageBus.cs" />
     <Compile Include="Service\ISyncService.cs" />
@@ -294,6 +301,18 @@
     </Reference>
     <Reference Include="Plugin.Settings.Abstractions, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\netstandard1.0\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net, Version=1.5.166.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\sqlite-net-pcl.1.5.166-beta\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.8\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>

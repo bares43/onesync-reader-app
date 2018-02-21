@@ -109,6 +109,7 @@ namespace EbookReader.UWP {
             IocManager.ContainerBuilder.RegisterType<UWPAssetsManager>().As<IAssetsManager>();
             IocManager.ContainerBuilder.RegisterType<CryptoService>().As<ICryptoService>();
             IocManager.ContainerBuilder.RegisterType<BatteryProvider>().As<IBatteryProvider>();
+            IocManager.ContainerBuilder.RegisterType<FileHelper>().As<IFileHelper>();
             IocManager.Build();
         }
 

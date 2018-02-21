@@ -31,7 +31,7 @@ namespace EbookReader.Model.Sync {
         [JsonIgnore]
         public Position Position {
             get {
-                return new Position { Spine = S, SpinePosition = P };
+                return new Position(S, P);
             }
             set {
                 S = value.Spine;
