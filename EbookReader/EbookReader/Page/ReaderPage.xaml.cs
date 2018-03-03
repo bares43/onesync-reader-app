@@ -68,17 +68,7 @@ namespace EbookReader.Page {
             }
 
             _messageBus.Send(new FullscreenRequestMessage(true));
-
-            Device.StartTimer(new TimeSpan(0, 1, 0), () => {
-                if (backgroundSync) {
-                    this.LoadProgress();
-                    this.SaveProgress();
-                    this.SynchronizeBookmarks();
-                }
-
-                return backgroundSync;
-            });
-
+            
             if (UserSettings.Reader.NightMode) {
                 BackgroundColor = Color.FromRgb(24, 24, 25);
             }
@@ -170,6 +160,21 @@ namespace EbookReader.Page {
             backgroundSync = true;
             _messageBus.Send(new FullscreenRequestMessage(true));
             this.SubscribeMessages();
+
+            var task = Task.Run(() => {
+                this.LoadProgress();
+                this.SynchronizeBookmarks();
+            });
+
+            Device.StartTimer(new TimeSpan(0, 1, 0), () => {
+                if (backgroundSync) {
+                    this.LoadProgress();
+                    this.SaveProgress();
+                    this.SynchronizeBookmarks();
+                }
+
+                return backgroundSync;
+            });
         }
 
         public async void LoadBook(Book book) {
@@ -192,11 +197,6 @@ namespace EbookReader.Page {
             }
 
             this.SendChapter(chapter, position: positionInChapter);
-
-            var task = Task.Run(() => {
-                this.LoadProgress();
-                this.SynchronizeBookmarks();
-            });
         }
 
         private void AppSleepSubscriber(AppSleepMessage msg) {
@@ -269,6 +269,7 @@ namespace EbookReader.Page {
 
         #region sync
         private void SaveProgress() {
+            if (_bookshelfBook == null) return;
             _bookshelfService.SaveBook(_bookshelfBook);
             if (!_bookshelfBook.Position.Equals(lastSavedPosition)) {
                 lastSavedPosition = new Position(_bookshelfBook.Position);
@@ -277,6 +278,7 @@ namespace EbookReader.Page {
         }
 
         private async void LoadProgress() {
+            if (_bookshelfBook == null) return;
             var syncPosition = await _syncService.LoadProgress(_bookshelfBook.ID);
             if (!syncPending &&
                 syncPosition != null &&
@@ -306,6 +308,7 @@ namespace EbookReader.Page {
         }
 
         private void SynchronizeBookmarks() {
+            if (_bookshelfBook == null) return;
             _syncService.SynchronizeBookmarks(_bookshelfBook);
         }
         #endregion
