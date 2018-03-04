@@ -8,23 +8,23 @@ namespace EbookReader {
     public static class AppSettings {
         public static class Synchronization {
             public static class Firebase {
-                public const string BaseUrl = "https://ebook-reader-b6053.firebaseio.com/";
-                public const string ApiKey = "AIzaSyA4TOO3_Pa1kb_s6zjBMqpehPLrTk8SrLA";
+                public static string BaseUrl => SecretSettings.Synchronization.Firebase.BaseUrl;
+                public static string ApiKey => SecretSettings.Synchronization.Firebase.ApiKey;
             }
 
             public static class Dropbox {
-                public const string ClientID = "wk719mekght88r6";
-                public const string RedirectUrl = "https://janbares.cz/www/onesync-reader/oauth2-success";
+                public static string ClientID => SecretSettings.Synchronization.Dropbox.ClientID;
+                public static string RedirectUrl = "https://janbares.cz/www/onesync-reader/oauth2-success";
             }
         }
 
         public static class AppCenter {
-            public const string Android = "3409ff3e-0819-467d-b9a0-69f611f33bcb";
-            public const string UWP = "737f997b-2a89-441d-8248-7f1f1fc889e3";
+            public static string Android => SecretSettings.AppCenter.Android;
+            public static string UWP => SecretSettings.AppCenter.UWP;
         }
 
         public static class Bookshelft {
-            public const string SqlLiteFilename = "bookshelf.db3";
+            public static string SqlLiteFilename = "bookshelf.db3";
         }
     }
 }

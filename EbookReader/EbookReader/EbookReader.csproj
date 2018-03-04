@@ -176,6 +176,7 @@
     <Compile Include="Provider\SynchronizationServicesProvider.cs" />
     <Compile Include="Repository\IBookmarkRepository.cs" />
     <Compile Include="Repository\IBookRepository.cs" />
+    <Compile Include="SecretSettings.cs" />
     <Compile Include="Service\BookmarkService.cs" />
     <Compile Include="Service\BookshelfService.cs" />
     <Compile Include="Model\Bookshelf\Book.cs" />
