@@ -17,11 +17,9 @@ namespace EbookReader.Service {
 
         protected string[] Extensions;
 
-        protected string ContentPath {
-            get {
-                return $"content.{Extensions[0]}";
-            }
-        }
+        protected string ContentPath => $"content.{Extensions[0]}";
+
+        protected string TitlePath => "title";
 
         protected EbookFormat EbookFormat;
 
@@ -37,8 +35,8 @@ namespace EbookReader.Service {
             };
         }
 
-        public virtual async Task<Ebook> GetBook(string filename, byte[] filedata) {
-            var folder = await this.LoadEpub(filename, filedata);
+        public virtual async Task<Ebook> GetBook(string filename, byte[] filedata, string bookID) {
+            var folder = await this.LoadEpub(filename, filedata, bookID);
 
             return await OpenBook(folder);
         }
@@ -49,13 +47,10 @@ namespace EbookReader.Service {
         }
 
         public virtual async Task<Ebook> OpenBook(string path) {
-            var epubFolder = await FileSystem.Current.LocalStorage.GetFolderAsync(path);
+            var folder = await FileSystem.Current.LocalStorage.GetFolderAsync(path);
 
-            var title = path;
-
-            foreach(var toRemove in Extensions) {
-                title = title.Replace($".{toRemove}", "");
-            }
+            var titleFile = await folder.GetFileAsync(TitlePath);
+            var title = await titleFile.ReadAllTextAsync();
 
             var epub = new Ebook() {
                 Title = title,
@@ -87,16 +82,16 @@ namespace EbookReader.Service {
             });
         }
 
-        protected virtual async Task<string> LoadEpub(string filename, byte[] filedata) {
-            var folderName = filename.Split('.').First();
-
+        protected virtual async Task<string> LoadEpub(string filename, byte[] filedata, string bookID) {
             var rootFolder = FileSystem.Current.LocalStorage;
-            var folder = await rootFolder.CreateFolderAsync(folderName, CreationCollisionOption.ReplaceExisting);
-            var file = await folder.CreateFileAsync(ContentPath, CreationCollisionOption.OpenIfExists);
-
-            using (Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite)) {
+            var folder = await rootFolder.CreateFolderAsync(bookID, CreationCollisionOption.ReplaceExisting);
+            var contentFile = await folder.CreateFileAsync(ContentPath, CreationCollisionOption.ReplaceExisting);
+            using (Stream stream = await contentFile.OpenAsync(FileAccess.ReadAndWrite)) {
                 await stream.WriteAsync(filedata, 0, filedata.Length);
             }
+
+            var titleFile = await folder.CreateFileAsync(TitlePath, CreationCollisionOption.ReplaceExisting);
+            await titleFile.WriteAllTextAsync(filename.Split('.').First());
 
             return folder.Name;
         }

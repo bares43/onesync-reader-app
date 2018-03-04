@@ -90,8 +90,10 @@ namespace EbookReader.Page {
 
                 try {
                     var book = await _bookshelfService.AddBook(pickedFile);
-                    Bookshelf.Children.Add(new BookCard(book));
-                    this.SendBookToReader(book);
+                    if (book.Item2) {
+                        Bookshelf.Children.Add(new BookCard(book.Item1));
+                    }
+                    this.SendBookToReader(book.Item1);
                 } catch (Exception) {
                     await DisplayAlert("Error", "File failed to open", "OK");
                 }

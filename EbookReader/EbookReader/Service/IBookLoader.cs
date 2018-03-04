@@ -7,7 +7,7 @@ using EbookReader.Model.Format;
 
 namespace EbookReader.Service {
     public interface IBookLoader {
-        Task<Ebook> GetBook(string filename, byte[] filedata);
+        Task<Ebook> GetBook(string filename, byte[] filedata, string bookID);
         Task<Ebook> OpenBook(string path);
         Task<string> GetChapter(Ebook book, Spine chapter);
         Task<Model.EpubLoader.HtmlResult> PrepareHTML(string html, Ebook book, File chapter);

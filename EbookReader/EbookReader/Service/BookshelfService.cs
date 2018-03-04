@@ -25,23 +25,24 @@ namespace EbookReader.Service {
             _bookmarkRepository = bookmarkRepository;
         }
 
-        public async Task<Book> AddBook(FileData file) {
+        public async Task<Tuple<Book, bool>> AddBook(FileData file) {
 
+            var newBook = false;
             var bookLoader = EbookFormatHelper.GetBookLoader(file.FileName);
-
-            var ebook = await bookLoader.GetBook(file.FileName, file.DataArray);
 
             var id = _cryptoService.GetMd5(file.DataArray);
 
             var bookshelfBook = await _bookRepository.GetBookByIDAsync(id);
 
             if (bookshelfBook == null) {
+                var ebook = await bookLoader.GetBook(file.FileName, file.DataArray, id);
                 bookshelfBook = bookLoader.CreateBookshelfBook(ebook);
                 bookshelfBook.ID = id;
                 await _bookRepository.SaveBookAsync(bookshelfBook);
+                newBook = true;
             }
 
-            return bookshelfBook;
+            return new Tuple<Book, bool>(bookshelfBook, newBook);
         }
 
         public async Task<List<Book>> LoadBooks() {

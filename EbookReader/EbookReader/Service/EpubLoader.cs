@@ -32,8 +32,8 @@ namespace EbookReader.Service {
             };
         }
 
-        public async Task<Model.Format.Ebook> GetBook(string filename, byte[] filedata) {
-            var folder = await this.LoadEpub(filename, filedata);
+        public async Task<Model.Format.Ebook> GetBook(string filename, byte[] filedata, string bookID) {
+            var folder = await this.LoadEpub(bookID, filedata);
 
             return await OpenBook(folder);
         }
@@ -193,11 +193,9 @@ namespace EbookReader.Service {
             return contentFilePath;
         }
 
-        private async Task<string> LoadEpub(string filename, byte[] filedata) {
-            var folderName = filename.Split('.').First();
-
+        private async Task<string> LoadEpub(string bookID, byte[] filedata) {
             var rootFolder = FileSystem.Current.LocalStorage;
-            var folder = await rootFolder.CreateFolderAsync(folderName, CreationCollisionOption.ReplaceExisting);
+            var folder = await rootFolder.CreateFolderAsync(bookID, CreationCollisionOption.ReplaceExisting);
             var file = await folder.CreateFileAsync("temp.zip", CreationCollisionOption.OpenIfExists);
 
             using (Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite)) {
