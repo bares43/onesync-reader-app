@@ -205,6 +205,7 @@
     <Compile Include="Service\TxtLoader.cs" />
     <Compile Include="Service\WebViewMessages.cs" />
     <Compile Include="UserSettings.cs" />
+    <Compile Include="View\MyFloatButton.cs" />
     <Compile Include="View\ReaderWebView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -395,6 +396,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\add.png" />
     <Content Include="Content\battery_almost_full_white.png" />
     <Content Include="Content\battery_almost_full.png" />
     <Content Include="Content\empty_battery_white.png" />
@@ -403,6 +405,7 @@
     <Content Include="Content\full_battery.png" />
     <Content Include="Content\half_battery_white.png" />
     <Content Include="Content\half_battery.png" />
+    <Content Include="Content\info_white.png" />
     <Content Include="Content\low_battery_white.png" />
     <Content Include="Content\low_battery.png" />
     <Content Include="Content\book.png" />
@@ -410,6 +413,7 @@
     <Content Include="Content\edit.png" />
     <Content Include="Content\info.png" />
     <Content Include="Content\save.png" />
+    <Content Include="Content\settings_white.png" />
     <Content Include="Content\settings.png" />
   </ItemGroup>
   <ItemGroup>

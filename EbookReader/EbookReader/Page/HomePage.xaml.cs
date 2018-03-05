@@ -27,14 +27,14 @@ namespace EbookReader.Page {
 
             var settingsItem = new ToolbarItem {
                 Text = "Settings",
-                Icon = "settings.png"
+                Icon = Device.RuntimePlatform == Device.Android ? "settings_white.png" : "settings.png"
             };
             settingsItem.Clicked += SettingsItem_Clicked;
             ToolbarItems.Add(settingsItem);
 
             var aboutItem = new ToolbarItem {
                 Text = "About",
-                Icon = "info.png"
+                Icon = Device.RuntimePlatform == Device.Android ? "info_white.png" : "info.png",
             };
             aboutItem.Clicked += AboutItem_Clicked;
 
@@ -44,6 +44,12 @@ namespace EbookReader.Page {
 
         protected override void OnAppearing() {
             base.OnAppearing();
+
+            // because of floating action button on android
+            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 200), () => {
+                _messageBus.Send(new FullscreenRequestMessage(false));
+                return false;
+            });
 
             this.ShowAnalyticsAgreement();
 
@@ -126,6 +132,10 @@ namespace EbookReader.Page {
             var page = new ReaderPage();
             page.LoadBook(book);
             await Navigation.PushAsync(page);
+        }
+
+        private void MyFloatButton_Clicked(object sender, EventArgs e) {
+            _messageBus.Send(new AddBookClickedMessage());
         }
     }
 }

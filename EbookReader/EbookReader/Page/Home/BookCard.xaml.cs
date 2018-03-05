@@ -24,13 +24,10 @@ namespace EbookReader.Page.Home {
             StyleId = book.ID;
 
             BindingContext = new {
-                Title = book.Title,
+                book.Title,
                 Width = Card.CardWidth,
                 Height = Card.CardHeight,
-                ImagePosition = new Rectangle(0, 0, Card.CardWidth, Card.CardHeight),
-                PanelPosition = new Rectangle(0, 0, Card.CardWidth, 30),
-                TextPosition = new Rectangle(0, Card.CardHeight - 70, Card.CardWidth, 70),
-                DeletePosition = new Rectangle(Card.CardWidth - 26 - 2, 2, 26, 26)
+                PlaceholderWidth = Card.CardWidth * .75,
             };
 
             InitializeComponent();
@@ -57,6 +54,8 @@ namespace EbookReader.Page.Home {
 
                 Cover.Source = ImageSource.FromStream(() => stream);
                 Cover.Aspect = Aspect.Fill;
+                Cover.WidthRequest = Card.CardWidth;
+                Cover.HeightRequest = Card.CardHeight;
             }
         }
 

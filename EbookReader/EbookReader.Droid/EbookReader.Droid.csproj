@@ -198,6 +198,7 @@
     <Compile Include="DependencyService\BrightnessProvider.cs" />
     <Compile Include="DependencyService\CryptoService.cs" />
     <Compile Include="DependencyService\FileHelper.cs" />
+    <Compile Include="FloatingActionButtonRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="OAuth2LoginPageRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -222,7 +223,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
-    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="..\..\ReaderJS\Build\reader.css">
@@ -323,6 +326,21 @@
   <ItemGroup>
     <AndroidResource Include="..\EbookReader\Content\low_battery_white.png">
       <Link>Resources\drawable\low_battery_white.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\add.png">
+      <Link>Resources\drawable\add.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\info_white.png">
+      <Link>Resources\drawable\info_white.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\settings_white.png">
+      <Link>Resources\drawable\settings_white.png</Link>
     </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

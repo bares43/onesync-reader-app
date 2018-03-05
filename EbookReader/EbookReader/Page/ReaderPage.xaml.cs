@@ -151,7 +151,6 @@ namespace EbookReader.Page {
             base.OnDisappearing();
             this.SaveProgress();
             backgroundSync = false;
-            _messageBus.Send(new FullscreenRequestMessage(false));
             this.UnSubscribeMessages();
         }
 

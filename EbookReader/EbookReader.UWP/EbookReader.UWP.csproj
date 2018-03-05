@@ -141,11 +141,17 @@
     <Content Include="..\EbookReader\Content\info.png">
       <Link>info.png</Link>
     </Content>
+    <Content Include="..\EbookReader\Content\info_white.png">
+      <Link>info_white.png</Link>
+    </Content>
     <Content Include="..\EbookReader\Content\save.png">
       <Link>save.png</Link>
     </Content>
     <Content Include="..\EbookReader\Content\settings.png">
       <Link>settings.png</Link>
+    </Content>
+    <Content Include="..\EbookReader\Content\settings_white.png">
+      <Link>settings_white.png</Link>
     </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
