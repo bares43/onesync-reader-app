@@ -39,6 +39,13 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="Converter\EqualConverter.cs" />
     <Compile Include="Converter\InverseBoolConverter.cs" />
+    <Compile Include="Page\MasterDetailPage1.xaml.cs">
+      <DependentUpon>MasterDetailPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\MasterDetailPage1Master.xaml.cs">
+      <DependentUpon>MasterDetailPage1Master.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\MasterDetailPage1MenuItem.cs" />
     <Compile Include="Repository\BookmarkRepository.cs" />
     <Compile Include="Repository\BookRepository.cs" />
     <Compile Include="DependencyService\IAssetsManager.cs" />
@@ -454,6 +461,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Page\Settings\Application.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\MasterDetailPage1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\MasterDetailPage1Master.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

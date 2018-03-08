@@ -25,21 +25,24 @@ namespace EbookReader.Page {
 
             Init();
 
-            var settingsItem = new ToolbarItem {
-                Text = "Settings",
-                Icon = Device.RuntimePlatform == Device.Android ? "settings_white.png" : "settings.png"
-            };
-            settingsItem.Clicked += SettingsItem_Clicked;
-            ToolbarItems.Add(settingsItem);
+            if (!App.HasMasterDetailPage) {
 
-            var aboutItem = new ToolbarItem {
-                Text = "About",
-                Icon = Device.RuntimePlatform == Device.Android ? "info_white.png" : "info.png",
-            };
-            aboutItem.Clicked += AboutItem_Clicked;
+                var settingsItem = new ToolbarItem {
+                    Text = "Settings",
+                    Icon = "settings.png"
+                };
+                settingsItem.Clicked += SettingsItem_Clicked;
+                ToolbarItems.Add(settingsItem);
 
-            ToolbarItems.Add(aboutItem);
+                var aboutItem = new ToolbarItem {
+                    Text = "About",
+                    Icon = "info.png",
+                };
+                aboutItem.Clicked += AboutItem_Clicked;
 
+                ToolbarItems.Add(aboutItem);
+
+            }
         }
 
         protected override void OnAppearing() {

@@ -56,6 +56,24 @@ namespace EbookReader.Droid {
             return base.OnKeyDown(keyCode, e);
         }
 
+
+        bool doubleBackToExitPressedOnce = false;
+
+        public override void OnBackPressed() {
+            if (doubleBackToExitPressedOnce) {
+                base.OnBackPressed();
+                Java.Lang.JavaSystem.Exit(0);
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.MakeText(this, "Press once again to exit!", ToastLength.Short).Show();
+
+            new Handler().PostDelayed(() => {
+                doubleBackToExitPressedOnce = false;
+            }, 1000);
+        }
+
         private void SetUpIoc() {
             IocManager.ContainerBuilder.RegisterType<AndroidAssetsManager>().As<IAssetsManager>();
             IocManager.ContainerBuilder.RegisterType<BrightnessProvider>().As<IBrightnessProvider>();
