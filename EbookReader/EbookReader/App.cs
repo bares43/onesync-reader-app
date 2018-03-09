@@ -14,9 +14,6 @@ using Microsoft.AppCenter.Crashes;
 namespace EbookReader {
     public class App : Application {
 
-        static SettingsPage settingsPage;
-        static AboutPage aboutPage;
-
         public static bool HasMasterDetailPage {
             get {
                 return Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android;
@@ -36,22 +33,6 @@ namespace EbookReader {
                 MainPage = new NavigationPage(new HomePage());
             }
 
-        }
-
-        public static SettingsPage SettingsPage() {
-            if (settingsPage == null) {
-                settingsPage = new SettingsPage();
-            }
-
-            return settingsPage;
-        }
-
-        public static AboutPage AboutPage() {
-            if (aboutPage == null) {
-                aboutPage = new AboutPage();
-            }
-
-            return aboutPage;
         }
 
         protected override void OnStart() {

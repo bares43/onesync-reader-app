@@ -20,7 +20,9 @@ namespace EbookReader.Page {
             if (item == null)
                 return;
 
-            if (!Detail.Navigation.NavigationStack.Any() || Detail.Navigation.NavigationStack.Last().GetType() != item.TargetType) {
+            if (!Detail.Navigation.NavigationStack.Any() ||
+                Detail.Navigation.NavigationStack.Last().GetType() != item.TargetType
+            ) {
                 var page = (Xamarin.Forms.Page)Activator.CreateInstance(item.TargetType);
                 page.Title = item.Title;
 
@@ -30,7 +32,7 @@ namespace EbookReader.Page {
             IsPresented = false;
 
             MasterPage.ListView.SelectedItem = null;
-            
+
         }
     }
 }

@@ -60,11 +60,11 @@ namespace EbookReader.Page {
         }
 
         private async void AboutItem_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(App.AboutPage());
+            await Navigation.PushAsync(new AboutPage());
         }
 
         private async void SettingsItem_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(App.SettingsPage());
+            await Navigation.PushAsync(new SettingsPage());
         }
 
         private async void ShowAnalyticsAgreement() {
