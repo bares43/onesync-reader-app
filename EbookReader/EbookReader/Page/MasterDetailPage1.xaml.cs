@@ -20,10 +20,13 @@ namespace EbookReader.Page {
             if (item == null)
                 return;
 
-            var page = (Xamarin.Forms.Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
+            if (!Detail.Navigation.NavigationStack.Any() || Detail.Navigation.NavigationStack.Last().GetType() != item.TargetType) {
+                var page = (Xamarin.Forms.Page)Activator.CreateInstance(item.TargetType);
+                page.Title = item.Title;
 
-            Detail = new NavigationPage(page);
+                Detail.Navigation.PushAsync(page);
+            }
+
             IsPresented = false;
 
             MasterPage.ListView.SelectedItem = null;

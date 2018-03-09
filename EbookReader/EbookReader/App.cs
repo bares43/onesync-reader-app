@@ -26,11 +26,15 @@ namespace EbookReader {
         public App() {
 
             if (App.HasMasterDetailPage) {
-                MainPage = new MasterDetailPage1();
+                var master = new MasterDetailPage1();
+                MainPage = master;
+
+                IocManager.Container.Resolve<IMessageBus>().Subscribe<BackPressedMessage>(async (m) => {
+                    await master.Detail.Navigation.PopAsync();
+                });
             } else {
                 MainPage = new NavigationPage(new HomePage());
             }
-
 
         }
 

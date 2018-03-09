@@ -20,6 +20,7 @@ namespace EbookReader.Droid {
 
         BatteryBroadcastReceiver _batteryBroadcastReceiver;
         private bool disposed = false;
+        private bool doubleBackToExitPressedOnce = false;
 
         protected override void OnCreate(Bundle bundle) {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -55,10 +56,7 @@ namespace EbookReader.Droid {
 
             return base.OnKeyDown(keyCode, e);
         }
-
-
-        bool doubleBackToExitPressedOnce = false;
-
+        
         public override void OnBackPressed() {
             if (doubleBackToExitPressedOnce) {
                 base.OnBackPressed();
@@ -68,10 +66,11 @@ namespace EbookReader.Droid {
 
             this.doubleBackToExitPressedOnce = true;
             Toast.MakeText(this, "Press once again to exit!", ToastLength.Short).Show();
+            IocManager.Container.Resolve<IMessageBus>().Send(new BackPressedMessage());
 
             new Handler().PostDelayed(() => {
                 doubleBackToExitPressedOnce = false;
-            }, 1000);
+            }, 2000);
         }
 
         private void SetUpIoc() {
