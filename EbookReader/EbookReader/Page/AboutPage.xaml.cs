@@ -22,7 +22,9 @@ namespace EbookReader.Page {
             Flaticon.Source = source;
             Flaticon.Navigating += Flaticon_Navigating;
 
-            NavigationPage.SetHasNavigationBar(this, false);
+            if (!App.HasMasterDetailPage) {
+                NavigationPage.SetHasNavigationBar(this, false);
+            }
         }
 
         private void Flaticon_Navigating(object sender, WebNavigatingEventArgs e) {

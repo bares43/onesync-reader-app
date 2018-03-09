@@ -14,36 +14,25 @@ using Microsoft.AppCenter.Crashes;
 namespace EbookReader {
     public class App : Application {
 
-        static HomePage homePage;
-        static SettingsPage settingsPage;
-        static AboutPage aboutPage;
+        public static bool HasMasterDetailPage {
+            get {
+                return Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android;
+            }
+        }
 
         public App() {
-            MainPage = new NavigationPage(new HomePage());
-        }
 
-        public static HomePage HomePage() {
-            if(homePage == null) {
-                homePage = new HomePage();
+            if (App.HasMasterDetailPage) {
+                var master = new MasterDetailPage1();
+                MainPage = master;
+
+                IocManager.Container.Resolve<IMessageBus>().Subscribe<BackPressedMessage>(async (m) => {
+                    await master.Detail.Navigation.PopAsync();
+                });
+            } else {
+                MainPage = new NavigationPage(new HomePage());
             }
 
-            return homePage;
-        }
-        
-        public static SettingsPage SettingsPage() {
-            if(settingsPage == null) {
-                settingsPage = new SettingsPage();
-            }
-
-            return settingsPage;
-        }
-
-        public static AboutPage AboutPage() {
-            if(aboutPage == null) {
-                aboutPage = new AboutPage();
-            }
-
-            return aboutPage;
         }
 
         protected override void OnStart() {
@@ -60,5 +49,6 @@ namespace EbookReader {
         protected override void OnResume() {
             // Handle when your app resumes
         }
+        
     }
 }
