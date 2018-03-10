@@ -4,92 +4,131 @@
              xmlns:converter="clr-namespace:EbookReader.Converter"
              x:Class="EbookReader.Page.Settings.Synchronization"
              Title="Synchronization">
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="Picker">
-                <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="WidthRequest" Value="200"></Setter>
+
+            <Style TargetType="Label" x:Key="title">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
             </Style>
 
-            <Style TargetType="Entry">
-                <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="WidthRequest" Value="200"></Setter>
+            <Style TargetType="StackLayout" x:Key="wrapper">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="Margin" Value="13, 5" />
             </Style>
 
-            <OnPlatform x:TypeArguments="Thickness" Android="10,0" WinPhone="10" x:Key="settingsWrapperPadding" />
+            <Style TargetType="Label" x:Key="note">
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
 
-            <Style x:Key="settingsWrapper" TargetType="StackLayout">
-                <Setter Property="Orientation" Value="Horizontal" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Padding" Value="{StaticResource settingsWrapperPadding}" />
+            <Style TargetType="View" x:Key="control">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
-            <Style TargetType="Label">
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Fill">
 
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Synchronize" />
-                <Switch IsToggled="{Binding Enabled}" />
+        <ScrollView Orientation="Vertical" Margin="0,20,0,0">
+            <StackLayout VerticalOptions="Fill" Orientation="Vertical">
+
+                <StackLayout Orientation="Vertical">
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Synchronize" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding Enabled}" Style="{StaticResource control}" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout IsVisible="{Binding Enabled}">
+                        
+                        <StackLayout Style="{StaticResource wrapper}">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Only on WiFi" Style="{StaticResource title}" />
+                                <Switch IsToggled="{Binding OnlyWifi}" Style="{StaticResource control}" />
+                            </StackLayout>
+                        </StackLayout>
+                        
+                        <StackLayout Style="{StaticResource wrapper}">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Device name" Style="{StaticResource title}" />
+                                <Entry Text="{Binding DeviceName}" Style="{StaticResource control}" />
+                            </StackLayout>
+                        </StackLayout>
+                        
+                        <StackLayout Style="{StaticResource wrapper}">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Synchronization provider" Style="{StaticResource title}" />
+                                <Picker ItemsSource="{Binding SynchronizationService.Items}" SelectedItem="{Binding SynchronizationService.Value}" Style="{StaticResource control}" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Dropbox'}}">
+
+                            <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding IsConnected, Converter={converter:InverseBoolConverter}}">
+                                <Button Text="Connect to Dropbox" Command="{Binding ConnectToDropboxCommand}" />
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding IsConnected}">
+                                <Button Text="Disconnect" Command="{Binding DisconnectDropboxCommand}" />
+                            </StackLayout>
+
+                        </StackLayout>
+
+                        <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='E-mail'}}">
+                            <StackLayout Style="{StaticResource wrapper}">
+                                <Label Text="Your data will be synchronize using Firebase. Just login with same credentials on all your devices." Style="{StaticResource note}"></Label>
+                            </StackLayout>
+
+                            <StackLayout Style="{StaticResource wrapper}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="E-mail" Style="{StaticResource title}" />
+                                    <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Style="{StaticResource control}" />
+                                </StackLayout>
+                            </StackLayout>
+                            
+                            <StackLayout Style="{StaticResource wrapper}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Password" Style="{StaticResource title}" />
+                                    <Entry Text="{Binding Firebase.Password}" IsPassword="True" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Style="{StaticResource control}" />
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Style="{StaticResource wrapper}" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" IsVisible="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}">
+                                <Button Text="Connect" Command="{Binding Firebase.ConnectCommand}" />
+                                <Button Text="Lost password" Command="{Binding Firebase.ResetCommand}" />
+                            </StackLayout>
+
+                            <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding Firebase.LoginFailed}">
+                                <Label Text="Login failed. The password must be at least 6 characters long." Style="{StaticResource note}"></Label>
+                            </StackLayout>
+
+                            <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding Firebase.ResetMailSent}">
+                                <Label Text="E-mail with reset link was sent to you." Style="{StaticResource note}"></Label>
+                            </StackLayout>
+
+                            <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding Firebase.MailNotFound}">
+                                <Label Text="E-mail not found" Style="{StaticResource note}"></Label>
+                            </StackLayout>
+
+                            <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding Firebase.IsConnected}">
+                                <Button Text="Disconnect" Command="{Binding Firebase.DisconnectCommand}" />
+                            </StackLayout>
+
+                        </StackLayout>
+                        
+                    </StackLayout>
+                    
+                </StackLayout>
+
             </StackLayout>
+        </ScrollView>
 
-            <StackLayout IsVisible="{Binding Enabled}">
-                <StackLayout Style="{StaticResource settingsWrapper}">
-                    <Label Text="Only on WiFi" />
-                    <Switch IsToggled="{Binding OnlyWifi}" />
-                </StackLayout>
-
-                <StackLayout Style="{StaticResource settingsWrapper}">
-                    <Label Text="Device name" />
-                    <Entry Text="{Binding DeviceName}" />
-                </StackLayout>
-                
-                <StackLayout Style="{StaticResource settingsWrapper}">
-                    <Label Text="Synchronization provider" />
-                    <Picker ItemsSource="{Binding SynchronizationService.Items}" SelectedItem="{Binding SynchronizationService.Value}" />
-                </StackLayout>
-                <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Dropbox'}}">
-                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding IsConnected, Converter={converter:InverseBoolConverter}}">
-                        <Button Text="Connect to Dropbox" Command="{Binding ConnectToDropboxCommand}" />
-                    </StackLayout>
-                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding IsConnected}">
-                        <Button Text="Disconnect" Command="{Binding DisconnectDropboxCommand}" />
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='E-mail'}}">
-                    <Label Text="Your data will be synchronize using Firebase. Just login with same credentials on all your devices."></Label>
-                    <StackLayout Style="{StaticResource settingsWrapper}">
-                        <Label Text="E-mail" />
-                        <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" />
-                    </StackLayout>
-                    <StackLayout Style="{StaticResource settingsWrapper}">
-                        <Label Text="Password" />
-                        <Entry Text="{Binding Firebase.Password}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" IsPassword="True" />
-                    </StackLayout>
-                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}">
-                        <Button Text="Connect" Command="{Binding Firebase.ConnectCommand}" />
-                        <Button Text="Lost password" Command="{Binding Firebase.ResetCommand}" />
-                    </StackLayout>
-                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.LoginFailed}">
-                        <Label Text="Login failed. The password must be at least 6 characters long."></Label>
-                    </StackLayout>
-                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.ResetMailSent}">
-                        <Label Text="E-mail with reset link was sent to you."></Label>
-                    </StackLayout>
-                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.MailNotFound}">
-                        <Label Text="E-mail not found"></Label>
-                    </StackLayout>
-                    <StackLayout Style="{StaticResource settingsWrapper}" IsVisible="{Binding Firebase.IsConnected}">
-                        <Button Text="Disconnect" Command="{Binding Firebase.DisconnectCommand}" />
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EbookReader {
     public static class AppSettings {
 
-        public static string Color = "#00796B";
+        public static string Color = "#43A047";
         
         public static class Synchronization {
             public static class Firebase {

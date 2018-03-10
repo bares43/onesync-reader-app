@@ -3,31 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EbookReader.Page.Settings.Application"
              Title="Application">
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <OnPlatform x:TypeArguments="Thickness" Android="10,0" WinPhone="10" x:Key="settingsWrapperPadding" />
 
-            <Style x:Key="settingsWrapper" TargetType="StackLayout">
-                <Setter Property="Orientation" Value="Horizontal" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Padding" Value="{StaticResource settingsWrapperPadding}" />
+            <Style TargetType="Label" x:Key="title">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
             </Style>
-            <Style TargetType="Label">
-                <Setter Property="VerticalOptions" Value="Center" />
+
+            <Style TargetType="StackLayout" x:Key="wrapper">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="Margin" Value="13, 5" />
             </Style>
+
+            <Style TargetType="Label" x:Key="note">
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+
+            <Style TargetType="View" x:Key="control">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Fill">
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Agreement with collecting anonymous data" />
-                <Switch IsToggled="{Binding AnalyticsAgreement}" />
+
+        <ScrollView Orientation="Vertical" Margin="0,20,0,0">
+            <StackLayout VerticalOptions="Fill" Orientation="Vertical">
+
+                <StackLayout Orientation="Vertical">
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Collecting of anonymous data" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding AnalyticsAgreement}" Style="{StaticResource control}" />
+                        </StackLayout>
+                        <Label Text="I agree with collecting of anonymous information about using of the app. That information is important for improving application." Style="{StaticResource note}" />
+
+                    </StackLayout>
+                </StackLayout>
+
             </StackLayout>
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="I agree with collecting anonymous information about using of the app which is important for improving application."></Label>
-            </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
