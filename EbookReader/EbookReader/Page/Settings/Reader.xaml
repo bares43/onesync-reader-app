@@ -58,7 +58,7 @@
                             <Label Text="Scrolling speed" Style="{StaticResource title}" />
                             <Picker ItemsSource="{Binding ScrollSpeed.Items}" SelectedItem="{Binding ScrollSpeed.Value}" Style="{StaticResource control}" />
                         </StackLayout>
-                        <Label Text="Speed is in miliseconds" Style="{StaticResource note}" />
+                        <Label Text="Speed of animation when going to the next page." Style="{StaticResource note}" />
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}">
@@ -66,7 +66,7 @@
                             <Label Text="Night mode" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding NightMode.Enabled}" Style="{StaticResource control}" />
                         </StackLayout>
-                        <Label Text="Night mode of open book" Style="{StaticResource note}" />
+                        <Label Text="Use night mode when reading." Style="{StaticResource note}" />
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}">
@@ -74,7 +74,7 @@
                             <Label Text="Fullscreen" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding Fullscreen.Enabled}" Style="{StaticResource control}" />
                         </StackLayout>
-                        <Label Text="Fullscreen of open book" Style="{StaticResource note}" />
+                        <Label Text="Open book in fullscreen mode." Style="{StaticResource note}" />
                     </StackLayout>
                 </StackLayout>
 

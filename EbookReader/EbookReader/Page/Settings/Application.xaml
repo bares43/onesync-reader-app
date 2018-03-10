@@ -41,10 +41,10 @@
 
                     <StackLayout Style="{StaticResource wrapper}">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Collecting of anonymous data" Style="{StaticResource title}" />
+                            <Label Text="Anonymous data" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding AnalyticsAgreement}" Style="{StaticResource control}" />
                         </StackLayout>
-                        <Label Text="I agree with collecting of anonymous information about using of the app. That information is important for improving application." Style="{StaticResource note}" />
+                        <Label Text="I agree with collecting of anonymous information about usage of the app. That information is important for improving application." Style="{StaticResource note}" />
 
                     </StackLayout>
                 </StackLayout>

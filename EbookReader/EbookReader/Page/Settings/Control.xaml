@@ -47,12 +47,12 @@
                         <Label Text="Tap anywhere to move to the next page. You can go to the previous page by swipe left." Style="{StaticResource note}" />
                     </StackLayout>
 
-                    <StackLayout Style="{StaticResource wrapper}">
+                    <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding VolumeButton.Show}">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Two fingers swipe" Style="{StaticResource title}" />
-                            <Switch IsToggled="{Binding DoubleSwipe}" Style="{StaticResource control}" />
+                            <Label Text="Volume buttons" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding VolumeButton.Enabled}" Style="{StaticResource control}" />
                         </StackLayout>
-                        <Label Text="Swipe with two fingers to move between chapters." Style="{StaticResource note}" />
+                        <Label Text="Use volume buttons for navigation." Style="{StaticResource note}" />
                     </StackLayout>
                     
                     <StackLayout Style="{StaticResource wrapper}">
@@ -63,13 +63,14 @@
                         <Label Text="Pan on the edge of display for brightness control." Style="{StaticResource note}" />
                     </StackLayout>
 
-                    <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding VolumeButton.Show}">
+                    <StackLayout Style="{StaticResource wrapper}">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Volume buttons" Style="{StaticResource title}" />
-                            <Switch IsToggled="{Binding VolumeButton.Enabled}" Style="{StaticResource control}" />
+                            <Label Text="Two fingers swipe" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding DoubleSwipe}" Style="{StaticResource control}" />
                         </StackLayout>
-                        <Label Text="Use volume buttons for navigation." Style="{StaticResource note}" />
+                        <Label Text="Swipe with two fingers to move between chapters." Style="{StaticResource note}" />
                     </StackLayout>
+
                 </StackLayout>
 
             </StackLayout>

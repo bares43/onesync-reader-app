@@ -45,15 +45,17 @@
                             <Label Text="Synchronize" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding Enabled}" Style="{StaticResource control}" />
                         </StackLayout>
+                        <Label Text="Synchronization of reading progress and bookmarks." Style="{StaticResource note}" />
                     </StackLayout>
 
                     <StackLayout IsVisible="{Binding Enabled}">
                         
                         <StackLayout Style="{StaticResource wrapper}">
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Only on WiFi" Style="{StaticResource title}" />
+                                <Label Text="WiFi only" Style="{StaticResource title}" />
                                 <Switch IsToggled="{Binding OnlyWifi}" Style="{StaticResource control}" />
                             </StackLayout>
+                            <Label Text="Synchronize only when device is connected to the internet using WiFi." Style="{StaticResource note}" />
                         </StackLayout>
                         
                         <StackLayout Style="{StaticResource wrapper}">
@@ -61,6 +63,7 @@
                                 <Label Text="Device name" Style="{StaticResource title}" />
                                 <Entry Text="{Binding DeviceName}" Style="{StaticResource control}" />
                             </StackLayout>
+                            <Label Text="Using device name you can distinguish reading progress on your devices." Style="{StaticResource note}" />
                         </StackLayout>
                         
                         <StackLayout Style="{StaticResource wrapper}">
@@ -70,7 +73,10 @@
                             </StackLayout>
                         </StackLayout>
 
-                        <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Dropbox'}}">
+                        <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='Dropbox'}}">
+                            <StackLayout Style="{StaticResource wrapper}">
+                                <Label Text="Your data will be synchronize using your Dropbox account. The app does not have access to your entire Dropbox, but only to one dedicated folder." Style="{StaticResource note}"></Label>
+                            </StackLayout>
 
                             <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding IsConnected, Converter={converter:InverseBoolConverter}}">
                                 <Button Text="Connect to Dropbox" Command="{Binding ConnectToDropboxCommand}" />
@@ -81,7 +87,7 @@
 
                         </StackLayout>
 
-                        <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='E-mail'}}">
+                        <StackLayout IsVisible="{Binding SynchronizationService.Value, Converter={converter:EqualConverter}, ConverterParameter='E-mail'}}" Padding="0">
                             <StackLayout Style="{StaticResource wrapper}">
                                 <Label Text="Your data will be synchronize using Firebase. Just login with same credentials on all your devices." Style="{StaticResource note}"></Label>
                             </StackLayout>
@@ -98,6 +104,7 @@
                                     <Label Text="Password" Style="{StaticResource title}" />
                                     <Entry Text="{Binding Firebase.Password}" IsPassword="True" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Style="{StaticResource control}" />
                                 </StackLayout>
+                                <Label Text="The password must be at least 6 characters long." Style="{StaticResource note}" />
                             </StackLayout>
 
                             <StackLayout Style="{StaticResource wrapper}" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" IsVisible="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}">
