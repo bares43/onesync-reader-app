@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:EbookReader.Page.Home"
              xmlns:view="clr-namespace:EbookReader.View"
              x:Class="EbookReader.Page.HomePage"
-             Title="My books"
+             Title="My Books"
              BackgroundColor="#EEEEEE">
 
     <ContentPage.Content>
