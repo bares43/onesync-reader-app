@@ -91,13 +91,8 @@ namespace EbookReader.Page {
             _messageBus.UnSubscribe(nameof(ReaderPage));
         }
 
-        protected override bool OnBackButtonPressed() {
-            if (QuickPanel.IsVisible) {
-                QuickPanel.Hide();
-                return true;
-            }
-
-            return base.OnBackButtonPressed();
+        public bool IsQuickPanelVisible() {
+            return QuickPanel.IsVisible;
         }
 
         private void Messages_OnOpenUrl(object sender, Model.WebViewMessages.OpenUrl e) {

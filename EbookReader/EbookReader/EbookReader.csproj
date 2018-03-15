@@ -40,6 +40,8 @@
     <Compile Include="Converter\EqualConverter.cs" />
     <Compile Include="Converter\InverseBoolConverter.cs" />
     <Compile Include="Model\Messages\BackPressedMessage.cs" />
+    <Compile Include="Model\Messages\CloseAppMessage.cs" />
+    <Compile Include="Model\Messages\ToastMessage.cs" />
     <Compile Include="Page\MasterDetailPage1.xaml.cs">
       <DependentUpon>MasterDetailPage1.xaml</DependentUpon>
     </Compile>

@@ -20,7 +20,6 @@ namespace EbookReader.Droid {
 
         BatteryBroadcastReceiver _batteryBroadcastReceiver;
         private bool disposed = false;
-        private bool doubleBackToExitPressedOnce = false;
 
         protected override void OnCreate(Bundle bundle) {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -29,7 +28,6 @@ namespace EbookReader.Droid {
             base.OnCreate(bundle);
 
             this.SetUpIoc();
-            this.SetUpSubscribers();
 
             FormsWebViewRenderer.Initialize();
 
@@ -46,6 +44,18 @@ namespace EbookReader.Droid {
             Application.Context.RegisterReceiver(_batteryBroadcastReceiver, new IntentFilter(Intent.ActionBatteryChanged));
         }
 
+        protected override void OnStart() {
+            base.OnStart();
+
+            this.SetUpSubscribers();
+        }
+
+        protected override void OnStop() {
+            base.OnStop();
+
+            IocManager.Container.Resolve<IMessageBus>().UnSubscribe("MainActivity");
+        }
+
         public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e) {
             if (UserSettings.Control.VolumeButtons && (keyCode == Keycode.VolumeDown || keyCode == Keycode.VolumeUp)) {
                 var messageBus = IocManager.Container.Resolve<IMessageBus>();
@@ -56,21 +66,9 @@ namespace EbookReader.Droid {
 
             return base.OnKeyDown(keyCode, e);
         }
-        
+
         public override void OnBackPressed() {
-            if (doubleBackToExitPressedOnce) {
-                base.OnBackPressed();
-                Java.Lang.JavaSystem.Exit(0);
-                return;
-            }
-
-            this.doubleBackToExitPressedOnce = true;
-            Toast.MakeText(this, "Press once again to exit!", ToastLength.Short).Show();
             IocManager.Container.Resolve<IMessageBus>().Send(new BackPressedMessage());
-
-            new Handler().PostDelayed(() => {
-                doubleBackToExitPressedOnce = false;
-            }, 2000);
         }
 
         private void SetUpIoc() {
@@ -85,8 +83,19 @@ namespace EbookReader.Droid {
 
         private void SetUpSubscribers() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-            messageBus.Subscribe<ChangesBrightnessMessage>(ChangeBrightness);
-            messageBus.Subscribe<FullscreenRequestMessage>(ToggleFullscreen);
+            messageBus.Subscribe<ChangesBrightnessMessage>(ChangeBrightness, new string[] { "MainActivity" });
+            messageBus.Subscribe<FullscreenRequestMessage>(ToggleFullscreen, new string[] { "MainActivity" });
+            messageBus.Subscribe<ToastMessage>(ToastMessageSubscriber, new string[] { "MainActivity" });
+            messageBus.Subscribe<CloseAppMessage>(CloseAppMessageSubscriber, new string[] { "MainActivity" });
+        }
+
+        private void CloseAppMessageSubscriber(CloseAppMessage msg) {
+            var activity = (Activity)Xamarin.Forms.Forms.Context;
+            activity.FinishAffinity();
+        }
+
+        private void ToastMessageSubscriber(ToastMessage msg) {
+            Toast.MakeText(this, msg.Message, msg.Length == PCLToastLength.Long ? ToastLength.Long : ToastLength.Short).Show();
         }
 
         private void ChangeBrightness(ChangesBrightnessMessage msg) {
