@@ -4,5 +4,5 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<application android:label="EbookReader.Droid"></application>
+	<application android:label="EbookReader.Droid" android:icon="@drawable/icon"></application>
 </manifest>
