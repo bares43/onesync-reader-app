@@ -110,7 +110,7 @@ namespace EbookReader.Page {
                 return;
             }
 
-            var totalWidth = (int)WebView.Width + (2 * UserSettings.Reader.Margin);
+            var totalWidth = (int)WebView.Width;
             var edge = totalWidth / 5;
 
             if ((UserSettings.Control.BrightnessChange == BrightnessChange.Left && e.X <= edge) ||
