@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Firebase.Xamarin.Auth;
 using Firebase.Xamarin.Database;
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 
 namespace EbookReader.Model.View {
@@ -96,6 +97,12 @@ namespace EbookReader.Model.View {
             var connected = await this.TrySignIn();
             if (!connected) {
                 connected = await this.TryCreate();
+            }
+
+            if (connected) {
+                Analytics.TrackEvent("Firebase login successful");
+            } else {
+                Analytics.TrackEvent("Firebase login failed");
             }
 
             IsConnected = connected;

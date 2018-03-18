@@ -8,6 +8,7 @@ using Autofac;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Settings;
 using EbookReader.Service;
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 
 namespace EbookReader.Model.View {
@@ -78,6 +79,8 @@ namespace EbookReader.Model.View {
             IocManager.Container.Resolve<IMessageBus>().Subscribe<OAuth2AccessTokenObtainedMessage>((msg) => {
                 if(msg.Provider == "Dropbox") {
                     DropboxAccessToken = msg.AccessToken;
+
+                    Analytics.TrackEvent("Dropbox login successful");
                 }
             });
         }

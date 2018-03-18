@@ -7,6 +7,7 @@ using Autofac;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Home;
 using EbookReader.Service;
+using Microsoft.AppCenter.Analytics;
 using Plugin.FilePicker;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -103,7 +104,10 @@ namespace EbookReader.Page {
                         Bookshelf.Children.Add(new BookCard(book.Item1));
                     }
                     this.SendBookToReader(book.Item1);
-                } catch (Exception) {
+                } catch (Exception e) {
+                    Analytics.TrackEvent("Failed to open book", new Dictionary<string, string> {
+                        { "Message", $"Filename: {pickedFile.FileName}, exception: {e.Message}" } }
+                    );
                     await DisplayAlert("Error", "File failed to open", "OK");
                 }
 
