@@ -78,6 +78,7 @@ namespace EbookReader.Droid {
             IocManager.ContainerBuilder.RegisterType<CryptoService>().As<ICryptoService>();
             IocManager.ContainerBuilder.RegisterType<BatteryProvider>().As<IBatteryProvider>();
             IocManager.ContainerBuilder.RegisterType<FileHelper>().As<IFileHelper>();
+            IocManager.ContainerBuilder.RegisterType<ToastService>().As<IToastService>();
             IocManager.Build();
         }
 
@@ -85,17 +86,12 @@ namespace EbookReader.Droid {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
             messageBus.Subscribe<ChangesBrightnessMessage>(ChangeBrightness, new string[] { "MainActivity" });
             messageBus.Subscribe<FullscreenRequestMessage>(ToggleFullscreen, new string[] { "MainActivity" });
-            messageBus.Subscribe<ToastMessage>(ToastMessageSubscriber, new string[] { "MainActivity" });
             messageBus.Subscribe<CloseAppMessage>(CloseAppMessageSubscriber, new string[] { "MainActivity" });
         }
 
         private void CloseAppMessageSubscriber(CloseAppMessage msg) {
             var activity = (Activity)Xamarin.Forms.Forms.Context;
             activity.FinishAffinity();
-        }
-
-        private void ToastMessageSubscriber(ToastMessage msg) {
-            Toast.MakeText(this, msg.Message, msg.Length == PCLToastLength.Long ? ToastLength.Long : ToastLength.Short).Show();
         }
 
         private void ChangeBrightness(ChangesBrightnessMessage msg) {

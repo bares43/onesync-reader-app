@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Autofac;
+using EbookReader.DependencyService;
 using Firebase.Xamarin.Auth;
 using Firebase.Xamarin.Database;
 using Microsoft.AppCenter.Analytics;
+using Plugin.Connectivity;
 using Xamarin.Forms;
 
 namespace EbookReader.Model.View {
@@ -91,6 +94,12 @@ namespace EbookReader.Model.View {
         }
 
         private async void Connect() {
+            if (!CrossConnectivity.Current.IsConnected) {
+                IocManager.Container.Resolve<IToastService>().Show("There is no Internet connection.");
+
+                return;
+            }
+
             var client = new FirebaseClient(AppSettings.Synchronization.Firebase.BaseUrl);
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppSettings.Synchronization.Firebase.ApiKey));
 

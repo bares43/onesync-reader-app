@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using EbookReader.DependencyService;
 
 namespace EbookReader {
     public class App : Application {
@@ -66,7 +67,7 @@ namespace EbookReader {
                     if (doubleBackToExitPressedOnce) {
                         _messageBus.Send(new CloseAppMessage());
                     } else {
-                        _messageBus.Send(new ToastMessage { Message = "Press once again to exit!" });
+                        IocManager.Container.Resolve<IToastService>().Show("Press once again to exit!");
                         doubleBackToExitPressedOnce = true;
                         Xamarin.Forms.Device.StartTimer(new TimeSpan(0, 0, 2), () => {
                             doubleBackToExitPressedOnce = false;

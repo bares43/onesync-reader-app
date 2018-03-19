@@ -198,6 +198,7 @@
     <Compile Include="DependencyService\BrightnessProvider.cs" />
     <Compile Include="DependencyService\CryptoService.cs" />
     <Compile Include="DependencyService\FileHelper.cs" />
+    <Compile Include="DependencyService\ToastService.cs" />
     <Compile Include="FloatingActionButtonRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="OAuth2LoginPageRenderer.cs" />

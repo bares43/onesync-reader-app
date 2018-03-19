@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Autofac;
+using EbookReader.DependencyService;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Settings;
 using EbookReader.Service;
 using Microsoft.AppCenter.Analytics;
+using Plugin.Connectivity;
 using Xamarin.Forms;
 
 namespace EbookReader.Model.View {
@@ -86,6 +88,12 @@ namespace EbookReader.Model.View {
         }
 
         void ConnectToDropbox() {
+            if (!CrossConnectivity.Current.IsConnected) {
+                IocManager.Container.Resolve<IToastService>().Show("There is no Internet connection.");
+
+                return;
+            } 
+
             IocManager.Container.Resolve<IMessageBus>().Send(new OpenDropboxLoginMessage());
         }
 
