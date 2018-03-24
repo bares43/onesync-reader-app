@@ -409,6 +409,8 @@
     <Content Include="Content\add.png" />
     <Content Include="Content\battery_almost_full_white.png" />
     <Content Include="Content\battery_almost_full.png" />
+    <Content Include="Content\delete_white.png" />
+    <Content Include="Content\edit_white.png" />
     <Content Include="Content\empty_battery_white.png" />
     <Content Include="Content\empty_battery.png" />
     <Content Include="Content\full_battery_white.png" />
@@ -422,7 +424,7 @@
     <Content Include="Content\delete.png" />
     <Content Include="Content\edit.png" />
     <Content Include="Content\info.png" />
-    <Content Include="Content\save.png" />
+    <Content Include="Content\save_white.png" />
     <Content Include="Content\settings_white.png" />
     <Content Include="Content\settings.png" />
   </ItemGroup>

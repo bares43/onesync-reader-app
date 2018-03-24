@@ -265,11 +265,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="..\EbookReader\Content\save.png">
-      <Link>Resources\drawable\save.png</Link>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="..\EbookReader\Content\info.png">
       <Link>Resources\drawable\info.png</Link>
     </AndroidResource>
@@ -340,8 +335,18 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="..\EbookReader\Content\settings_white.png">
-      <Link>Resources\drawable\settings_white.png</Link>
+    <AndroidResource Include="..\EbookReader\Content\delete_white.png">
+      <Link>Resources\drawable\delete_white.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\edit_white.png">
+      <Link>Resources\drawable\edit_white.png</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="..\EbookReader\Content\save_white.png">
+      <Link>Resources\drawable\save_white.png</Link>
     </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

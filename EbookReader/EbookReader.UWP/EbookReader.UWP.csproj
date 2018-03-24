@@ -136,8 +136,14 @@
     <Content Include="..\EbookReader\Content\delete.png">
       <Link>delete.png</Link>
     </Content>
+    <Content Include="..\EbookReader\Content\delete_white.png">
+      <Link>delete_white.png</Link>
+    </Content>
     <Content Include="..\EbookReader\Content\edit.png">
       <Link>edit.png</Link>
+    </Content>
+    <Content Include="..\EbookReader\Content\edit_white.png">
+      <Link>edit_white.png</Link>
     </Content>
     <Content Include="..\EbookReader\Content\info.png">
       <Link>info.png</Link>
@@ -145,8 +151,8 @@
     <Content Include="..\EbookReader\Content\info_white.png">
       <Link>info_white.png</Link>
     </Content>
-    <Content Include="..\EbookReader\Content\save.png">
-      <Link>save.png</Link>
+    <Content Include="..\EbookReader\Content\save_white.png">
+      <Link>save_white.png</Link>
     </Content>
     <Content Include="..\EbookReader\Content\settings.png">
       <Link>settings.png</Link>
