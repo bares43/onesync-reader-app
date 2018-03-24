@@ -39,38 +39,61 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="Converter\EqualConverter.cs" />
     <Compile Include="Converter\InverseBoolConverter.cs" />
+    <Compile Include="DependencyService\IToastService.cs" />
+    <Compile Include="Model\Messages\BackPressedMessage.cs" />
+    <Compile Include="Model\Messages\CloseAppMessage.cs" />
+    <Compile Include="Page\MasterDetailPage1.xaml.cs">
+      <DependentUpon>MasterDetailPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\MasterDetailPage1Master.xaml.cs">
+      <DependentUpon>MasterDetailPage1Master.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\MasterDetailPage1MenuItem.cs" />
+    <Compile Include="Repository\BookmarkRepository.cs" />
+    <Compile Include="Repository\BookRepository.cs" />
     <Compile Include="DependencyService\IAssetsManager.cs" />
+    <Compile Include="DependencyService\IBatteryProvider.cs" />
     <Compile Include="DependencyService\IBrightnessProvider.cs" />
     <Compile Include="DependencyService\ICryproService.cs" />
+    <Compile Include="DependencyService\IFileHelper.cs" />
     <Compile Include="Exceptions\Epub\UnknownEpubVersionException.cs" />
+    <Compile Include="Exceptions\UnknownFileFormatException.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
+    <Compile Include="Helpers\EbookFormatHelper.cs" />
     <Compile Include="Helpers\EpubVersionHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="IocManager.cs" />
     <Compile Include="Model\Bookshelf\Bookmark.cs" />
     <Compile Include="Model\Bookshelf\Position.cs" />
-    <Compile Include="Model\Epub.cs" />
-    <Compile Include="Model\EpubFile.cs" />
+    <Compile Include="Model\Format\Ebook.cs" />
+    <Compile Include="Model\Format\EbookFormat.cs" />
+    <Compile Include="Model\Format\EpubFormat\EpubVersion.cs" />
+    <Compile Include="Model\Format\File.cs" />
     <Compile Include="Model\EpubLoader\HtmlResult.cs" />
     <Compile Include="Model\EpubLoader\Image.cs" />
-    <Compile Include="Model\EpubSpine.cs" />
-    <Compile Include="Model\Messages\AddBookmark.cs" />
-    <Compile Include="Model\Messages\AppSleep.cs" />
-    <Compile Include="Model\Messages\ChangedBookmarkName.cs" />
-    <Compile Include="Model\Messages\ChangeFontSize.cs" />
-    <Compile Include="Model\Messages\ChangeMargin.cs" />
-    <Compile Include="Model\Messages\ChangesBrightness.cs" />
-    <Compile Include="Model\Messages\AddBookClicked.cs" />
-    <Compile Include="Model\Messages\CloseQuickPanel.cs" />
-    <Compile Include="Model\Messages\DeleteBook.cs" />
-    <Compile Include="Model\Messages\DeleteBookmark.cs" />
-    <Compile Include="Model\Messages\DropboxAccessTokenMessage.cs" />
-    <Compile Include="Model\Messages\FullscreenRequest.cs" />
-    <Compile Include="Model\Messages\OpenBook.cs" />
-    <Compile Include="Model\Messages\OpenBookmark.cs" />
-    <Compile Include="Model\Messages\OpenDropboxLogin.cs" />
-    <Compile Include="Model\Messages\PageChange.cs" />
+    <Compile Include="Model\Format\Spine.cs" />
+    <Compile Include="Model\Messages\AddBookmarkMessage.cs" />
+    <Compile Include="Model\Messages\AppSleepMessage.cs" />
+    <Compile Include="Model\Messages\BatteryChangeMessage.cs" />
+    <Compile Include="Model\Messages\BookmarksChangedMessage.cs" />
+    <Compile Include="Model\Messages\ChangedBookmarkNameMessage.cs" />
+    <Compile Include="Model\Messages\ChangeFontSizeMessage.cs" />
+    <Compile Include="Model\Messages\ChangeMarginMessage.cs" />
+    <Compile Include="Model\Messages\ChangesBrightnessMessage.cs" />
+    <Compile Include="Model\Messages\AddBookClickedMessage.cs" />
+    <Compile Include="Model\Messages\CloseQuickPanelMessage.cs" />
+    <Compile Include="Model\Messages\DeleteBookMessage.cs" />
+    <Compile Include="Model\Messages\DeleteBookmarkMessage.cs" />
+    <Compile Include="Model\Messages\GoToPageMessage.cs" />
+    <Compile Include="Model\Messages\OAuth2AccessTokenObtainedMessage.cs" />
+    <Compile Include="Model\Messages\FullscreenRequestMessage.cs" />
+    <Compile Include="Model\Messages\OpenBookMessage.cs" />
+    <Compile Include="Model\Messages\OpenBookmarkMessage.cs" />
+    <Compile Include="Model\Messages\OpenDropboxLoginMessage.cs" />
+    <Compile Include="Model\Messages\PageChangeMessage.cs" />
     <Compile Include="Model\Navigation\Item.cs" />
+    <Compile Include="Model\OAuth2RequestData.cs" />
+    <Compile Include="Model\Sync\Bookmark.cs" />
     <Compile Include="Model\Sync\Position.cs" />
     <Compile Include="Model\View\AboutVM.cs" />
     <Compile Include="Model\View\BaseVM.cs" />
@@ -82,13 +105,17 @@
     <Compile Include="Model\View\InfoPanelVM.cs" />
     <Compile Include="Model\View\MarginVM.cs" />
     <Compile Include="Model\View\NightModeVM.cs" />
+    <Compile Include="Model\View\PanBrightnessChangeVM.cs" />
     <Compile Include="Model\View\QuickPanelSettingsVM.cs" />
     <Compile Include="Model\View\QuickPanelVM.cs" />
     <Compile Include="Model\View\ScrollSpeedVM.cs" />
+    <Compile Include="Model\View\SettingsApplicationVM.cs" />
     <Compile Include="Model\View\SettingsControlVM.cs" />
     <Compile Include="Model\View\SettingsReaderVM.cs" />
     <Compile Include="Model\View\SettingsSynchronizationVM.cs" />
     <Compile Include="Model\View\SynchronizationServiceVM.cs" />
+    <Compile Include="Model\View\VolumeButtonVM.cs" />
+    <Compile Include="Model\WebViewMessages\PanEvent.cs" />
     <Compile Include="Model\WebViewMessages\ChapterRequest.cs" />
     <Compile Include="Model\WebViewMessages\Message.cs" />
     <Compile Include="Model\WebViewMessages\NextChapterRequest.cs" />
@@ -109,6 +136,9 @@
       <DependentUpon>BookCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page\Home\Card.cs" />
+    <Compile Include="Page\OAuth2LoginPage.xaml.cs">
+      <DependentUpon>OAuth2LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\ReaderPage.xaml.cs">
       <DependentUpon>ReaderPage.xaml</DependentUpon>
     </Compile>
@@ -133,29 +163,34 @@
     <Compile Include="Page\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\Settings\Application.xaml.cs">
+      <DependentUpon>Application.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\Settings\Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page\Settings\Reader.xaml.cs">
       <DependentUpon>Reader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Settings\SyncDropbox.xaml.cs">
-      <DependentUpon>SyncDropbox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Page\Settings\Synchronization.xaml.cs">
       <DependentUpon>Synchronization.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\BookshelfLock.cs" />
+    <Compile Include="Provider\BookmarkIdProvider.cs" />
+    <Compile Include="Provider\BrightnessChangeProvider.cs" />
     <Compile Include="Provider\DeviceIdProvider.cs" />
     <Compile Include="Provider\DeviceNameProvider.cs" />
     <Compile Include="Provider\FontSizeProvider.cs" />
     <Compile Include="Provider\MarginProvider.cs" />
     <Compile Include="Provider\ScrollSpeedProvider.cs" />
     <Compile Include="Provider\SynchronizationServicesProvider.cs" />
+    <Compile Include="Repository\IBookmarkRepository.cs" />
+    <Compile Include="Repository\IBookRepository.cs" />
+    <Compile Include="SecretSettings.cs" />
+    <Compile Include="Service\BookmarkService.cs" />
     <Compile Include="Service\BookshelfService.cs" />
     <Compile Include="Model\Bookshelf\Book.cs" />
-    <Compile Include="Model\Bookshelf\Bookshelf.cs" />
+    <Compile Include="Service\DatabaseService.cs" />
     <Compile Include="Service\DropboxCloudStorageService.cs" />
     <Compile Include="Service\DumbCloudStorageService.cs" />
     <Compile Include="Service\EpubLoader.cs" />
@@ -165,16 +200,22 @@
     <Compile Include="Service\Epub\EpubParser.cs" />
     <Compile Include="Service\FileService.cs" />
     <Compile Include="Service\FirebaseCloudStorageService.cs" />
+    <Compile Include="Service\HtmlLoader.cs" />
+    <Compile Include="Service\IBookLoader.cs" />
+    <Compile Include="Service\IBookmarkService.cs" />
     <Compile Include="Service\IBookshelfService.cs" />
     <Compile Include="Service\ICloudStorageService.cs" />
-    <Compile Include="Service\IEpubLoader.cs" />
+    <Compile Include="Service\IDatabaseService.cs" />
     <Compile Include="Service\IFileService.cs" />
     <Compile Include="Service\IMessageBus.cs" />
     <Compile Include="Service\ISyncService.cs" />
     <Compile Include="Service\MessageBus.cs" />
     <Compile Include="Service\SyncService.cs" />
+    <Compile Include="Service\OneFileLoader.cs" />
+    <Compile Include="Service\TxtLoader.cs" />
     <Compile Include="Service\WebViewMessages.cs" />
     <Compile Include="UserSettings.cs" />
+    <Compile Include="View\MyFloatButton.cs" />
     <Compile Include="View\ReaderWebView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +269,15 @@
     <Reference Include="JWT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Firebase.Xamarin.0.3.6\lib\JWT.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AppCenter, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AppCenter.1.3.0\lib\portable-net45+win8+wpa81+wp8\Microsoft.AppCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AppCenter.Analytics.1.3.0\lib\portable-net45+win8+wpa81+wp8\Microsoft.AppCenter.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AppCenter.Crashes.1.3.0\lib\portable-net45+win8+wpa81+wp8\Microsoft.AppCenter.Crashes.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wp8+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -236,6 +286,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Firebase.Xamarin.0.3.6\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLCrypto, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d4421c8a4786956c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PCLCrypto.2.0.147\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\PCLCrypto.dll</HintPath>
     </Reference>
     <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
@@ -261,6 +314,18 @@
     <Reference Include="Plugin.Settings.Abstractions, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\netstandard1.0\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="SQLite-net, Version=1.5.166.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\sqlite-net-pcl.1.5.166-beta\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.8\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
     </Reference>
@@ -282,8 +347,17 @@
     <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Firebase.Xamarin.0.3.6\lib\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="Validation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=2fc06f0d701809a7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Validation.2.2.8\lib\portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Validation.dll</HintPath>
+    </Reference>
     <Reference Include="Xam.Plugin.WebView.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.WebView.2.0.10\lib\netstandard1.0\Xam.Plugin.WebView.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Auth, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Auth.1.5.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+XamarinIOS10\Xamarin.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Auth.XamarinForms, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Auth.XamarinForms.1.5.0.3\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+XamarinIOS10\Xamarin.Auth.XamarinForms.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.4.0.282\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
@@ -332,17 +406,27 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\add.png" />
+    <Content Include="Content\battery_almost_full_white.png" />
+    <Content Include="Content\battery_almost_full.png" />
+    <Content Include="Content\delete_white.png" />
+    <Content Include="Content\edit_white.png" />
+    <Content Include="Content\empty_battery_white.png" />
+    <Content Include="Content\empty_battery.png" />
+    <Content Include="Content\full_battery_white.png" />
+    <Content Include="Content\full_battery.png" />
+    <Content Include="Content\half_battery_white.png" />
+    <Content Include="Content\half_battery.png" />
+    <Content Include="Content\info_white.png" />
+    <Content Include="Content\low_battery_white.png" />
+    <Content Include="Content\low_battery.png" />
+    <Content Include="Content\book.png" />
     <Content Include="Content\delete.png" />
     <Content Include="Content\edit.png" />
     <Content Include="Content\info.png" />
-    <Content Include="Content\save.png" />
+    <Content Include="Content\save_white.png" />
+    <Content Include="Content\settings_white.png" />
     <Content Include="Content\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Page\Settings\SyncDropbox.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Page\Settings\Control.xaml">
@@ -374,6 +458,30 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\OAuth2LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\Settings\Application.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\MasterDetailPage1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Page\MasterDetailPage1Master.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -381,10 +489,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
-    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
-    <Error Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
-  </Target>
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
 </Project>

@@ -22,16 +22,17 @@ namespace EbookReader.Service {
         public event EventHandler<Model.WebViewMessages.OpenQuickPanelRequest> OnOpenQuickPanelRequest;
         public event EventHandler<Model.WebViewMessages.ChapterRequest> OnChapterRequest;
         public event EventHandler<Model.WebViewMessages.OpenUrl> OnOpenUrl;
+        public event EventHandler<Model.WebViewMessages.PanEvent> OnPanEvent;
 
         public WebViewMessages(ReaderWebView webView) {
             _webView = webView;
             _queue = new List<Model.WebViewMessages.Message>();
 
-            webView.AddLocalCallback("csCallback", (data) => {
+            _webView.AddLocalCallback("csCallback", (data) => {
                 this.Parse(data);
             });
 
-            webView.OnContentLoaded += WebView_OnContentLoaded;
+            _webView.OnContentLoaded += WebView_OnContentLoaded;
         }
 
         public void Send(string action, object data) {
@@ -57,7 +58,7 @@ namespace EbookReader.Service {
                 var toSend = Base64Helper.Encode(json);
 
                 Device.BeginInvokeOnMainThread(async () => {
-                    await _webView.InjectJavascriptAsync(string.Format("Messages.parse('{0}')", toSend));
+                    await _webView.InjectJavascriptAsync($"Messages.parse('{toSend}')");
                 });
 
                 if (message.Action == "init") {
@@ -69,7 +70,7 @@ namespace EbookReader.Service {
         private void Parse(string data) {
             var json = JsonConvert.DeserializeObject<Model.WebViewMessages.Message>(Base64Helper.Decode(data));
 
-            var messageType = Type.GetType(string.Format("EbookReader.Model.WebViewMessages.{0}", json.Action));
+            var messageType = Type.GetType($"EbookReader.Model.WebViewMessages.{json.Action}");
             var msg = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(json.Data), messageType);
 
             switch (json.Action) {
@@ -90,6 +91,9 @@ namespace EbookReader.Service {
                     break;
                 case Model.WebViewMessages.OpenUrl.Name:
                     this.OnOpenUrl?.Invoke(this, msg as Model.WebViewMessages.OpenUrl);
+                    break;
+                case Model.WebViewMessages.PanEvent.Name:
+                    this.OnPanEvent?.Invoke(this, msg as Model.WebViewMessages.PanEvent);
                     break;
             }
 

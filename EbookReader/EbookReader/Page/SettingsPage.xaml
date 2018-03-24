@@ -6,4 +6,5 @@
     <local:Reader />
     <local:Synchronization />
     <local:Control />
+    <local:Application />
 </TabbedPage>

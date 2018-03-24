@@ -12,7 +12,9 @@ namespace EbookReader.Page {
         public SettingsPage() {
             InitializeComponent();
 
-            NavigationPage.SetHasNavigationBar(this, false);
+            if (!App.HasMasterDetailPage) {
+                NavigationPage.SetHasNavigationBar(this, false);
+            }
         }
     }
 }

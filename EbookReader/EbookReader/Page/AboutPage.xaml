@@ -6,23 +6,25 @@
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
             
             <Style x:Key="link" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Italic"></Setter>
                 <Setter Property="TextColor" Value="Blue"></Setter>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="15">
             <Label Text="OneSync Reader"
                    FontSize="Large"
-                   Margin="25"/>
+                   Margin="10"/>
             <Label Text="{Binding Version}" FontSize="Small" />
-            <Label Text="Vytvořil Jan Bareš, 2017"></Label>
+            <Label Text="Created by Jan Bareš, 2017"></Label>
             <Label Text="janbares.cz" Style="{StaticResource link}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://janbares.cz"></TapGestureRecognizer>

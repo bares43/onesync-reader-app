@@ -7,8 +7,10 @@ using Autofac;
 using EbookReader.DependencyService;
 using EbookReader.Helpers;
 using EbookReader.Model.Bookshelf;
+using EbookReader.Model.Format;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Reader;
+using EbookReader.Provider;
 using EbookReader.Service;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,16 +19,16 @@ namespace EbookReader.Page {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReaderPage : ContentPage {
 
-        IEpubLoader _epubLoader;
         IAssetsManager _assetsManager;
         IBookshelfService _bookshelfService;
         IMessageBus _messageBus;
         ISyncService _syncService;
+        IBookmarkService _bookmarkService;
 
         int currentChapter;
 
-        Book _book;
-        Model.Epub _epub;
+        Book _bookshelfBook;
+        Ebook _ebook;
 
         bool ResizeFirstRun = true;
         bool ResizeTimerRunning = false;
@@ -42,11 +44,11 @@ namespace EbookReader.Page {
             InitializeComponent();
 
             // ioc
-            _epubLoader = IocManager.Container.Resolve<IEpubLoader>();
             _assetsManager = IocManager.Container.Resolve<IAssetsManager>();
             _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
             _syncService = IocManager.Container.Resolve<ISyncService>();
+            _bookmarkService = IocManager.Container.Resolve<IBookmarkService>();
 
             // webview events
             WebView.Messages.OnNextChapterRequest += _messages_OnNextChapterRequest;
@@ -55,6 +57,7 @@ namespace EbookReader.Page {
             WebView.Messages.OnPageChange += Messages_OnPageChange;
             WebView.Messages.OnChapterRequest += Messages_OnChapterRequest;
             WebView.Messages.OnOpenUrl += Messages_OnOpenUrl;
+            WebView.Messages.OnPanEvent += Messages_OnPanEvent;
 
             QuickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
@@ -64,45 +67,32 @@ namespace EbookReader.Page {
                 quickPanelPosition = new Rectangle(0, 0, 0.33, 1);
             }
 
-            _messageBus.Send(new FullscreenRequest(true));
-
-            Device.StartTimer(new TimeSpan(0, 5, 0), () => {
-                if (backgroundSync) {
-                    this.LoadProgress();
-                    this.SaveProgress();
-                }
-
-                return backgroundSync;
-            });
+            _messageBus.Send(new FullscreenRequestMessage(true));
+            
+            if (UserSettings.Reader.NightMode) {
+                BackgroundColor = Color.FromRgb(24, 24, 25);
+            }
 
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private void SubscribeMessages() {
-            _messageBus.Subscribe<ChangeMargin>(ChangeMargin, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<ChangeFontSize>(ChangeFontSize, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<AppSleep>(AppSleepSubscriber, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<AddBookmark>(AddBookmark, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<OpenBookmark>(OpenBookmark, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<DeleteBookmark>(DeleteBookmark, new string[] { nameof(ReaderPage) });
-            _messageBus.Subscribe<ChangedBookmarkName>(ChangedBookmarkName, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<ChangeMarginMessage>(ChangeMargin, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<ChangeFontSizeMessage>(ChangeFontSize, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<AppSleepMessage>(AppSleepSubscriber, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<AddBookmarkMessage>(AddBookmark, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<OpenBookmarkMessage>(OpenBookmark, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<DeleteBookmarkMessage>(DeleteBookmark, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<ChangedBookmarkNameMessage>(ChangedBookmarkName, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<GoToPageMessage>(GoToPageHandler, new string[] { nameof(ReaderPage) });
         }
 
         private void UnSubscribeMessages() {
             _messageBus.UnSubscribe(nameof(ReaderPage));
         }
 
-        private void SubscribeMessage<M>(Action<M> action) {
-            _messageBus.Subscribe(action, new string[] { nameof(ReaderPage) });
-        }
-
-        protected override bool OnBackButtonPressed() {
-            if (QuickPanel.IsVisible) {
-                QuickPanel.Hide();
-                return true;
-            }
-
-            return base.OnBackButtonPressed();
+        public bool IsQuickPanelVisible() {
+            return QuickPanel.IsVisible;
         }
 
         private void Messages_OnOpenUrl(object sender, Model.WebViewMessages.OpenUrl e) {
@@ -114,21 +104,36 @@ namespace EbookReader.Page {
             }
         }
 
+        private void Messages_OnPanEvent(object sender, Model.WebViewMessages.PanEvent e) {
+
+            if (UserSettings.Control.BrightnessChange == BrightnessChange.None) {
+                return;
+            }
+
+            var totalWidth = (int)WebView.Width;
+            var edge = totalWidth / 5;
+
+            if ((UserSettings.Control.BrightnessChange == BrightnessChange.Left && e.X <= edge) ||
+                (UserSettings.Control.BrightnessChange == BrightnessChange.Right && e.X >= totalWidth - edge)) {
+                float brightness = 1 - ((float)e.Y / ((int)WebView.Height + (2 * UserSettings.Reader.Margin)));
+                _messageBus.Send(new ChangesBrightnessMessage { Brightness = brightness });
+            }
+        }
+
         private void Messages_OnChapterRequest(object sender, Model.WebViewMessages.ChapterRequest e) {
             if (!string.IsNullOrEmpty(e.Chapter)) {
                 var filename = e.Chapter.Split('#');
                 var hash = filename.Skip(1).FirstOrDefault();
                 var path = filename.FirstOrDefault();
 
-                var currentChapterPath = _epub.Files.First(o => o.Id == _epub.Spines.ElementAt(currentChapter).Idref).Href;
+                var currentChapterPath = _ebook.Files.First(o => o.Id == _ebook.Spines.ElementAt(currentChapter).Idref).Href;
 
                 var newChapterPath = PathHelper.NormalizePath(PathHelper.CombinePath(currentChapterPath, path));
-                var chapterId = _epub.Files.Where(o => PathHelper.NormalizePath(o.Href) == newChapterPath).Select(o => o.Id).FirstOrDefault();
+                var chapterId = _ebook.Files.Where(o => PathHelper.NormalizePath(o.Href) == newChapterPath).Select(o => o.Id).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(chapterId)) {
-                    var chapter = _epub.Spines.FirstOrDefault(o => o.Idref == chapterId);
+                    var chapter = _ebook.Spines.FirstOrDefault(o => o.Idref == chapterId);
 
-                    System.Diagnostics.Debug.WriteLine(chapter);
                     if (chapter != null) {
                         this.SendChapter(chapter, marker: hash);
                     }
@@ -141,30 +146,44 @@ namespace EbookReader.Page {
             base.OnDisappearing();
             this.SaveProgress();
             backgroundSync = false;
-            _messageBus.Send(new FullscreenRequest(false));
             this.UnSubscribeMessages();
         }
 
         protected override void OnAppearing() {
             base.OnAppearing();
             backgroundSync = true;
-            _messageBus.Send(new FullscreenRequest(true));
+            _messageBus.Send(new FullscreenRequestMessage(true));
             this.SubscribeMessages();
+
+            var task = Task.Run(() => {
+                this.LoadProgress();
+                this.SynchronizeBookmarks();
+            });
+
+            Device.StartTimer(new TimeSpan(0, 1, 0), () => {
+                if (backgroundSync) {
+                    this.LoadProgress();
+                    this.SaveProgress();
+                    this.SynchronizeBookmarks();
+                }
+
+                return backgroundSync;
+            });
         }
 
         public async void LoadBook(Book book) {
-            _book = book;
-            _epub = await _epubLoader.OpenEpub(book.Path);
-            var position = _book.Position;
+            _bookshelfBook = book;
+            _ebook = await EbookFormatHelper.GetBookLoader(book.Format).OpenBook(book.Path);
+            var position = _bookshelfBook.Position;
 
-            QuickPanel.PanelContent.SetNavigation(_epub.Navigation);
-            QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
+            QuickPanel.PanelContent.SetNavigation(_ebook.Navigation);
+            this.RefreshBookmarks();
 
-            var chapter = _epub.Spines.First();
+            var chapter = _ebook.Spines.First();
             var positionInChapter = 0;
 
             if (position != null) {
-                var loadedChapter = _epub.Spines.ElementAt(position.Spine);
+                var loadedChapter = _ebook.Spines.ElementAt(position.Spine);
                 if (loadedChapter != null) {
                     chapter = loadedChapter;
                     positionInChapter = position.SpinePosition;
@@ -172,64 +191,69 @@ namespace EbookReader.Page {
             }
 
             this.SendChapter(chapter, position: positionInChapter);
-
-            var task = Task.Run(() => {
-                this.LoadProgress();
-            });
         }
 
-        private void AppSleepSubscriber(AppSleep msg) {
+        private void AppSleepSubscriber(AppSleepMessage msg) {
             if (Device.RuntimePlatform == Device.UWP && backgroundSync) {
                 this.SaveProgress();
             }
         }
 
-        private void AddBookmark(AddBookmark msg) {
-            _book.Bookmarks.Add(new Bookmark {
-                Name = DateTime.Now.ToString(),
-                Position = new Position(_book.Position)
-            });
-            _bookshelfService.SaveBook(_book);
-            QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
+        private void AddBookmark(AddBookmarkMessage msg) {
+            _bookmarkService.CreateBookmark(DateTime.Now.ToString(), _bookshelfBook.ID, _bookshelfBook.Position);
+
+            this.RefreshBookmarks();
         }
 
-        private void DeleteBookmark(DeleteBookmark msg) {
-            _book.Bookmarks.Remove(msg.Bookmark);
-            _bookshelfService.SaveBook(_book);
-            QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
+        private void DeleteBookmark(DeleteBookmarkMessage msg) {
+            _bookmarkService.DeleteBookmark(msg.Bookmark, _bookshelfBook.ID);
+
+            this.RefreshBookmarks();
         }
 
-        public void ChangedBookmarkName(ChangedBookmarkName msg) {
-            _bookshelfService.SaveBook(_book);
-            QuickPanel.PanelBookmarks.SetBookmarks(_book.Bookmarks);
+        public void ChangedBookmarkName(ChangedBookmarkNameMessage msg) {
+            _bookmarkService.SaveBookmark(msg.Bookmark);
+            _syncService.SaveBookmark(_bookshelfBook.ID, msg.Bookmark);
+            this.RefreshBookmarks();
         }
 
-        private void OpenBookmark(OpenBookmark msg) {
-            var loadedChapter = _epub.Spines.ElementAt(msg.Bookmark.Position.Spine);
+        private async void RefreshBookmarks() {
+            var bookmarks = await _bookmarkService.LoadBookmarksByBookID(_bookshelfBook.ID);
+            QuickPanel.PanelBookmarks.SetBookmarks(bookmarks);
+        }
+
+        private void OpenBookmark(OpenBookmarkMessage msg) {
+            var loadedChapter = _ebook.Spines.ElementAt(msg.Bookmark.Position.Spine);
             if (loadedChapter != null) {
                 if (currentChapter != msg.Bookmark.Position.Spine) {
                     this.SendChapter(loadedChapter, position: msg.Bookmark.Position.SpinePosition);
                 } else {
-                    _book.Position.SpinePosition = msg.Bookmark.Position.SpinePosition;
+                    _bookshelfBook.SpinePosition = msg.Bookmark.Position.SpinePosition;
                     this.GoToPosition(msg.Bookmark.Position.SpinePosition);
                 }
             }
         }
 
-        private void ChangeMargin(ChangeMargin msg) {
+        private void ChangeMargin(ChangeMarginMessage msg) {
             this.SetMargin(msg.Margin);
         }
 
-        private void ChangeFontSize(ChangeFontSize msg) {
+        private void ChangeFontSize(ChangeFontSizeMessage msg) {
             this.SetFontSize(msg.FontSize);
         }
 
-        private async void SendChapter(Model.EpubSpine chapter, int position = 0, bool lastPage = false, string marker = "") {
-            currentChapter = _epub.Spines.IndexOf(chapter);
-            _book.Position.Spine = currentChapter;
+        private void GoToPageHandler(GoToPageMessage msg) {
+            this.SendGoToPage(msg.Page, msg.Next, msg.Previous);
+        }
 
-            var html = await _epubLoader.GetChapter(_epub, chapter);
-            var htmlResult = await _epubLoader.PrepareHTML(html, _epub, _epub.Files.Where(o => o.Id == chapter.Idref).First());
+        private async void SendChapter(Spine chapter, int position = 0, bool lastPage = false, string marker = "") {
+            currentChapter = _ebook.Spines.IndexOf(chapter);
+            _bookshelfBook.Spine = currentChapter;
+
+            var bookLoader = EbookFormatHelper.GetBookLoader(_bookshelfBook.Format);
+
+            var html = await bookLoader.GetChapter(_ebook, chapter);
+            var htmlResult = await bookLoader.PrepareHTML(html, _ebook, _ebook.Files.Where(o => o.Id == chapter.Idref).First());
 
             Device.BeginInvokeOnMainThread(() => {
                 this.SendHtml(htmlResult, position, lastPage, marker);
@@ -239,32 +263,35 @@ namespace EbookReader.Page {
 
         #region sync
         private void SaveProgress() {
-            _bookshelfService.SaveBook(_book);
-            if (!_book.Position.Equals(lastSavedPosition)) {
-                lastSavedPosition = new Position(_book.Position);
-                _syncService.SaveProgress(_book.Id, _book.Position);
+            if (_bookshelfBook == null) return;
+            _bookshelfService.SaveBook(_bookshelfBook);
+            if (!_bookshelfBook.Position.Equals(lastSavedPosition)) {
+                lastSavedPosition = new Position(_bookshelfBook.Position);
+                _syncService.SaveProgress(_bookshelfBook.ID, _bookshelfBook.Position);
             }
         }
 
         private async void LoadProgress() {
-            var syncPosition = await _syncService.LoadProgress(_book.Id);
+            if (_bookshelfBook == null) return;
+            var syncPosition = await _syncService.LoadProgress(_bookshelfBook.ID);
             if (!syncPending &&
                 syncPosition != null &&
                 syncPosition.Position != null &&
-                !syncPosition.Position.Equals(_book.Position) &&
+                !syncPosition.Position.Equals(_bookshelfBook.Position) &&
                 !syncPosition.Position.Equals(lastLoadedPosition) &&
                 syncPosition.D != UserSettings.Synchronization.DeviceName) {
-                var loadedChapter = _epub.Spines.ElementAt(syncPosition.Position.Spine);
+                var loadedChapter = _ebook.Spines.ElementAt(syncPosition.Position.Spine);
                 if (loadedChapter != null) {
                     lastLoadedPosition = new Position(syncPosition.Position);
                     Device.BeginInvokeOnMainThread(async () => {
                         syncPending = true;
-                        var loadPosition = await DisplayAlert("Postup čtení na jiném zařízení", $"Načíst postup čtení ze zařízení {syncPosition.D}?", "Načíst", "Ne");
+                        var loadPosition = await DisplayAlert("Reading position at the another device", $"Load reading position from the device {syncPosition.D}?", "Yes, load it", "No");
                         if (loadPosition) {
                             if (currentChapter != syncPosition.Position.Spine) {
                                 this.SendChapter(loadedChapter, position: syncPosition.Position.SpinePosition);
                             } else {
-                                _book.Position.SpinePosition = syncPosition.Position.SpinePosition;
+                                _bookshelfBook.SpinePosition = syncPosition.Position.SpinePosition;
+                                _bookshelfService.SaveBook(_bookshelfBook);
                                 this.GoToPosition(syncPosition.Position.SpinePosition);
                             }
                         }
@@ -272,6 +299,11 @@ namespace EbookReader.Page {
                     });
                 }
             }
+        }
+
+        private void SynchronizeBookmarks() {
+            if (_bookshelfBook == null) return;
+            _syncService.SynchronizeBookmarks(_bookshelfBook);
         }
         #endregion
 
@@ -282,11 +314,11 @@ namespace EbookReader.Page {
                 var id = path.First();
                 var marker = path.Skip(1).FirstOrDefault() ?? string.Empty;
 
-                var normalizedId = PathHelper.NormalizePath(PathHelper.CombinePath(_epub.ContentBasePath, id));
+                var normalizedId = PathHelper.NormalizePath(PathHelper.CombinePath(_ebook.ContentBasePath, id));
 
-                var file = _epub.Files.FirstOrDefault(o => o.Href.Contains(id) || o.Href.Contains(normalizedId));
+                var file = _ebook.Files.FirstOrDefault(o => o.Href.Contains(id) || o.Href.Contains(normalizedId));
                 if (file != null) {
-                    var spine = _epub.Spines.FirstOrDefault(o => o.Idref == file.Id);
+                    var spine = _ebook.Spines.FirstOrDefault(o => o.Idref == file.Id);
                     if (spine != null) {
                         //TODO[bares]: pokud se nemeni kapitola, poslat jen marker
                         this.SendChapter(spine, marker: marker);
@@ -296,8 +328,9 @@ namespace EbookReader.Page {
         }
 
         private void Messages_OnPageChange(object sender, Model.WebViewMessages.PageChange e) {
-            _book.Position.SpinePosition = e.Position;
-            _messageBus.Send(new PageChange { CurrentPage = e.CurrentPage, TotalPages = e.TotalPages, Position = e.Position });
+            _bookshelfBook.SpinePosition = e.Position;
+            _bookshelfService.SaveBook(_bookshelfBook);
+            _messageBus.Send(new PageChangeMessage { CurrentPage = e.CurrentPage, TotalPages = e.TotalPages, Position = e.Position });
         }
 
         private void _messages_OnOpenQuickPanelRequest(object sender, Model.WebViewMessages.OpenQuickPanelRequest e) {
@@ -306,13 +339,13 @@ namespace EbookReader.Page {
 
         private void _messages_OnPrevChapterRequest(object sender, Model.WebViewMessages.PrevChapterRequest e) {
             if (currentChapter > 0) {
-                this.SendChapter(_epub.Spines[currentChapter - 1], lastPage: true);
+                this.SendChapter(_ebook.Spines[currentChapter - 1], lastPage: true);
             }
         }
 
         private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
-            if (currentChapter < _epub.Spines.Count - 1) {
-                this.SendChapter(_epub.Spines[currentChapter + 1]);
+            if (currentChapter < _ebook.Spines.Count - 1) {
+                this.SendChapter(_ebook.Spines[currentChapter + 1]);
             }
         }
 
@@ -408,6 +441,16 @@ namespace EbookReader.Page {
             };
 
             WebView.Messages.Send("goToPosition", json);
+        }
+
+        private void SendGoToPage(int page, bool next, bool previous) {
+            var json = new {
+                Page = page,
+                Next = next,
+                Previous = previous,
+            };
+
+            WebView.Messages.Send("goToPage", json);
         }
         #endregion
     }

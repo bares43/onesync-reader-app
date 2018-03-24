@@ -47,7 +47,7 @@ namespace EbookReader.Model.View {
             });
 
             CloseCommand = new Command(() => {
-                IocManager.Container.Resolve<IMessageBus>().Send(new CloseQuickPanel());
+                IocManager.Container.Resolve<IMessageBus>().Send(new CloseQuickPanelMessage());
             });
         }
     }

@@ -108,15 +108,18 @@ namespace EbookReader.UWP {
         private void SetUpIoc() {
             IocManager.ContainerBuilder.RegisterType<UWPAssetsManager>().As<IAssetsManager>();
             IocManager.ContainerBuilder.RegisterType<CryptoService>().As<ICryptoService>();
+            IocManager.ContainerBuilder.RegisterType<BatteryProvider>().As<IBatteryProvider>();
+            IocManager.ContainerBuilder.RegisterType<FileHelper>().As<IFileHelper>();
+            IocManager.ContainerBuilder.RegisterType<ToastService>().As<IToastService>();
             IocManager.Build();
         }
 
         private void SetUpSubscribers() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-            messageBus.Subscribe<Model.Messages.FullscreenRequest>(ToggleFullscreen);
+            messageBus.Subscribe<Model.Messages.FullscreenRequestMessage>(ToggleFullscreen);
         }
 
-        private void ToggleFullscreen(Model.Messages.FullscreenRequest msg) {
+        private void ToggleFullscreen(Model.Messages.FullscreenRequestMessage msg) {
             if (msg.Fullscreen) {
                 ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             } else {

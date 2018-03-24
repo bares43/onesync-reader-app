@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Autofac;
+using EbookReader.DependencyService;
 using Firebase.Xamarin.Auth;
 using Firebase.Xamarin.Database;
+using Microsoft.AppCenter.Analytics;
+using Plugin.Connectivity;
 using Xamarin.Forms;
 
 namespace EbookReader.Model.View {
@@ -52,6 +56,24 @@ namespace EbookReader.Model.View {
             }
         }
 
+        bool _resetMailSent = false;
+        public bool ResetMailSent {
+            get => _resetMailSent;
+            set {
+                _resetMailSent = value;
+                OnPropertyChanged();
+            }
+        }
+
+        bool _mailNotFound = false;
+        public bool MailNotFound {
+            get => _mailNotFound;
+            set {
+                _mailNotFound = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand ConnectCommand { get; set; }
         public ICommand DisconnectCommand { get; set; }
         public ICommand ResetCommand { get; set; }
@@ -72,6 +94,12 @@ namespace EbookReader.Model.View {
         }
 
         private async void Connect() {
+            if (!CrossConnectivity.Current.IsConnected) {
+                IocManager.Container.Resolve<IToastService>().Show("There is no Internet connection.");
+
+                return;
+            }
+
             var client = new FirebaseClient(AppSettings.Synchronization.Firebase.BaseUrl);
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppSettings.Synchronization.Firebase.ApiKey));
 
@@ -80,8 +108,16 @@ namespace EbookReader.Model.View {
                 connected = await this.TryCreate();
             }
 
+            if (connected) {
+                Analytics.TrackEvent("Firebase login successful");
+            } else {
+                Analytics.TrackEvent("Firebase login failed");
+            }
+
             IsConnected = connected;
             LoginFailed = !connected;
+            MailNotFound = false;
+            ResetMailSent = false;
         }
 
         private async Task<bool> TrySignIn() {
@@ -111,10 +147,15 @@ namespace EbookReader.Model.View {
         }
 
         private async void Reset() {
+            ResetMailSent = false;
+            MailNotFound = false;
             try {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyA4TOO3_Pa1kb_s6zjBMqpehPLrTk8SrLA"));
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppSettings.Synchronization.Firebase.ApiKey));
                 await authProvider.SendPasswordResetEmailAsync(Email);
-            } catch (Exception e) { }
+                ResetMailSent = true;
+            } catch (Exception e) {
+                MailNotFound = true;
+            }
         }
 
     }

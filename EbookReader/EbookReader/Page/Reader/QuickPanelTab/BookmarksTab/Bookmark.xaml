@@ -25,7 +25,7 @@
     </StackLayout.Resources>
 
     <StackLayout.Children>
-        <Image Source="delete.png">
+        <Image Source="delete_white.png">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding DeleteBookmarkCommand}"/>
             </Image.GestureRecognizers>
@@ -33,7 +33,7 @@
         <StackLayout x:Name="previewMode"
                      Orientation="Horizontal"
                      IsVisible="{Binding EditMode, Converter={converter:InverseBoolConverter}}}">
-            <Image Source="edit.png">
+            <Image Source="edit_white.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ShowEditCommand}" CommandParameter="{x:Reference NameEntry}" />
                 </Image.GestureRecognizers>
@@ -51,7 +51,7 @@
                      Orientation="Horizontal"
                      IsVisible="{Binding EditMode}"
                      HorizontalOptions="FillAndExpand">
-            <Image Source="save.png">
+            <Image Source="save_white.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SaveCommand}"/>
                 </Image.GestureRecognizers>

@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace EbookReader.Page.Home {
     public static class Card {
-        public static int CardHeight => Device.RuntimePlatform == Device.Android ? 260 : 350;
-        public static int CardWidth => (int)Math.Round(CardHeight / 1.67);
+        public static int CardHeight => Device.RuntimePlatform == Device.Android ? 250 : 600;
+        public static int CardWidth => (int)Math.Round(CardHeight / 1.33);
     }
 }

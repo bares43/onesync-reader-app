@@ -2,37 +2,78 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EbookReader.Page.Settings.Control"
-             Title="Ovládání">
+             Title="Controls">
+    
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="Picker">
-                <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
+
+            <Style TargetType="Label" x:Key="title">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
             </Style>
 
-            <OnPlatform x:TypeArguments="Thickness" Android="10,0" WinPhone="10" x:Key="settingsWrapperPadding" />
+            <Style TargetType="StackLayout" x:Key="wrapper">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="Margin" Value="13, 5" />
+            </Style>
 
-            <Style x:Key="settingsWrapper" TargetType="StackLayout">
-                <Setter Property="Orientation" Value="Horizontal" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Padding" Value="{StaticResource settingsWrapperPadding}" />
+            <Style TargetType="Label" x:Key="note">
+                <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
-            <Style TargetType="Label">
-                <Setter Property="VerticalOptions" Value="Center" />
+
+            <Style TargetType="View" x:Key="control">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Fill">
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Posun vpřed klikem kamkoliv" />
-                <Switch IsToggled="{Binding ClickEverywhere}" />
+
+        <ScrollView Orientation="Vertical" Margin="0,20,0,0">
+            <StackLayout VerticalOptions="Fill" Orientation="Vertical">
+
+                <StackLayout Orientation="Vertical">
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Tap anywhere" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding ClickEverywhere}" Style="{StaticResource control}" />
+                        </StackLayout>
+                        <Label Text="Tap anywhere to move to the next page. You can go to the previous page by swipe left." Style="{StaticResource note}" />
+                    </StackLayout>
+
+                    <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding VolumeButton.Show}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Volume buttons" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding VolumeButton.Enabled}" Style="{StaticResource control}" />
+                        </StackLayout>
+                        <Label Text="Use volume buttons for navigation." Style="{StaticResource note}" />
+                    </StackLayout>
+                    
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Change brightness" Style="{StaticResource title}" />
+                            <Picker ItemsSource="{Binding PanBrightnessChange.Items}" SelectedItem="{Binding PanBrightnessChange.Value}" Style="{StaticResource control}" />
+                        </StackLayout>
+                        <Label Text="Pan on the edge of display for brightness control." Style="{StaticResource note}" />
+                    </StackLayout>
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Two fingers swipe" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding DoubleSwipe}" Style="{StaticResource control}" />
+                        </StackLayout>
+                        <Label Text="Swipe with two fingers to move between chapters." Style="{StaticResource note}" />
+                    </StackLayout>
+
+                </StackLayout>
+
             </StackLayout>
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Přechod mezi kapitolami pomocí swipu dvěma prsty" />
-                <Switch IsToggled="{Binding DoubleSwipe}" />
-            </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

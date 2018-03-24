@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Autofac;
 using EbookReader.DependencyService;
 using EbookReader.Provider;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using Xamarin.Forms;
@@ -15,8 +16,25 @@ namespace EbookReader {
     public static class UserSettings {
         private static ISettings AppSettings => CrossSettings.Current;
 
+        public static bool FirstRun {
+            get => AppSettings.GetValueOrDefault(CreateKey(nameof(FirstRun)), true);
+            set => AppSettings.AddOrUpdateValue(CreateKey(nameof(FirstRun)), value);
+        }
+
+        public static bool AnalyticsAgreement {
+            get => AppSettings.GetValueOrDefault(CreateKey(nameof(AnalyticsAgreement)), false);
+            set {
+                SetAnalytics(value);
+                AppSettings.AddOrUpdateValue(CreateKey(nameof(AnalyticsAgreement)), value);
+            }
+        }
+
+        private async static void SetAnalytics(bool enabled) {
+            await Analytics.SetEnabledAsync(enabled);
+        }
+
         public static class Reader {
-            private static int FontSizeDefault = 20;
+            private static int FontSizeDefault = Device.RuntimePlatform == Device.Android ? 20 : 40;
             private static int MarginDefault = 30;
             private static int ScrollSpeedDefault = 200;
 
@@ -36,7 +54,7 @@ namespace EbookReader {
             }
 
             public static bool NightMode {
-                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(NightMode)), false);
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(NightMode)), true);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(NightMode)), value);
             }
 
@@ -56,7 +74,7 @@ namespace EbookReader {
             public static long DeviceID {
                 get {
                     var id = AppSettings.GetValueOrDefault(CreateKey(nameof(Synchronization), nameof(DeviceID)), default(long));
-                    if(id == default(long)) {
+                    if (id == default(long)) {
                         id = DeviceIdProvider.ID;
                         AppSettings.AddOrUpdateValue(CreateKey(nameof(Synchronization), nameof(DeviceID)), id);
                     }
@@ -109,6 +127,17 @@ namespace EbookReader {
             public static bool DoubleSwipe {
                 get => AppSettings.GetValueOrDefault(CreateKey(nameof(Control), nameof(DoubleSwipe)), false);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(DoubleSwipe)), value);
+            }
+
+            public static BrightnessChange BrightnessChange {
+                get => (BrightnessChange)AppSettings.GetValueOrDefault(CreateKey(nameof(Control), nameof(BrightnessChange)), 
+                    Device.RuntimePlatform == Device.Android ? (int)BrightnessChange.Left : (int)BrightnessChange.None);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(BrightnessChange)), (int)value);
+            }
+
+            public static bool VolumeButtons {
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Control), nameof(VolumeButtons)), false);
+                set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Control), nameof(VolumeButtons)), value);
             }
         }
 

@@ -4,7 +4,7 @@
              x:Class="EbookReader.Page.Reader.InfoPanel"
              HorizontalOptions="FillAndExpand"
              VerticalOptions="FillAndExpand"
-             BackgroundColor="{Binding BackgroundColor}"
+             BackgroundColor="Transparent"
              Orientation="Horizontal"
              Padding="5">
     <StackLayout.Resources>
@@ -18,6 +18,9 @@
 
     <StackLayout.Children>
         <Label Text="{Binding Pages}" HorizontalOptions="StartAndExpand"></Label>
-        <Label Text="{Binding Clock}" HorizontalOptions="EndAndExpand"></Label>
+        <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal">
+            <Label Text="{Binding Clock}" ></Label>
+            <Image Source="{Binding BatteryIcon}" HeightRequest="20" WidthRequest="20" IsVisible="{Binding ShowBattery}"  />
+        </StackLayout>
     </StackLayout.Children>
 </StackLayout>

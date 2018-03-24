@@ -7,6 +7,7 @@ using Autofac;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Home;
 using EbookReader.Service;
+using Microsoft.AppCenter.Analytics;
 using Plugin.FilePicker;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,7 +18,6 @@ namespace EbookReader.Page {
 
         IBookshelfService _bookshelfService;
         IMessageBus _messageBus;
-        IEpubLoader _epubLoader;
         ISyncService _syncService;
 
         public HomePage() {
@@ -26,28 +26,53 @@ namespace EbookReader.Page {
 
             Init();
 
-            var settingsItem = new ToolbarItem {
-                Text = "Nastavení",
-                Icon = "settings.png"
-            };
-            settingsItem.Clicked += SettingsItem_Clicked;
-            ToolbarItems.Add(settingsItem);
+            if (!App.HasMasterDetailPage) {
 
-            var aboutItem = new ToolbarItem {
-                Text = "O aplikaci",
-                Icon = "info.png"
-            };
-            aboutItem.Clicked += AboutItem_Clicked;
+                var settingsItem = new ToolbarItem {
+                    Text = "Settings",
+                    Icon = "settings.png"
+                };
+                settingsItem.Clicked += SettingsItem_Clicked;
+                ToolbarItems.Add(settingsItem);
 
-            ToolbarItems.Add(aboutItem);
+                var aboutItem = new ToolbarItem {
+                    Text = "About",
+                    Icon = "info.png",
+                };
+                aboutItem.Clicked += AboutItem_Clicked;
+
+                ToolbarItems.Add(aboutItem);
+
+            }
+        }
+
+        protected override void OnAppearing() {
+            base.OnAppearing();
+
+            // because of floating action button on android
+            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 200), () => {
+                _messageBus.Send(new FullscreenRequestMessage(false));
+                return false;
+            });
+
+            this.ShowAnalyticsAgreement();
+
+            UserSettings.FirstRun = false;
         }
 
         private async void AboutItem_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(App.AboutPage());
+            await Navigation.PushAsync(new AboutPage());
         }
 
         private async void SettingsItem_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(App.SettingsPage());
+            await Navigation.PushAsync(new SettingsPage());
+        }
+
+        private async void ShowAnalyticsAgreement() {
+            if (UserSettings.FirstRun) {
+                var result = await DisplayAlert("Agreement with collecting anonymous data", "I agree with collecting anonymous information about using of the app which is important for improving application.", "I agree", "No");
+                UserSettings.AnalyticsAgreement = result;
+            }
         }
 
         private async void Init() {
@@ -55,7 +80,6 @@ namespace EbookReader.Page {
             // ioc
             _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
-            _epubLoader = IocManager.Container.Resolve<IEpubLoader>();
             _syncService = IocManager.Container.Resolve<ISyncService>();
 
             var books = await _bookshelfService.LoadBooks();
@@ -64,44 +88,49 @@ namespace EbookReader.Page {
                 Bookshelf.Children.Add(new BookCard(book));
             }
 
-            _messageBus.Subscribe<AddBookClicked>(AddBook);
-            _messageBus.Subscribe<OpenBook>(OpenBook);
-            _messageBus.Subscribe<DeleteBook>(DeleteBook);
+            _messageBus.Subscribe<AddBookClickedMessage>(AddBook);
+            _messageBus.Subscribe<OpenBookMessage>(OpenBook);
+            _messageBus.Subscribe<DeleteBookMessage>(DeleteBook);
         }
 
-        private async void AddBook(AddBookClicked msg) {
+        private async void AddBook(AddBookClickedMessage msg) {
             var pickedFile = await CrossFilePicker.Current.PickFile();
 
             if (pickedFile != null) {
 
                 try {
                     var book = await _bookshelfService.AddBook(pickedFile);
-                    Bookshelf.Children.Add(new BookCard(book));
-                    this.SendBookToReader(book);
-                } catch (Exception) {
-                    await DisplayAlert("Chyba", "Soubor se nepodařilo otevřít", "OK");
+                    if (book.Item2) {
+                        Bookshelf.Children.Add(new BookCard(book.Item1));
+                    }
+                    this.SendBookToReader(book.Item1);
+                } catch (Exception e) {
+                    Analytics.TrackEvent("Failed to open book", new Dictionary<string, string> {
+                        { "Message", $"Filename: {pickedFile.FileName}, exception: {e.Message}" } }
+                    );
+                    await DisplayAlert("Error", "File failed to open", "OK");
                 }
 
             }
         }
 
-        private void OpenBook(OpenBook msg) {
+        private void OpenBook(OpenBookMessage msg) {
             this.SendBookToReader(msg.Book);
         }
 
-        private async void DeleteBook(DeleteBook msg) {
-            var deleteButton = "Smazat";
-            var deleteSyncButton = "Smazat včetně všech synchronizací";
-            var confirm = await DisplayActionSheet("Smazat knihu z knihovny?", deleteButton, "Ne", deleteSyncButton);
+        private async void DeleteBook(DeleteBookMessage msg) {
+            var deleteButton = "Delete";
+            var deleteSyncButton = "Delete including all synchronizations";
+            var confirm = await DisplayActionSheet("Delete book?", deleteButton, "No", deleteSyncButton);
             if (confirm == deleteButton || confirm == deleteSyncButton) {
-                var card = Bookshelf.Children.FirstOrDefault(o => o.StyleId == msg.Book.Id);
+                var card = Bookshelf.Children.FirstOrDefault(o => o.StyleId == msg.Book.ID);
                 if (card != null) {
                     Bookshelf.Children.Remove(card);
                 }
-                _bookshelfService.RemoveById(msg.Book.Id);
+                _bookshelfService.RemoveById(msg.Book.ID);
 
-                if(confirm == deleteSyncButton) {
-                    _syncService.DeleteBook(msg.Book.Id);
+                if (confirm == deleteSyncButton) {
+                    _syncService.DeleteBook(msg.Book.ID);
                 }
             }
         }
@@ -112,8 +141,8 @@ namespace EbookReader.Page {
             await Navigation.PushAsync(page);
         }
 
-        private void OpenButton_Clicked(object sender, EventArgs e) {
-            _messageBus.Send(new AddBookClicked());
+        private void MyFloatButton_Clicked(object sender, EventArgs e) {
+            _messageBus.Send(new AddBookClickedMessage());
         }
     }
 }

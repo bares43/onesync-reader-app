@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace EbookReader.Model.View {
     public class SettingsControlVM : BaseVM {
+
+        public PanBrightnessChangeVM PanBrightnessChange { get; set; }
+        public VolumeButtonVM VolumeButton { get; set; }
+
+        public SettingsControlVM() {
+            PanBrightnessChange = new PanBrightnessChangeVM();
+            VolumeButton = new VolumeButtonVM();
+        }
+
         public bool ClickEverywhere {
             get => UserSettings.Control.ClickEverywhere;
             set {

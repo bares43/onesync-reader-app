@@ -13,21 +13,17 @@ namespace EbookReader.Page.Home {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddBookCard : StackLayout {
         public AddBookCard() {
-            InitializeComponent();
 
-            BindingContext = new {
+            this.BindingContext = new {
                 Width = Card.CardWidth,
-                Height = Card.CardHeight,
             };
 
+            InitializeComponent();
+        }
+
+        private void Button_Clicked(object sender, EventArgs e) {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-
-            GestureRecognizers.Add(
-                new TapGestureRecognizer {
-                    Command = new Command(() => { messageBus.Send(new AddBookClicked()); }),
-                }
-            );
-
+            messageBus.Send(new AddBookClickedMessage());
         }
     }
 }

@@ -2,16 +2,45 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:EbookReader.Page.Home"
-             x:Class="EbookReader.Page.HomePage">
-    
+             xmlns:view="clr-namespace:EbookReader.View"
+             x:Class="EbookReader.Page.HomePage"
+             Title="My Books"
+             BackgroundColor="#EEEEEE">
+
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Margin="30,5">
-            <Label Text="Knihovna" FontSize="Large" HorizontalOptions="FillAndExpand"></Label>
-            <ScrollView HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="10">
-                <StackLayout x:Name="Bookshelf" x:FieldModifier="public" Orientation="Horizontal">
-                    <local:AddBookCard />
-                </StackLayout>
-            </ScrollView>
-        </StackLayout>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" >
+            <StackLayout Orientation="Vertical" Margin="30,5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="SizeProportional">
+
+                <OnPlatform x:TypeArguments="View">
+                    <OnPlatform.WinPhone>
+                        <local:AddBookCard />
+                    </OnPlatform.WinPhone>
+                    <OnPlatform.Android>
+                        <Label IsVisible="False" />
+                    </OnPlatform.Android>
+                </OnPlatform>
+
+                <ScrollView HorizontalOptions="FillAndExpand" Orientation="Both">
+                    <ScrollView.Content>
+                        <StackLayout x:Name="Bookshelf" x:FieldModifier="public" HorizontalOptions="FillAndExpand" Orientation="Horizontal" />
+                    </ScrollView.Content>
+                </ScrollView>
+            </StackLayout>
+
+            <OnPlatform x:TypeArguments="View">
+                <OnPlatform.Android>
+                    <view:MyFloatButton WidthRequest="60" 
+                                        HeightRequest="60"
+                                        AbsoluteLayout.LayoutBounds="1,1,-1,-1" 
+                                        AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                        Clicked="MyFloatButton_Clicked" />
+                </OnPlatform.Android>
+                <OnPlatform.WinPhone>
+                    <Label IsVisible="False" />
+                </OnPlatform.WinPhone>
+            </OnPlatform>
+
+        </AbsoluteLayout>
+
     </ContentPage.Content>
 </ContentPage>

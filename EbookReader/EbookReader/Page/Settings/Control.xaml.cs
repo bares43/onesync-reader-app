@@ -13,6 +13,11 @@ namespace EbookReader.Page.Settings {
         public Control() {
             InitializeComponent();
 
+            if (Device.RuntimePlatform == Device.UWP) {
+                Content.HorizontalOptions = LayoutOptions.Start;
+                Content.WidthRequest = 500;
+            }
+
             BindingContext = new SettingsControlVM();
         }
     }

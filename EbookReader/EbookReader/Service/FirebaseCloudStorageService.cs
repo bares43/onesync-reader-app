@@ -9,6 +9,11 @@ using Firebase.Xamarin.Database.Query;
 
 namespace EbookReader.Service {
     public class FirebaseCloudStorageService : ICloudStorageService {
+
+        public bool IsConnected() {
+            return !string.IsNullOrEmpty(UserSettings.Synchronization.Firebase.Email) && !string.IsNullOrEmpty(UserSettings.Synchronization.Firebase.Password);
+        }
+
         public async Task<T> LoadJson<T>(string[] path) {
             try {
                 var auth = await this.GetAuth();
@@ -17,6 +22,16 @@ namespace EbookReader.Service {
             } catch (Exception) { }
 
             return default(T);
+        }
+
+        public async Task<List<T>> LoadJsonList<T>(string[] path) {
+            try {
+                var auth = await this.GetAuth();
+                var result = await this.GetFirebase().Child(this.PathGenerator(path, auth)).WithAuth(auth.FirebaseToken).OnceAsync<T>();
+                return result.Select(o => o.Object).ToList();
+            } catch (Exception) { }
+
+            return new List<T>();
         }
 
         public async void SaveJson<T>(T json, string[] path) {

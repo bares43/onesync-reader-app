@@ -2,50 +2,84 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EbookReader.Page.Settings.Reader"
-             Title="Čtení">
+             Title="Reading">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="Picker">
-                <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
+
+            <Style TargetType="Label" x:Key="title">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
             </Style>
 
-            <OnPlatform x:TypeArguments="Thickness" Android="10,0" WinPhone="10" x:Key="settingsWrapperPadding" />
+            <Style TargetType="StackLayout" x:Key="wrapper">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="Margin" Value="13, 5" />
+            </Style>
 
-            <Style x:Key="settingsWrapper" TargetType="StackLayout">
-                <Setter Property="Orientation" Value="Horizontal" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Padding" Value="{StaticResource settingsWrapperPadding}" />
+            <Style TargetType="Label" x:Key="note">
+                <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
-            <Style TargetType="Label">
-                <Setter Property="VerticalOptions" Value="Center" />
+
+            <Style TargetType="View" x:Key="control">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Fill">
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Písmo" />
-                <Picker x:Name="FontPicker" ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}" />
+
+        <ScrollView Orientation="Vertical" Margin="0,20,0,0">
+            <StackLayout VerticalOptions="Fill" Orientation="Vertical">
+
+                <StackLayout Orientation="Vertical">
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Font size" Style="{StaticResource title}" />
+                            <Picker ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}" Style="{StaticResource control}" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Margin" Style="{StaticResource title}" />
+                            <Picker ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}" Style="{StaticResource control}" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Scrolling speed" Style="{StaticResource title}" />
+                            <Picker ItemsSource="{Binding ScrollSpeed.Items}" SelectedItem="{Binding ScrollSpeed.Value}" Style="{StaticResource control}" />
+                        </StackLayout>
+                        <Label Text="Speed of animation when going to the next page." Style="{StaticResource note}" />
+                    </StackLayout>
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Night mode" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding NightMode.Enabled}" Style="{StaticResource control}" />
+                        </StackLayout>
+                        <Label Text="Use night mode when reading." Style="{StaticResource note}" />
+                    </StackLayout>
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Fullscreen" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding Fullscreen.Enabled}" Style="{StaticResource control}" />
+                        </StackLayout>
+                        <Label Text="Open book in fullscreen mode." Style="{StaticResource note}" />
+                    </StackLayout>
+                </StackLayout>
+
             </StackLayout>
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Odsazení" />
-                <Picker x:Name="MarginPicker" ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}" />
-            </StackLayout>
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Rychlost scrollováni (ms)" />
-                <Picker ItemsSource="{Binding ScrollSpeed.Items}" SelectedItem="{Binding ScrollSpeed.Value}" />
-            </StackLayout>
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Noční režim" />
-                <Switch IsToggled="{Binding NightMode.Enabled}" />
-            </StackLayout>
-            <StackLayout Style="{StaticResource settingsWrapper}">
-                <Label Text="Fullscreen" />
-                <Switch IsToggled="{Binding Fullscreen.Enabled}" />
-            </StackLayout>
-        </StackLayout>
+        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

@@ -27,8 +27,8 @@ namespace EbookReader.Model.View {
 
                 UserSettings.Reader.Margin = value;
                 OnPropertyChanged();
-                _messageBus.Send(new ChangeMargin { Margin = value });
-                _messageBus.Send(new CloseQuickPanel());
+                _messageBus.Send(new ChangeMarginMessage { Margin = value });
+                _messageBus.Send(new CloseQuickPanelMessage());
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using EbookReader.Model;
 using EbookReader.Model.Messages;
 using EbookReader.Model.View;
 using EbookReader.Service;
@@ -28,11 +29,27 @@ namespace EbookReader.Page.Settings {
 
             BindingContext = vm;
 
-            IocManager.Container.Resolve<IMessageBus>().Subscribe<OpenDropboxLogin>(OpenDropboxLogin);
+            IocManager.Container.Resolve<IMessageBus>().Subscribe<OpenDropboxLoginMessage>(OpenDropboxLogin);
+
+            IocManager.Container.Resolve<IMessageBus>().Subscribe(async (OAuth2AccessTokenObtainedMessage msg) => {
+                if (msg.Provider == "Dropbox") {
+                    await Navigation.PopModalAsync();
+                }
+            });
         }
 
-        private async void OpenDropboxLogin(OpenDropboxLogin msg) {
-            await Navigation.PushModalAsync(new SyncDropbox());
+        private async void OpenDropboxLogin(OpenDropboxLoginMessage msg) {
+
+            var OAuth2Data = new OAuth2RequestData {
+                Provider = "Dropbox",
+                ClientID = AppSettings.Synchronization.Dropbox.ClientID,
+                AuthorizeUrl = "https://www.dropbox.com/oauth2/authorize",
+                RedirectUrl = AppSettings.Synchronization.Dropbox.RedirectUrl,
+            };
+
+            Xamarin.Forms.Application.Current.Properties["OAuth2Data"] = OAuth2Data;
+
+            await Navigation.PushModalAsync(new OAuth2LoginPage());
         }
 
     }

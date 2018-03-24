@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 namespace EbookReader.Service {
     public class DumbCloudStorageService : ICloudStorageService {
 
+        public bool IsConnected() {
+            return false;
+        }
+
         public async Task<T> LoadJson<T>(string[] path) {
             return default(T);
+        }
+
+        public async Task<List<T>> LoadJsonList<T>(string[] path) {
+            return new List<T>();
         }
 
         public void SaveJson<T>(T json, string[] path) {

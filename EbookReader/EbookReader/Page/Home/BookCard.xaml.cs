@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using EbookReader.DependencyService;
 using EbookReader.Model.Messages;
 using EbookReader.Service;
 using PCLStorage;
@@ -20,16 +21,13 @@ namespace EbookReader.Page.Home {
 
             _book = book;
 
-            StyleId = book.Id;
+            StyleId = book.ID;
 
             BindingContext = new {
-                Title = book.Title,
+                book.Title,
                 Width = Card.CardWidth,
                 Height = Card.CardHeight,
-                ImagePosition = new Rectangle(0, 0, Card.CardWidth, Card.CardHeight),
-                PanelPosition = new Rectangle(0, 0, Card.CardWidth, 30),
-                TextPosition = new Rectangle(0, Card.CardHeight - 70, Card.CardWidth, 70),
-                DeletePosition = new Rectangle(Card.CardWidth - 26 - 2, 2, 26, 26)
+                PlaceholderWidth = Card.CardWidth * .75,
             };
 
             InitializeComponent();
@@ -56,17 +54,19 @@ namespace EbookReader.Page.Home {
 
                 Cover.Source = ImageSource.FromStream(() => stream);
                 Cover.Aspect = Aspect.Fill;
+                Cover.WidthRequest = Card.CardWidth;
+                Cover.HeightRequest = Card.CardHeight;
             }
         }
 
         private void Open() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-            messageBus.Send(new OpenBook { Book = _book });
+            messageBus.Send(new OpenBookMessage { Book = _book });
         }
 
         private void Delete() {
             var messageBus = IocManager.Container.Resolve<IMessageBus>();
-            messageBus.Send(new DeleteBook { Book = _book });
+            messageBus.Send(new DeleteBookMessage { Book = _book });
         }
 
     }

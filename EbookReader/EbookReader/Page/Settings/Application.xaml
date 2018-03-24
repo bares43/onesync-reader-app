@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EbookReader.Page.Settings.Application"
+             Title="Application">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="Label" x:Key="title">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+
+            <Style TargetType="StackLayout" x:Key="wrapper">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="Margin" Value="13, 5" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="note">
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+
+            <Style TargetType="View" x:Key="control">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <ScrollView Orientation="Vertical" Margin="0,20,0,0">
+            <StackLayout VerticalOptions="Fill" Orientation="Vertical">
+
+                <StackLayout Orientation="Vertical">
+
+                    <StackLayout Style="{StaticResource wrapper}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Anonymous data" Style="{StaticResource title}" />
+                            <Switch IsToggled="{Binding AnalyticsAgreement}" Style="{StaticResource control}" />
+                        </StackLayout>
+                        <Label Text="I agree with collecting of anonymous information about usage of the app. That information is important for improving application." Style="{StaticResource note}" />
+                        <Label Text="What can be collected: that you successfully sign up into Dropbox or Firebase or that your login failed (no usernames, passwords etc). That some book failed to open and name of the file." Style="{StaticResource note}" />
+
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
