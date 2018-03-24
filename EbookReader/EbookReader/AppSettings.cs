@@ -17,7 +17,7 @@ namespace EbookReader {
 
             public static class Dropbox {
                 public static string ClientID => SecretSettings.Synchronization.Dropbox.ClientID;
-                public static string RedirectUrl = "https://janbares.cz/www/onesync-reader/oauth2-success";
+                public static string RedirectUrl = "https://bares43.github.io/onesync-reader/oauth2_success.html";
             }
         }
 

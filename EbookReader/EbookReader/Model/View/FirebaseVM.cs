@@ -150,7 +150,7 @@ namespace EbookReader.Model.View {
             ResetMailSent = false;
             MailNotFound = false;
             try {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyA4TOO3_Pa1kb_s6zjBMqpehPLrTk8SrLA"));
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppSettings.Synchronization.Firebase.ApiKey));
                 await authProvider.SendPasswordResetEmailAsync(Email);
                 ResetMailSent = true;
             } catch (Exception e) {
