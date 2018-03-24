@@ -34,7 +34,7 @@ namespace EbookReader {
         }
 
         public static class Reader {
-            private static int FontSizeDefault = 20;
+            private static int FontSizeDefault = Device.RuntimePlatform == Device.Android ? 20 : 40;
             private static int MarginDefault = 30;
             private static int ScrollSpeedDefault = 200;
 
@@ -54,7 +54,7 @@ namespace EbookReader {
             }
 
             public static bool NightMode {
-                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(NightMode)), false);
+                get => AppSettings.GetValueOrDefault(CreateKey(nameof(Reader), nameof(NightMode)), true);
                 set => AppSettings.AddOrUpdateValue(CreateKey(nameof(Reader), nameof(NightMode)), value);
             }
 
