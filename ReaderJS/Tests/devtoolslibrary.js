@@ -4,17 +4,15 @@ const {
 
 module.exports = class DevToolsLibrary {
   static get defaultWait() {
-    return 300;
+    return 2500;
   }
 
   static getChromeless() {
-    return new Chromeless({
-      launchChrome: false,
-    });
+    return new Chromeless();
   }
 
   static init() {
-    jest.setTimeout(25000);
+    jest.setTimeout(50000);
 
     Chromeless.prototype.getReceivedMessages = async function() {
       return this.evaluate(() => {
