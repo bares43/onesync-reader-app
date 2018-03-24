@@ -8,8 +8,8 @@
     <ProjectGuid>{A9599E94-F257-4F2D-ACC7-141FC3756291}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EbookReader.UWP</RootNamespace>
-    <AssemblyName>EbookReader.UWP</AssemblyName>
+    <RootNamespace>OneSyncReader</RootNamespace>
+    <AssemblyName>OneSyncReader</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.10240.0</TargetPlatformVersion>
