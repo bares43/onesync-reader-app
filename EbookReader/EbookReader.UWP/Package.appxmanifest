@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="2e72ef38-ce49-48fe-ab05-6526ddf7b5c6" Publisher="CN=janba_000" Version="0.2.0.0" />
-  <mp:PhoneIdentity PhoneProductId="2e72ef38-ce49-48fe-ab05-6526ddf7b5c6" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="47093JanBare.OneSyncReader" Publisher="CN=16A5B646-CA09-4465-B8A8-D500E85382A0" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="ba3dbcbc-f205-4265-89ea-f31c9f759b2e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>EbookReader.UWP</DisplayName>
-    <PublisherDisplayName>janba_000</PublisherDisplayName>
+    <DisplayName>OneSync Reader</DisplayName>
+    <PublisherDisplayName>Jan Bareš</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
