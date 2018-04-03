@@ -95,14 +95,14 @@
                             <StackLayout Style="{StaticResource wrapper}">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="E-mail" Style="{StaticResource title}" />
-                                    <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Style="{StaticResource control}" />
+                                    <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Completed="Email_Completed" Style="{StaticResource control}" />
                                 </StackLayout>
                             </StackLayout>
                             
                             <StackLayout Style="{StaticResource wrapper}">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="Password" Style="{StaticResource title}" />
-                                    <Entry Text="{Binding Firebase.Password}" IsPassword="True" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Style="{StaticResource control}" />
+                                    <Entry x:Name="FirebasePassword" Text="{Binding Firebase.Password}" IsPassword="True" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Completed="Password_Completed" Style="{StaticResource control}" />
                                 </StackLayout>
                                 <Label Text="The password must be at least 6 characters long." Style="{StaticResource note}" />
                             </StackLayout>
