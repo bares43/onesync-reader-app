@@ -10,7 +10,7 @@ namespace EbookReader.Model.View {
     public class AboutVM : BaseVM {
         public string Version {
             get {
-                return "v 0.2.0";
+                return "v 1.0.1";
             }
         }
 
