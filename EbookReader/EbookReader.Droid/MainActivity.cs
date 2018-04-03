@@ -13,6 +13,7 @@ using Xam.Plugin.WebView.Droid;
 using EbookReader.Service;
 using EbookReader.Model.Messages;
 using Android.Content;
+using EbookReader.Page;
 
 namespace EbookReader.Droid {
     [Activity(Label = "OneSync Reader", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -57,7 +58,7 @@ namespace EbookReader.Droid {
         }
 
         public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e) {
-            if (UserSettings.Control.VolumeButtons && (keyCode == Keycode.VolumeDown || keyCode == Keycode.VolumeUp)) {
+            if (UserSettings.Control.VolumeButtons && (keyCode == Keycode.VolumeDown || keyCode == Keycode.VolumeUp) && App.IsCurrentPageType(typeof(ReaderPage))) {
                 var messageBus = IocManager.Container.Resolve<IMessageBus>();
                 messageBus.Send(new GoToPageMessage { Next = keyCode == Keycode.VolumeDown, Previous = keyCode == Keycode.VolumeUp });
 
