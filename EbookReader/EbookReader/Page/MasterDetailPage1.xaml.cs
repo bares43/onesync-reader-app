@@ -27,6 +27,12 @@ namespace EbookReader.Page {
                 page.Title = item.Title;
 
                 Detail.Navigation.PushAsync(page);
+
+                if (item.TargetType == typeof(HomePage)) {
+                    foreach (var pageToRemove in Detail.Navigation.NavigationStack.Where(o => o != page).ToList()) {
+                        Detail.Navigation.RemovePage(pageToRemove);
+                    }
+                }
             }
 
             IsPresented = false;
