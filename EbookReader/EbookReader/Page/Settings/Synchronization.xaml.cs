@@ -31,7 +31,7 @@ namespace EbookReader.Page.Settings {
 
             IocManager.Container.Resolve<IMessageBus>().Subscribe<OpenDropboxLoginMessage>(OpenDropboxLogin);
 
-            IocManager.Container.Resolve<IMessageBus>().Subscribe(async (OAuth2AccessTokenObtainedMessage msg) => {
+            IocManager.Container.Resolve<IMessageBus>().Subscribe(async (OAuth2LoginPageClosed msg) => {
                 if (msg.Provider == "Dropbox") {
                     await Navigation.PopModalAsync();
                 }

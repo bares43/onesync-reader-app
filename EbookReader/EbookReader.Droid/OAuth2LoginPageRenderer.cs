@@ -47,6 +47,16 @@ namespace EbookReader.Droid {
                             Provider = OAuth2Data.Provider,
                         });
                     }
+
+                    IocManager.Container.Resolve<IMessageBus>().Send(new OAuth2LoginPageClosed {
+                        Provider = OAuth2Data.Provider,
+                    });
+                };
+
+                auth.Error += (sender, arg) => {
+                    IocManager.Container.Resolve<IMessageBus>().Send(new OAuth2LoginPageClosed {
+                        Provider = OAuth2Data.Provider,
+                    });
                 };
 
                 activity.StartActivity(auth.GetUI(activity));

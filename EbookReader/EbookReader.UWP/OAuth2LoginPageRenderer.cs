@@ -36,7 +36,9 @@ namespace EbookReader.UWP {
                     OAuth2Data.Scope,
                     new Uri(OAuth2Data.AuthorizeUrl),
                     new Uri(OAuth2Data.RedirectUrl)
-                );
+                ) {
+                    ClearCookiesBeforeLogin = true
+                };
 
                 _frame = windowsPage.Frame;
                 if (_frame == null) {
@@ -52,6 +54,16 @@ namespace EbookReader.UWP {
                             Provider = OAuth2Data.Provider,
                         });
                     }
+
+                    IocManager.Container.Resolve<IMessageBus>().Send(new OAuth2LoginPageClosed {
+                        Provider = OAuth2Data.Provider,
+                    });
+                };
+
+                auth.Error += (sender, arg) => {
+                    IocManager.Container.Resolve<IMessageBus>().Send(new OAuth2LoginPageClosed {
+                        Provider = OAuth2Data.Provider,
+                    });
                 };
 
                 var pageType = auth.GetUI();
