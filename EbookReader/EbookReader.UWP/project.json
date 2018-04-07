@@ -14,8 +14,8 @@
     "Xam.Plugins.Settings": "3.1.1",
     "Xamarin.Auth": "1.5.0",
     "Xamarin.Auth.XamarinForms": "1.5.0.3",
-    "Xamarin.Dialog.Plugin.FilePicker": "1.0.3",
-    "Xamarin.Forms": "2.4.0.282"
+    "Xamarin.Forms": "2.4.0.282",
+    "Xamarin.Plugin.FilePicker": "2.0.64-beta"
   },
   "frameworks": {
     "uap10.0.10240": {}
