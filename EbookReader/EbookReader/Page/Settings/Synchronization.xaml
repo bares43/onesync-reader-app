@@ -69,7 +69,11 @@
                         <StackLayout Style="{StaticResource wrapper}">
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="Synchronization provider" Style="{StaticResource title}" />
-                                <Picker ItemsSource="{Binding SynchronizationService.Items}" SelectedItem="{Binding SynchronizationService.Value}" Style="{StaticResource control}" />
+                                <Picker ItemsSource="{Binding SynchronizationService.Items}" SelectedItem="{Binding SynchronizationService.Value}" Style="{StaticResource control}">
+                                    <Picker.Title>
+                                        <OnPlatform x:TypeArguments="x:String" Android="Select provider" />
+                                    </Picker.Title>
+                                </Picker>
                             </StackLayout>
                         </StackLayout>
 

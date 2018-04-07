@@ -42,21 +42,33 @@
                     <StackLayout Style="{StaticResource wrapper}">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Font size" Style="{StaticResource title}" />
-                            <Picker ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}" Style="{StaticResource control}" />
+                            <Picker ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}" Style="{StaticResource control}">
+                                <Picker.Title>
+                                    <OnPlatform x:TypeArguments="x:String" Android="Select font size" />
+                                </Picker.Title>
+                            </Picker>
                         </StackLayout>
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Margin" Style="{StaticResource title}" />
-                            <Picker ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}" Style="{StaticResource control}" />
+                            <Picker ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}" Style="{StaticResource control}">
+                                <Picker.Title>
+                                    <OnPlatform x:TypeArguments="x:String" Android="Select margin" />
+                                </Picker.Title>
+                            </Picker>
                         </StackLayout>
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Scrolling speed" Style="{StaticResource title}" />
-                            <Picker ItemsSource="{Binding ScrollSpeed.Items}" SelectedItem="{Binding ScrollSpeed.Value}" Style="{StaticResource control}" />
+                            <Picker ItemsSource="{Binding ScrollSpeed.Items}" SelectedItem="{Binding ScrollSpeed.Value}" Style="{StaticResource control}">
+                                <Picker.Title>
+                                    <OnPlatform x:TypeArguments="x:String" Android="Select scrolling speed" />
+                                </Picker.Title>
+                            </Picker>
                         </StackLayout>
                         <Label Text="Speed of animation when going to the next page." Style="{StaticResource note}" />
                     </StackLayout>
