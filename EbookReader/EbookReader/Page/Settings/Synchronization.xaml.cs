@@ -31,7 +31,7 @@ namespace EbookReader.Page.Settings {
 
             IocManager.Container.Resolve<IMessageBus>().Subscribe<OpenDropboxLoginMessage>(OpenDropboxLogin);
 
-            IocManager.Container.Resolve<IMessageBus>().Subscribe(async (OAuth2AccessTokenObtainedMessage msg) => {
+            IocManager.Container.Resolve<IMessageBus>().Subscribe(async (OAuth2LoginPageClosed msg) => {
                 if (msg.Provider == "Dropbox") {
                     await Navigation.PopModalAsync();
                 }
@@ -52,5 +52,14 @@ namespace EbookReader.Page.Settings {
             await Navigation.PushModalAsync(new OAuth2LoginPage());
         }
 
+        private void Email_Completed(object sender, EventArgs e) {
+            FirebasePassword.Focus();
+        }
+
+        private void Password_Completed(object sender, EventArgs e) {
+            if (vm != null && vm.Firebase != null && vm.Firebase.ConnectCommand != null && !string.IsNullOrEmpty(vm.Firebase.Email) && !string.IsNullOrEmpty(vm.Firebase.Password)) {
+                vm.Firebase.ConnectCommand.Execute(null);
+            }
+        }
     }
 }

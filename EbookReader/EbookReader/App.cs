@@ -37,6 +37,29 @@ namespace EbookReader {
 
         }
 
+        public static bool IsCurrentPageType(Type type) {
+            var currentPage = App.Current.MainPage;
+
+            if (currentPage.GetType() == type) {
+                return true;
+            }
+
+            var lastPage = currentPage.Navigation.NavigationStack.LastOrDefault();
+            if (lastPage != null && lastPage.GetType() == type) {
+                return true;
+            }
+
+            var masterDetail = currentPage as MasterDetailPage1;
+            if (masterDetail != null) {
+                var lastDetailPage = masterDetail.Detail.Navigation.NavigationStack.LastOrDefault();
+                if (lastDetailPage != null && lastDetailPage.GetType() == type) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         protected override void OnStart() {
             // Handle when your app starts
             AppCenter.Start($"android={AppSettings.AppCenter.Android};uwp={AppSettings.AppCenter.UWP};", typeof(Analytics), typeof(Crashes));

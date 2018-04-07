@@ -58,7 +58,11 @@
                     <StackLayout Style="{StaticResource wrapper}">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Change brightness" Style="{StaticResource title}" />
-                            <Picker ItemsSource="{Binding PanBrightnessChange.Items}" SelectedItem="{Binding PanBrightnessChange.Value}" Style="{StaticResource control}" />
+                            <Picker ItemsSource="{Binding PanBrightnessChange.Items}" SelectedItem="{Binding PanBrightnessChange.Value}" Style="{StaticResource control}">
+                                <Picker.Title>
+                                    <OnPlatform x:TypeArguments="x:String" Android="Set brightness control" />
+                                </Picker.Title>
+                            </Picker>
                         </StackLayout>
                         <Label Text="Pan on the edge of display for brightness control." Style="{StaticResource note}" />
                     </StackLayout>
