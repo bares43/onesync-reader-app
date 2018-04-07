@@ -70,7 +70,7 @@ namespace EbookReader.Page {
 
         private async void ShowAnalyticsAgreement() {
             if (UserSettings.FirstRun) {
-                var result = await DisplayAlert("Agreement with collecting anonymous data", "I agree with collecting anonymous information about using of the app which is important for improving application.", "I agree", "No");
+                var result = await DisplayAlert("Agreement with collection of anonymous data", "I agree with collecting of anonymous information about using of the app. This is important for application improvements.", "I agree", "No");
                 UserSettings.AnalyticsAgreement = result;
             }
         }
