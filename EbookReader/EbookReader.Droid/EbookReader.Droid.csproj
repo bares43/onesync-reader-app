@@ -89,6 +89,15 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PCLAppConfig, Version=0.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PCLAppConfig.0.3.4\lib\MonoAndroid10\PCLAppConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLAppConfig.FileSystemStream, Version=0.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PCLAppConfig.0.3.4\lib\MonoAndroid10\PCLAppConfig.FileSystemStream.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLAppConfig.FileSystemStream.Abstractions, Version=0.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PCLAppConfig.0.3.4\lib\MonoAndroid10\PCLAppConfig.FileSystemStream.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
     </Reference>

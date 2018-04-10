@@ -11,6 +11,8 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using EbookReader.DependencyService;
+using System.Reflection;
+using PCLAppConfig;
 
 namespace EbookReader {
     public class App : Application {
@@ -26,6 +28,8 @@ namespace EbookReader {
         }
 
         public App() {
+            this.LoadConfig();
+
             _messageBus = IocManager.Container.Resolve<IMessageBus>();
 
             if (App.HasMasterDetailPage) {
@@ -101,6 +105,15 @@ namespace EbookReader {
                     await master.Detail.Navigation.PopAsync();
                 }
             }
+        }
+
+        private void LoadConfig() {
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+#if DEBUG
+            ConfigurationManager.Initialise(assembly.GetManifestResourceStream("EbookReader.ReaderApp.config"));
+#else
+            ConfigurationManager.Initialise(assembly.GetManifestResourceStream("EbookReader.ReaderApp.Release.config"));
+#endif
         }
     }
 }
