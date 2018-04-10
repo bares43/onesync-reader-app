@@ -29,6 +29,11 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
 
+            <Style x:Key="link" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Italic"></Setter>
+                <Setter Property="TextColor" Value="Blue"></Setter>
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -46,7 +51,11 @@
                         </StackLayout>
                         <Label Text="I agree with collecting of anonymous information about using of the app. This is important for application improvements." Style="{StaticResource note}" />
                         <Label Text="What can be collected: that you successfully sign up into Dropbox or Firebase or that your login failed (no usernames, passwords etc). That some book failed to open and name of the file." Style="{StaticResource note}" />
-
+                        <Label Text="Privacy Policy" Style="{StaticResource link}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://bares43.github.io/onesync-reader/privacy.html"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
                     </StackLayout>
                 </StackLayout>
 
