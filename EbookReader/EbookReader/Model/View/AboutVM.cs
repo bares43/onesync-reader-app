@@ -14,6 +14,12 @@ namespace EbookReader.Model.View {
             }
         }
 
+        public string Copyright {
+            get {
+                return $"Created by Jan Bareš, 2017-{DateTime.Now.Year}";
+            }
+        }
+
         public ICommand OpenUrlCommand { get; set; }
 
         public AboutVM() {

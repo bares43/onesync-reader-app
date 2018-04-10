@@ -24,7 +24,7 @@
                    FontSize="Large"
                    Margin="10"/>
             <Label Text="{Binding Version}" FontSize="Small" />
-            <Label Text="Created by Jan Bareš, 2017"></Label>
+            <Label Text="{Binding Copyright}"></Label>
             <Label Text="https://bares43.github.io/onesync-reader/" Style="{StaticResource link}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://bares43.github.io/onesync-reader/"></TapGestureRecognizer>
