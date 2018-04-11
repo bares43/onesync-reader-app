@@ -111,6 +111,7 @@ namespace EbookReader.UWP {
             IocManager.ContainerBuilder.RegisterType<BatteryProvider>().As<IBatteryProvider>();
             IocManager.ContainerBuilder.RegisterType<FileHelper>().As<IFileHelper>();
             IocManager.ContainerBuilder.RegisterType<ToastService>().As<IToastService>();
+            IocManager.ContainerBuilder.RegisterType<VersionProvider>().As<IVersionProvider>();
             IocManager.Build();
         }
 

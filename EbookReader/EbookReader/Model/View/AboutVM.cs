@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Autofac;
+using EbookReader.DependencyService;
 using Xamarin.Forms;
 
 namespace EbookReader.Model.View {
     public class AboutVM : BaseVM {
         public string Version {
             get {
-                return "v 1.0.2";
+                return IocManager.Container.Resolve<IVersionProvider>().AppVersion;
             }
         }
 

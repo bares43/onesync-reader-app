@@ -40,6 +40,7 @@
     <Compile Include="Converter\EqualConverter.cs" />
     <Compile Include="Converter\InverseBoolConverter.cs" />
     <Compile Include="DependencyService\IToastService.cs" />
+    <Compile Include="DependencyService\IVersionProvider.cs" />
     <Compile Include="Model\Messages\BackPressedMessage.cs" />
     <Compile Include="Model\Messages\CloseAppMessage.cs" />
     <Compile Include="Model\Messages\OAuth2LoginPageClosed.cs" />
