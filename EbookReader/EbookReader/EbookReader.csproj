@@ -225,6 +225,7 @@
     <None Include="packages.config" />
     <EmbeddedResource Include="ReaderApp.config" />
     <EmbeddedResource Include="ReaderApp.Release.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Page\Settings\Synchronization.xaml">
