@@ -28,10 +28,10 @@ namespace EbookReader.Page.Reader.QuickPanelTab {
 
             if (Device.RuntimePlatform == Device.Android) {
                 FontPicker.WidthRequest = 75;
-                FontPicker.Title = "Písmo";
+                FontPicker.Title = "Font size";
 
                 MarginPicker.WidthRequest = 75;
-                MarginPicker.Title = "Odsazení";
+                MarginPicker.Title = "Margin";
 
                 var brightnessProvider = IocManager.Container.Resolve<IBrightnessProvider>();
                 Brightness.Value = brightnessProvider.Brightness * 100;
