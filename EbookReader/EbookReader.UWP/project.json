@@ -7,6 +7,7 @@
     "Microsoft.Bcl.Build": "1.0.21",
     "Microsoft.Bcl.Compression": "3.9.85",
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
+    "PCLAppConfig": "0.3.4",
     "PCLStorage": "1.0.2",
     "sqlite-net-pcl": "1.5.166-beta",
     "Xam.Plugin.Connectivity": "3.0.3",

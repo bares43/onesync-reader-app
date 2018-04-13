@@ -2,7 +2,7 @@ ReaderJS/Build/*
 !ReaderJS/Build/empty
 !ReaderJS/Build/layout.html
 ReaderJS/package-lock.json
-EbookReader/EbookReader/SecretReleaseSettings.cs
+EbookReader/EbookReader/ReaderApp.Release.config
 EbookReader/EbookReader.UWP/Package.xml
 
 # Created by https://www.gitignore.io/api/visualstudio,csharp

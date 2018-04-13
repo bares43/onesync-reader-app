@@ -26,6 +26,8 @@ namespace EbookReader.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLAppConfig.FileSystemStream.Resource.String.ApplicationName = global::EbookReader.Droid.Resource.String.ApplicationName;
+			global::PCLAppConfig.FileSystemStream.Resource.String.Hello = global::EbookReader.Droid.Resource.String.Hello;
 			global::PCLStorage.Resource.String.ApplicationName = global::EbookReader.Droid.Resource.String.ApplicationName;
 			global::PCLStorage.Resource.String.Hello = global::EbookReader.Droid.Resource.String.Hello;
 			global::Xamarin.Auth.Resource.Animation.slide_in_right = global::EbookReader.Droid.Resource.Animation.slide_in_right;

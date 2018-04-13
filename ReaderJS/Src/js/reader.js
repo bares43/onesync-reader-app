@@ -138,6 +138,10 @@ window.Ebook = {
     this.goToPageInternal(page, 0);
   },
   goToPageInternal: function(page, duration) {
+    if (page < 1) {
+      page = 1;
+    }
+
     this.currentPage = page;
 
     $('#columns-outer').animate({
