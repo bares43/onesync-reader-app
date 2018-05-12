@@ -9,6 +9,7 @@ using EbookReader.DependencyService;
 using Firebase.Xamarin.Auth;
 using Firebase.Xamarin.Database;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Connectivity;
 using Xamarin.Forms;
 
@@ -128,7 +129,7 @@ namespace EbookReader.Model.View {
             try {
                 await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
                 success = true; ;
-            } catch (Exception) { }
+            } catch { }
 
             return success;
         }
@@ -141,7 +142,11 @@ namespace EbookReader.Model.View {
             try {
                 await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
                 success = true; ;
-            } catch (Exception) { }
+            } catch (Exception e) {
+                Crashes.TrackError(e, new Dictionary<string, string> {
+                    { "Email", Email }
+                });
+            }
 
             return success;
         }
@@ -153,7 +158,7 @@ namespace EbookReader.Model.View {
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppSettings.Synchronization.Firebase.ApiKey));
                 await authProvider.SendPasswordResetEmailAsync(Email);
                 ResetMailSent = true;
-            } catch (Exception e) {
+            } catch {
                 MailNotFound = true;
             }
         }

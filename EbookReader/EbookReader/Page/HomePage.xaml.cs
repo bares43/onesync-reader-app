@@ -7,7 +7,9 @@ using Autofac;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Home;
 using EbookReader.Service;
+using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Plugin.FilePicker;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -50,7 +52,7 @@ namespace EbookReader.Page {
             base.OnAppearing();
 
             // because of floating action button on android
-            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 200), () => {
+            Xamarin.Forms.Device.StartTimer(new TimeSpan(0, 0, 0, 0, 200), () => {
                 _messageBus.Send(new FullscreenRequestMessage(false));
                 return false;
             });
@@ -105,9 +107,16 @@ namespace EbookReader.Page {
                     }
                     this.SendBookToReader(book.Item1);
                 } catch (Exception e) {
+                    var ext = string.Empty;
+                    if (!string.IsNullOrEmpty(pickedFile.FileName)) {
+                        ext = pickedFile.FileName.Split('.').LastOrDefault();
+                    }
                     Analytics.TrackEvent("Failed to open book", new Dictionary<string, string> {
-                        { "Message", $"Filename: {pickedFile.FileName}, exception: {e.Message}" } }
-                    );
+                        { "Extension", ext }
+                    });
+                    Crashes.TrackError(e, new Dictionary<string, string> {
+                        { "Filename", pickedFile.FileName }
+                    });
                     await DisplayAlert("Error", "File failed to open", "OK");
                 }
 

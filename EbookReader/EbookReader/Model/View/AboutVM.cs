@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Autofac;
 using EbookReader.DependencyService;
+using Microsoft.AppCenter.Crashes;
 using Xamarin.Forms;
 
 namespace EbookReader.Model.View {
@@ -33,7 +34,11 @@ namespace EbookReader.Model.View {
                 try {
                     var uri = new Uri(url.ToString());
                     Device.OpenUri(uri);
-                } catch (Exception) { }
+                } catch (Exception e) {
+                    Crashes.TrackError(e, new Dictionary<string, string> {
+                        {"Url", url.ToString() }
+                    });
+                }
             }
         }
     }

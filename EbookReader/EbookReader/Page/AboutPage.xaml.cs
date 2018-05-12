@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using EbookReader.Model.View;
+using Microsoft.AppCenter.Crashes;
 
 namespace EbookReader.Page {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -31,7 +32,11 @@ namespace EbookReader.Page {
             e.Cancel = true;
             try {
                 Device.OpenUri(new Uri(e.Url));
-            } catch (Exception) { }
+            } catch (Exception ex) {
+                Crashes.TrackError(ex, new Dictionary<string, string> {
+                    {"Url", e.Url }
+                });
+            }
         }
 
         private string GetFlaticonHTML() {

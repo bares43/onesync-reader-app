@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dropbox.Api;
 using Dropbox.Api.Files;
+using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
 
 namespace EbookReader.Service {
@@ -30,7 +31,9 @@ namespace EbookReader.Service {
                         }
                     }
                 }
-            } catch (DropboxException) { }
+            } catch (DropboxException) { } catch (Exception e) {
+                Crashes.TrackError(e);
+            }
 
 
             return default(T);
@@ -53,7 +56,9 @@ namespace EbookReader.Service {
                         }
                     }
                 }
-            } catch (DropboxException) { }
+            } catch (Exception e) {
+                Crashes.TrackError(e);
+            }
         }
 
         public async void DeleteNode(string[] path) {
@@ -67,7 +72,9 @@ namespace EbookReader.Service {
                     }
                 }
 
-            } catch (DropboxException) { }
+            } catch (DropboxException) { } catch (Exception e) {
+                Crashes.TrackError(e);
+            }
         }
 
         public async Task<List<T>> LoadJsonList<T>(string[] path) {
@@ -92,7 +99,9 @@ namespace EbookReader.Service {
                         }
                     }
                 }
-            } catch (DropboxException) { }
+            } catch (DropboxException) { } catch (Exception e) {
+                Crashes.TrackError(e);
+            }
 
             return result;
         }
