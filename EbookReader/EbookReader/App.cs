@@ -108,12 +108,14 @@ namespace EbookReader {
         }
 
         private void LoadConfig() {
-            var assembly = typeof(App).GetTypeInfo().Assembly;
+            if (ConfigurationManager.AppSettings == null) {
+                var assembly = typeof(App).GetTypeInfo().Assembly;
 #if DEBUG
-            ConfigurationManager.Initialise(assembly.GetManifestResourceStream("EbookReader.ReaderApp.config"));
+                ConfigurationManager.Initialise(assembly.GetManifestResourceStream("EbookReader.ReaderApp.config"));
 #else
-            ConfigurationManager.Initialise(assembly.GetManifestResourceStream("EbookReader.ReaderApp.Release.config"));
+                ConfigurationManager.Initialise(assembly.GetManifestResourceStream("EbookReader.ReaderApp.Release.config"));
 #endif
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Auth;
 using Firebase.Xamarin.Database.Query;
+using Microsoft.AppCenter.Crashes;
 
 namespace EbookReader.Service {
     public class FirebaseCloudStorageService : ICloudStorageService {
@@ -19,7 +20,7 @@ namespace EbookReader.Service {
                 var auth = await this.GetAuth();
                 var result = await this.GetFirebase().Child(this.PathGenerator(path, auth)).WithAuth(auth.FirebaseToken).OnceSingleAsync<T>();
                 return result;
-            } catch (Exception) { }
+            } catch { }
 
             return default(T);
         }
@@ -29,7 +30,7 @@ namespace EbookReader.Service {
                 var auth = await this.GetAuth();
                 var result = await this.GetFirebase().Child(this.PathGenerator(path, auth)).WithAuth(auth.FirebaseToken).OnceAsync<T>();
                 return result.Select(o => o.Object).ToList();
-            } catch (Exception) { }
+            } catch { }
 
             return new List<T>();
         }
@@ -38,14 +39,16 @@ namespace EbookReader.Service {
             try {
                 var auth = await this.GetAuth();
                 await this.GetFirebase().Child($"{this.PathGenerator(path, auth)}").WithAuth(auth.FirebaseToken).PutAsync(json);
-            } catch (Exception) { }
+            } catch (Exception e) {
+                Crashes.TrackError(e);
+            }
         }
 
         public async void DeleteNode(string[] path) {
             try {
                 var auth = await this.GetAuth();
                 await this.GetFirebase().Child($"{this.PathGenerator(path, auth)}").WithAuth(auth.FirebaseToken).DeleteAsync();
-            } catch (Exception) { }
+            } catch { }
         }
 
         private FirebaseClient GetFirebase() {

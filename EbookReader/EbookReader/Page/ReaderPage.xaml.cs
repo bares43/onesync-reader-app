@@ -12,6 +12,7 @@ using EbookReader.Model.Messages;
 using EbookReader.Page.Reader;
 using EbookReader.Provider;
 using EbookReader.Service;
+using Microsoft.AppCenter.Crashes;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -68,7 +69,7 @@ namespace EbookReader.Page {
             }
 
             _messageBus.Send(new FullscreenRequestMessage(true));
-            
+
             if (UserSettings.Reader.NightMode) {
                 BackgroundColor = Color.FromRgb(24, 24, 25);
             }
@@ -100,7 +101,11 @@ namespace EbookReader.Page {
                 try {
                     var uri = new Uri(e.Url);
                     Device.OpenUri(uri);
-                } catch (Exception) { }
+                } catch (Exception ex) {
+                    Crashes.TrackError(ex, new Dictionary<string, string> {
+                        {"Url", e.Url }
+                    });
+                }
             }
         }
 
