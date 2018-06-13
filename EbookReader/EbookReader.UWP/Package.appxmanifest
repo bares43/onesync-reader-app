@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="47093JanBare.OneSyncReader" Publisher="CN=16A5B646-CA09-4465-B8A8-D500E85382A0" Version="1.0.2.0" />
+  <Identity Name="47093JanBare.OneSyncReader" Publisher="CN=16A5B646-CA09-4465-B8A8-D500E85382A0" Version="1.0.3.0" />
   <mp:PhoneIdentity PhoneProductId="ba3dbcbc-f205-4265-89ea-f31c9f759b2e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>OneSync Reader</DisplayName>
