@@ -129,7 +129,7 @@ namespace EbookReader.Service {
                 var fileName = PathHelper.NormalizePath($"{epub.ContentBasePath}/{imageModel.FileName.Replace("../", "")}");
                 var file = await _fileService.OpenFile(fileName, epubFolder);
 
-                using (var stream = await file.OpenAsync(FileAccess.Read)) {
+                using (var stream = await file.OpenAsync(PCLStorage.FileAccess.Read)) {
                     var base64 = Base64Helper.GetFileBase64(stream);
 
                     imageModel.Data = $"data:image/{extension};base64,{base64}";
@@ -198,7 +198,7 @@ namespace EbookReader.Service {
             var folder = await rootFolder.CreateFolderAsync(bookID, CreationCollisionOption.ReplaceExisting);
             var file = await folder.CreateFileAsync("temp.zip", CreationCollisionOption.OpenIfExists);
 
-            using (Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite)) {
+            using (Stream stream = await file.OpenAsync(PCLStorage.FileAccess.ReadAndWrite)) {
                 await stream.WriteAsync(filedata, 0, filedata.Length);
                 using (var zf = new ZipFile(stream)) {
                     foreach (ZipEntry zipEntry in zf) {
@@ -212,7 +212,7 @@ namespace EbookReader.Service {
 
                             IFile zipEntryFile = await fileFolder.CreateFileAsync(name, CreationCollisionOption.OpenIfExists);
                             var str = zf.GetInputStream(zipEntry);
-                            using (Stream outPutFileStream = await zipEntryFile.OpenAsync(FileAccess.ReadAndWrite)) {
+                            using (Stream outPutFileStream = await zipEntryFile.OpenAsync(PCLStorage.FileAccess.ReadAndWrite)) {
                                 await str.CopyToAsync(outPutFileStream);
                             }
                         }

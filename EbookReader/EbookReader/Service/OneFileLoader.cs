@@ -55,7 +55,7 @@ namespace EbookReader.Service {
             var epub = new Ebook() {
                 Title = title,
                 Spines = new List<Spine>() { new Spine { Idref = "content" } },
-                Files = new List<File>() { new File { Id = "content", Href = ContentPath } },
+                Files = new List<Model.Format.File>() { new Model.Format.File { Id = "content", Href = ContentPath } },
                 Folder = path,
                 Navigation = new List<Model.Navigation.Item>(),
             };
@@ -63,7 +63,7 @@ namespace EbookReader.Service {
             return epub;
         }
 
-        public virtual async Task<HtmlResult> PrepareHTML(string html, Ebook book, File chapter) {
+        public virtual async Task<HtmlResult> PrepareHTML(string html, Ebook book, Model.Format.File chapter) {
 
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
@@ -86,7 +86,7 @@ namespace EbookReader.Service {
             var rootFolder = FileSystem.Current.LocalStorage;
             var folder = await rootFolder.CreateFolderAsync(bookID, CreationCollisionOption.ReplaceExisting);
             var contentFile = await folder.CreateFileAsync(ContentPath, CreationCollisionOption.ReplaceExisting);
-            using (Stream stream = await contentFile.OpenAsync(FileAccess.ReadAndWrite)) {
+            using (Stream stream = await contentFile.OpenAsync(PCLStorage.FileAccess.ReadAndWrite)) {
                 await stream.WriteAsync(filedata, 0, filedata.Length);
             }
 
