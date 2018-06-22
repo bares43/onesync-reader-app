@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EbookReader.Page.Reader.QuickPanelTab.Content">
+             x:Class="EbookReader.Page.Reader.QuickPanelTab.Content"
+             CompressedLayout.IsHeadless="true">
 
     <ScrollView>
-        <StackLayout x:Name="Items" Orientation="Vertical">
+        <StackLayout x:Name="Items" Orientation="Vertical" CompressedLayout.IsHeadless="true">
         </StackLayout>
     </ScrollView>
 </StackLayout>

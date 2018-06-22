@@ -40,7 +40,7 @@
                 <StackLayout Orientation="Vertical">
 
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Font size" Style="{StaticResource title}" />
                             <Picker ItemsSource="{Binding FontSize.Items}" SelectedItem="{Binding FontSize.Value}" Style="{StaticResource control}">
                                 <Picker.Title>
@@ -51,7 +51,7 @@
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Margin" Style="{StaticResource title}" />
                             <Picker ItemsSource="{Binding Margin.Items}" SelectedItem="{Binding Margin.Value}" Style="{StaticResource control}">
                                 <Picker.Title>
@@ -62,7 +62,7 @@
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Scrolling speed" Style="{StaticResource title}" />
                             <Picker ItemsSource="{Binding ScrollSpeed.Items}" SelectedItem="{Binding ScrollSpeed.Value}" Style="{StaticResource control}">
                                 <Picker.Title>
@@ -74,7 +74,7 @@
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Night mode" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding NightMode.Enabled}" Style="{StaticResource control}" />
                         </StackLayout>
@@ -82,7 +82,7 @@
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Fullscreen" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding Fullscreen.Enabled}" Style="{StaticResource control}" />
                         </StackLayout>

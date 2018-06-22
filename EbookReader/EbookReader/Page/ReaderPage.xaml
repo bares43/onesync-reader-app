@@ -6,7 +6,7 @@
              xmlns:webView="clr-namespace:EbookReader.View"
              x:Class="EbookReader.Page.ReaderPage">
     <ContentPage.Content>
-        <AbsoluteLayout VerticalOptions="Fill" HorizontalOptions="Fill">
+        <AbsoluteLayout VerticalOptions="Fill" HorizontalOptions="Fill" CompressedLayout.IsHeadless="true">
             <wv:ReaderWebView x:Name="WebView"
                               x:FactoryMethod="Factory"
                               VerticalOptions="FillAndExpand"

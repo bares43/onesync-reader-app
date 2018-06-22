@@ -18,7 +18,7 @@
 
     <StackLayout.Children>
         <Label Text="{Binding Pages}" HorizontalOptions="StartAndExpand"></Label>
-        <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal">
+        <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" CompressedLayout.IsHeadless="true">
             <Label Text="{Binding Clock}" ></Label>
             <Image Source="{Binding BatteryIcon}" HeightRequest="20" WidthRequest="20" IsVisible="{Binding ShowBattery}"  />
         </StackLayout>

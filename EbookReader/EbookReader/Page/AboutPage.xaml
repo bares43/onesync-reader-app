@@ -19,7 +19,7 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout Padding="15">
+        <StackLayout Padding="15" CompressedLayout.IsHeadless="true">
             <Label Text="OneSync Reader"
                    FontSize="Large"
                    Margin="10"/>

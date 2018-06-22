@@ -15,7 +15,7 @@
                    HorizontalOptions="CenterAndExpand" 
                    VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                     <Label FontSize="Medium" Text="{Binding Title}" HorizontalOptions="StartAndExpand" TextColor="Black" />
                     <Image x:Name="DeleteIcon" Source="delete.png" WidthRequest="32" HeightRequest="32" HorizontalOptions="End" VerticalOptions="Start" />
                 </StackLayout>

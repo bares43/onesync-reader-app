@@ -12,11 +12,15 @@ namespace EbookReader.Service {
         }
 
         public async Task<T> LoadJson<T>(string[] path) {
-            return default(T);
+            return await Task.Run(() => {
+                return default(T);
+            });
         }
 
         public async Task<List<T>> LoadJsonList<T>(string[] path) {
-            return new List<T>();
+            return await Task.Run(() => {
+                return new List<T>();
+            });
         }
 
         public void SaveJson<T>(T json, string[] path) {
@@ -24,5 +28,6 @@ namespace EbookReader.Service {
 
         public void DeleteNode(string[] path) {
         }
+
     }
 }

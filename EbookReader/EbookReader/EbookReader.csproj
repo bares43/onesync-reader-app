@@ -19,25 +19,25 @@
         <PackageReference Include="FirebaseAuthentication.net" Version="3.0.7" />
         <PackageReference Include="FirebaseDatabase.net" Version="3.3.3" />
         <PackageReference Include="HtmlAgilityPack" Version="1.8.4" />
-        <PackageReference Include="Microsoft.AppCenter" Version="1.6.0" />
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.0" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.0" />
+        <PackageReference Include="Microsoft.AppCenter" Version="1.7.0" />
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.7.0" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.7.0" />
         <PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
         <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
         <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-        <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
         <PackageReference Include="PCLAppConfig" Version="0.3.4" />
         <PackageReference Include="PCLStorage" Version="1.0.2" />
         <PackageReference Include="SharpZipLib.Portable" Version="0.86.0.0003" />
         <PackageReference Include="sqlite-net-pcl" Version="1.5.166-beta" />
-        <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.8" />
-        <PackageReference Include="SQLitePCLRaw.core" Version="1.1.8" />
+        <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.11" />
+        <PackageReference Include="SQLitePCLRaw.core" Version="1.1.11" />
         <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
         <PackageReference Include="Xam.Plugin.WebView" Version="2.0.10" />
         <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
         <PackageReference Include="Xamarin.Auth" Version="1.6.0.2" />
         <PackageReference Include="Xamarin.Auth.XamarinForms" Version="1.6.0.2" />
-        <PackageReference Include="Xamarin.Forms" Version="2.4.0.282" />
+        <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
         <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.0.64-beta" />
     </ItemGroup>
     <ItemGroup>

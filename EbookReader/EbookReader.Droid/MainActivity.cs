@@ -38,6 +38,7 @@ namespace EbookReader.Droid {
                 webView.Settings.UseWideViewPort = true;
             };
 
+            global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 

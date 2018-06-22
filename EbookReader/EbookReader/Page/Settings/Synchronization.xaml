@@ -36,12 +36,12 @@
     <ContentPage.Content>
 
         <ScrollView Orientation="Vertical" Margin="0,20,0,0">
-            <StackLayout VerticalOptions="Fill" Orientation="Vertical">
+            <StackLayout VerticalOptions="Fill" Orientation="Vertical" CompressedLayout.IsHeadless="true">
 
-                <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Vertical" CompressedLayout.IsHeadless="true">
 
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Synchronize" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding Enabled}" Style="{StaticResource control}" />
                         </StackLayout>
@@ -51,7 +51,7 @@
                     <StackLayout IsVisible="{Binding Enabled}">
                         
                         <StackLayout Style="{StaticResource wrapper}">
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                                 <Label Text="WiFi only" Style="{StaticResource title}" />
                                 <Switch IsToggled="{Binding OnlyWifi}" Style="{StaticResource control}" />
                             </StackLayout>
@@ -59,7 +59,7 @@
                         </StackLayout>
                         
                         <StackLayout Style="{StaticResource wrapper}">
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                                 <Label Text="Device name" Style="{StaticResource title}" />
                                 <Entry Text="{Binding DeviceName}" Style="{StaticResource control}" />
                             </StackLayout>
@@ -67,7 +67,7 @@
                         </StackLayout>
                         
                         <StackLayout Style="{StaticResource wrapper}">
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                                 <Label Text="Synchronization provider" Style="{StaticResource title}" />
                                 <Picker ItemsSource="{Binding SynchronizationService.Items}" SelectedItem="{Binding SynchronizationService.Value}" Style="{StaticResource control}">
                                     <Picker.Title>
@@ -97,14 +97,14 @@
                             </StackLayout>
 
                             <StackLayout Style="{StaticResource wrapper}">
-                                <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                                     <Label Text="E-mail" Style="{StaticResource title}" />
                                     <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Completed="Email_Completed" Style="{StaticResource control}" />
                                 </StackLayout>
                             </StackLayout>
                             
                             <StackLayout Style="{StaticResource wrapper}">
-                                <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                                     <Label Text="Password" Style="{StaticResource title}" />
                                     <Entry x:Name="FirebasePassword" Text="{Binding Firebase.Password}" IsPassword="True" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Completed="Password_Completed" Style="{StaticResource control}" />
                                 </StackLayout>

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converter="clr-namespace:EbookReader.Converter"
              x:Class="EbookReader.Page.Reader.QuickPanelTab.BookmarksTab.Bookmark"
-             Orientation="Horizontal">
+             Orientation="Horizontal"
+             CompressedLayout.IsHeadless="true">
 
 
     <StackLayout.Resources>
@@ -32,6 +33,7 @@
         </Image>
         <StackLayout x:Name="previewMode"
                      Orientation="Horizontal"
+                     CompressedLayout.IsHeadless="true"
                      IsVisible="{Binding EditMode, Converter={converter:InverseBoolConverter}}}">
             <Image Source="edit_white.png">
                 <Image.GestureRecognizers>
@@ -50,6 +52,7 @@
         <StackLayout x:Name="editMode"
                      Orientation="Horizontal"
                      IsVisible="{Binding EditMode}"
+                     CompressedLayout.IsHeadless="true"
                      HorizontalOptions="FillAndExpand">
             <Image Source="save_white.png">
                 <Image.GestureRecognizers>
