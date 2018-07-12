@@ -14,6 +14,7 @@ using EbookReader.Service;
 using EbookReader.Model.Messages;
 using Android.Content;
 using EbookReader.Page;
+using Plugin.Permissions;
 
 namespace EbookReader.Droid {
     [Activity(Label = "OneSync Reader", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -37,6 +38,8 @@ namespace EbookReader.Droid {
                 webView.Settings.LoadWithOverviewMode = true;
                 webView.Settings.UseWideViewPort = true;
             };
+
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
 
             global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, bundle);
@@ -71,6 +74,11 @@ namespace EbookReader.Droid {
 
         public override void OnBackPressed() {
             IocManager.Container.Resolve<IMessageBus>().Send(new BackPressedMessage());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults) {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         private void SetUpIoc() {
