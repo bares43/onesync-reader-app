@@ -120,13 +120,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\ReaderJS\Build\layout.html">
-      <Link>Assets\layout.html</Link>
+      <Link>layout.html</Link>
     </Content>
     <Content Include="..\..\ReaderJS\Build\reader.css">
-      <Link>Assets\reader.css</Link>
+      <Link>reader.css</Link>
     </Content>
     <Content Include="..\..\ReaderJS\Build\reader.js">
-      <Link>Assets\reader.js</Link>
+      <Link>reader.js</Link>
     </Content>
     <Content Include="..\EbookReader\Content\book.png">
       <Link>book.png</Link>
