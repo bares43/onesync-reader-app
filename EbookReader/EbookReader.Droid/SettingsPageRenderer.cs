@@ -18,6 +18,10 @@ using Xamarin.Forms.Platform.Android.AppCompat;
 [assembly: ExportRenderer(typeof(SettingsPage), typeof(SettingsPageRenderer))]
 namespace EbookReader.Droid {
     class SettingsPageRenderer : TabbedPageRenderer {
+
+        public SettingsPageRenderer(Context context) : base(context) {
+        }
+
         public override void OnViewAdded(Android.Views.View child) {
             base.OnViewAdded(child);
             var tabLayout = child as TabLayout;

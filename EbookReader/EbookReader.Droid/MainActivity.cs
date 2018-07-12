@@ -93,7 +93,7 @@ namespace EbookReader.Droid {
         }
 
         private void CloseAppMessageSubscriber(CloseAppMessage msg) {
-            var activity = (Activity)Xamarin.Forms.Forms.Context;
+            var activity = (Activity)Application.Context;
             activity.FinishAffinity();
         }
 
