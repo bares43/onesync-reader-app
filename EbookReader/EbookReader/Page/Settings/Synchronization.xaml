@@ -99,7 +99,7 @@
                             <StackLayout Style="{StaticResource wrapper}">
                                 <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                                     <Label Text="E-mail" Style="{StaticResource title}" />
-                                    <Entry Text="{Binding Firebase.Email}" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Completed="Email_Completed" Style="{StaticResource control}" />
+                                    <Entry Text="{Binding Firebase.Email}" Keyboard="Email" IsEnabled="{Binding Firebase.IsConnected, Converter={converter:InverseBoolConverter}}" Completed="Email_Completed" Style="{StaticResource control}" />
                                 </StackLayout>
                             </StackLayout>
                             

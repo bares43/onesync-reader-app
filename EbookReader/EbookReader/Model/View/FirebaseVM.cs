@@ -22,7 +22,7 @@ namespace EbookReader.Model.View {
                     return;
 
                 Password = string.Empty;
-                UserSettings.Synchronization.Firebase.Email = value;
+                UserSettings.Synchronization.Firebase.Email = value?.Trim();
                 OnPropertyChanged();
             }
         }

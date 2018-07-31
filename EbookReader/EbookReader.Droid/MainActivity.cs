@@ -45,6 +45,8 @@ namespace EbookReader.Droid {
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 
+            Window.SetSoftInputMode(SoftInput.AdjustResize);
+
             _batteryBroadcastReceiver = new BatteryBroadcastReceiver();
             Application.Context.RegisterReceiver(_batteryBroadcastReceiver, new IntentFilter(Intent.ActionBatteryChanged));
         }
