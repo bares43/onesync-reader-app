@@ -40,12 +40,12 @@
     <ContentPage.Content>
 
         <ScrollView Orientation="Vertical" Margin="0,20,0,0">
-            <StackLayout VerticalOptions="Fill" Orientation="Vertical">
+            <StackLayout VerticalOptions="Fill" Orientation="Vertical" CompressedLayout.IsHeadless="true">
 
                 <StackLayout Orientation="Vertical">
 
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Anonymous data" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding AnalyticsAgreement}" Style="{StaticResource control}" />
                         </StackLayout>

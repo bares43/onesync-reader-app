@@ -24,6 +24,9 @@ namespace EbookReader.Droid {
     public class OAuth2LoginPageRenderer : PageRenderer {
         bool done = false;
 
+        public OAuth2LoginPageRenderer(Context context) : base(context) {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Page> e) {
             base.OnElementChanged(e);
 

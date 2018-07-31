@@ -35,12 +35,12 @@
     <ContentPage.Content>
 
         <ScrollView Orientation="Vertical" Margin="0,20,0,0">
-            <StackLayout VerticalOptions="Fill" Orientation="Vertical">
+            <StackLayout VerticalOptions="Fill" Orientation="Vertical" CompressedLayout.IsHeadless="true">
 
-                <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Vertical" CompressedLayout.IsHeadless="true">
 
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Tap anywhere" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding ClickEverywhere}" Style="{StaticResource control}" />
                         </StackLayout>
@@ -48,7 +48,7 @@
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}" IsVisible="{Binding VolumeButton.Show}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Volume buttons" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding VolumeButton.Enabled}" Style="{StaticResource control}" />
                         </StackLayout>
@@ -56,7 +56,7 @@
                     </StackLayout>
                     
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Change brightness" Style="{StaticResource title}" />
                             <Picker ItemsSource="{Binding PanBrightnessChange.Items}" SelectedItem="{Binding PanBrightnessChange.Value}" Style="{StaticResource control}">
                                 <Picker.Title>
@@ -68,7 +68,7 @@
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource wrapper}">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
                             <Label Text="Two fingers swipe" Style="{StaticResource title}" />
                             <Switch IsToggled="{Binding DoubleSwipe}" Style="{StaticResource control}" />
                         </StackLayout>

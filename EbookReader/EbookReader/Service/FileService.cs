@@ -44,7 +44,7 @@ namespace EbookReader.Service {
             var folder = FileSystem.Current.LocalStorage;
             var file = await folder.CreateFileAsync(path, CreationCollisionOption.ReplaceExisting);
             var bytes = Encoding.UTF8.GetBytes(content);
-            using (Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite)) {
+            using (Stream stream = await file.OpenAsync(PCLStorage.FileAccess.ReadAndWrite)) {
                 await stream.WriteAsync(bytes, 0, bytes.Length);
             }
         }

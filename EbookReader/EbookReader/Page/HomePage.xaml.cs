@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using EbookReader.Helpers;
 using EbookReader.Model.Messages;
 using EbookReader.Page.Home;
 using EbookReader.Service;
@@ -96,31 +97,40 @@ namespace EbookReader.Page {
         }
 
         private async void AddBook(AddBookClickedMessage msg) {
-            var pickedFile = await CrossFilePicker.Current.PickFile();
 
-            if (pickedFile != null) {
+            var permissionStatus = await PermissionHelper.CheckAndRequestPermission(Plugin.Permissions.Abstractions.Permission.Storage);
 
-                try {
-                    var book = await _bookshelfService.AddBook(pickedFile);
-                    if (book.Item2) {
-                        Bookshelf.Children.Add(new BookCard(book.Item1));
+            if (permissionStatus == Plugin.Permissions.Abstractions.PermissionStatus.Granted) {
+
+                var pickedFile = await CrossFilePicker.Current.PickFile();
+
+                if (pickedFile != null) {
+
+                    try {
+                        var book = await _bookshelfService.AddBook(pickedFile);
+                        if (book.Item2) {
+                            Bookshelf.Children.Add(new BookCard(book.Item1));
+                        }
+                        this.SendBookToReader(book.Item1);
+                    } catch (Exception e) {
+                        var ext = string.Empty;
+                        if (!string.IsNullOrEmpty(pickedFile.FileName)) {
+                            ext = pickedFile.FileName.Split('.').LastOrDefault();
+                        }
+                        Analytics.TrackEvent("Failed to open book", new Dictionary<string, string> {
+                            { "Extension", ext }
+                        });
+                        Crashes.TrackError(e, new Dictionary<string, string> {
+                            { "Filename", pickedFile.FileName }
+                        });
+                        await DisplayAlert("Error", "File failed to open", "OK");
                     }
-                    this.SendBookToReader(book.Item1);
-                } catch (Exception e) {
-                    var ext = string.Empty;
-                    if (!string.IsNullOrEmpty(pickedFile.FileName)) {
-                        ext = pickedFile.FileName.Split('.').LastOrDefault();
-                    }
-                    Analytics.TrackEvent("Failed to open book", new Dictionary<string, string> {
-                        { "Extension", ext }
-                    });
-                    Crashes.TrackError(e, new Dictionary<string, string> {
-                        { "Filename", pickedFile.FileName }
-                    });
-                    await DisplayAlert("Error", "File failed to open", "OK");
+
                 }
-
+            } else {
+                await DisplayAlert("Permission not granted", "Cannot open book without storage permissions.", "OK");
             }
+
         }
 
         private void OpenBook(OpenBookMessage msg) {

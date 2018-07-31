@@ -6,15 +6,16 @@
              xmlns:webView="clr-namespace:EbookReader.View"
              x:Class="EbookReader.Page.ReaderPage">
     <ContentPage.Content>
-        <AbsoluteLayout VerticalOptions="Fill" HorizontalOptions="Fill">
+        <AbsoluteLayout VerticalOptions="Fill" HorizontalOptions="Fill" CompressedLayout.IsHeadless="true">
             <wv:ReaderWebView x:Name="WebView"
                               x:FactoryMethod="Factory"
                               VerticalOptions="FillAndExpand"
                               HorizontalOptions="FillAndExpand"
-                              ContentType="StringData"
                               OnContentLoaded="WebView_OnContentLoaded"
                               SizeChanged="WebView_SizeChanged"
-                              Margin="0,40,0,0"
+                              ContentType="LocalFile"
+                              Source="layout.html"
+                              Margin="0,40,0,0" 
                               AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                               AbsoluteLayout.LayoutFlags="SizeProportional" />
             <local:InfoPanel AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0,0,1,40" />

@@ -8,8 +8,8 @@
              BackgroundColor="#EEEEEE">
 
     <ContentPage.Content>
-        <AbsoluteLayout VerticalOptions="FillAndExpand" >
-            <StackLayout Orientation="Vertical" Margin="30,5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="SizeProportional">
+        <AbsoluteLayout VerticalOptions="FillAndExpand" CompressedLayout.IsHeadless="true">
+            <StackLayout Orientation="Vertical" Margin="30,5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="SizeProportional" CompressedLayout.IsHeadless="true">
 
                 <OnPlatform x:TypeArguments="View">
                     <OnPlatform.WinPhone>

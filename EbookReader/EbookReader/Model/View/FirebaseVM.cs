@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Autofac;
 using EbookReader.DependencyService;
-using Firebase.Xamarin.Auth;
-using Firebase.Xamarin.Database;
+using Firebase.Auth;
+using Firebase.Database;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Plugin.Connectivity;
@@ -22,7 +22,7 @@ namespace EbookReader.Model.View {
                     return;
 
                 Password = string.Empty;
-                UserSettings.Synchronization.Firebase.Email = value;
+                UserSettings.Synchronization.Firebase.Email = value?.Trim();
                 OnPropertyChanged();
             }
         }

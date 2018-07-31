@@ -14,6 +14,7 @@ using EbookReader.Service;
 using EbookReader.Model.Messages;
 using Android.Content;
 using EbookReader.Page;
+using Plugin.Permissions;
 
 namespace EbookReader.Droid {
     [Activity(Label = "OneSync Reader", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -38,8 +39,13 @@ namespace EbookReader.Droid {
                 webView.Settings.UseWideViewPort = true;
             };
 
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
+
+            global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+
+            Window.SetSoftInputMode(SoftInput.AdjustResize);
 
             _batteryBroadcastReceiver = new BatteryBroadcastReceiver();
             Application.Context.RegisterReceiver(_batteryBroadcastReceiver, new IntentFilter(Intent.ActionBatteryChanged));
@@ -72,6 +78,11 @@ namespace EbookReader.Droid {
             IocManager.Container.Resolve<IMessageBus>().Send(new BackPressedMessage());
         }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults) {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
         private void SetUpIoc() {
             IocManager.ContainerBuilder.RegisterType<AndroidAssetsManager>().As<IAssetsManager>();
             IocManager.ContainerBuilder.RegisterType<BrightnessProvider>().As<IBrightnessProvider>();
@@ -92,7 +103,7 @@ namespace EbookReader.Droid {
         }
 
         private void CloseAppMessageSubscriber(CloseAppMessage msg) {
-            var activity = (Activity)Xamarin.Forms.Forms.Context;
+            var activity = (Activity)Application.Context;
             activity.FinishAffinity();
         }
 

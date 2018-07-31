@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Firebase.Xamarin.Database;
-using Firebase.Xamarin.Auth;
-using Firebase.Xamarin.Database.Query;
+using Firebase.Auth;
+using Firebase.Database;
 using Microsoft.AppCenter.Crashes;
+using Newtonsoft.Json;
 
 namespace EbookReader.Service {
     public class FirebaseCloudStorageService : ICloudStorageService {
@@ -18,7 +18,7 @@ namespace EbookReader.Service {
         public async Task<T> LoadJson<T>(string[] path) {
             try {
                 var auth = await this.GetAuth();
-                var result = await this.GetFirebase().Child(this.PathGenerator(path, auth)).WithAuth(auth.FirebaseToken).OnceSingleAsync<T>();
+                var result = await this.GetFirebase().Child(this.PathGenerator(path, auth)).OnceSingleAsync<T>();
                 return result;
             } catch { }
 
@@ -28,7 +28,7 @@ namespace EbookReader.Service {
         public async Task<List<T>> LoadJsonList<T>(string[] path) {
             try {
                 var auth = await this.GetAuth();
-                var result = await this.GetFirebase().Child(this.PathGenerator(path, auth)).WithAuth(auth.FirebaseToken).OnceAsync<T>();
+                var result = await this.GetFirebase().Child(this.PathGenerator(path, auth)).OnceAsync<T>();
                 return result.Select(o => o.Object).ToList();
             } catch { }
 
@@ -38,7 +38,7 @@ namespace EbookReader.Service {
         public async void SaveJson<T>(T json, string[] path) {
             try {
                 var auth = await this.GetAuth();
-                await this.GetFirebase().Child($"{this.PathGenerator(path, auth)}").WithAuth(auth.FirebaseToken).PutAsync(json);
+                await this.GetFirebase().Child($"{this.PathGenerator(path, auth)}").PutAsync(JsonConvert.SerializeObject(json));
             } catch (Exception e) {
                 Crashes.TrackError(e);
             }
@@ -47,12 +47,19 @@ namespace EbookReader.Service {
         public async void DeleteNode(string[] path) {
             try {
                 var auth = await this.GetAuth();
-                await this.GetFirebase().Child($"{this.PathGenerator(path, auth)}").WithAuth(auth.FirebaseToken).DeleteAsync();
+                await this.GetFirebase().Child($"{this.PathGenerator(path, auth)}").DeleteAsync();
             } catch { }
         }
 
         private FirebaseClient GetFirebase() {
-            return new FirebaseClient(AppSettings.Synchronization.Firebase.BaseUrl);
+            return new FirebaseClient(AppSettings.Synchronization.Firebase.BaseUrl, new FirebaseOptions {
+                AuthTokenAsyncFactory = () => LoginAsync()
+            });
+        }
+
+        public async Task<string> LoginAsync() {
+            var auth = await this.GetAuth();
+            return auth.FirebaseToken;
         }
 
         private async Task<FirebaseAuthLink> GetAuth() {

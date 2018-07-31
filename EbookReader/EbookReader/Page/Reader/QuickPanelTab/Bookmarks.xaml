@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EbookReader.Page.Reader.QuickPanelTab.Bookmarks">
+             x:Class="EbookReader.Page.Reader.QuickPanelTab.Bookmarks"
+             CompressedLayout.IsHeadless="true">
 
     <Button Text="Add bookmark" Command="{Binding AddBookmarkCommand}">
         <Button.TextColor>
