@@ -59,6 +59,7 @@ namespace EbookReader.Page {
             WebView.Messages.OnChapterRequest += Messages_OnChapterRequest;
             WebView.Messages.OnOpenUrl += Messages_OnOpenUrl;
             WebView.Messages.OnPanEvent += Messages_OnPanEvent;
+            WebView.Messages.OnKeyStroke += Messages_OnKeyStroke;
 
             QuickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
@@ -86,6 +87,7 @@ namespace EbookReader.Page {
             _messageBus.Subscribe<DeleteBookmarkMessage>(DeleteBookmark, new string[] { nameof(ReaderPage) });
             _messageBus.Subscribe<ChangedBookmarkNameMessage>(ChangedBookmarkName, new string[] { nameof(ReaderPage) });
             _messageBus.Subscribe<GoToPageMessage>(GoToPageHandler, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<KeyStrokeMessage>(KeyStrokeHandler, new string[] { nameof(ReaderPage) });
         }
 
         private void UnSubscribeMessages() {
@@ -145,6 +147,10 @@ namespace EbookReader.Page {
                 }
 
             }
+        }
+
+        private void Messages_OnKeyStroke(object sender, Model.WebViewMessages.KeyStroke e) {
+            _messageBus.Send(KeyStrokeMessage.FromKeyCode(e.KeyCode));
         }
 
         protected override void OnDisappearing() {
@@ -249,6 +255,20 @@ namespace EbookReader.Page {
 
         private void GoToPageHandler(GoToPageMessage msg) {
             this.SendGoToPage(msg.Page, msg.Next, msg.Previous);
+        }
+
+        private void KeyStrokeHandler(KeyStrokeMessage msg) {
+            switch (msg.Key) {
+                case Key.Space:
+                case Key.ArrowRight:
+                case Key.ArrowDown:
+                    this.SendGoToPage(0, true, false);
+                    break;
+                case Key.ArrowLeft:
+                case Key.ArrowUp:
+                    this.SendGoToPage(0, false, true);
+                    break;
+            }
         }
 
         private async void SendChapter(Spine chapter, int position = 0, bool lastPage = false, string marker = "") {

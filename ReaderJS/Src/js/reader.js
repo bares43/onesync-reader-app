@@ -4,6 +4,7 @@
 /*global csCallback*/
 /*global Hammer*/
 /*global Gestures*/
+/*global KeyStrokes*/
 window.Ebook = {
   pageWidth: 0,
   totalPages: 0,
@@ -40,6 +41,7 @@ window.Ebook = {
     var wrapper = document.getElementsByTagName("body")[0];
 
     Gestures.init(wrapper);
+    KeyStrokes.init(wrapper);
   },
   setUpEbook: function() {
     this.resizeImages();
@@ -397,6 +399,11 @@ window.Ebook = {
         Y: y,
       });
     },
+    sendKeyStroke: function(keyCode) {
+      Messages.send("KeyStroke", {
+        KeyCode: keyCode,
+      });
+    },
   },
 };
 window.Messages = {
@@ -607,5 +614,13 @@ window.Gestures = {
     panTop: function(x, y, isFinal) {
       Ebook.panEventHandler(x, y, isFinal);
     },
+  },
+};
+
+window.KeyStrokes = {
+  init: function(element) {
+    element.addEventListener("keydown", function(e) {
+      Ebook.messagesHelper.sendKeyStroke(e.which || e.keyCode);
+    });
   },
 };
