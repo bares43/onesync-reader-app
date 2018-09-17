@@ -149,6 +149,9 @@
     <Content Include="..\EbookReader\Content\info_white.png">
       <Link>info_white.png</Link>
     </Content>
+    <Content Include="..\EbookReader\Content\save.png">
+      <Link>save.png</Link>
+    </Content>
     <Content Include="..\EbookReader\Content\save_white.png">
       <Link>save_white.png</Link>
     </Content>

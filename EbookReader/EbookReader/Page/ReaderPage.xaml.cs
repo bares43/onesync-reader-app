@@ -366,12 +366,20 @@ namespace EbookReader.Page {
             if (currentChapter > 0) {
                 this.SendChapter(_ebook.Spines[currentChapter - 1], lastPage: true);
             }
+
+            _bookshelfBook.FinishedReading = null;
+            _bookshelfService.SaveBook(_bookshelfBook);
         }
 
         private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
             if (currentChapter < _ebook.Spines.Count - 1) {
                 this.SendChapter(_ebook.Spines[currentChapter + 1]);
+                _bookshelfBook.FinishedReading = null;
+            } else {
+                _bookshelfBook.FinishedReading = DateTime.UtcNow;
             }
+
+            _bookshelfService.SaveBook(_bookshelfBook);
         }
 
         private void WebView_OnContentLoaded(object sender, EventArgs e) {
