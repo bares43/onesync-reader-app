@@ -30,9 +30,9 @@
                     <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://bares43.github.io/onesync-reader/"></TapGestureRecognizer>
                 </Label.GestureRecognizers>
             </Label>
-            <Label Text="https://github.com/bares43/thesis-ebook-reader" Style="{StaticResource link}">
+            <Label Text="https://github.com/bares43/onesync-reader-app" Style="{StaticResource link}">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/bares43/thesis-ebook-reader"></TapGestureRecognizer>
+                    <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/bares43/onesync-reader-app"></TapGestureRecognizer>
                 </Label.GestureRecognizers>
             </Label>
             <Label Text="janbares.cz" Style="{StaticResource link}">

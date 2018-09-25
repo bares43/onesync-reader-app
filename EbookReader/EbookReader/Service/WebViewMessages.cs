@@ -23,6 +23,7 @@ namespace EbookReader.Service {
         public event EventHandler<Model.WebViewMessages.ChapterRequest> OnChapterRequest;
         public event EventHandler<Model.WebViewMessages.OpenUrl> OnOpenUrl;
         public event EventHandler<Model.WebViewMessages.PanEvent> OnPanEvent;
+        public event EventHandler<Model.WebViewMessages.KeyStroke> OnKeyStroke;
 
         public WebViewMessages(ReaderWebView webView) {
             _webView = webView;
@@ -94,6 +95,9 @@ namespace EbookReader.Service {
                     break;
                 case Model.WebViewMessages.PanEvent.Name:
                     this.OnPanEvent?.Invoke(this, msg as Model.WebViewMessages.PanEvent);
+                    break;
+                case Model.WebViewMessages.KeyStroke.Name:
+                    this.OnKeyStroke?.Invoke(this, msg as Model.WebViewMessages.KeyStroke);
                     break;
             }
 

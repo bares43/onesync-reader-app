@@ -19,14 +19,14 @@
         <PackageReference Include="FirebaseAuthentication.net" Version="3.0.7" />
         <PackageReference Include="FirebaseDatabase.net" Version="3.3.3" />
         <PackageReference Include="HtmlAgilityPack" Version="1.8.4" />
-        <PackageReference Include="Microsoft.AppCenter" Version="1.7.0" />
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.7.0" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.7.0" />
+        <PackageReference Include="Microsoft.AppCenter" Version="1.9.0" />
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.9.0" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.9.0" />
         <PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
         <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
         <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
         <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-        <PackageReference Include="PCLAppConfig" Version="0.3.4" />
+        <PackageReference Include="PCLAppConfig" Version="0.4.1" />
         <PackageReference Include="PCLStorage" Version="1.0.2" />
         <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
         <PackageReference Include="SharpZipLib.Portable" Version="0.86.0.0003" />

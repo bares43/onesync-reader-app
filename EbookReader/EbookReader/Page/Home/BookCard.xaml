@@ -10,12 +10,13 @@
             <StackLayout>
                 <StackLayout HeightRequest="{Binding Height}">
                     <Image x:Name="Cover" 
-                   WidthRequest="{Binding PlaceholderWidth}"
-                   Source="book.png"
-                   HorizontalOptions="CenterAndExpand" 
-                   VerticalOptions="CenterAndExpand"/>
+                               WidthRequest="{Binding PlaceholderWidth}"
+                               Source="book.png"
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="CenterAndExpand" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="true">
+                    <Image Source="save.png" WidthRequest="32" HeightRequest="32" IsVisible="{Binding IsFinished}" />
                     <Label FontSize="Medium" Text="{Binding Title}" HorizontalOptions="StartAndExpand" TextColor="Black" />
                     <Image x:Name="DeleteIcon" Source="delete.png" WidthRequest="32" HeightRequest="32" HorizontalOptions="End" VerticalOptions="Start" />
                 </StackLayout>

@@ -59,6 +59,7 @@ namespace EbookReader.Page {
             WebView.Messages.OnChapterRequest += Messages_OnChapterRequest;
             WebView.Messages.OnOpenUrl += Messages_OnOpenUrl;
             WebView.Messages.OnPanEvent += Messages_OnPanEvent;
+            WebView.Messages.OnKeyStroke += Messages_OnKeyStroke;
 
             QuickPanel.PanelContent.OnChapterChange += PanelContent_OnChapterChange;
 
@@ -86,6 +87,7 @@ namespace EbookReader.Page {
             _messageBus.Subscribe<DeleteBookmarkMessage>(DeleteBookmark, new string[] { nameof(ReaderPage) });
             _messageBus.Subscribe<ChangedBookmarkNameMessage>(ChangedBookmarkName, new string[] { nameof(ReaderPage) });
             _messageBus.Subscribe<GoToPageMessage>(GoToPageHandler, new string[] { nameof(ReaderPage) });
+            _messageBus.Subscribe<KeyStrokeMessage>(KeyStrokeHandler, new string[] { nameof(ReaderPage) });
         }
 
         private void UnSubscribeMessages() {
@@ -145,6 +147,10 @@ namespace EbookReader.Page {
                 }
 
             }
+        }
+
+        private void Messages_OnKeyStroke(object sender, Model.WebViewMessages.KeyStroke e) {
+            _messageBus.Send(KeyStrokeMessage.FromKeyCode(e.KeyCode));
         }
 
         protected override void OnDisappearing() {
@@ -251,6 +257,20 @@ namespace EbookReader.Page {
             this.SendGoToPage(msg.Page, msg.Next, msg.Previous);
         }
 
+        private void KeyStrokeHandler(KeyStrokeMessage msg) {
+            switch (msg.Key) {
+                case Key.Space:
+                case Key.ArrowRight:
+                case Key.ArrowDown:
+                    this.SendGoToPage(0, true, false);
+                    break;
+                case Key.ArrowLeft:
+                case Key.ArrowUp:
+                    this.SendGoToPage(0, false, true);
+                    break;
+            }
+        }
+
         private async void SendChapter(Spine chapter, int position = 0, bool lastPage = false, string marker = "") {
             currentChapter = _ebook.Spines.IndexOf(chapter);
             _bookshelfBook.Spine = currentChapter;
@@ -346,12 +366,20 @@ namespace EbookReader.Page {
             if (currentChapter > 0) {
                 this.SendChapter(_ebook.Spines[currentChapter - 1], lastPage: true);
             }
+
+            _bookshelfBook.FinishedReading = null;
+            _bookshelfService.SaveBook(_bookshelfBook);
         }
 
         private void _messages_OnNextChapterRequest(object sender, Model.WebViewMessages.NextChapterRequest e) {
             if (currentChapter < _ebook.Spines.Count - 1) {
                 this.SendChapter(_ebook.Spines[currentChapter + 1]);
+                _bookshelfBook.FinishedReading = null;
+            } else {
+                _bookshelfBook.FinishedReading = DateTime.UtcNow;
             }
+
+            _bookshelfService.SaveBook(_bookshelfBook);
         }
 
         private void WebView_OnContentLoaded(object sender, EventArgs e) {

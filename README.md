@@ -34,4 +34,4 @@ What you can configure:
 
 * **Jan Bareš** - *Initial work* - [bares43](https://github.com/bares43)
 
-See also the list of [contributors](https://github.com/bares43/thesis-ebook-reader/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/bares43/onesync-reader-app/graphs/contributors) who participated in this project.

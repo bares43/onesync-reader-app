@@ -28,6 +28,7 @@ namespace EbookReader.Page.Home {
                 Width = Card.CardWidth,
                 Height = Card.CardHeight,
                 PlaceholderWidth = Card.CardWidth * .75,
+                IsFinished = book.FinishedReading.HasValue
             };
 
             InitializeComponent();

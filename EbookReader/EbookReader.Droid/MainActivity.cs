@@ -103,8 +103,7 @@ namespace EbookReader.Droid {
         }
 
         private void CloseAppMessageSubscriber(CloseAppMessage msg) {
-            var activity = (Activity)Application.Context;
-            activity.FinishAffinity();
+            this.Finish();
         }
 
         private void ChangeBrightness(ChangesBrightnessMessage msg) {

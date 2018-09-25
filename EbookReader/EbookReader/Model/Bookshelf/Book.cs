@@ -15,6 +15,7 @@ namespace EbookReader.Model.Bookshelf {
         public string Cover { get; set; }
         public DateTime? BookmarksSyncLastChange { get; set; }
         public EbookFormat Format { get; set; }
+        public DateTime? FinishedReading { get; set; }
 
         public int Spine { get; set; }
         public int SpinePosition { get; set; }

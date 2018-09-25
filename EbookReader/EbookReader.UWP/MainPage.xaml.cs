@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Xamarin.Forms.Platform.UWP;
+using Autofac;
+using EbookReader.Service;
+using EbookReader.Model.Messages;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,6 +30,12 @@ namespace EbookReader.UWP
         {
             this.InitializeComponent();
             LoadApplication(new EbookReader.App());
+
+            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+        }
+
+        private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args) {
+            IocManager.Container.Resolve<IMessageBus>().Send(KeyStrokeMessage.FromKeyCode((int)args.VirtualKey));
         }
     }
 }

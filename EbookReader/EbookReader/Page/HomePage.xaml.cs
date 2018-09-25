@@ -27,7 +27,14 @@ namespace EbookReader.Page {
 
             InitializeComponent();
 
-            Init();
+            // ioc
+            _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
+            _messageBus = IocManager.Container.Resolve<IMessageBus>();
+            _syncService = IocManager.Container.Resolve<ISyncService>();
+
+            _messageBus.Subscribe<AddBookClickedMessage>(AddBook);
+            _messageBus.Subscribe<OpenBookMessage>(OpenBook);
+            _messageBus.Subscribe<DeleteBookMessage>(DeleteBook);
 
             if (!App.HasMasterDetailPage) {
 
@@ -61,6 +68,8 @@ namespace EbookReader.Page {
             this.ShowAnalyticsAgreement();
 
             UserSettings.FirstRun = false;
+
+            this.LoadBookshelf();
         }
 
         private async void AboutItem_Clicked(object sender, EventArgs e) {
@@ -78,22 +87,15 @@ namespace EbookReader.Page {
             }
         }
 
-        private async void Init() {
+        private async void LoadBookshelf() {
 
-            // ioc
-            _bookshelfService = IocManager.Container.Resolve<IBookshelfService>();
-            _messageBus = IocManager.Container.Resolve<IMessageBus>();
-            _syncService = IocManager.Container.Resolve<ISyncService>();
+            Bookshelf.Children.Clear();
 
             var books = await _bookshelfService.LoadBooks();
 
             foreach (var book in books) {
                 Bookshelf.Children.Add(new BookCard(book));
             }
-
-            _messageBus.Subscribe<AddBookClickedMessage>(AddBook);
-            _messageBus.Subscribe<OpenBookMessage>(OpenBook);
-            _messageBus.Subscribe<DeleteBookMessage>(DeleteBook);
         }
 
         private async void AddBook(AddBookClickedMessage msg) {
